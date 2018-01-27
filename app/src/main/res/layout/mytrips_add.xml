@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dreamtrip.dreamtrip.ActivityMytrips_add">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="0dp"
+        android:background="@drawable/boardstuff_white_xhdpi">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/transparentBrown"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.65"
+                android:elevation="1dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.65"
+                    android:ems="10"
+                    android:hint="Trip name"
+                    android:inputType="text"
+                    android:nextFocusLeft="@id/editText"
+                    android:nextFocusUp="@id/editText"
+                    android:paddingLeft="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHighlight="@android:color/black"
+                    android:textColorLink="@android:color/black"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:id="@+id/editText4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.65"
+                    android:ems="10"
+                    android:hint="Start date"
+                    android:inputType="date"
+                    android:nextFocusLeft="@id/editText4"
+                    android:nextFocusUp="@id/editText4"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHighlight="@android:color/black"
+                    android:textColorLink="@android:color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/editText3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.65"
+                    android:ems="10"
+                    android:hint="End date"
+                    android:inputType="date"
+                    android:nextFocusLeft="@id/editText3"
+                    android:nextFocusUp="@id/editText3"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHighlight="@android:color/black"
+                    android:textColorLink="@android:color/black"
+                    android:textSize="18sp" />
+
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_weight="0.65"
+                    android:paddingLeft="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.65"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="79dp"
+                            android:layout_height="47dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            android:text="Header image"
+                            android:textColor="?android:attr/textColorTertiary"
+                            android:textSize="18sp" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton2"
+                            android:layout_width="match_parent"
+                            android:layout_height="73dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/selector_mytrips_add_btns3"
+                            app:srcCompat="@drawable/ic_mountain_range" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="113dp"
+                            android:layout_height="47dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:elevation="1dp"
+                            android:gravity="center"
+                            android:text="Main trip photo"
+                            android:textColor="?android:attr/textColorTertiary"
+                            android:textSize="18sp" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton3"
+                            android:layout_width="match_parent"
+                            android:layout_height="73dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/selector_mytrips_add_btns3"
+                            app:srcCompat="@drawable/ic_menu_camera" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="84dp"
+                            android:layout_height="47dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center"
+                            android:text="Color style"
+                            android:textColor="?android:attr/textColorTertiary"
+                            android:textSize="18sp" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton4"
+                            android:layout_width="match_parent"
+                            android:layout_height="73dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/selector_mytrips_add_btns3"
+                            app:srcCompat="@mipmap/ic_color_lens_black_24dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_mytrips_add_btn1"
+                android:text="Save changes"
+                android:textColor="@color/black_overlay"
+                android:textColorLink="@color/transparentBrown" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

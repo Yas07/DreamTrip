@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.dreamtrip.dreamtrip.ActivityPacklists_packlist_add">
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="vertical">
+
+     <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_bags_pink_xhdpi">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="1dp"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/packlist_addstuff_mainbg"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:id="@+id/textView59"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="10dp"
+                        android:elevation="2dp"
+                        android:fontFamily="cursive"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:text="Add custom stuff"
+                        android:textAlignment="center"
+                        android:textColor="@color/packlist_addstuff_labels"
+                        android:textSize="36sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView56"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:fontFamily="casual"
+                        android:text="Current packing list"
+                        android:textAlignment="center"
+                        android:textColor="@color/packlist_addstuff_labels"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinner12"
+                        android:layout_width="match_parent"
+                        android:layout_height="57dp" />
+
+                    <TextView
+                        android:id="@+id/textView57"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:fontFamily="casual"
+                        android:text="Current group"
+                        android:textAlignment="center"
+                        android:textColor="@color/packlist_addstuff_labels"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinner13"
+                        android:layout_width="match_parent"
+                        android:layout_height="57dp" />
+
+                    <TextView
+                        android:id="@+id/textView58"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:fontFamily="casual"
+                        android:text="Current stuff"
+                        android:textAlignment="center"
+                        android:textColor="@color/packlist_addstuff_labels"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinner14"
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp" />
+
+                    <Switch
+                        android:id="@+id/switch3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:elevation="1dp"
+                        android:fontFamily="casual"
+                        android:text="Change group or stuff"
+                        android:textAlignment="center"
+                        android:textColor="@color/packlist_addstuff_labels"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:elevation="2dp"
+                        android:hint="Enter a new title of group or stuff"
+                        android:nextFocusLeft="@id/autoCompleteTextView4"
+                        android:nextFocusUp="@id/autoCompleteTextView4"
+                        android:textColor="@color/black_overlay"
+                        android:textColorHint="@color/packlist_addstuff_labels" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="20dp"
+                        android:background="@color/myTransparent"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/packlist_addstuff_bg"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:id="@+id/imageButton"
+                                android:layout_width="65dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/selector_packlists_addstuff_btns"
+                                app:srcCompat="@mipmap/ic_add_white_24dp" />
+
+                            <TextView
+                                android:id="@+id/textView40"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:elevation="2dp"
+                                android:fontFamily="casual"
+                                android:text="add new"
+                                android:textAlignment="center"
+                                android:textColor="@color/packlist_addstuff_labels"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="110dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/packlist_addstuff_bg"
+                            android:orientation="vertical"
+                            android:weightSum="1">
+
+                            <ImageButton
+                                android:id="@+id/imageButton"
+                                android:layout_width="65dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/selector_packlists_addstuff_btns"
+                                app:srcCompat="@android:drawable/ic_menu_edit" />
+
+                            <TextView
+                                android:id="@+id/textView40"
+                                android:layout_width="98dp"
+                                android:layout_height="28dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="1.40"
+                                android:elevation="2dp"
+                                android:fontFamily="casual"
+                                android:text="change title"
+                                android:textAlignment="center"
+                                android:textColor="@color/packlist_addstuff_labels"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/packlist_addstuff_bg"
+                            android:orientation="vertical"
+                            android:weightSum="1">
+
+                            <ImageButton
+                                android:id="@+id/imageButton9"
+                                android:layout_width="65dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/selector_packlists_addstuff_btns"
+                                app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                            <TextView
+                                android:id="@+id/textView40"
+                                android:layout_width="98dp"
+                                android:layout_height="28dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.60"
+                                android:elevation="2dp"
+                                android:fontFamily="casual"
+                                android:text="delete"
+                                android:textAlignment="center"
+                                android:textColor="@color/packlist_addstuff_labels"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/mynewpink"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:id="@+id/textView54"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:elevation="1dp"
+                        android:fontFamily="cursive"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:text="Add groups from list"
+                        android:textAlignment="center"
+                        android:textColor="@color/packlist_addstuff_labels"
+                        android:textSize="36sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView53"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:fontFamily="casual"
+                        android:text="Choose packing list"
+                        android:textAlignment="center"
+                        android:textColor="@color/packlist_addstuff_labels"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinner10"
+                        android:layout_width="match_parent"
+                        android:layout_height="57dp" />
+
+                    <TextView
+                        android:id="@+id/textView55"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:fontFamily="casual"
+                        android:text="Choose a group"
+                        android:textAlignment="center"
+                        android:textColor="@color/packlist_addstuff_labels"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinner11"
+                        android:layout_width="match_parent"
+                        android:layout_height="57dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="20dp"
+                        android:background="@color/myTransparent"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/packlist_addstuff_bg"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:id="@+id/imageButton"
+                                android:layout_width="65dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/selector_packlists_addstuff_btns"
+                                app:srcCompat="@mipmap/ic_add_white_24dp" />
+
+                            <TextView
+                                android:id="@+id/textView40"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:elevation="2dp"
+                                android:fontFamily="casual"
+                                android:text="add a group"
+                                android:textAlignment="center"
+                                android:textColor="@color/packlist_addstuff_labels"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="0.22"
+                            android:background="@color/packlist_addstuff_bg"
+                            android:orientation="vertical"
+                            android:weightSum="1">
+
+                            <ImageButton
+                                android:id="@+id/imageButton"
+                                android:layout_width="65dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/selector_packlists_addstuff_btns"
+                                app:srcCompat="@mipmap/ic_playlist_add_white_24dp" />
+
+                            <TextView
+                                android:id="@+id/textView40"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="1.40"
+                                android:elevation="2dp"
+                                android:fontFamily="casual"
+                                android:text="add all groups"
+                                android:textAlignment="center"
+                                android:textColor="@color/packlist_addstuff_labels"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+ </LinearLayout>
+</RelativeLayout>

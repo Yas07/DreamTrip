@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--tools:context="layout.Fragment_packlist"-->
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/note_book_blue_left_xhdpi">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="cursive"
+                    android:text="Check list"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="cursive"
+                    android:text="Main"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkBox6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Passport"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Tickets"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkBox4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Phone"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Phone charger"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                    </LinearLayout>
+
+                    <CheckBox
+                        android:id="@+id/checkBox5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:fontFamily="casual"
+                        android:shadowColor="@android:color/black"
+                        android:text="Money"
+                        android:textColor="@android:color/black"
+                        android:textColorHighlight="@android:color/black"
+                        android:textColorHint="@android:color/black"
+                        android:textColorLink="@android:color/black" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="cursive"
+                    android:text="Clothes"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkBox4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Jeans"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Skirts"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkBox9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Shirts"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Dress"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+                    </LinearLayout>
+
+                    <CheckBox
+                        android:id="@+id/checkBox5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:fontFamily="casual"
+                        android:shadowColor="@android:color/black"
+                        android:text="Sneakers"
+                        android:textColor="@android:color/black"
+                        android:textColorHighlight="@android:color/black"
+                        android:textColorHint="@android:color/black"
+                        android:textColorLink="@android:color/black" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="cursive"
+                    android:text="Medicine"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkBox4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Pills from cold"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Syrop"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkBox9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Pills from poison"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Bandages"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkBox5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Nose spray"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="cursive"
+                    android:text="Clothes"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkBox4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Jeans"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Skirts"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/checkBox9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Shirts"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Dress"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+                    </LinearLayout>
+
+                    <CheckBox
+                        android:id="@+id/checkBox5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="1dp"
+                        android:fontFamily="casual"
+                        android:shadowColor="@android:color/black"
+                        android:text="Sneakers"
+                        android:textColor="@android:color/black"
+                        android:textColorHighlight="@android:color/black"
+                        android:textColorHint="@android:color/black"
+                        android:textColorLink="@android:color/black" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_packlist_add_stuff"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:backgroundTint="@android:color/holo_blue_light"
+            app:elevation="10dp"
+            app:srcCompat="@mipmap/ic_add_white_24dp" />
+</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

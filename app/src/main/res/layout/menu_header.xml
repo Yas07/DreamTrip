@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_header_height"
+    android:background="@drawable/header_menu"
+
+    android:gravity="start"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="5dp"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="249dp"
+        android:layout_height="37dp"
+        android:layout_weight="0.69"
+        android:gravity="bottom"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:text="Dream Trip"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/background_light"
+        android:textColorHighlight="@android:color/holo_red_light"
+        android:textSize="30sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_weight="0.18"
+        android:gravity="bottom"
+        android:text="Make your dream trip come true"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

@@ -1,0 +1,290 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="layout.FragmentPlan_walk">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/plan_monument">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/btnWalkCapitol"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@color/colorTransparentAqua"
+                        android:onClick="changeIconWalk"
+                        app:srcCompat="@drawable/icontour_capitol_black" />
+
+                    <ImageButton
+                        android:id="@+id/btnWalkCastle"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="changeIconWalk"
+                        app:srcCompat="@drawable/icontour_castle_black_shape" />
+
+                    <ImageButton
+                        android:id="@+id/btnWalkCastle2"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="changeIconWalk"
+                        app:srcCompat="@drawable/icontour_castle" />
+
+                    <ImageButton
+                        android:id="@+id/btnWalkMosque"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:onClick="changeIconWalk"
+                        app:srcCompat="@drawable/icontour_mosque" />
+
+                    <ImageButton
+                        android:id="@+id/btnWalkChurch"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="changeIconWalk"
+                        app:srcCompat="@drawable/icontour_church" />
+
+                    <ImageButton
+                        android:id="@+id/btnWalkLiberty"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="changeIconWalk"
+                        app:srcCompat="@drawable/icontour_usa" />
+
+                    <ImageButton
+                        android:id="@+id/btnWalkFrance"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="changeIconWalk"
+                        app:srcCompat="@drawable/icontour_france" />
+
+                    <ImageButton
+                        android:id="@+id/btnWalkKiev"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="changeIconWalk"
+                        app:srcCompat="@drawable/icontour_kiev" />
+
+                    <ImageButton
+                        android:id="@+id/btnWalkPyramid"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="changeIconWalk"
+                        app:srcCompat="@drawable/icontour_pyramids" />
+
+                    <ImageButton
+                        android:id="@+id/btnWalkNefertiti"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="changeIconWalk"
+                        app:srcCompat="@drawable/icontour_nefertiti" />
+
+                    <ImageButton
+                        android:id="@+id/btnWalkFountain"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:onClick="changeIconWalk"
+                        app:srcCompat="@drawable/icontour_fountain" />
+
+                    <ImageButton
+                        android:id="@+id/btnWalkTemple"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="changeIconWalk"
+                        app:srcCompat="@drawable/icontour_temple" />
+
+                    <ImageButton
+                        android:id="@+id/btnWalkOther"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="changeIconWalk"
+                        app:srcCompat="@drawable/ic_location_on_black_24px" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <EditText
+                android:id="@+id/editText12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorTransparentAqua"
+                android:hint="Tour point name"
+                android:inputType="text"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/black_overlay" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editText10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.01"
+                    android:background="@color/colorTransparentAqua"
+                    android:hint="Opens at"
+                    android:inputType="time"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="10dp"
+                    android:textColor="@color/black_overlay" />
+
+                <EditText
+                    android:id="@+id/editText11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.01"
+                    android:background="@color/colorTransparentAqua"
+                    android:hint="Closes at"
+                    android:inputType="time"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:textColor="@color/black_overlay" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@color/colorTransparentAqua"
+                android:hint="Date and time when you will do or visit"
+                android:inputType="datetime"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/black_overlay" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="218dp"
+                android:layout_gravity="bottom"></ScrollView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/editText16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorTransparentAqua"
+                        android:hint="Address"
+                        android:inputType="text"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="10dp"
+                        android:textColor="@color/black_overlay" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <EditText
+                            android:id="@+id/editText15"
+                            android:layout_width="233dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="0.53"
+                            android:background="@color/colorTransparentAqua"
+                            android:hint="Other details"
+                            android:inputType="text"
+                            android:paddingBottom="10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="10dp"
+                            android:textColor="@color/black_overlay" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="0.45"
+                            android:background="@color/colorTransparentAqua"
+                            app:srcCompat="@android:drawable/ic_menu_save" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

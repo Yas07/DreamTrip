@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dreamtrip.dreamtrip.ActivityPacklists_add">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/boardstuff_pink_blue_xhdpi"
+        android:elevation="1dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/transparentPink"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.65"
+                android:elevation="1dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.65"
+                    android:ems="10"
+                    android:hint="Packing list title"
+                    android:inputType="text"
+                    android:nextFocusLeft="@id/editText"
+                    android:nextFocusUp="@id/editText"
+                    android:paddingLeft="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHighlight="@android:color/black"
+                    android:textColorLink="@android:color/black"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:id="@+id/editText5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.65"
+                    android:ems="10"
+                    android:hint="Description"
+                    android:inputType="text"
+                    android:nextFocusLeft="@id/editText4"
+                    android:nextFocusUp="@id/editText4"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHighlight="@android:color/black"
+                    android:textColorLink="@android:color/black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.65"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:elevation="2dp"
+                        android:gravity="center"
+                        android:text="Upload your photo"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorTertiary"
+                        android:textSize="18sp" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_packlists_add_btn1_photo"
+                        app:srcCompat="@drawable/ic_menu_camera" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="0.65"
+                    android:elevation="2dp"
+                    android:gravity="center"
+                    android:text="Or choose image"
+                    android:textAlignment="center"
+                    android:textColor="?android:attr/textColorTertiary"
+                    android:textSize="18sp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.65">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:elevation="1dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnBirds"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_birds_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnSummer"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_summer_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnTravel2"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_travel2_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnTwopeople"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_twopeople_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnMelons"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_melons_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnTravel"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_travel_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnAdventure"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_adventure_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnChildren"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_children_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnFestival"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_festival_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnWinter1"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_winter_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnWinter2"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_winter2_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnLondon1"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_london2_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnLondon2"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_london_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnLondon3"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_britain_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnGreece"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_greece_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnFrance2"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_paris_xhdpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnFrance1"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_yellow_xhdpi" />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_packlists_add_btn1"
+                android:text="Save changes"
+                android:textColor="@color/black_overlay"
+                android:textColorLink="@color/black_overlay" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

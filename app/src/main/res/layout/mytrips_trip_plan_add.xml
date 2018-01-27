@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dreamtrip.dreamtrip.ActivityMytrips_trip_plan_add">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_bright">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/btnHotel"
+                    android:layout_width="65dp"
+                    android:layout_height="57dp"
+                    android:onClick="changeFragment"
+                    app:srcCompat="@mipmap/ic_hotel_white_24dp"
+                    android:background="@color/colorActiveButton" />
+
+                <ImageButton
+                    android:id="@+id/btnTransport"
+                    android:layout_width="65dp"
+                    android:layout_height="57dp"
+                    android:background="@color/colorPrimary"
+                    android:onClick="changeFragment"
+                    app:srcCompat="@mipmap/ic_flight_white_24dp" />
+
+                <ImageButton
+                    android:id="@+id/btnEating"
+                    android:layout_width="65dp"
+                    android:layout_height="57dp"
+                    android:onClick="changeFragment"
+                    app:srcCompat="@mipmap/ic_local_dining_white_24dp"
+                    android:background="@color/colorPrimary"/>
+
+                <ImageButton
+                    android:id="@+id/btnWalk"
+                    android:layout_width="65dp"
+                    android:layout_height="57dp"
+                    android:onClick="changeFragment"
+                    app:srcCompat="@mipmap/ic_directions_walk_white_24dp"
+                    android:background="@color/colorPrimary"/>
+
+                <ImageButton
+                    android:id="@+id/btnMuseum"
+                    android:layout_width="65dp"
+                    android:layout_height="57dp"
+                    android:onClick="changeFragment"
+                    app:srcCompat="@mipmap/ic_account_balance_white_24dp"
+                    android:background="@color/colorPrimary"/>
+
+                <ImageButton
+                    android:id="@+id/btnPhoto"
+                    android:layout_width="65dp"
+                    android:layout_height="57dp"
+                    android:onClick="changeFragment"
+                    app:srcCompat="@mipmap/ic_local_florist_white_24dp"
+                    android:background="@color/colorPrimary"/>
+
+                <ImageButton
+                    android:id="@+id/btnExtreme"
+                    android:layout_width="65dp"
+                    android:layout_height="57dp"
+                    android:background="@color/colorPrimary"
+                    android:onClick="changeFragment"
+                    app:srcCompat="@drawable/iconextreme_climbing_white" />
+
+                <ImageButton
+                    android:id="@+id/btnWinter"
+                    android:layout_width="65dp"
+                    android:layout_height="57dp"
+                    android:background="@color/colorPrimary"
+                    android:onClick="changeFragment"
+                    app:srcCompat="@drawable/iconwinter_snow_white" />
+                <ImageButton
+                    android:id="@+id/btnSummer"
+                    android:layout_width="65dp"
+                    android:layout_height="57dp"
+                    android:onClick="changeFragment"
+                    app:srcCompat="@mipmap/ic_beach_access_white_24dp"
+                    android:background="@color/colorPrimary"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragmentPlace"
+            android:name="layout.FragmentPlan_hotel">
+        </fragment>
+    </LinearLayout>
+</RelativeLayout>

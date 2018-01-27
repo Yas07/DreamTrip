@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:screenOrientation="http://schemas.android.com/apk/res-auto"
+    package="com.dreamtrip.dreamtrip">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_airplane3"
+        android:label="DreamTrip"
+        android:roundIcon="@drawable/ic_airplane3"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        //--------------------------------------------------Main Activity
+        //----------------------------------------------------------------------------------
+        <activity
+            android:name=".ActivityStart"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.dreamtrip.dreamtrip.MainActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        //---------------------------------------------------My trips
+        //----------------------------------------------------------------------------------
+        <activity
+            android:name=".ActivityMytrips_add"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.dreamtrip.dreamtrip.ActivityMytrips_add" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ActivityMytrips_trip"
+            android:label="Trip details"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.dreamtrip.dreamtrip.ActivityMytrips_trip" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ActivityMytrips_trip_plan_add"
+            android:label="Add new point to the plan"
+            android:parentActivityName=".ActivityMytrips_trip"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.dreamtrip.dreamtrip.ActivityMytrips_trip_plan_add" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        //----------------------------------------------------Travel book
+        //----------------------------------------------------------------------------------
+        <activity
+            android:name=".ActivityTravelbooks_add"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.dreamtrip.dreamtrip.ActivityTravelbooks_add" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ActivityTravelbooks_travelbook_add"
+            android:label="Add post to the travelbook"
+            android:parentActivityName=".ActivityTravelbooks_travelbook"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.dreamtrip.dreamtrip.ActivityTravelbooks_travelbook_add" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ActivityTravelbooks_travelbook"
+            android:label="Travelbook"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.dreamtrip.dreamtrip.ActivityTravelbooks_travelbook" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        //------------------------------------------------------Pack list
+        //----------------------------------------------------------------------------------
+        <activity
+            android:name=".ActivityPacklists_add"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.dreamtrip.dreamtrip.ActivityPacklists_add" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ActivityPacklists_packlist"
+            android:label="Packing list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.dreamtrip.dreamtrip.ActivityPacklists_packlist" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ActivityPacklists_packlist_add"
+            android:label="Add stuff to the packing list"
+            android:parentActivityName=".ActivityPacklists_packlist"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.dreamtrip.dreamtrip.ActivityPacklists_packlist_add" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        //---------------------------------------------------Settings and Help
+        //----------------------------------------------------------------------------------
+        <activity
+            android:name=".ActivitySettings"
+            android:label="Settings"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.dreamtrip.dreamtrip.ActivitySettings" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ActivityHelp"
+            android:label="Help"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.dreamtrip.dreamtrip.ActivityHelp" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

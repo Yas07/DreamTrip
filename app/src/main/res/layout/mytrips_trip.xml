@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.dreamtrip.dreamtrip.ActivityMytrips_trip">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:background="@drawable/header_trip"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparentLightDark"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/trip_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Christmas travel to Lviv"
+                    android:textColor="@color/transparentWhite"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/trip_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:paddingLeft="10dp"
+                    android:text="07.01.18 - 08.01.18"
+                    android:textColor="@color/transparentWhite"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:layout_gravity="bottom"
+            android:foregroundGravity="bottom">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/transparentWhite"
+                android:gravity="bottom">
+
+                <Button
+                    android:id="@+id/btnPacklist1"
+                    android:layout_width="126dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black_overlay"
+                    android:gravity="center"
+                    android:onClick="changePlan"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Packing list"
+                    android:textColor="@android:color/background_light" />
+
+                <Button
+                    android:id="@+id/btnPlan1"
+                    android:layout_width="106dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparentGrey"
+                    android:gravity="center"
+                    android:onClick="changePlan"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Plan"
+                    android:textColor="@android:color/background_light"
+                    android:textColorLink="@android:color/black" />
+
+                <Button
+                    android:id="@+id/btnTravelbook1"
+                    android:layout_width="128dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black_overlay"
+                    android:gravity="center"
+                    android:onClick="changePlan"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Travel book"
+                    android:textColor="@android:color/background_light" />
+            </LinearLayout>
+        </HorizontalScrollView>
+        <fragment
+            android:id="@+id/fragmentPlace"
+            android:name="layout.Fragment_plan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></fragment>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
