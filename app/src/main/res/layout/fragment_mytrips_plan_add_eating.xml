@@ -3,281 +3,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragmentEating"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/myTransparent"
     tools:context="layout.FragmentPlan_eating">
 
-    <!-- TODO: Update blank fragment layout -->
 
-    <ScrollView
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/plan_cafe">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageButton
-                        android:id="@+id/btnEatRestaurant"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@color/colorTransparentAqua"
-                        android:onClick="changeIconEating"
-                        app:srcCompat="@drawable/iconeat_restaurant_black_24px" />
-
-                    <ImageButton
-                        android:id="@+id/btnEatCanteen"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconEating"
-                        app:srcCompat="@drawable/iconeat_canteen_black_24px" />
-
-                    <ImageButton
-                        android:id="@+id/btnEatCafe"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconEating"
-                        app:srcCompat="@drawable/iconeat_cafe_black_24px" />
-
-                    <ImageButton
-                        android:id="@+id/btnEatBar"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconEating"
-                        app:srcCompat="@drawable/iconeat_bar_black_24px" />
-
-                    <ImageButton
-                        android:id="@+id/btnEatPizza"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconEating"
-                        app:srcCompat="@drawable/iconeat_pizza_black_24px" />
-
-                    <ImageButton
-                        android:id="@+id/btnEatSushi"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconEating"
-                        app:srcCompat="@drawable/iconeat_sushi_and_chopsticks" />
-
-                    <ImageButton
-                        android:id="@+id/btnEatFastfood"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconEating"
-                        app:srcCompat="@drawable/iconeat_food" />
-
-
-                    <ImageButton
-                        android:id="@+id/btnEatBakery"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconEating"
-                        app:srcCompat="@drawable/iconeat_bakery" />
-
-                    <ImageButton
-                        android:id="@+id/btnEatHomefood"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconEating"
-                        app:srcCompat="@drawable/iconeat_home_food_black_24px" />
-
-                    <ImageButton
-                        android:id="@+id/btnEatRoom"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconEating"
-                        app:srcCompat="@drawable/iconeat_room_service_black_24px" />
-
-                    <ImageButton
-                        android:id="@+id/btnEatOther"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconEating"
-                        app:srcCompat="@drawable/ic_location_on_black_24px" />
-
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <EditText
-                android:id="@+id/editText12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:background="@color/colorTransparentAqua"
-                android:hint="Restaurant name"
-                android:inputType="text"
-                android:paddingBottom="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="10dp"
-                android:textColor="@color/black_overlay" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/editText10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="0.01"
-                    android:background="@color/colorTransparentAqua"
-                    android:hint="Opens at"
-                    android:inputType="time"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="5dp"
-                    android:paddingTop="10dp"
-                    android:textColor="@color/black_overlay" />
-
-                <EditText
-                    android:id="@+id/editText11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="0.01"
-                    android:background="@color/colorTransparentAqua"
-                    android:hint="Closes at"
-                    android:inputType="time"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp"
-                    android:textColor="@color/black_overlay" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/editText2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
+            <ImageButton
+                android:id="@+id/btnEatRestaurant"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:layout_weight="1"
-                android:background="@color/colorTransparentAqua"
-                android:hint="Date and time when you will visit"
-                android:inputType="datetime"
-                android:paddingBottom="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="10dp"
-                android:textColor="@color/black_overlay" />
+                android:background="@color/transparentWhite"
+                android:onClick="changeIconEating"
+                app:srcCompat="@drawable/iconeat_restaurant_black_24px" />
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="216dp"
-                android:layout_gravity="bottom"></ScrollView>
+            <ImageButton
+                android:id="@+id/btnEatCanteen"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconEating"
+                app:srcCompat="@drawable/iconeat_canteen_black_24px" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-                android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/btnEatCafe"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconEating"
+                app:srcCompat="@drawable/iconeat_cafe_black_24px" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/btnEatBar"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconEating"
+                app:srcCompat="@drawable/iconeat_bar_black_24px" />
 
-                    <EditText
-                        android:id="@+id/editText16"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:background="@color/colorTransparentAqua"
-                        android:hint="Restaurant address"
-                        android:inputType="text"
-                        android:paddingBottom="10dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="10dp"
-                        android:textColor="@color/black_overlay" />
+            <ImageButton
+                android:id="@+id/btnEatPizza"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconEating"
+                app:srcCompat="@drawable/iconeat_pizza_black_24px" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:weightSum="1">
+            <ImageButton
+                android:id="@+id/btnEatSushi"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconEating"
+                app:srcCompat="@drawable/iconeat_sushi_and_chopsticks" />
 
-                        <EditText
-                            android:id="@+id/editText15"
-                            android:layout_width="233dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="0.53"
-                            android:background="@color/colorTransparentAqua"
-                            android:hint="Other details"
-                            android:inputType="text"
-                            android:paddingBottom="10dp"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:paddingTop="10dp"
-                            android:textColor="@color/black_overlay" />
+            <ImageButton
+                android:id="@+id/btnEatFastfood"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconEating"
+                app:srcCompat="@drawable/iconeat_food" />
 
-                        <ImageButton
-                            android:id="@+id/imageButton6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="0.45"
-                            android:background="@color/colorTransparentAqua"
-                            app:srcCompat="@android:drawable/ic_menu_save" />
 
-                    </LinearLayout>
+            <ImageButton
+                android:id="@+id/btnEatBakery"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconEating"
+                app:srcCompat="@drawable/iconeat_bakery" />
 
-                </LinearLayout>
+            <ImageButton
+                android:id="@+id/btnEatHomefood"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconEating"
+                app:srcCompat="@drawable/iconeat_home_food_black_24px" />
 
-            </RelativeLayout>
+            <ImageButton
+                android:id="@+id/btnEatRoom"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconEating"
+                app:srcCompat="@drawable/iconeat_room_service_black_24px" />
 
+            <ImageButton
+                android:id="@+id/btnEatOther"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconEating"
+                app:srcCompat="@drawable/ic_location_on_black_24px" />
 
         </LinearLayout>
-    </ScrollView>
+    </HorizontalScrollView>
 </FrameLayout>

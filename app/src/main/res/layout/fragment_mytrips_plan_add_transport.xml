@@ -2,289 +2,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragmentTransport"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/myTransparent"
     tools:context="layout.FragmentPlan_transport">
 
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-
-    <ScrollView
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/plan_transport">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusableInTouchMode="true"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/btnTransAirplane"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:background="@color/transparentWhite"
+                android:onClick="changeIconTransport"
+                android:src="@mipmap/ic_flight_black_24dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/btnTransTrain"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconTransport"
+                android:src="@drawable/icontransport_subway_black_24px" />
 
-                    <ImageButton
-                        android:id="@+id/btnTransAirplane"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:background="@color/colorTransparentAqua"
-                        android:onClick="changeIconTransport"
-                        android:src="@mipmap/ic_flight_black_24dp" />
+            <ImageButton
+                android:id="@+id/btnTransBus"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconTransport"
+                android:src="@drawable/icontransport_bus_black_24px" />
 
-                    <ImageButton
-                        android:id="@+id/btnTransTrain"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconTransport"
-                        android:src="@drawable/icontransport_subway_black_24px" />
+            <ImageButton
+                android:id="@+id/btnTransCar"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconTransport"
+                android:src="@drawable/icontransport_car_black_24px" />
 
-                    <ImageButton
-                        android:id="@+id/btnTransBus"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconTransport"
-                        android:src="@drawable/icontransport_bus_black_24px" />
+            <ImageButton
+                android:id="@+id/btnTransTaxi"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconTransport"
+                android:src="@drawable/icontransport_taxi_black_24px" />
 
-                    <ImageButton
-                        android:id="@+id/btnTransCar"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconTransport"
-                        android:src="@drawable/icontransport_car_black_24px" />
+            <ImageButton
+                android:id="@+id/btnTransTram"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconTransport"
+                android:src="@drawable/icontransport_tram_black_24px" />
 
-                    <ImageButton
-                        android:id="@+id/btnTransTaxi"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconTransport"
-                        android:src="@drawable/icontransport_taxi_black_24px" />
+            <ImageButton
+                android:id="@+id/btnTransShip"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconTransport"
+                android:src="@drawable/icontransport_boat_black_24px" />
 
-                    <ImageButton
-                        android:id="@+id/btnTransTram"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconTransport"
-                        android:src="@drawable/icontransport_tram_black_24px" />
+            <ImageButton
+                android:id="@+id/btnTransBike"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconTransport"
+                android:src="@drawable/icontransport_bike_black_24px" />
 
-                    <ImageButton
-                        android:id="@+id/btnTransShip"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconTransport"
-                        android:src="@drawable/icontransport_boat_black_24px" />
-
-                    <ImageButton
-                        android:id="@+id/btnTransBike"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconTransport"
-                        android:src="@drawable/icontransport_bike_black_24px" />
-
-                    <ImageButton
-                        android:id="@+id/btnTransFeet"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:onClick="changeIconTransport"
-                        android:src="@drawable/icontransport_walk_black_24px" />
-
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <EditText
-                android:id="@+id/editText12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:background="@color/colorTransparentAqua"
-                android:hint="Transfer name"
-                android:inputType="text"
-                android:paddingBottom="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="10dp"
-                android:nextFocusLeft="@id/editText12"
-                android:nextFocusUp="@id/editText12"
-                android:textColor="@color/black_overlay" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/editText10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="0.01"
-                    android:background="@color/colorTransparentAqua"
-                    android:hint="Departure place"
-                    android:inputType="text"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="5dp"
-                    android:paddingTop="10dp"
-                    android:textColor="@color/black_overlay" />
-
-                <EditText
-                    android:id="@+id/editText11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="0.01"
-                    android:background="@color/colorTransparentAqua"
-                    android:hint="Arrival place"
-                    android:inputType="text"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp"
-                    android:textColor="@color/black_overlay" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <EditText
-                    android:id="@+id/editText9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/colorTransparentAqua"
-                    android:hint="Departure date time"
-                    android:inputType="datetime"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp"
-                    android:textColor="@color/black_overlay" />
-
-                <EditText
-                    android:id="@+id/editText8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/colorTransparentAqua"
-                    android:hint="Arrival date time"
-                    android:inputType="datetime"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp"
-                    android:textColor="@color/black_overlay" />
-            </LinearLayout>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="214dp"
-    android:layout_gravity="bottom"></ScrollView>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <EditText
-                        android:id="@+id/editText16"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1"
-                        android:background="@color/colorTransparentAqua"
-                        android:hint="Seats details"
-                        android:inputType="text"
-                        android:paddingBottom="10dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="10dp"
-                        android:textColor="@color/black_overlay" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:weightSum="1">
-
-                        <EditText
-                            android:id="@+id/editText15"
-                            android:layout_width="233dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="0.53"
-                            android:background="@color/colorTransparentAqua"
-                            android:hint="Other details"
-                            android:inputType="text"
-                            android:paddingBottom="10dp"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:paddingTop="10dp"
-                            android:textColor="@color/black_overlay" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="0.45"
-                            android:background="@color/colorTransparentAqua"
-                            android:src="@android:drawable/ic_menu_save" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
+            <ImageButton
+                android:id="@+id/btnTransFeet"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:onClick="changeIconTransport"
+                android:src="@drawable/icontransport_walk_black_24px" />
 
         </LinearLayout>
-
-
-    </ScrollView>
+    </HorizontalScrollView>
 </FrameLayout>

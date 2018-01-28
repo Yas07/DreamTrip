@@ -9,7 +9,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/boardstuff_brown">
+        android:background="@drawable/boardstuff_white_brown_xhdpi">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,16 +30,17 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="30dp"
-                    android:background="@color/packlistBackgroundsColor"
+                    android:background="@color/packlists_bg"
+                    android:fontFamily="casual"
                     android:hint="Enter title of packing list"
                     android:inputType="textAutoComplete"
                     android:nextFocusLeft="@id/autoCompleteTextView"
                     android:nextFocusUp="@id/autoCompleteTextView"
                     android:paddingLeft="10dp"
-                    android:textColor="@color/packlistsTitlesColor"
-                    android:textColorHighlight="@color/packlistsTitlesColor"
-                    android:textColorHint="@color/packlistsTitlesColor"
-                    android:textColorLink="@color/packlistsTitlesColor" />
+                    android:textColor="@color/packlists_labels"
+                    android:textColorHighlight="@color/packlists_labels"
+                    android:textColorHint="@color/packlists_labels"
+                    android:textColorLink="@color/packlists_labels" />
 
             </LinearLayout>
 
@@ -60,7 +61,7 @@
                         android:layout_height="157dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/packlistBackgroundsColor"
+                        android:background="@color/packlists_bg"
                         android:orientation="vertical">
 
                         <TextView
@@ -69,18 +70,21 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
+                            android:fontFamily="casual"
                             android:text="Check List"
-                            android:textColor="@color/packlistsTitlesColor" />
+                            android:textColor="@color/packlists_labels"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textView20"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
+                            android:fontFamily="casual"
                             android:text="Default Packing list"
-                            android:textColor="@color/packlistsTitlesColor"
-                            android:textSize="12sp" />
+                            android:textColor="@color/packlists_labels"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/imageView"
@@ -99,7 +103,7 @@
                         android:layout_height="157dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/packlistBackgroundsColor"
+                        android:background="@color/packlists_bg"
                         android:orientation="vertical">
 
                         <TextView
@@ -108,18 +112,21 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
+                            android:fontFamily="casual"
                             android:text="My common stuff"
-                            android:textColor="@color/packlistsTitlesColor" />
+                            android:textColor="@color/packlists_labels"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textView32"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
+                            android:fontFamily="casual"
                             android:text="favoutite list"
-                            android:textColor="@color/packlistsTitlesColor"
-                            android:textSize="12sp" />
+                            android:textColor="@color/packlists_labels"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/imageView1"
@@ -144,7 +151,7 @@
                         android:layout_height="157dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/packlistBackgroundsColor"
+                        android:background="@color/packlists_bg"
                         android:orientation="vertical">
 
                         <TextView
@@ -153,19 +160,22 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
+                            android:fontFamily="casual"
                             android:text="Camping stuff"
-                            android:textColor="@color/packlistsTitlesColor" />
+                            android:textColor="@color/packlists_labels"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textView220"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
                             android:elevation="1dp"
+                            android:fontFamily="casual"
                             android:text="adventure time"
-                            android:textColor="@color/packlistsTitlesColor"
-                            android:textSize="12sp" />
+                            android:textColor="@color/packlists_labels"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/imageView5"
@@ -184,7 +194,7 @@
                         android:layout_height="157dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/packlistBackgroundsColor"
+                        android:background="@color/packlists_bg"
                         android:orientation="vertical">
 
                         <TextView
@@ -194,19 +204,22 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
                             android:elevation="2dp"
+                            android:fontFamily="casual"
                             android:text="Sport stuff"
-                            android:textColor="@color/packlistsTitlesColor" />
+                            android:textColor="@color/packlists_labels"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textView52"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
                             android:elevation="0dp"
+                            android:fontFamily="casual"
                             android:text="for active weekends"
-                            android:textColor="@color/packlistsTitlesColor"
-                            android:textSize="12sp" />
+                            android:textColor="@color/packlists_labels"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/imageView05"
@@ -231,7 +244,7 @@
                         android:layout_height="157dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/packlistBackgroundsColor"
+                        android:background="@color/packlists_bg"
                         android:orientation="vertical">
 
                         <TextView
@@ -240,18 +253,21 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
+                            android:fontFamily="casual"
                             android:text="Travel by car"
-                            android:textColor="@color/packlistsTitlesColor" />
+                            android:textColor="@color/packlists_labels"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textView30"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
+                            android:fontFamily="casual"
                             android:text="additional stuff for car"
-                            android:textColor="@color/packlistsTitlesColor"
-                            android:textSize="12sp" />
+                            android:textColor="@color/packlists_labels"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/imageView3"
@@ -270,7 +286,7 @@
                         android:layout_height="157dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/packlistBackgroundsColor"
+                        android:background="@color/packlists_bg"
                         android:orientation="vertical">
 
                         <TextView
@@ -279,18 +295,21 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="Important for children"
-                            android:textColor="@color/packlistsTitlesColor" />
+                            android:fontFamily="casual"
+                            android:text="For children"
+                            android:textColor="@color/packlists_labels"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textView42"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
+                            android:fontFamily="casual"
                             android:text="additional stuff for children"
-                            android:textColor="@color/packlistsTitlesColor"
-                            android:textSize="12sp" />
+                            android:textColor="@color/packlists_labels"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/imageView4"

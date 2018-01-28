@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:background="@drawable/boardstuff_pink_blue_xhdpi"
+        android:background="@drawable/boardstuff_white_lots_stuff_xhdpi"
         android:elevation="1dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
@@ -24,7 +24,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-            android:background="@color/transparentPink"
+            android:background="@color/packlists_add_bg"
             android:focusableInTouchMode="true"
             android:orientation="vertical"
             android:weightSum="1">
@@ -45,6 +45,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="0.65"
                     android:ems="10"
+                    android:fontFamily="casual"
                     android:hint="Packing list title"
                     android:inputType="text"
                     android:nextFocusLeft="@id/editText"
@@ -53,7 +54,8 @@
                     android:textColor="@android:color/black"
                     android:textColorHighlight="@android:color/black"
                     android:textColorLink="@android:color/black"
-                    android:textSize="30sp" />
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/editText5"
@@ -64,6 +66,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="0.65"
                     android:ems="10"
+                    android:fontFamily="casual"
                     android:hint="Description"
                     android:inputType="text"
                     android:nextFocusLeft="@id/editText4"
@@ -73,7 +76,8 @@
                     android:textColor="@android:color/black"
                     android:textColorHighlight="@android:color/black"
                     android:textColorLink="@android:color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -91,11 +95,13 @@
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:elevation="2dp"
+                        android:fontFamily="casual"
                         android:gravity="center"
                         android:text="Upload your photo"
                         android:textAlignment="center"
                         android:textColor="?android:attr/textColorTertiary"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <ImageButton
                         android:id="@+id/imageButton3"
@@ -103,7 +109,7 @@
                         android:layout_height="50dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_packlists_add_btn1_photo"
+                        android:background="@drawable/selector_packlists_add_btns"
                         app:srcCompat="@drawable/ic_menu_camera" />
 
                 </LinearLayout>
@@ -115,11 +121,13 @@
                     android:layout_margin="5dp"
                     android:layout_weight="0.65"
                     android:elevation="2dp"
+                    android:fontFamily="casual"
                     android:gravity="center"
                     android:text="Or choose image"
                     android:textAlignment="center"
                     android:textColor="?android:attr/textColorTertiary"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
@@ -314,10 +322,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/selector_packlists_add_btn1"
+                android:background="@drawable/selector_packlists_add_btns"
+                android:fontFamily="casual"
                 android:text="Save changes"
                 android:textColor="@color/black_overlay"
-                android:textColorLink="@color/black_overlay" />
+                android:textColorLink="@color/black_overlay"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

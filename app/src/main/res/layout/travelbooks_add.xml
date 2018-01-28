@@ -1,14 +1,335 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.dreamtrip.dreamtrip.ActivityTravelbooks_add">
 
-    <Button
-        android:id="@+id/btn_travelbook_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save" />
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/boardstuff_pink_blue_xhdpi"
+        android:elevation="1dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/travelbooks_add_bg"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.65"
+                android:elevation="1dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.65"
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="Travelbook title"
+                    android:inputType="text"
+                    android:nextFocusLeft="@id/editText"
+                    android:nextFocusUp="@id/editText"
+                    android:paddingLeft="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHighlight="@android:color/black"
+                    android:textColorLink="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/editText5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.65"
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="Description"
+                    android:inputType="text"
+                    android:nextFocusLeft="@id/editText4"
+                    android:nextFocusUp="@id/editText4"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHighlight="@android:color/black"
+                    android:textColorLink="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.65"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:elevation="2dp"
+                        android:fontFamily="casual"
+                        android:gravity="center"
+                        android:text="Upload your photo"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorTertiary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_travelbooks_add_btns"
+                        app:srcCompat="@drawable/ic_menu_camera" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="0.65"
+                    android:elevation="2dp"
+                    android:fontFamily="casual"
+                    android:gravity="center"
+                    android:text="Or choose image"
+                    android:textAlignment="center"
+                    android:textColor="?android:attr/textColorTertiary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.65">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:elevation="1dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnSummerFlamingo"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_light_summer" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnTravelExplorePink"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_world_travel" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnLightBlue"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_spring_blue" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnDarkRed"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_red" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnGreen"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:background="@color/transparentDarkGreen"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_blue" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnTravelBrightBlue"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_travel_blue" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnChristmasGreen"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_christmas_green" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnModern"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_modern_black" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnCup"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_cup" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnChristmasWhite"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_christmas_white_green" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnChristmasBlack"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_christmas_black" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnChristmasWhiteBlack"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_chtistmas_white_black" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnChristmasWhiteRed"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_chtistmas_white_red" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnLightBlue2"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_light_blue" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnOrangeAbstract"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_orange" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnTravel"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_travel" />
+
+                        <ImageView
+                            android:id="@+id/travelbooks_add_btnTravelOrange"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseCover"
+                            app:srcCompat="@drawable/travelbook_cover_travel_orange" />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_travelbook_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_travelbooks_add_btns"
+                android:fontFamily="casual"
+                android:text="Save changes"
+                android:textColor="@color/black_overlay"
+                android:textColorLink="@color/black_overlay"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

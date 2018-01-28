@@ -1,29 +1,452 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.dreamtrip.dreamtrip.ActivityTravelbooks_travelbook_add">
     <LinearLayout
-        android:layout_width="344dp"
-        android:layout_height="495dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
-
-    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-    </android.support.design.widget.AppBarLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/boardstuff_grey_flowers_xhdpi">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparentLightDark"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView35"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="cursive"
+                        android:text="Background"
+                        android:textAlignment="center"
+                        android:textColor="@color/transparentWhite"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/myTransparent"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical"
+                            android:weightSum="1">
+
+                            <ImageButton
+                                android:id="@+id/imageButton9"
+                                android:layout_width="65dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/myTransparent"
+                                app:srcCompat="@mipmap/ic_landscape_white_24dp" />
+
+                            <TextView
+                                android:id="@+id/textView40"
+                                android:layout_width="98dp"
+                                android:layout_height="28dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="0.60"
+                                android:elevation="2dp"
+                                android:fontFamily="casual"
+                                android:text="choose ours"
+                                android:textAlignment="center"
+                                android:textColor="@color/transparentWhite"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="110dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical"
+                            android:weightSum="1">
+
+                            <ImageButton
+                                android:id="@+id/imageButton"
+                                android:layout_width="65dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/myTransparent"
+                                app:srcCompat="@mipmap/ic_photo_camera_white_24dp" />
+
+                            <TextView
+                                android:id="@+id/textView40"
+                                android:layout_width="98dp"
+                                android:layout_height="28dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_weight="1.40"
+                                android:elevation="2dp"
+                                android:fontFamily="casual"
+                                android:text="upload yours"
+                                android:textAlignment="center"
+                                android:textColor="@color/transparentWhite"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="80dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:id="@+id/imageButton"
+                                android:layout_width="65dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/myTransparent"
+                                app:srcCompat="@drawable/ic_paintbrush_white" />
+
+                            <TextView
+                                android:id="@+id/textView40"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:elevation="2dp"
+                                android:fontFamily="casual"
+                                android:text="just color"
+                                android:textAlignment="center"
+                                android:textColor="@color/transparentWhite"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView34"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:fontFamily="cursive"
+                        android:text="Upload from 1 to 4 photos"
+                        android:textAlignment="center"
+                        android:textColor="@color/transparentWhite"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <ImageButton
+                                android:id="@+id/imageButton14"
+                                android:layout_width="80dp"
+                                android:layout_height="90dp"
+                                android:background="@color/myTransparent"
+                                app:srcCompat="@mipmap/ic_photo_camera_white_24dp" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton13"
+                                android:layout_width="80dp"
+                                android:layout_height="90dp"
+                                android:background="@color/myTransparent"
+                                app:srcCompat="@mipmap/ic_photo_camera_white_24dp" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton12"
+                                android:layout_width="80dp"
+                                android:layout_height="90dp"
+                                android:background="@color/myTransparent"
+                                app:srcCompat="@mipmap/ic_photo_camera_white_24dp" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton10"
+                                android:layout_width="80dp"
+                                android:layout_height="90dp"
+                                android:background="@color/myTransparent"
+                                app:srcCompat="@mipmap/ic_photo_camera_white_24dp" />
+
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView38"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:fontFamily="cursive"
+                        android:text="Add main title"
+                        android:textAlignment="center"
+                        android:textColor="@color/transparentWhite"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/editText6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:fontFamily="casual"
+                        android:hint="main title"
+                        android:inputType="text"
+                        android:nextFocusLeft="@id/editText6"
+                        android:nextFocusUp="@id/editText6"
+                        android:shadowColor="@color/transparentWhite"
+                        android:textColor="@color/transparentWhite"
+                        android:textColorHighlight="@color/transparentWhite"
+                        android:textColorHint="@color/transparentWhite"
+                        android:textColorLink="@color/transparentWhite"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView37"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:fontFamily="cursive"
+                        android:text="Add text"
+                        android:textAlignment="center"
+                        android:textColor="@color/transparentWhite"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/editText7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:fontFamily="casual"
+                        android:hint="text for first photo"
+                        android:inputType="text"
+                        android:shadowColor="@color/transparentWhite"
+                        android:textColor="@color/transparentWhite"
+                        android:textColorHighlight="@color/transparentWhite"
+                        android:textColorHint="@color/transparentWhite"
+                        android:textColorLink="@color/transparentWhite"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editText13"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:fontFamily="casual"
+                        android:hint="text for second photo"
+                        android:inputType="text"
+                        android:shadowColor="@color/transparentWhite"
+                        android:textColor="@color/transparentWhite"
+                        android:textColorHighlight="@color/transparentWhite"
+                        android:textColorHint="@color/transparentWhite"
+                        android:textColorLink="@color/transparentWhite"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editText14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:fontFamily="casual"
+                        android:hint="text for third photo"
+                        android:inputType="text"
+                        android:shadowColor="@color/transparentWhite"
+                        android:textColor="@color/transparentWhite"
+                        android:textColorHighlight="@color/transparentWhite"
+                        android:textColorHint="@color/transparentWhite"
+                        android:textColorLink="@color/transparentWhite"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/editText19"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:fontFamily="casual"
+                        android:hint="text for fourth photo"
+                        android:inputType="text"
+                        android:shadowColor="@color/transparentWhite"
+                        android:textColor="@color/transparentWhite"
+                        android:textColorHighlight="@color/transparentWhite"
+                        android:textColorHint="@color/transparentWhite"
+                        android:textColorLink="@color/transparentWhite"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView36"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="cursive"
+
+                            android:text="Color of text"
+                            android:textColor="@color/transparentWhite"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton15"
+                            android:layout_width="41dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@drawable/ic_paintbrush_white" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView36"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="cursive"
+                            android:text="Color of text blocks"
+                            android:textColor="@color/transparentWhite"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton15"
+                            android:layout_width="41dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@drawable/ic_paintbrush_white" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView36"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="cursive"
+                        android:text="Save post"
+                        android:textColor="@color/transparentWhite"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton15"
+                        android:layout_width="41dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/myTransparent"
+                        app:srcCompat="@android:drawable/ic_menu_save" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

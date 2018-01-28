@@ -2,32 +2,41 @@
 <resources>
     <color name="colorPrimary">#28a6d4</color>
     <color name="colorPrimaryDark">#2590b7</color>
+    <color name="colorActiveButton">#41bce7</color>
     <color name="colorAccent">#ff4081</color>
     <color name="lightBrown">#fdab6d07</color>
     <color name="darkPurple">#973297</color>
     <color name="yellow">#d2ffd900</color>
     <color name="light_blue_green">#9bf3ed</color>
-
     <color name="myTransparent">#00000000</color>
     <color name="black_overlay">#97000000</color>
-    <color name="colorActiveButton">#41bce7</color>
-    <color name="colorTransparentAqua">#c248c5c7</color>
-    <color name="transparentDarkAqua">#ca1da6bc</color>
-    <color name="transparentBrown">#a6b89877</color>
+
+
     <color name="transparentWhite">#c7ffffff</color>
-    <color name="transparentDarkBrown">#e9cdae8f</color>
     <color name="transparentGrey">#ba000000</color>
+    <color name="transparentAqua">#ca1da6bc</color>
+    <color name="transparentDarkAqua">#ca1da6bc</color>
+    <color name="transparentBrown">#c7bcac95</color>
+    <color name="transparentDarkBrown">#e9cdae8f</color>
     <color name="transparentDarkBlack">#ba000000</color>
     <color name="transparentLightDark">#42000000</color>
-    <color name="transparentGreen">#78000000</color>
-    <color name="packlistsTitlesColor">#b9000000</color>
-    <color name="packlistBackgroundsColor">#a6b89877</color>
-    <color name="mytripsBackgroundsColor">#ca1da6bc</color>
-    <color name="mytripsTitlesColor">#c7ffffff</color>
-    <color name="transparentPink">#abc5b2d0</color>
+    <color name="transparentGreen">#926b7b61</color>
+    <color name="transparentDarkGreen">#d476995a</color>
     <color name="transparentBlue">#d38073a5</color>
-    <color name="packlist_addstuff_bg">#91fcadb4</color>
-    <color name="packlist_addstuff_labels">#ca98363e</color>
+    <color name="transparentPink">#a3e1a7c3</color>
     <color name="mynewpink">#dafdd5d8</color>
-    <color name="packlist_addstuff_mainbg">#dafdd5d8</color>
+
+
+    <color name="mytrips_bg">#ca1da6bc</color>
+    <color name="mytrips_labels">#c7ffffff</color>
+    <color name="mytrips_add_bg">#9e6ed7e0</color>
+
+    <color name="travelbooks_bg">#b0f3dce7</color>
+    <color name="travelbooks_labels">#b9181203</color>
+    <color name="travelbooks_add_bg">#a1ecc7d9</color>
+
+    <color name="packlists_bg">#a9d2bea3</color>
+    <color name="packlists_labels">#b9000000</color>
+    <color name="packlists_add_bg">#c7bcac95</color>
+
 </resources>

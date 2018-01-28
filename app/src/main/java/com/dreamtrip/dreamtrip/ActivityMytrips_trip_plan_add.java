@@ -30,7 +30,15 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Fragment fragment;
+        fragment = new FragmentPlan_hotel();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragmentPlace, fragment);
+        ft.commit();
     }
+
 
     public void changeFragment(View view){
         View[] buttons = {
@@ -89,7 +97,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
-        view.setBackgroundColor(getResources().getColor(R.color.colorTransparentAqua));
+        view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
 
     public void changeIconEating(View view) {
@@ -108,7 +116,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
-        view.setBackgroundColor(getResources().getColor(R.color.colorTransparentAqua));
+        view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
 
     public void changeIconOutside(View view) {
@@ -123,7 +131,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
-        view.setBackgroundColor(getResources().getColor(R.color.colorTransparentAqua));
+        view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
 
     public void changeIconInside(View view) {
@@ -143,7 +151,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
-        view.setBackgroundColor(getResources().getColor(R.color.colorTransparentAqua));
+        view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
 
     public void changeIconExtreme(View view) {
@@ -161,7 +169,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
-        view.setBackgroundColor(getResources().getColor(R.color.colorTransparentAqua));
+        view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
 
     public void changeIconSummer(View view) {
@@ -182,7 +190,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
-        view.setBackgroundColor(getResources().getColor(R.color.colorTransparentAqua));
+        view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
 
 
@@ -202,7 +210,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
-        view.setBackgroundColor(getResources().getColor(R.color.colorTransparentAqua));
+        view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
 
     public void changeIconWalk(View view) {
@@ -223,6 +231,6 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
-        view.setBackgroundColor(getResources().getColor(R.color.colorTransparentAqua));
+        view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
 }

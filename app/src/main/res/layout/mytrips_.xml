@@ -36,16 +36,17 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="30dp"
-                    android:background="@color/mytripsBackgroundsColor"
+                    android:background="@color/mytrips_bg"
+                    android:fontFamily="casual"
                     android:hint="Enter title of trip"
                     android:inputType="textAutoComplete"
                     android:nextFocusLeft="@id/autoCompleteTextView"
                     android:nextFocusUp="@id/autoCompleteTextView"
                     android:paddingLeft="10dp"
-                    android:textColor="@color/mytripsTitlesColor"
-                    android:textColorHighlight="@color/mytripsTitlesColor"
-                    android:textColorHint="@color/mytripsTitlesColor"
-                    android:textColorLink="@color/mytripsTitlesColor" />
+                    android:textColor="@color/mytrips_labels"
+                    android:textColorHighlight="@color/mytrips_labels"
+                    android:textColorHint="@color/mytrips_labels"
+                    android:textColorLink="@color/mytrips_labels" />
 
             </LinearLayout>
 
@@ -66,7 +67,7 @@
                         android:layout_height="157dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/mytripsBackgroundsColor"
+                        android:background="@color/mytrips_bg"
                         android:orientation="vertical">
 
                         <TextView
@@ -75,18 +76,21 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="Christmas travel to Lviv"
-                            android:textColor="@color/mytripsTitlesColor" />
+                            android:fontFamily="casual"
+                            android:text="Christmas in Lviv"
+                            android:textColor="@color/mytrips_labels"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textView20"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
+                            android:fontFamily="casual"
                             android:text="07-08.01.18"
-                            android:textColor="@color/mytripsTitlesColor"
-                            android:textSize="12sp" />
+                            android:textColor="@color/mytrips_labels"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/imageView"
@@ -105,7 +109,7 @@
                         android:layout_height="157dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/mytripsBackgroundsColor"
+                        android:background="@color/mytrips_bg"
                         android:orientation="vertical">
 
                         <TextView
@@ -114,18 +118,21 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="Winter trip to Chernivtsi"
-                            android:textColor="@color/mytripsTitlesColor" />
+                            android:fontFamily="casual"
+                            android:text="Chernivtsi"
+                            android:textColor="@color/mytrips_labels"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textView32"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
+                            android:fontFamily="casual"
                             android:text="13-14.01.18"
-                            android:textColor="@color/mytripsTitlesColor"
-                            android:textSize="12sp" />
+                            android:textColor="@color/mytrips_labels"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/imageView1"
@@ -150,7 +157,7 @@
                         android:layout_height="157dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/mytripsBackgroundsColor"
+                        android:background="@color/mytrips_bg"
                         android:orientation="vertical">
 
                         <TextView
@@ -159,19 +166,22 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
+                            android:fontFamily="casual"
                             android:text="Weekends in Paris"
-                            android:textColor="@color/mytripsTitlesColor" />
+                            android:textColor="@color/mytrips_labels"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textView220"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
                             android:elevation="1dp"
+                            android:fontFamily="casual"
                             android:text="20-21.11.17"
-                            android:textColor="@color/mytripsTitlesColor"
-                            android:textSize="12sp" />
+                            android:textColor="@color/mytrips_labels"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/imageView5"
@@ -190,7 +200,7 @@
                         android:layout_height="157dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/mytripsBackgroundsColor"
+                        android:background="@color/mytrips_bg"
                         android:orientation="vertical">
 
                         <TextView
@@ -200,19 +210,22 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
                             android:elevation="1dp"
+                            android:fontFamily="casual"
                             android:text="Hot Egypt"
-                            android:textColor="@color/mytripsTitlesColor" />
+                            android:textColor="@color/mytrips_labels"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textView52"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
                             android:elevation="0dp"
+                            android:fontFamily="casual"
                             android:text="06-08.09.18"
-                            android:textColor="@color/mytripsTitlesColor"
-                            android:textSize="12sp" />
+                            android:textColor="@color/mytrips_labels"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/imageView05"
@@ -237,7 +250,8 @@
                         android:layout_height="157dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/mytripsBackgroundsColor"
+                        android:background="@color/mytrips_bg"
+                        android:elevation="1dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -246,18 +260,21 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="Christmas travel to Lviv"
-                            android:textColor="@color/mytripsTitlesColor" />
+                            android:fontFamily="casual"
+                            android:text="Christmas in Lviv"
+                            android:textColor="@color/mytrips_labels"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textView30"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
+                            android:fontFamily="casual"
                             android:text="07-08.01.18"
-                            android:textColor="@color/mytripsTitlesColor"
-                            android:textSize="12sp" />
+                            android:textColor="@color/mytrips_labels"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/imageView3"
@@ -276,7 +293,8 @@
                         android:layout_height="157dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@color/mytripsBackgroundsColor"
+                        android:background="@color/mytrips_bg"
+                        android:elevation="1dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -285,18 +303,21 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:text="Winter trip to Chernivtsi"
-                            android:textColor="@color/mytripsTitlesColor" />
+                            android:fontFamily="casual"
+                            android:text="Chernivtsi"
+                            android:textColor="@color/mytrips_labels"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textView42"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
+                            android:fontFamily="casual"
                             android:text="13-14.01.18"
-                            android:textColor="@color/mytripsTitlesColor"
-                            android:textSize="12sp" />
+                            android:textColor="@color/mytrips_labels"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/imageView4"

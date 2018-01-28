@@ -45,7 +45,7 @@ public class ActivityPacklists_add extends AppCompatActivity {
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
-        view.setBackgroundColor(getResources().getColor(R.color.transparentBlue));
+        view.setBackgroundColor(getResources().getColor(R.color.transparentDarkBrown));
 
     }
 }
