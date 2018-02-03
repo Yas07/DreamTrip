@@ -163,11 +163,14 @@
                             android:orientation="horizontal">
 
                             <EditText
-                                android:id="@+id/editText10"
+                                android:id="@+id/editTimeOpen"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.01"
                                 android:elevation="1dp"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:onClick="openTimePicker"
                                 android:hint="Opens at"
                                 android:inputType="time"
                                 android:shadowColor="@color/transparentWhite"
@@ -177,10 +180,13 @@
                                 android:textColorLink="@color/transparentWhite" />
 
                             <EditText
-                                android:id="@+id/editText11"
+                                android:id="@+id/editTimeClose"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.01"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:onClick="openTimePicker"
                                 android:elevation="1dp"
                                 android:hint="Closes at"
                                 android:inputType="time"
@@ -192,11 +198,14 @@
                         </LinearLayout>
 
                         <EditText
-                            android:id="@+id/editText18"
+                            android:id="@+id/editDateTimeVisit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:layout_marginTop="5dp"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:onClick="openDateTimePicker"
                             android:hint="Date and time in plan"
                             android:inputType="datetime"
                             android:shadowColor="@color/transparentWhite"

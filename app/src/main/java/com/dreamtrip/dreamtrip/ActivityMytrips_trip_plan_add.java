@@ -1,5 +1,8 @@
 package com.dreamtrip.dreamtrip;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,6 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TimePicker;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import layout.FragmentPlan_eating;
 import layout.FragmentPlan_extreme;
@@ -20,7 +31,11 @@ import layout.FragmentPlan_walk;
 import layout.FragmentPlan_winter;
 
 public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
-
+    EditText editTime;
+    int hours, minutes;
+    Calendar calendar;
+    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+    //EditText editTimeOpen, editTimeClose, editDateTimeVisit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +52,46 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragmentPlace, fragment);
         ft.commit();
+
+        calendar = Calendar.getInstance();
+        hours = calendar.HOUR_OF_DAY;
+        minutes = calendar.MINUTE;
+//        editTimeOpen = (EditText) findViewById(R.id.editTimeOpen);
+//        editTimeClose = (EditText) findViewById(R.id.editTimeClose);
+//        editDateTimeVisit = (EditText) findViewById(R.id.editDateTimeVisit);
     }
 
+//--------------------------------------------------------Pick Date / Time Dialog
+//-----------------------------------------------------------------------------------------------
+
+    public void openTimePicker(View view){
+        switch (view.getId()){
+            case (R.id.editTimeOpen): {
+                editTime = (EditText) findViewById(R.id.editTimeOpen);
+                break;
+            }
+            case (R.id.editTimeClose): {
+                editTime = (EditText) findViewById(R.id.editTimeClose);
+                break;
+            }
+        }
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener(){
+            @Override
+            public void onTimeSet(TimePicker view, int hoursOfDay, int minutesOfDay) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, hoursOfDay);
+                calendar.set(Calendar.MINUTE, minutesOfDay);
+                editTime.setText(timeFormat.format(calendar.getTime()));
+                //timeFormat.parse(formatted); //parse to calendar format
+            }
+        }, hours, minutes, true);
+        timePickerDialog.show();
+    }
+
+    public void openDateTimePicker(View view){}
+
+//--------------------------------------------------------Change Fragment and Icons
+//-----------------------------------------------------------------------------------------------
 
     public void changeFragment(View view){
         View[] buttons = {
@@ -192,7 +245,6 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
 
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
-
 
     public void changeIconWinter(View view) {
         View[] buttons = {

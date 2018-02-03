@@ -94,7 +94,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/bag_yellow_xhdpi" />
+                            app:srcCompat="@drawable/bag_yellow_dpi" />
 
                     </LinearLayout>
 
@@ -136,7 +136,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/bag_london_xhdpi" />
+                            app:srcCompat="@drawable/bag_london_dpi" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -185,7 +185,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/bag_adventure_xhdpi" />
+                            app:srcCompat="@drawable/bag_adventure_dpi" />
 
                     </LinearLayout>
 
@@ -229,7 +229,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/bag_sport_xhdpi" />
+                            app:srcCompat="@drawable/bag_sport_dpi" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -277,7 +277,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/bag_travel_xhdpi" />
+                            app:srcCompat="@drawable/bag_travel_dpi" />
 
                     </LinearLayout>
 
@@ -319,7 +319,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/bag_children_xhdpi" />
+                            app:srcCompat="@drawable/bag_children_dpi" />
 
                     </LinearLayout>
                 </LinearLayout>

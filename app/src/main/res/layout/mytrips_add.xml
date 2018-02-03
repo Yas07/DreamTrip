@@ -23,7 +23,6 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:background="@color/mytrips_add_bg"
-            android:focusableInTouchMode="true"
             android:orientation="vertical"
             android:weightSum="1">
 
@@ -33,67 +32,85 @@
                 android:layout_weight="0.65"
                 android:elevation="1dp"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:focusableInTouchMode="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <EditText
                     android:id="@+id/editText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="0.65"
                     android:ems="10"
                     android:fontFamily="casual"
                     android:hint="Trip name"
                     android:inputType="text"
-                    android:nextFocusLeft="@id/editText"
-                    android:nextFocusUp="@id/editText"
+                    android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textColorHighlight="@android:color/black"
                     android:textColorLink="@android:color/black"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/editText4"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.65"
-                    android:ems="10"
-                    android:fontFamily="casual"
-                    android:hint="Start date"
-                    android:inputType="date"
-                    android:nextFocusLeft="@id/editText4"
-                    android:nextFocusUp="@id/editText4"
-                    android:textColor="@android:color/black"
-                    android:textColorHighlight="@android:color/black"
-                    android:textColorLink="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/editText3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="0.65"
-                    android:ems="10"
-                    android:fontFamily="casual"
-                    android:hint="End date"
-                    android:inputType="date"
-                    android:nextFocusLeft="@id/editText3"
-                    android:nextFocusUp="@id/editText3"
-                    android:textColor="@android:color/black"
-                    android:textColorHighlight="@android:color/black"
-                    android:textColorLink="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/editStartDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="false"
+                        android:ems="10"
+                        android:fontFamily="casual"
+                        android:hint="Start date"
+                        android:inputType="date"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
+                        android:onClick="openDatePicker"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textColorHighlight="@android:color/black"
+                        android:textColorLink="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/editEndDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:editable="false"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
+                        android:ems="10"
+                        android:fontFamily="casual"
+                        android:hint="End date"
+                        android:onClick="openDatePicker"
+                        android:inputType="date"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textColorHighlight="@android:color/black"
+                        android:textColorLink="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/spinner2"
+                    android:id="@+id/tripSpinnerPacklists"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_weight="0.65" />
+                    android:layout_weight="0.65"
+                    android:dropDownHeight="60dp"
+                    android:fontFamily="casual"
+                    android:popupBackground="@color/light_blue_green"
+                    android:textAlignment="center" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -103,93 +120,128 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:weightSum="1">
 
                         <TextView
-                            android:id="@+id/textView11"
-                            android:layout_width="79dp"
+                            android:id="@+id/label"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:fontFamily="casual"
-                            android:gravity="center"
-                            android:text="Header image"
+                            android:gravity="center_vertical"
+                            android:onClick="openGallery"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="5dp"
+                            android:text="Choose header image"
+                            android:textAlignment="center"
                             android:textColor="?android:attr/textColorTertiary"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
-                        <ImageButton
-                            android:id="@+id/imageButton2"
+                        <ImageView
+                            android:id="@+id/imgTripHeader"
                             android:layout_width="match_parent"
-                            android:layout_height="73dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1.60"
                             android:background="@drawable/selector_mytrips_add_btns"
+                            android:onClick="openGallery"
+                            android:scaleType="fitCenter"
                             app:srcCompat="@drawable/ic_mountain_range" />
 
                     </LinearLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.65"
+                    android:orientation="horizontal">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/textView12"
-                            android:layout_width="113dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_width="149dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.51"
                             android:elevation="1dp"
                             android:fontFamily="casual"
                             android:gravity="center"
-                            android:text="Main trip photo"
+                            android:text="Main photo"
+                            android:textAlignment="center"
                             android:textColor="?android:attr/textColorTertiary"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
-                        <ImageButton
-                            android:id="@+id/imageButton3"
+                        <ImageView
+                            android:id="@+id/imgTripPhoto"
                             android:layout_width="match_parent"
-                            android:layout_height="73dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
                             android:background="@drawable/selector_mytrips_add_btns"
+                            android:elevation="2dp"
+                            android:onClick="openGallery"
+                            android:padding="5dp"
+                            android:scaleType="fitCenter"
                             app:srcCompat="@drawable/ic_menu_camera" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_marginLeft="5dp"
+                        android:orientation="vertical"
+                        android:weightSum="1">
 
                         <TextView
                             android:id="@+id/textView13"
-                            android:layout_width="84dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
                             android:fontFamily="casual"
                             android:gravity="center"
-                            android:text="Color style"
+                            android:text="Text color"
+                            android:textAlignment="center"
                             android:textColor="?android:attr/textColorTertiary"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
-                        <ImageButton
-                            android:id="@+id/imageButton4"
+                        <LinearLayout
+                            android:id="@+id/layoutColorPick"
                             android:layout_width="match_parent"
-                            android:layout_height="73dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:background="@drawable/selector_mytrips_add_btns"
-                            app:srcCompat="@mipmap/ic_color_lens_black_24dp" />
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:weightSum="1">
+
+                            <ImageView
+                                android:id="@+id/btnPickColor"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/selector_mytrips_add_btns"
+                                android:foregroundGravity="center"
+                                android:onClick="openColorPicker"
+                                android:padding="5dp"
+                                android:scaleType="centerInside"
+                                app:srcCompat="@mipmap/ic_color_lens_black_24dp" />
+                        </LinearLayout>
 
                     </LinearLayout>
-
                 </LinearLayout>
 
             </LinearLayout>
@@ -199,8 +251,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/selector_mytrips_add_btns"
+                android:layout_marginTop="5dp"
+                android:background="@color/mytrips_add_bg"
                 android:fontFamily="casual"
                 android:text="Save changes"
                 android:textColor="@color/black_overlay"

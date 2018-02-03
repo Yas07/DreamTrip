@@ -29,7 +29,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginRight="30dp"
                 android:orientation="vertical">
 
@@ -43,35 +43,103 @@
                     android:textColor="@android:color/black"
                     android:textSize="30sp" />
 
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:fontFamily="cursive"
-                    android:text="Main"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="5dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
                         android:orientation="horizontal">
 
-                        <CheckBox
-                            android:id="@+id/checkBox6"
-                            android:layout_width="match_parent"
+                        <EditText
+                            android:id="@+id/editText2"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+
+                            android:layout_weight="0.04"
+                            android:ems="10"
+                            android:enabled="false"
+                            android:fontFamily="cursive"
+                            android:text="Main"
+                            android:textColor="@android:color/black"
+                            android:textSize="24sp" />
+
+
+                        <ImageButton
+                            android:id="@+id/imageButton8"
+                            android:layout_width="43dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_edit" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton5"
+                            android:layout_width="45dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                    </LinearLayout>
+
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp"
+                        android:layout_weight="1"
+                        android:columnCount="4"
+                        android:rowCount="3">
+
+                        <ImageButton
+                            android:id="@+id/imageButton24"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
                             android:layout_weight="1"
+                            android:background="@color/myTransparent"
+                            android:visibility="visible"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox5"
+                            android:layout_width="98dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="2"
+                            android:layout_rowWeight="1"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Money"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton18"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="3"
+                            android:layout_rowWeight="1"
+                            android:layout_weight="0.64"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox5"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="1"
+                            android:layout_weight="0.40"
                             android:elevation="1dp"
                             android:fontFamily="casual"
                             android:shadowColor="@android:color/black"
@@ -81,31 +149,23 @@
                             android:textColorHint="@android:color/black"
                             android:textColorLink="@android:color/black" />
 
-                        <CheckBox
-                            android:id="@+id/checkBox2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                        <ImageButton
+                            android:id="@+id/imageButton24"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="2"
                             android:layout_weight="1"
-                            android:elevation="1dp"
-                            android:fontFamily="casual"
-                            android:shadowColor="@android:color/black"
-                            android:text="Tickets"
-                            android:textColor="@android:color/black"
-                            android:textColorHighlight="@android:color/black"
-                            android:textColorHint="@android:color/black"
-                            android:textColorLink="@android:color/black" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                            android:background="@color/myTransparent"
+                            android:visibility="visible"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
                         <CheckBox
-                            android:id="@+id/checkBox4"
-                            android:layout_width="match_parent"
+                            android:id="@+id/checkBox5"
+                            android:layout_width="80dp"
                             android:layout_height="wrap_content"
+                            android:layout_columnWeight="2"
+                            android:layout_rowWeight="2"
                             android:layout_weight="1"
                             android:elevation="1dp"
                             android:fontFamily="casual"
@@ -116,11 +176,23 @@
                             android:textColorHint="@android:color/black"
                             android:textColorLink="@android:color/black" />
 
+                        <ImageButton
+                            android:id="@+id/imageButton18"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="3"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="0.64"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
                         <CheckBox
-                            android:id="@+id/checkBox7"
-                            android:layout_width="match_parent"
+                            android:id="@+id/checkBox5"
+                            android:layout_width="80dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="0.40"
                             android:elevation="1dp"
                             android:fontFamily="casual"
                             android:shadowColor="@android:color/black"
@@ -130,99 +202,124 @@
                             android:textColorHint="@android:color/black"
                             android:textColorLink="@android:color/black" />
 
-                    </LinearLayout>
+                        <ImageButton
+                            android:id="@+id/imageButton29"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="3"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_add" />
 
-                    <CheckBox
-                        android:id="@+id/checkBox5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:elevation="1dp"
-                        android:fontFamily="casual"
-                        android:shadowColor="@android:color/black"
-                        android:text="Money"
-                        android:textColor="@android:color/black"
-                        android:textColorHighlight="@android:color/black"
-                        android:textColorHint="@android:color/black"
-                        android:textColorLink="@android:color/black" />
+                        <EditText
+                            android:id="@+id/editText12"
+                            android:layout_width="103dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="2"
+                            android:layout_rowWeight="3"
+                            android:ems="10"
+                            android:fontFamily="casual"
+                            android:hint="new item"
+                            android:inputType="text"
+                            android:textSize="12sp" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton29"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="3"
+                            android:layout_rowWeight="3"
+                            android:background="@color/myTransparent"
+                            android:visibility="gone"
+                            app:srcCompat="@android:drawable/ic_menu_add" />
+
+                        <EditText
+                            android:id="@+id/editText12"
+                            android:layout_width="103dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="3"
+                            android:ems="10"
+                            android:hint="new item"
+                            android:inputType="text"
+                            android:textSize="12sp"
+                            android:visibility="gone" />
+
+                    </GridLayout>
+
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:fontFamily="cursive"
-                    android:text="Clothes"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="5dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
                         android:orientation="horizontal">
 
-                        <CheckBox
-                            android:id="@+id/checkBox4"
-                            android:layout_width="match_parent"
+                        <EditText
+                            android:id="@+id/editText2"
+                            android:layout_width="60dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:elevation="1dp"
-                            android:fontFamily="casual"
-                            android:shadowColor="@android:color/black"
-                            android:text="Jeans"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="0.40"
+                            android:ems="10"
+                            android:enabled="false"
+                            android:fontFamily="cursive"
+                            android:text="Clothes"
                             android:textColor="@android:color/black"
-                            android:textColorHighlight="@android:color/black"
-                            android:textColorHint="@android:color/black"
-                            android:textColorLink="@android:color/black" />
+                            android:textSize="24sp" />
 
-                        <CheckBox
-                            android:id="@+id/checkBox8"
-                            android:layout_width="match_parent"
+
+                        <ImageButton
+                            android:id="@+id/imageButton8"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:elevation="1dp"
-                            android:fontFamily="casual"
-                            android:shadowColor="@android:color/black"
-                            android:text="Skirts"
-                            android:textColor="@android:color/black"
-                            android:textColorHighlight="@android:color/black"
-                            android:textColorHint="@android:color/black"
-                            android:textColorLink="@android:color/black" />
+                            android:layout_gravity="center"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_edit"
+                            android:layout_weight="0.02" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.04"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_delete" />
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <GridLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_marginBottom="15dp"
+                        android:layout_weight="1"
+                        android:columnCount="4"
+                        android:rowCount="3">
 
-                        <CheckBox
-                            android:id="@+id/checkBox9"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                        <ImageButton
+                            android:id="@+id/imageButton24"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
                             android:layout_weight="1"
-                            android:elevation="1dp"
-                            android:fontFamily="casual"
-                            android:shadowColor="@android:color/black"
-                            android:text="Shirts"
-                            android:textColor="@android:color/black"
-                            android:textColorHighlight="@android:color/black"
-                            android:textColorHint="@android:color/black"
-                            android:textColorLink="@android:color/black" />
+                            android:background="@color/myTransparent"
+                            android:visibility="visible"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
                         <CheckBox
-                            android:id="@+id/checkBox2"
-                            android:layout_width="match_parent"
+                            android:id="@+id/checkBox5"
+                            android:layout_width="98dp"
                             android:layout_height="wrap_content"
+                            android:layout_columnWeight="2"
+                            android:layout_rowWeight="1"
                             android:layout_weight="1"
                             android:elevation="1dp"
                             android:fontFamily="casual"
@@ -232,51 +329,210 @@
                             android:textColorHighlight="@android:color/black"
                             android:textColorHint="@android:color/black"
                             android:textColorLink="@android:color/black" />
-                    </LinearLayout>
 
-                    <CheckBox
-                        android:id="@+id/checkBox5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:elevation="1dp"
-                        android:fontFamily="casual"
-                        android:shadowColor="@android:color/black"
-                        android:text="Sneakers"
-                        android:textColor="@android:color/black"
-                        android:textColorHighlight="@android:color/black"
-                        android:textColorHint="@android:color/black"
-                        android:textColorLink="@android:color/black" />
+                        <ImageButton
+                            android:id="@+id/imageButton18"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="3"
+                            android:layout_rowWeight="1"
+                            android:layout_weight="0.64"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox5"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="1"
+                            android:layout_weight="0.40"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Jeans"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton24"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="1"
+                            android:background="@color/myTransparent"
+                            android:visibility="visible"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox5"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="2"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Sneakers"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton18"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="3"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="0.64"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox5"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="0.40"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Skirt"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton29"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="3"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox7"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="0.40"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Shirts"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton29"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="3"
+                            android:layout_rowWeight="3"
+                            android:background="@color/myTransparent"
+                            android:visibility="visible"
+                            app:srcCompat="@android:drawable/ic_menu_add" />
+
+                        <EditText
+                            android:id="@+id/editText12"
+                            android:layout_width="103dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="3"
+                            android:ems="10"
+                            android:fontFamily="casual"
+                            android:hint="new item"
+                            android:inputType="text"
+                            android:textSize="12sp"
+                            android:visibility="visible" />
+
+                    </GridLayout>
+
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textView23"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:fontFamily="cursive"
-                    android:text="Medicine"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
                         android:orientation="horizontal">
 
-                        <CheckBox
-                            android:id="@+id/checkBox4"
-                            android:layout_width="match_parent"
+                        <EditText
+                            android:id="@+id/editText2"
+                            android:layout_width="60dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="0.40"
+                            android:background="@color/myTransparent"
+                            android:editable="false"
+                            android:ems="10"
+                            android:enabled="false"
+                            android:fontFamily="cursive"
+                            android:text="Medicine"
+                            android:textColor="@android:color/black"
+                            android:textSize="24sp" />
+
+
+                        <ImageButton
+                            android:id="@+id/imageButton8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/myTransparent"
+                            android:visibility="invisible"
+                            app:srcCompat="@android:drawable/ic_menu_edit" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.04"
+                            android:background="@color/myTransparent"
+                            android:visibility="invisible"
+                            app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                    </LinearLayout>
+
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp"
+                        android:layout_weight="1"
+                        android:columnCount="4"
+                        android:rowCount="3">
+
+                        <ImageButton
+                            android:id="@+id/imageButton24"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:layout_weight="1"
+                            android:background="@color/myTransparent"
+                            android:visibility="gone"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox5"
+                            android:layout_width="98dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="2"
+                            android:layout_rowWeight="1"
                             android:layout_weight="1"
                             android:elevation="1dp"
                             android:fontFamily="casual"
@@ -287,144 +543,104 @@
                             android:textColorHint="@android:color/black"
                             android:textColorLink="@android:color/black" />
 
-                        <CheckBox
-                            android:id="@+id/checkBox8"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:elevation="1dp"
-                            android:fontFamily="casual"
-                            android:shadowColor="@android:color/black"
-                            android:text="Syrop"
-                            android:textColor="@android:color/black"
-                            android:textColorHighlight="@android:color/black"
-                            android:textColorHint="@android:color/black"
-                            android:textColorLink="@android:color/black" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <CheckBox
-                            android:id="@+id/checkBox9"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="1"
-                            android:elevation="1dp"
-                            android:fontFamily="casual"
-                            android:shadowColor="@android:color/black"
-                            android:text="Pills from poison"
-                            android:textColor="@android:color/black"
-                            android:textColorHighlight="@android:color/black"
-                            android:textColorHint="@android:color/black"
-                            android:textColorLink="@android:color/black" />
-
-                        <CheckBox
-                            android:id="@+id/checkBox2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:elevation="1dp"
-                            android:fontFamily="casual"
-                            android:shadowColor="@android:color/black"
-                            android:text="Bandages"
-                            android:textColor="@android:color/black"
-                            android:textColorHighlight="@android:color/black"
-                            android:textColorHint="@android:color/black"
-                            android:textColorLink="@android:color/black" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        <ImageButton
+                            android:id="@+id/imageButton18"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="3"
+                            android:layout_rowWeight="1"
+                            android:layout_weight="0.64"
+                            android:background="@color/myTransparent"
+                            android:visibility="gone"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
                         <CheckBox
                             android:id="@+id/checkBox5"
-                            android:layout_width="match_parent"
+                            android:layout_width="80dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="1"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="1"
+                            android:layout_weight="0.40"
                             android:elevation="1dp"
                             android:fontFamily="casual"
                             android:shadowColor="@android:color/black"
-                            android:text="Nose spray"
-                            android:textColor="@android:color/black"
-                            android:textColorHighlight="@android:color/black"
-                            android:textColorHint="@android:color/black"
-                            android:textColorLink="@android:color/black" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:fontFamily="cursive"
-                    android:text="Clothes"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <CheckBox
-                            android:id="@+id/checkBox4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:elevation="1dp"
-                            android:fontFamily="casual"
-                            android:shadowColor="@android:color/black"
-                            android:text="Jeans"
+                            android:text="Thermometr"
                             android:textColor="@android:color/black"
                             android:textColorHighlight="@android:color/black"
                             android:textColorHint="@android:color/black"
                             android:textColorLink="@android:color/black" />
 
+                        <ImageButton
+                            android:id="@+id/imageButton24"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="1"
+                            android:background="@color/myTransparent"
+                            android:visibility="gone"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
                         <CheckBox
-                            android:id="@+id/checkBox8"
-                            android:layout_width="match_parent"
+                            android:id="@+id/checkBox5"
+                            android:layout_width="80dp"
                             android:layout_height="wrap_content"
+                            android:layout_columnWeight="2"
+                            android:layout_rowWeight="2"
                             android:layout_weight="1"
                             android:elevation="1dp"
                             android:fontFamily="casual"
                             android:shadowColor="@android:color/black"
-                            android:text="Skirts"
+                            android:text="Pills from stomach pain"
                             android:textColor="@android:color/black"
                             android:textColorHighlight="@android:color/black"
                             android:textColorHint="@android:color/black"
                             android:textColorLink="@android:color/black" />
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        <ImageButton
+                            android:id="@+id/imageButton18"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="3"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="0.64"
+                            android:background="@color/myTransparent"
+                            android:visibility="gone"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
                         <CheckBox
-                            android:id="@+id/checkBox9"
-                            android:layout_width="match_parent"
+                            android:id="@+id/checkBox5"
+                            android:layout_width="80dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="0.40"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Useful meds"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton29"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="3"
+                            android:background="@color/myTransparent"
+                            android:visibility="gone"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox7"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="0.40"
                             android:elevation="1dp"
                             android:fontFamily="casual"
                             android:shadowColor="@android:color/black"
@@ -432,12 +648,107 @@
                             android:textColor="@android:color/black"
                             android:textColorHighlight="@android:color/black"
                             android:textColorHint="@android:color/black"
-                            android:textColorLink="@android:color/black" />
+                            android:textColorLink="@android:color/black"
+                            android:visibility="gone" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton29"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="3"
+                            android:layout_rowWeight="3"
+                            android:background="@color/myTransparent"
+                            android:visibility="gone"
+                            app:srcCompat="@android:drawable/ic_menu_add" />
+
+                        <EditText
+                            android:id="@+id/editText12"
+                            android:layout_width="103dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="3"
+                            android:ems="10"
+                            android:fontFamily="casual"
+                            android:hint="new item"
+                            android:inputType="text"
+                            android:textSize="12sp"
+                            android:visibility="gone" />
+
+                    </GridLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/editText2"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="0.40"
+                            android:editable="true"
+                            android:ems="10"
+                            android:enabled="false"
+                            android:fontFamily="cursive"
+                            android:text="Clothes"
+                            android:textColor="@android:color/black"
+                            android:textSize="24sp" />
+
+
+                        <ImageButton
+                            android:id="@+id/imageButton8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_edit" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.04"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_delete" />
+
+                    </LinearLayout>
+
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp"
+                        android:layout_weight="1"
+                        android:columnCount="4"
+                        android:rowCount="3">
+
+                        <ImageButton
+                            android:id="@+id/imageButton24"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:layout_weight="1"
+                            android:background="@color/myTransparent"
+                            android:visibility="visible"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
                         <CheckBox
-                            android:id="@+id/checkBox2"
-                            android:layout_width="match_parent"
+                            android:id="@+id/checkBox5"
+                            android:layout_width="98dp"
                             android:layout_height="wrap_content"
+                            android:layout_columnWeight="2"
+                            android:layout_rowWeight="1"
                             android:layout_weight="1"
                             android:elevation="1dp"
                             android:fontFamily="casual"
@@ -447,20 +758,166 @@
                             android:textColorHighlight="@android:color/black"
                             android:textColorHint="@android:color/black"
                             android:textColorLink="@android:color/black" />
-                    </LinearLayout>
 
-                    <CheckBox
-                        android:id="@+id/checkBox5"
-                        android:layout_width="match_parent"
+                        <ImageButton
+                            android:id="@+id/imageButton18"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="3"
+                            android:layout_rowWeight="1"
+                            android:layout_weight="0.64"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox5"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="1"
+                            android:layout_weight="0.40"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Jeans"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton24"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="1"
+                            android:background="@color/myTransparent"
+                            android:visibility="visible"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox5"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="2"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="1"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Sneakers"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton18"
+                            android:layout_width="30dp"
+                            android:layout_height="35dp"
+                            android:layout_columnWeight="3"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="0.64"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox5"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="0.40"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Skirt"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton29"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="3"
+                            android:background="@color/myTransparent"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox7"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="2"
+                            android:layout_weight="0.40"
+                            android:elevation="1dp"
+                            android:fontFamily="casual"
+                            android:shadowColor="@android:color/black"
+                            android:text="Shirts"
+                            android:textColor="@android:color/black"
+                            android:textColorHighlight="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            android:textColorLink="@android:color/black" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton29"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="3"
+                            android:layout_rowWeight="3"
+                            android:background="@color/myTransparent"
+                            android:visibility="visible"
+                            app:srcCompat="@android:drawable/ic_menu_add" />
+
+                        <EditText
+                            android:id="@+id/editText12"
+                            android:layout_width="103dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="4"
+                            android:layout_rowWeight="3"
+                            android:ems="10"
+                            android:hint="new item"
+                            android:inputType="text"
+                            android:textSize="12sp"
+                            android:visibility="visible" />
+
+                    </GridLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/imageButton30"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@color/myTransparent"
+                        android:visibility="visible"
+                        app:srcCompat="@android:drawable/ic_menu_add" />
+
+                    <EditText
+                        android:id="@+id/editText2"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:elevation="1dp"
-                        android:fontFamily="casual"
-                        android:shadowColor="@android:color/black"
-                        android:text="Sneakers"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="0.40"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:fontFamily="cursive"
+                        android:hint="New group"
                         android:textColor="@android:color/black"
-                        android:textColorHighlight="@android:color/black"
-                        android:textColorHint="@android:color/black"
-                        android:textColorLink="@android:color/black" />
+                        android:textSize="24sp" />
+
+
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -475,6 +932,6 @@
             android:layout_margin="@dimen/fab_margin"
             app:backgroundTint="@android:color/holo_blue_light"
             app:elevation="10dp"
-            app:srcCompat="@mipmap/ic_add_white_24dp" />
+            app:srcCompat="@drawable/ic_create_white_24px" />
 </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

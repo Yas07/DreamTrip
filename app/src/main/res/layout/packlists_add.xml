@@ -69,8 +69,6 @@
                     android:fontFamily="casual"
                     android:hint="Description"
                     android:inputType="text"
-                    android:nextFocusLeft="@id/editText4"
-                    android:nextFocusUp="@id/editText4"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:textColor="@android:color/black"
@@ -103,14 +101,70 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <ImageButton
-                        android:id="@+id/imageButton3"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_margin="5dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/selector_packlists_add_btns"
-                        app:srcCompat="@drawable/ic_menu_camera" />
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:id="@+id/layoutBagSquare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.37"
+                            android:gravity="center"
+                            android:onClick="chooseBag"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/btnBagSquare"
+                                android:layout_width="100dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="9dp"
+                                android:onClick="openGallery"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/ic_menu_camera" />
+
+                            <ImageView
+                                android:layout_width="108dp"
+                                android:layout_height="100dp"
+                                android:background="@drawable/bag_square_dpi"
+                                android:layout_gravity="center"
+                                android:orientation="horizontal"/>
+
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:id="@+id/layoutBagRectangle"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="0.37"
+                            android:gravity="center"
+                            android:onClick="chooseBag"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/btnBagRectangle"
+                                android:layout_width="110dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="9dp"
+                                android:onClick="openGallery"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/ic_menu_camera" />
+
+                            <ImageView
+                                android:layout_width="127dp"
+                                android:layout_height="100dp"
+                                android:background="@drawable/bag_rectangle_dpi"
+                                android:layout_gravity="center"
+                                android:orientation="horizontal"/>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -141,6 +195,36 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/packlists_add_btnLondon2"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_london_dpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnLondon1"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_london2_dpi" />
+
+                        <ImageView
+                            android:id="@+id/packlists_add_btnFrance1"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:onClick="chooseBag"
+                            app:srcCompat="@drawable/bag_yellow_dpi" />
+
+                        <ImageView
                             android:id="@+id/packlists_add_btnBirds"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
@@ -149,7 +233,7 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_birds_xhdpi" />
+                            app:srcCompat="@drawable/bag_birds_dpi" />
 
                         <ImageView
                             android:id="@+id/packlists_add_btnSummer"
@@ -159,7 +243,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_summer_xhdpi" />
+                            app:srcCompat="@drawable/bag_summer_dpi" />
 
                         <ImageView
                             android:id="@+id/packlists_add_btnTravel2"
@@ -179,7 +263,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_twopeople_xhdpi" />
+                            app:srcCompat="@drawable/bag_twopeople_dpi" />
 
                         <ImageView
                             android:id="@+id/packlists_add_btnMelons"
@@ -189,7 +273,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_melons_xhdpi" />
+                            app:srcCompat="@drawable/bag_melons_dpi" />
 
                         <ImageView
                             android:id="@+id/packlists_add_btnTravel"
@@ -199,7 +283,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_travel_xhdpi" />
+                            app:srcCompat="@drawable/bag_travel_dpi" />
 
                         <ImageView
                             android:id="@+id/packlists_add_btnAdventure"
@@ -209,7 +293,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_adventure_xhdpi" />
+                            app:srcCompat="@drawable/bag_adventure_dpi" />
 
                         <ImageView
                             android:id="@+id/packlists_add_btnChildren"
@@ -219,7 +303,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_children_xhdpi" />
+                            app:srcCompat="@drawable/bag_children_dpi" />
 
                         <ImageView
                             android:id="@+id/packlists_add_btnFestival"
@@ -229,7 +313,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_festival_xhdpi" />
+                            app:srcCompat="@drawable/bag_festival_dpi" />
 
                         <ImageView
                             android:id="@+id/packlists_add_btnWinter1"
@@ -239,7 +323,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_winter_xhdpi" />
+                            app:srcCompat="@drawable/bag_winter_dpi" />
 
                         <ImageView
                             android:id="@+id/packlists_add_btnWinter2"
@@ -249,27 +333,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_winter2_xhdpi" />
-
-                        <ImageView
-                            android:id="@+id/packlists_add_btnLondon1"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1"
-                            android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_london2_xhdpi" />
-
-                        <ImageView
-                            android:id="@+id/packlists_add_btnLondon2"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1"
-                            android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_london_xhdpi" />
+                            app:srcCompat="@drawable/bag_winter2_dpi" />
 
                         <ImageView
                             android:id="@+id/packlists_add_btnLondon3"
@@ -279,7 +343,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_britain_xhdpi" />
+                            app:srcCompat="@drawable/bag_britain_dpi" />
 
                         <ImageView
                             android:id="@+id/packlists_add_btnGreece"
@@ -289,7 +353,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_greece_xhdpi" />
+                            app:srcCompat="@drawable/bag_greece_dpi" />
 
                         <ImageView
                             android:id="@+id/packlists_add_btnFrance2"
@@ -299,17 +363,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_paris_xhdpi" />
-
-                        <ImageView
-                            android:id="@+id/packlists_add_btnFrance1"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1"
-                            android:onClick="chooseBag"
-                            app:srcCompat="@drawable/bag_yellow_xhdpi" />
+                            app:srcCompat="@drawable/bag_paris_dpi" />
 
                     </LinearLayout>
                 </HorizontalScrollView>

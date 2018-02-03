@@ -99,7 +99,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/travelbook_cover_christmas_white_green" />
+                            app:srcCompat="@drawable/travelbook_cover_christmas_white_green_dpi" />
 
                     </LinearLayout>
 
@@ -141,7 +141,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/travelbook_cover_cup" />
+                            app:srcCompat="@drawable/travelbook_cover_cup_dpi" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -190,7 +190,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/travelbook_cover_travel" />
+                            app:srcCompat="@drawable/travelbook_cover_travel_dpi" />
 
                     </LinearLayout>
 
@@ -234,7 +234,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/travelbook_cover_light_summer" />
+                            app:srcCompat="@drawable/travelbook_cover_light_summer_dpi" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -282,7 +282,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/travelbook_cover_modern_black" />
+                            app:srcCompat="@drawable/travelbook_cover_modern_black_dpi" />
 
                     </LinearLayout>
 
@@ -324,7 +324,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            app:srcCompat="@drawable/travelbook_cover_world_travel" />
+                            app:srcCompat="@drawable/travelbook_cover_world_travel_dpi" />
 
                     </LinearLayout>
                 </LinearLayout>
