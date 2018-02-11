@@ -1,6 +1,5 @@
 package com.dreamtrip.dreamtrip;
 
-import android.support.transition.Visibility;
 import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
@@ -10,13 +9,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 /**
  * Created by MENEDGERP36 on 04.02.2018.
  */
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_Plan.ViewHolder> {
     private String[] titles = {"Chapter One",
             "Chapter Two",
             "Chapter Three",
@@ -118,7 +115,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.card, viewGroup, false);
+                .inflate(R.layout.mytrips_trip_plan_card, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }

@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dreamtrip.dreamtrip.R;
-import com.dreamtrip.dreamtrip.RecyclerAdapter;
+import com.dreamtrip.dreamtrip.AdapterRecycler_Plan;
 
 public class Fragment_plan extends Fragment {
     RecyclerView recyclerView;
@@ -25,7 +25,7 @@ public class Fragment_plan extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new RecyclerAdapter();
+        adapter = new AdapterRecycler_Plan();
         recyclerView.setAdapter(adapter);
 
         return myLayout;

@@ -14,7 +14,7 @@ import android.widget.TextView;
  * Created by MENEDGERP36 on 28.01.2018.
  */
 
-public class Travelbook_swipe extends PagerAdapter {
+public class AdapterSwipe extends PagerAdapter {
 
     private int[] image_res = {
             R.drawable.bag_adventure_dpi,
@@ -23,7 +23,7 @@ public class Travelbook_swipe extends PagerAdapter {
     private Context ctx;
     private LayoutInflater layoutInflater;
 
-    public Travelbook_swipe(Context ctx){
+    public AdapterSwipe(Context ctx){
         this.ctx = ctx;
     }
 

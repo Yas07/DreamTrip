@@ -3,9 +3,10 @@
     xmlns:screenOrientation="http://schemas.android.com/apk/res-auto"
     package="com.dreamtrip.dreamtrip">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-feauture android:name="android.hardware.camera"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feauture android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"
@@ -80,7 +81,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ActivityTravelbooks_travelbook_add"
             android:label="Add post to the travelbook"
@@ -92,7 +92,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ActivityTravelbooks_travelbook"
             android:label="Travelbook"
@@ -148,7 +147,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

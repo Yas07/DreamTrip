@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/card_view"
+    card_view:cardBackgroundColor="@color/myTransparent"
+    card_view:cardElevation="0dp"
+    android:clickable="true">
+
+    <LinearLayout
+        android:id="@+id/packlistLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/packlistTitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="cursive"
+            android:text="Check list"
+            android:visibility="gone"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="36sp" />
+
+        <LinearLayout
+            android:id="@+id/packlistLayoutGroupAndItems"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/packlistLayoutGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/packlistEditGroupTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.04"
+                    android:ems="10"
+                    android:enabled="true"
+                    android:fontFamily="cursive"
+                    android:text="Main"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp" />
+
+
+                <ImageButton
+                    android:id="@+id/packlistGroupBtnEdit"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/myTransparent"
+                    android:src="@drawable/ic_create_black_24px" />
+
+                <ImageButton
+                    android:id="@+id/packlistGroupBtnDel"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/myTransparent"
+                    android:src="@drawable/ic_delete_black_24px" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/packlistLayoutItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp">
+
+                <CheckBox
+                    android:id="@+id/packlistCheckbox"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:elevation="1dp"
+                    android:fontFamily="casual"
+                    android:shadowColor="@android:color/black"
+                    android:text="Money"
+                    android:textColor="@android:color/black"
+                    android:textColorHighlight="@android:color/black"
+                    android:textColorHint="@android:color/black"
+                    android:textColorLink="@android:color/black"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/packlistCheckboxDel"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:background="@color/myTransparent"
+                    android:src="@drawable/ic_clear_black_24px"
+                    android:visibility="visible"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/packlistLayoutItemAdd"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp">
+
+                <EditText
+                    android:id="@+id/packlistItemEdit"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="new item"
+                    android:inputType="text"
+                    android:textSize="14sp" />
+
+                <ImageButton
+                    android:id="@+id/packlistItemBtnAdd"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/myTransparent"
+                    android:src="@drawable/ic_add_black_24px" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/packlistLayoutGroupAdd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/packlistGroupBtnAdd"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/myTransparent"
+                android:src="@drawable/ic_add_black_24px" />
+
+            <EditText
+                android:id="@+id/packlistGroupAddEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="0.40"
+                android:ems="10"
+                android:enabled="true"
+                android:fontFamily="cursive"
+                android:hint="New group"
+                android:textColor="@android:color/black"
+                android:textSize="30sp" />
+
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

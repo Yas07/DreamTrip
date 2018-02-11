@@ -1,6 +1,5 @@
 package layout;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,12 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dreamtrip.dreamtrip.R;
-import com.dreamtrip.dreamtrip.Travelbook_swipe;
+import com.dreamtrip.dreamtrip.AdapterSwipe;
 
 
 public class Fragment_travelbook extends Fragment implements View.OnClickListener{
     ViewPager viewPager;
-    Travelbook_swipe adapter;
+    AdapterSwipe adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,7 +33,7 @@ public class Fragment_travelbook extends Fragment implements View.OnClickListene
         fab_travelbook_add_post.setOnClickListener(this);
 
         viewPager = (ViewPager) myLayout.findViewById(R.id.view_pager);
-        adapter = new Travelbook_swipe(getActivity());
+        adapter = new AdapterSwipe(getActivity());
         viewPager.setAdapter(adapter);
 
         return myLayout;

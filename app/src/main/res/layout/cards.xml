@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/card_view"
+    card_view:cardBackgroundColor="@color/myTransparent"
+    card_view:cardElevation="0dp"
+    android:clickable="true" >
+
+    <LinearLayout
+        android:id="@+id/cardGridLayout"
+        android:layout_width="160dp"
+                    android:layout_height="157dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/cardGridTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="casual"
+                        android:text="Title"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/cardGridDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="casual"
+                        android:text="Details"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/cardGridImage"
+                        android:layout_width="150dp"
+                        android:layout_height="90dp"
+                        android:layout_margin="5dp"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
