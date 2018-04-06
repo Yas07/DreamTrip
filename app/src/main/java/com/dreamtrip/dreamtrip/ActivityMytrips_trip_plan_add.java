@@ -54,8 +54,6 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         ft.commit();
 
         calendar = Calendar.getInstance();
-        hours = calendar.HOUR_OF_DAY;
-        minutes = calendar.MINUTE;
 //        editTimeOpen = (EditText) findViewById(R.id.editTimeOpen);
 //        editTimeClose = (EditText) findViewById(R.id.editTimeClose);
 //        editDateTimeVisit = (EditText) findViewById(R.id.editDateTimeVisit);
@@ -78,7 +76,6 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener(){
             @Override
             public void onTimeSet(TimePicker view, int hoursOfDay, int minutesOfDay) {
-                Calendar calendar = Calendar.getInstance();
                 calendar.set(Calendar.HOUR_OF_DAY, hoursOfDay);
                 calendar.set(Calendar.MINUTE, minutesOfDay);
                 editTime.setText(timeFormat.format(calendar.getTime()));

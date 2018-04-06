@@ -10,17 +10,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 enum RequestCodeBag {
     NONE,
     RECTANGLE,
     SQUARE,
-};
+}
 
 public class ActivityPacklists_add extends AppCompatActivity {
     Button btn_save;
     ImageView btnBagSquare, btnBagRectangle, imgPhoto;
+    EditText packlistDetail, packlistTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +33,25 @@ public class ActivityPacklists_add extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivityPacklists_packlist");
-                startActivity(intent);
+                addPacklist(v);
             }
         });
+        packlistTitle = (EditText) findViewById(R.id.editPacklistTitle);
+        packlistDetail = (EditText) findViewById(R.id.editPacklistDetail);
         btnBagSquare = (ImageView) findViewById(R.id.btnBagSquare);
         btnBagRectangle = (ImageView) findViewById(R.id.btnBagRectangle);
     }
 
+    public void addPacklist(View view){
+        if(packlistTitle.getText().toString().equals("")){
+            Toast.makeText(this, "ERROR - Enter title!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Bundle bundle = new Bundle();
+            bundle.putString("value", "Successfully added");
+            startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityPacklists_packlist").putExtras(bundle));
+        }
+    }
 
     public void openGallery(View view){
         RequestCodeBag requestCode = RequestCodeBag.NONE;
@@ -61,27 +75,27 @@ public class ActivityPacklists_add extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            Bitmap selectedImage = ViewsHandler.setImageFromGallery(data, ActivityPacklists_add.this);
+            Bitmap selectedImage = ViewsHandler.getInstance().setImageFromGallery(data, ActivityPacklists_add.this);
             switch (RequestCodeBag.values()[requestCode]) {
                 case RECTANGLE:{                                    //bag rectangle
                     imgPhoto.getLayoutParams().height =
-                            (int) ViewsHandler.convertDpToPx(75, ActivityPacklists_add.this);
+                            (int) ViewsHandler.getInstance().convertDpToPx(75, ActivityPacklists_add.this);
                     imgPhoto.getLayoutParams().width =
-                            (int) ViewsHandler.convertDpToPx(110, ActivityPacklists_add.this);
+                            (int) ViewsHandler.getInstance().convertDpToPx(110, ActivityPacklists_add.this);
                     imgPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     imgPhoto.requestLayout();
-                    selectedImage = ViewsHandler.resizeImage(selectedImage, 300, 200);
+                    selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 300, 200);
                     chooseBag(findViewById(R.id.layoutBagRectangle));
                     break;
                 }
                 case SQUARE:{                                    //bag square
                     imgPhoto.getLayoutParams().height =
-                            (int) ViewsHandler.convertDpToPx(75, ActivityPacklists_add.this);
+                            (int) ViewsHandler.getInstance().convertDpToPx(75, ActivityPacklists_add.this);
                     imgPhoto.getLayoutParams().width =
-                            (int) ViewsHandler.convertDpToPx(90, ActivityPacklists_add.this);
+                            (int) ViewsHandler.getInstance().convertDpToPx(90, ActivityPacklists_add.this);
                     imgPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     imgPhoto.requestLayout();
-                    selectedImage = ViewsHandler.resizeImage(selectedImage, 300, 200);
+                    selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 300, 200);
                     chooseBag(findViewById(R.id.layoutBagSquare));
                     break;
                 }

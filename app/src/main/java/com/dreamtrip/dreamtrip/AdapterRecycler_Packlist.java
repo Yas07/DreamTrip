@@ -1,17 +1,15 @@
 package com.dreamtrip.dreamtrip;
 
+import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-/**
- * Created by MENEDGERP36 on 11.02.2018.
- */
 
 public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycler_Packlist.ViewHolder>{
 
@@ -34,6 +32,11 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
             "Selfi stick"};
 
     private String packlistTitle = "Summer stuff";
+    private boolean isEditOpen = false;
+
+    public AdapterRecycler_Packlist(boolean isEditOpen){
+        this.isEditOpen = isEditOpen;
+    }
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -44,6 +47,9 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
         public LinearLayout layoutGroup;
         public LinearLayout layoutGroupAdd;
         public LinearLayout layoutItemAdd;
+        public ImageButton checkboxDel;
+        public ImageButton groupBtnEdit;
+        public ImageButton groupBtnDel;
 
 
         public ViewHolder(View itemView) {
@@ -54,6 +60,10 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
             layoutGroup = (LinearLayout)itemView.findViewById(R.id.packlistLayoutGroup);
             layoutGroupAdd = (LinearLayout) itemView.findViewById(R.id.packlistLayoutGroupAdd);
             layoutItemAdd = (LinearLayout) itemView.findViewById(R.id.packlistLayoutItemAdd);
+            checkboxDel = (ImageButton) itemView.findViewById(R.id.packlistCheckboxDel);
+            groupBtnEdit = (ImageButton) itemView.findViewById(R.id.packlistGroupBtnEdit);
+            groupBtnDel = (ImageButton) itemView.findViewById(R.id.packlistGroupBtnDel);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
@@ -80,23 +90,33 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
     public void onBindViewHolder(AdapterRecycler_Packlist.ViewHolder viewHolder, int i) {
 
         if (i == 0){           // if this is first card
-            viewHolder.textPacklist.setText(packlistTitle);       //set packlist title
+            viewHolder.textPacklist.setText(packlistTitle);      // set packlist title
             viewHolder.textPacklist.setVisibility(View.VISIBLE); // display packlist title
-            viewHolder.textGroup.setText(groupsTitles[i]);      //set group title
+            viewHolder.textGroup.setText(groupsTitles[i]);       // set group title
         }
         else {              //if this is not first card
-            if (!groupsTitles[i].equals(groupsTitles[i-1]))     //if we have unique (new) group
-                viewHolder.textGroup.setText(groupsTitles[i]); //set group title
-            else                                                //if we have the same group
-                viewHolder.layoutGroup.setVisibility(View.GONE); //hide group layout
+            if (!groupsTitles[i].equals(groupsTitles[i-1]))      // if we have unique (new) group
+                viewHolder.textGroup.setText(groupsTitles[i]);   // set group title
+            else                                                 // if we have the same group
+                viewHolder.layoutGroup.setVisibility(View.GONE); // hide group layout
 
-            if (i == itemTitles.length-1) {                             //if this is the last element
-                viewHolder.layoutItemAdd.setVisibility(View.VISIBLE); //show layout to add item
-                viewHolder.layoutGroupAdd.setVisibility(View.VISIBLE); //show layout to add group
+            if (isEditOpen) {
+                if (i == itemTitles.length - 1) {                          // if this is the last element
+                    viewHolder.layoutItemAdd.setVisibility(View.VISIBLE);  // show layout to add item
+                    viewHolder.layoutGroupAdd.setVisibility(View.VISIBLE); // show layout to add group
+                } else
+                    if (!groupsTitles[i].equals(groupsTitles[i + 1]))         // if this is the last element in this group
+                        viewHolder.layoutItemAdd.setVisibility(View.VISIBLE); // show layout to add item
             }
-            else
-                if (!groupsTitles[i].equals(groupsTitles[i+1]))      //if this is the last element in this group
-                    viewHolder.layoutItemAdd.setVisibility(View.VISIBLE); //show layout to add item
+        }
+        if (!isEditOpen) {
+            viewHolder.checkboxDel.setVisibility(View.GONE);
+            viewHolder.groupBtnDel.setVisibility(View.GONE);
+            viewHolder.groupBtnEdit.setVisibility(View.GONE);
+            viewHolder.textGroup.setFocusable(false);
+            viewHolder.textGroup.setFocusableInTouchMode(false);
+            viewHolder.textGroup.setClickable(false);
+            viewHolder.textGroup.setBackgroundColor(Color.TRANSPARENT);
 
         }
         viewHolder.itemCheckbox.setText(itemTitles[i]); // anyway set checkbox (stuff) item

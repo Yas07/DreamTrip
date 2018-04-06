@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:elevation="1dp"
             android:fontFamily="cursive"
-            android:text="Plan"
+            android:text="@string/plan"
             android:visibility="gone"
             android:textAlignment="center"
             android:textColor="@android:color/black"

@@ -10,16 +10,16 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 
-/**
- * Created by MENEDGERP36 on 01.02.2018.
- */
+public class ViewsHandler {
 
-public final class ViewsHandler {
+    private static volatile ViewsHandler viewsHandler = new ViewsHandler();
+    private ViewsHandler(){};
+    public static ViewsHandler getInstance(){return viewsHandler;}
 
 //--------------------------------------------------------Open from Gallery
 //-----------------------------------------------------------------------------------------------
 
-    public static Bitmap setImageFromGallery(Intent data, Context context){
+    public Bitmap setImageFromGallery(Intent data, Context context){
         Uri uri = data.getData();
         String[] projection = {MediaStore.Images.Media.DATA};
         Cursor cursor = context.getContentResolver().query(uri, projection, null,null,null);
@@ -32,7 +32,7 @@ public final class ViewsHandler {
         return selectedImage;
     }
 
-    public static Bitmap resizeImage(Bitmap image, int minWidth, int minHeight){
+    public Bitmap resizeImage(Bitmap image, int minWidth, int minHeight){
         int oldWidth = image.getWidth();
         int oldHeight = image.getHeight();
         int percWidth = (minWidth * 100) / oldWidth;
@@ -48,14 +48,14 @@ public final class ViewsHandler {
 //-------------------------------------------------------------Convert Measurements
 //-----------------------------------------------------------------------------------------------
 
-    public static float convertDpToPx(float dp, Context context){
+    public float convertDpToPx(float dp, Context context){
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float px = dp *((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return px;
     }
 
-    public static float convertPxToDp(float px, Context context){
+    public float convertPxToDp(float px, Context context){
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float dp = px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);

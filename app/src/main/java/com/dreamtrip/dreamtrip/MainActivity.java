@@ -1,8 +1,12 @@
 package com.dreamtrip.dreamtrip;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -36,11 +41,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        android.app.FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.content_frame,
-                        new ActivityMytrips_()).commit();
-
+        FragmentTransaction fragmentManager = getFragmentManager().beginTransaction();
+        fragmentManager.replace(R.id.content_frame, new ActivityMytrips_()).commit();
     }
 
     @Override
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_help) {
             return true;
         }
 
@@ -93,8 +95,6 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame,
                             new ActivityPacklists_()).commit();
-        } else if (id == R.id.nav_export) {
-
         } else if (id == R.id.nav_settings) {
             Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivitySettings");
             startActivity(intent);

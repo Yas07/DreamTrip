@@ -6,29 +6,25 @@
         <item
             android:id="@+id/nav_mytrips"
             android:icon="@mipmap/ic_flight_black_24dp"
-            android:title="My Trips" />
+            android:title="@string/my_trips" />
         <item
             android:id="@+id/nav_travelbook"
             android:icon="@mipmap/ic_book_black_24dp"
-            android:title="TravelBook" />
+            android:title="@string/travelbook" />
         <item
             android:id="@+id/nav_packlist"
             android:icon="@mipmap/ic_playlist_add_check_black_24dp"
-            android:title="Packing List" />
+            android:title="@string/packing_list" />
     </group>
     <group android:checkableBehavior="single" android:id="@+id/group2">
         <item
-            android:id="@+id/nav_export"
-            android:icon="@mipmap/ic_backup_black_24dp"
-            android:title="Export" />
-        <item
             android:id="@+id/nav_settings"
             android:icon="@mipmap/ic_settings_black_24dp"
-            android:title="Settings" />
+            android:title="@string/settings" />
         <item
             android:id="@+id/nav_help"
             android:icon="@mipmap/ic_help_black_24dp"
-            android:title="Help" />
+            android:title="@string/help" />
     </group>
 
 </menu>

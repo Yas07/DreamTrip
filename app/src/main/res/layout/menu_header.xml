@@ -22,7 +22,7 @@
         android:layout_weight="0.69"
         android:gravity="bottom"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Dream Trip"
+        android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/background_light"
         android:textColorHighlight="@android:color/holo_red_light"
@@ -35,7 +35,7 @@
         android:layout_height="50dp"
         android:layout_weight="0.18"
         android:gravity="bottom"
-        android:text="Make your dream trip come true"
+        android:text="@string/make_your_dream_trip_come_true"
         android:textSize="18sp"
         android:textStyle="bold" />
 

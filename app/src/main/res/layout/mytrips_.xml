@@ -38,7 +38,7 @@
                     android:layout_marginTop="30dp"
                     android:background="@color/mytrips_bg"
                     android:fontFamily="casual"
-                    android:hint="Enter title of trip"
+                    android:hint="@string/enter_title_of_trip"
                     android:inputType="textAutoComplete"
                     android:nextFocusLeft="@id/autoCompleteTextView"
                     android:nextFocusUp="@id/autoCompleteTextView"

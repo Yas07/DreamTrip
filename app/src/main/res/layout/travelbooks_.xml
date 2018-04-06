@@ -37,7 +37,7 @@
                     android:layout_marginTop="30dp"
                     android:background="@color/travelbooks_bg"
                     android:fontFamily="casual"
-                    android:hint="Enter title of travelbook"
+                    android:hint="@string/enter_title_of_travelbook"
                     android:inputType="textAutoComplete"
                     android:nextFocusLeft="@id/autoCompleteTextView"
                     android:nextFocusUp="@id/autoCompleteTextView"

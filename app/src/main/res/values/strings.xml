@@ -1,89 +1,66 @@
 <resources>
     <string name="app_name">Dream Trip</string>
+    <string name="make_your_dream_trip_come_true">Make your dream trip come true</string>
+    <string name="navigation_drawer_open">open drawer</string>
+    <string name="navigation_drawer_close">close drawer</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="help">Help</string>
+    <string name="settings">Settings</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- Strings related to Travelbooks -->
 
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="travelbook">TravelBook</string>
+    <string name="travel_book">Travel book</string>
+    <string name="enter_title_of_travelbook">Enter title of travelbook</string>
+    <string name="travelbook_title">Travelbook title</string>
 
-    <!-- Strings related to Settings -->
+    <string name="background">Background</string>
+    <string name="choose_ours">choose ours</string>
+    <string name="upload_yours">upload yours</string>
+    <string name="just_color">just color</string>
+    <string name="upload_from_1_to_4_photos">Upload from 1 to 4 photos</string>
+    <string name="add_main_title">Add main title</string>
+    <string name="main_title">main title</string>
+    <string name="add_text">Add text</string>
+    <string name="text_for_first_photo">text for first photo</string>
+    <string name="text_for_second_photo">text for second photo</string>
+    <string name="text_for_third_photo">text for third photo</string>
+    <string name="text_for_fourth_photo">text for fourth photo</string>
+    <string name="color_of_text">Color of text</string>
+    <string name="color_of_text_blocks">Color of text blocks</string>
+    <string name="save_post">Save post</string>
 
-    <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
+    <!-- Strings related to Packlists -->
 
-    <string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
-    </string>
+    <string name="packing_list">Packing list</string>
+    <string name="enter_title_of_packing_list">Enter title of packing list</string>
+    <string name="packing_list_title">Packing list title</string>
+    <string name="description">Description</string>
+    <string name="upload_your_photo">Upload your photo</string>
+    <string name="or_choose_image">Or choose image</string>
+    <string name="save_changes">Save changes</string>
+    <string name="new_item">new item</string>
+    <string name="new_group">New group</string>
 
-    <string name="pref_title_display_name">Display name</string>
-    <string name="pref_default_display_name">John Smith</string>
+    <!-- Strings related to Trips -->
 
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
-    </string-array>
+    <string name="my_trips">My Trips</string>
+    <string name="enter_title_of_trip">Enter title of trip</string>
+    <string name="trip_name">Trip name</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
+    <string name="choose_header_image">Choose header image</string>
+    <string name="main_photo">Main photo</string>
+    <string name="text_color">Text color</string>
 
-    <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
+    <string name="plan">Plan</string>
+    <string name="place_or_activity_title">Place or activity title</string>
+    <string name="opens_at">Opens at</string>
+    <string name="closes_at">Closes at</string>
+    <string name="date_and_time_in_plan">Date and time in plan</string>
+    <string name="address">Address</string>
+    <string name="other_details">Other details</string>
 
-    <string name="pref_title_sync_frequency">Sync frequency</string>
-    <string-array name="pref_sync_frequency_titles">
-        <item>15 minutes</item>
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>Never</item>
-    </string-array>
-    <string-array name="pref_sync_frequency_values">
-        <item>15</item>
-        <item>30</item>
-        <item>60</item>
-        <item>180</item>
-        <item>360</item>
-        <item>-1</item>
-    </string-array>
 
-    <string-array name="list_preference_entries">
-        <item>Entry 1</item>
-        <item>Entry 2</item>
-        <item>Entry 3</item>
-    </string-array>
-
-    <string-array name="list_preference_entry_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array name="multi_select_list_preference_default_value" />
-
-    <string name="pref_title_system_sync_settings">System sync settings</string>
-
-    <!-- Example settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
-
-    <string name="pref_title_new_message_notifications">New message notifications</string>
-
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-
-    <string name="pref_title_vibrate">Vibrate</string>
-    <string name="title_activity_mytrips_plan">ActivityMytrips_plan</string>
-
-    <string name="title_activity_start">Start</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="packlist_addstuff_packlist">Choose packing list</string>
 </resources>

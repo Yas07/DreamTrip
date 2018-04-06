@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,7 +38,7 @@ public class ActivityTravelbooks_ extends Fragment{
         layoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new AdapterRecycler_GridCards(cardTitles,
-                cardDetails, cardImages, colorBg, colorText);
+                cardDetails, cardImages, colorBg, colorText, enum_ACTIVITY_TYPE.TRAVELBOOKS);
         recyclerView.setAdapter(adapter);
 
         return myLayout;
@@ -55,5 +54,6 @@ public class ActivityTravelbooks_ extends Fragment{
                 startActivity(intent);
             }
         });
+        //registerForContextMenu(AdapterRecycler_GridCards);
     }
 }

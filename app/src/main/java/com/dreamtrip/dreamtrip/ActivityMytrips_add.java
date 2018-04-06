@@ -23,25 +23,26 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
-enum RequestCodePhoto {
+enum enum_RequestCodePhoto {
     NONE,
     HEADER,
     MAIN,
-};
+}
 
-enum EditDateID {
+enum enum_EditDateID {
     NONE,
     START_DATE,
     END_DATE,
-};
+}
 public class ActivityMytrips_add extends AppCompatActivity {
     Button btnSave;
     ImageView imgPhoto, btnTripHeader, btnTripPhoto;
-    EditText editDate, editStartDate, editEndDate;
+    EditText editDate, editStartDate, editEndDate, editTripTitle;
 
     Calendar calendar;
     DatePickerDialog datePickerDialog = null;
@@ -60,12 +61,25 @@ public class ActivityMytrips_add extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mytrips_add);
+
+        editTripTitle = (EditText) findViewById(R.id.editTripTitle);
         btnSave = (Button) findViewById(R.id.btn_save);
         btnSave.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip");
-                startActivity(intent);
+                if(editTripTitle.getText().toString().equals("")){
+                    Toast.makeText(ActivityMytrips_add.this, "ERROR - Enter title!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if(new Date(editStartDate.getText().toString()).after(new Date(editEndDate.getText().toString()))){
+                        Toast.makeText(ActivityMytrips_add.this, "ERROR - End date should be bigger!", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("value", "Successfully added");
+                        startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip").putExtras(bundle));
+                    }
+                }
             }
         });
 
@@ -124,14 +138,14 @@ public class ActivityMytrips_add extends AppCompatActivity {
 //-----------------------------------------------------------------------------------------------
 
     public void openDatePicker(View view){
-        EditDateID editDateID = EditDateID.NONE;
+        enum_EditDateID editDateID = enum_EditDateID.NONE;
         switch (view.getId()){
             case (R.id.editStartDate):
-                editDateID = EditDateID.START_DATE;
+                editDateID = enum_EditDateID.START_DATE;
                 editDate = (EditText) findViewById(R.id.editStartDate);
                 break;
             case (R.id.editEndDate):
-                editDateID = EditDateID.END_DATE;
+                editDateID = enum_EditDateID.END_DATE;
                 editDate = (EditText) findViewById(R.id.editEndDate);
                 break;
         }
@@ -140,7 +154,7 @@ public class ActivityMytrips_add extends AppCompatActivity {
 
     @Override
     protected Dialog onCreateDialog(int id){
-        switch (EditDateID.values()[id]){
+        switch (enum_EditDateID.values()[id]){
             case START_DATE:
                 editDate = editStartDate;
                 dateStartPickerDialog = new DatePickerDialog(this, dateStartPickerListener, year_start, month_start, day_start);
@@ -200,15 +214,15 @@ public class ActivityMytrips_add extends AppCompatActivity {
 //-----------------------------------------------------------------------------------------------
 
     public void openGallery(View view){
-        RequestCodePhoto requestCode = RequestCodePhoto.NONE;
+        enum_RequestCodePhoto requestCode = enum_RequestCodePhoto.NONE;
         switch (view.getId()){
             case R.id.imgTripHeader:
                 imgPhoto = btnTripHeader;
-                requestCode = RequestCodePhoto.HEADER;
+                requestCode = enum_RequestCodePhoto.HEADER;
                 break;
             case R.id.imgTripPhoto:
                 imgPhoto = btnTripPhoto;
-                requestCode = RequestCodePhoto.MAIN;
+                requestCode = enum_RequestCodePhoto.MAIN;
                 break;
         }
         Intent GalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -219,24 +233,24 @@ public class ActivityMytrips_add extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            Bitmap selectedImage = ViewsHandler.setImageFromGallery(data, ActivityMytrips_add.this);
-            switch (RequestCodePhoto.values()[requestCode]) {
+            Bitmap selectedImage = ViewsHandler.getInstance().setImageFromGallery(data, ActivityMytrips_add.this);
+            switch (enum_RequestCodePhoto.values()[requestCode]) {
                 case HEADER:{
                     btnTripHeader.getLayoutParams().height =
-                            (int) ViewsHandler.convertDpToPx(112, ActivityMytrips_add.this);
+                            (int) ViewsHandler.getInstance().convertDpToPx(112, ActivityMytrips_add.this);
                     btnTripHeader.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     btnTripHeader.requestLayout();
-                    selectedImage = ViewsHandler.resizeImage(selectedImage, 800, 600);
+                    selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 800, 600);
                     break;
                 }
                 case MAIN: {
                     btnTripPhoto.getLayoutParams().width =
-                            (int) ViewsHandler.convertDpToPx(150, ActivityMytrips_add.this);
+                            (int) ViewsHandler.getInstance().convertDpToPx(150, ActivityMytrips_add.this);
                     btnTripPhoto.getLayoutParams().height =
-                            (int) ViewsHandler.convertDpToPx(90, ActivityMytrips_add.this);
+                            (int) ViewsHandler.getInstance().convertDpToPx(90, ActivityMytrips_add.this);
                     btnTripPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     btnTripPhoto.requestLayout();
-                    selectedImage = ViewsHandler.resizeImage(selectedImage, 300, 200);
+                    selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 300, 200);
                     break;
                 }
             }

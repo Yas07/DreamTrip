@@ -32,7 +32,7 @@
                     android:layout_marginTop="30dp"
                     android:background="@color/packlists_bg"
                     android:fontFamily="casual"
-                    android:hint="Enter title of packing list"
+                    android:hint="@string/enter_title_of_packing_list"
                     android:inputType="textAutoComplete"
                     android:nextFocusLeft="@id/autoCompleteTextView"
                     android:nextFocusUp="@id/autoCompleteTextView"

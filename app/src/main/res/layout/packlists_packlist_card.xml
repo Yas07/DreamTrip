@@ -21,10 +21,10 @@
             android:layout_height="wrap_content"
             android:fontFamily="cursive"
             android:text="Check list"
-            android:visibility="gone"
             android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="36sp" />
+            android:textSize="36sp"
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/packlistLayoutGroupAndItems"
@@ -101,15 +101,16 @@
                     android:layout_weight="1"
                     android:background="@color/myTransparent"
                     android:src="@drawable/ic_clear_black_24px"
-                    android:visibility="visible"/>
+                    android:visibility="visible" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/packlistLayoutItemAdd"
                 android:layout_width="wrap_content"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:visibility="gone">
 
                 <EditText
                     android:id="@+id/packlistItemEdit"
@@ -118,7 +119,7 @@
                     android:layout_marginLeft="30dp"
                     android:ems="10"
                     android:fontFamily="casual"
-                    android:hint="new item"
+                    android:hint="@string/new_item"
                     android:inputType="text"
                     android:textSize="14sp" />
 
@@ -138,8 +139,8 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
-            android:visibility="gone"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <ImageButton
                 android:id="@+id/packlistGroupBtnAdd"
@@ -158,11 +159,9 @@
                 android:ems="10"
                 android:enabled="true"
                 android:fontFamily="cursive"
-                android:hint="New group"
+                android:hint="@string/new_group"
                 android:textColor="@android:color/black"
                 android:textSize="30sp" />
-
-
 
 
         </LinearLayout>

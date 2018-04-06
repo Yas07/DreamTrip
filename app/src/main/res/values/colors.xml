@@ -38,5 +38,6 @@
     <color name="packlists_bg">#a9d2bea3</color>
     <color name="packlists_labels">#b9000000</color>
     <color name="packlists_add_bg">#c7bcac95</color>
+    <color name="transparent_white_2x">#58ffffff</color>
 
 </resources>

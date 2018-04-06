@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import layout.Fragment_packlist;
 import layout.Fragment_plan;
@@ -24,6 +25,13 @@ public class ActivityPacklists_packlist extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            if(bundle.getString("value")!= null){
+                Toast.makeText(this, bundle.getString("value"), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
 

@@ -36,18 +36,18 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/editTravelbookTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="0.65"
-                    android:nextFocusLeft="@id/editText"
-                    android:nextFocusUp="@id/editText"
+                    android:nextFocusLeft="@id/editTravelbookTitle"
+                    android:nextFocusUp="@id/editTravelbookTitle"
                     android:ems="10"
                     android:fontFamily="casual"
-                    android:hint="Travelbook title"
+                    android:hint="@string/travelbook_title"
                     android:inputType="text"
                     android:paddingLeft="10dp"
                     android:textColor="@android:color/black"
@@ -64,7 +64,7 @@
                     android:layout_weight="0.65"
                     android:ems="10"
                     android:fontFamily="casual"
-                    android:hint="Description"
+                    android:hint="@string/description"
                     android:inputType="text"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -91,7 +91,7 @@
                         android:elevation="2dp"
                         android:fontFamily="casual"
                         android:gravity="center"
-                        android:text="Upload your photo"
+                        android:text="@string/upload_your_photo"
                         android:textAlignment="center"
                         android:textColor="?android:attr/textColorTertiary"
                         android:textSize="18sp"
@@ -166,7 +166,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/textView21"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -174,7 +174,7 @@
                     android:elevation="2dp"
                     android:fontFamily="casual"
                     android:gravity="center"
-                    android:text="Or choose image"
+                    android:text="@string/or_choose_image"
                     android:textAlignment="center"
                     android:textColor="?android:attr/textColorTertiary"
                     android:textSize="18sp"
@@ -200,6 +200,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
+                            android:background="@color/transparentWhite"
                             android:onClick="chooseCover"
                             app:srcCompat="@drawable/travelbook_cover_light_summer_dpi" />
 
@@ -377,7 +378,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/selector_travelbooks_add_btns"
                 android:fontFamily="casual"
-                android:text="Save changes"
+                android:text="@string/save_changes"
                 android:textColor="@color/black_overlay"
                 android:textColorLink="@color/black_overlay"
                 android:textStyle="bold" />

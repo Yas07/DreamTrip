@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
@@ -85,38 +86,38 @@
                 <Button
                     android:id="@+id/btnPacklist1"
                     android:layout_width="126dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@color/black_overlay"
                     android:gravity="center"
-                    android:onClick="changePlan"
+                    android:onClick="changeTab"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Packing list"
+                    android:text="@string/packing_list"
                     android:textColor="@android:color/background_light" />
 
                 <Button
                     android:id="@+id/btnPlan1"
                     android:layout_width="106dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@color/transparentGrey"
                     android:gravity="center"
-                    android:onClick="changePlan"
+                    android:onClick="changeTab"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Plan"
+                    android:text="@string/plan"
                     android:textColor="@android:color/background_light"
                     android:textColorLink="@android:color/black" />
 
                 <Button
                     android:id="@+id/btnTravelbook1"
                     android:layout_width="128dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@color/black_overlay"
                     android:gravity="center"
-                    android:onClick="changePlan"
+                    android:onClick="changeTab"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Travel book"
+                    android:text="@string/travel_book"
                     android:textColor="@android:color/background_light" />
             </LinearLayout>
         </HorizontalScrollView>

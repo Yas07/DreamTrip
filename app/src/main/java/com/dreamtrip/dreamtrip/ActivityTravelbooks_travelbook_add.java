@@ -94,8 +94,8 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            Bitmap selectedImage = ViewsHandler.setImageFromGallery(data, ActivityTravelbooks_travelbook_add.this);
-            selectedImage = ViewsHandler.resizeImage(selectedImage, 800, 600);
+            Bitmap selectedImage = ViewsHandler.getInstance().setImageFromGallery(data, ActivityTravelbooks_travelbook_add.this);
+            selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 800, 600);
             Drawable d = new BitmapDrawable(getResources(), selectedImage);
             imgPhoto.setImageDrawable(d);
             switch(requestCode){
