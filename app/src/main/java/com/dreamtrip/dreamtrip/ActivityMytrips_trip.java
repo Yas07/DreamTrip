@@ -18,6 +18,7 @@ import android.widget.Toast;
 import layout.Fragment_packlist;
 import layout.Fragment_plan;
 import layout.Fragment_travelbook;
+import Trip_DBs.DB_Item;
 
 public class ActivityMytrips_trip extends AppCompatActivity {
 
