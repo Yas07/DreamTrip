@@ -41,13 +41,19 @@ import layout.FragmentPlan_transport;
 import layout.FragmentPlan_walk;
 import layout.FragmentPlan_winter;
 
-public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
+public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
+        DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     EditText editTime;
     int hours, minutes;
     Calendar calendar;
     Trips_trip tripCtx;
     SimpleDateFormat timeFormat;
     ImageButton saveTimePointBtn;
+
+    //DateTime in Plan
+    EditText editDateTimeVisit;
+    int day, month, year, hour, minute;
+    int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
 
     // NOTE: pp -- plan point
     EditText ppTitle;
@@ -102,6 +108,56 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
 //        editTimeOpen = (EditText) findViewById(R.id.editTimeOpen);
 //        editTimeClose = (EditText) findViewById(R.id.editTimeClose);
 //        editDateTimeVisit = (EditText) findViewById(R.id.editDateTimeVisit);
+
+        //DateTime in Plan
+        editDateTimeVisit = (EditText) findViewById(R.id.editDateTimeVisit);
+        editDateTimeVisit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar c = Calendar.getInstance();
+                year = c.get(Calendar.YEAR);
+                month = c.get(Calendar.MONTH);
+                day = c.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(ActivityMytrips_trip_plan_add.this,
+                        ActivityMytrips_trip_plan_add.this, year, month, day);
+                datePickerDialog.show();
+            }
+        });
+    }
+
+    // DateTime in Plan
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        yearFinal = i;
+        monthFinal = i1;
+        dayFinal = i2;
+        Calendar c = Calendar.getInstance();
+        hour = c.get(Calendar.HOUR_OF_DAY);
+        minute = c.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(ActivityMytrips_trip_plan_add.this,
+                ActivityMytrips_trip_plan_add.this, hour, minute, true);
+        timePickerDialog.show();
+
+    }
+
+    @Override
+    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+        hourFinal = i;
+        minuteFinal = i1;
+
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, yearFinal);
+        c.set(Calendar.MONTH, monthFinal);
+        c.set(Calendar.DAY_OF_MONTH, dayFinal);
+        c.set(Calendar.HOUR_OF_DAY, hourFinal);
+        c.set(Calendar.MINUTE, minuteFinal);
+
+        String strDateTime = DateFormat.getDateInstance(DateFormat.MEDIUM).format(c.getTime())
+                + " " + timeFormat.format(c.getTime());
+        //String strDateTime = dayFinal + ". " + monthFinal + ". " + yearFinal + " " + hourFinal + ":" + minuteFinal;
+        editDateTimeVisit.setText(strDateTime);
     }
 
 //--------------------------------------------------------Pick Date / Time Dialog
@@ -129,8 +185,6 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         }, hours, minutes, true);
         timePickerDialog.show();
     }
-
-    public void openDateTimePicker(View view){}
 
 //--------------------------------------------------------Change Fragment and Icons
 //-----------------------------------------------------------------------------------------------
@@ -357,4 +411,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
         );
         tripCtx.getPlan().add(planPoint);
     }
+
+
+
 }

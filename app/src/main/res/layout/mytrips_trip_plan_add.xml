@@ -205,7 +205,6 @@
                             android:layout_marginTop="5dp"
                             android:editable="false"
                             android:focusable="false"
-                            android:onClick="openDateTimePicker"
                             android:hint="@string/date_and_time_in_plan"
                             android:inputType="datetime"
                             android:shadowColor="@color/transparentWhite"
