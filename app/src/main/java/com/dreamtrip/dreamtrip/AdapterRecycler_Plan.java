@@ -161,9 +161,12 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
             Log.e("onBindView", "Invalid index");
             return;
         }
-
+        viewHolder.itemTitle.setText(planPoint.getTitle());
         viewHolder.itemTime.setText(planPoint.getTime());
-        viewHolder.itemDetail.setText(planPoint.get_otherDetails());
+
+        String itemDetails = planPoint.getPlace().getPlaceData() + "\n" +  planPoint.getOtherDetails();
+        viewHolder.itemDetail.setText(itemDetails);
+
         viewHolder.itemImage.setImageResource(images[0]); // TODO: after making images
         viewHolder.layoutNote.setBackgroundResource(backgrounds[0]); // TODO: after images
 

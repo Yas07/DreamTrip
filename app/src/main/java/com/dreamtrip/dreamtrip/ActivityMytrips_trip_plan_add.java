@@ -3,6 +3,7 @@ package com.dreamtrip.dreamtrip;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -83,6 +84,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
                 saveTimePoint(view);
+                startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip").putExtras(tripCtx.getBundle()));
             }
         });
 

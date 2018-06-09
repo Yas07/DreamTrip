@@ -86,6 +86,9 @@ public class Trips_trip extends DB_Item implements Comparable {
     }
 
     public Plan getPlan() {
+        if (plan == null) {
+            plan = new Plan();
+        }
         return plan;
     }
 

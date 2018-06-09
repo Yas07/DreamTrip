@@ -85,6 +85,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
                         {
                             int i = getAdapterPosition();
                             Trips_trip trip = tripsList.get(i);
+                            Trips_trip.setCurrentTrip(trip);
 
                             final Intent intent =  new Intent(context, ActivityMytrips_trip.class).putExtras(trip.getBundle());
                             context.startActivity(intent);

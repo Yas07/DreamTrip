@@ -50,8 +50,16 @@ public class PlanPoint implements Comparable {
         return _timeFormat.format(_calendar.getTime());
     }
 
-    public String get_otherDetails() {
+    public String getOtherDetails() {
         return _otherDetails;
+    }
+
+    public Place getPlace() {
+        return _place;
+    }
+
+    public String getTitle(){
+        return _title;
     }
 
     public void setTime(int y, int m, int d, int hour, int min) {

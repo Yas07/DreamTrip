@@ -45,10 +45,12 @@ public class ActivityMytrips_trip extends AppCompatActivity {
 
         if (tripCtx == null) {
             Log.e("Activity_trip", "Cannot resolve trip");
-            return;
+            tripCtx = Trips_trip.getCurrentTrip();
+            if (tripCtx == null) {
+                Log.e("Activity_trip", "No current trip");
+                return;
+            }
         }
-
-        Trips_trip.setCurrentTrip(tripCtx);
 
         TextView tripTitle = (TextView) findViewById(R.id.trip_name);
         TextView tripDate = (TextView) findViewById(R.id.trip_date);
@@ -59,16 +61,15 @@ public class ActivityMytrips_trip extends AppCompatActivity {
         tripTitle.setTextColor(tripCtx.getTextColor());
         tripDate.setTextColor(tripCtx.getTextColor());
 
-
-    }
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_mytrips_plan);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip_plan_add");
-//                startActivity(intent);
+//                addPlanPoint(view);
 //            }
 //        });
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,12 +105,12 @@ public class ActivityMytrips_trip extends AppCompatActivity {
         return false;
     }
 
-    public void addPlanPoint(View view){
-        if (view.getId() == R.id.fab_mytrips_plan){
-            Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip_plan_add").putExtras(tripCtx.getBundle());
-            startActivity(intent);
-        }
-    }
+//    private void addPlanPoint(View view){
+//        if (view.getId() == R.id.fab_mytrips_plan){
+//            Intent intent = new Intent(getBaseContext(), ActivityMytrips_trip_plan_add.class).putExtras(tripCtx.getBundle());
+//            startActivity(intent);
+//        }
+//    }
 
 
     public void changeTab(View view){
