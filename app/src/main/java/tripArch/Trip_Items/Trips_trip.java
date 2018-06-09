@@ -2,19 +2,29 @@ package Trip_Items;
 
 import android.graphics.Color;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.os.Bundle;
 import android.widget.ImageView;
 
 import Trip_DBs.DB_Item;
+import Trip_DBs.Trips_BD;
 import Trip_Items.Trips_Plan.Plan;
 
 public class Trips_trip extends DB_Item implements Comparable {
+
+    // TODO: probably shouldn't be used, remove somehow
+    private static Trips_trip currentTrip;
+
     private Date            startDate;
     private Date            endDate;
+    // TODO: use something another instead of ImageView
     private ImageView       headerImage;
     private ImageView       mainImage;
-    private Color textColor;
+    //                /\/\/\
+    private int             textColor;
     private Plan            plan;
 //    private Places_DB       places;
 //    private TravelBook      travelbook;
@@ -22,7 +32,7 @@ public class Trips_trip extends DB_Item implements Comparable {
 
     // TODO: this constuctor is needed only for testing, remove in production.
     // Do not use in non-testing use cases!!
-    public Trips_trip(String name, Date startDate, Date endDate, Color textColor) {
+    public Trips_trip(String name, Date startDate, Date endDate, int textColor) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -31,11 +41,11 @@ public class Trips_trip extends DB_Item implements Comparable {
 
     public Trips_trip(String name, Date startDate, Date endDate,
                       ImageView headerImage, ImageView mainImage,
-                      Color textColor) {
+                      int textColor) {
         this.name           = name;
         this.startDate      = startDate;
         this.endDate        = endDate;
-        this.headerImage    = headerImage;
+         this.headerImage    = headerImage;
         this.mainImage      = mainImage;
         this.textColor      = textColor;
 //        this.packlist       = packlist;
@@ -43,13 +53,48 @@ public class Trips_trip extends DB_Item implements Comparable {
         this.plan = new Plan();
     }
 
+    public static Trips_trip getCurrentTrip() {
+        return currentTrip;
+    }
+
+    public static void setCurrentTrip(Trips_trip currentTrip) {
+        Trips_trip.currentTrip = currentTrip;
+    }
+
     public Date getStartDate() {
         return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public String startEndDateToStr() {
+        DateFormat dateInstance = new SimpleDateFormat("dd.MM.yyyy");
+                DateFormat.getDateInstance();
+        return (String.format("%s - %s",
+                dateInstance.format(getStartDate()),
+                dateInstance.format(getEndDate())));
     }
 
     public String getName() {
         return name;
     }
+
+    public int getTextColor() {
+        return textColor;
+    }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public Bundle getBundle() {
+        Bundle bundle = new Bundle();
+        bundle.putStringArray(Trips_BD.bundleValue, new String[] {getName(), getStartDate().toString()});
+        return bundle;
+    }
+
 
     @Override
     public String toString() {

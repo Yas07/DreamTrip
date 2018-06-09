@@ -51,7 +51,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingTop="10dp"
-                    android:text="Christmas in Lviv"
+                    android:text=""
                     android:textColor="@color/transparentWhite"
                     android:textSize="30sp"
                     android:textStyle="bold" />

@@ -10,11 +10,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Date;
+
+import Trip_DBs.Trips_BD;
+import Trip_Items.Trips_trip;
 import layout.Fragment_packlist;
 import layout.Fragment_plan;
 import layout.Fragment_travelbook;
@@ -22,21 +28,38 @@ import Trip_DBs.DB_Item;
 
 public class ActivityMytrips_trip extends AppCompatActivity {
 
+    private Trips_trip tripCtx;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.mytrips_trip);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            if(bundle.getString("value")!= null) {
-                Toast.makeText(this, bundle.getString("value"), Toast.LENGTH_SHORT).show();
-            }
+
+        tripCtx = Trips_BD.getInstance().findByBundle(bundle);
+
+        if (tripCtx == null) {
+            Log.e("Activity_trip", "Cannot resolve trip");
+            return;
         }
+
+        Trips_trip.setCurrentTrip(tripCtx);
+
+        TextView tripTitle = (TextView) findViewById(R.id.trip_name);
+        TextView tripDate = (TextView) findViewById(R.id.trip_date);
+
+        tripTitle.setText(tripCtx.getName());
+        tripDate.setText(tripCtx.startEndDateToStr());
+
+        tripTitle.setTextColor(tripCtx.getTextColor());
+        tripDate.setTextColor(tripCtx.getTextColor());
+
+
     }
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_mytrips_plan);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -83,13 +106,26 @@ public class ActivityMytrips_trip extends AppCompatActivity {
 
     public void addPlanPoint(View view){
         if (view.getId() == R.id.fab_mytrips_plan){
-            Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip_plan_add");
+            Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip_plan_add").putExtras(tripCtx.getBundle());
             startActivity(intent);
         }
     }
 
 
     public void changeTab(View view){
+        Fragment fragment;
+        switch (view.getId()){
+            case R.id.btnPlan1: {
+                fragment = new Fragment_plan(); break;}
+            case R.id.btnPacklist1: {
+                fragment = new Fragment_packlist(); break;}
+            case R.id.btnTravelbook1: {
+                fragment = new Fragment_travelbook(); break;}
+            default:
+                Log.e("changeTab", "No such fragment");
+                return;
+        }
+
         View[] buttons = {
                 findViewById(R.id.btnPlan1),
                 findViewById(R.id.btnPacklist1),
@@ -98,19 +134,14 @@ public class ActivityMytrips_trip extends AppCompatActivity {
             temp.setBackgroundColor(getResources().getColor(R.color.black_overlay));
         view.setBackgroundColor(getResources().getColor(R.color.transparentGrey));
 
-        Fragment fragment;
-        fragment = new Fragment_plan();
-        switch (view.getId()){
-            case R.id.btnPlan1: {
-                fragment = new Fragment_plan(); break;}
-            case R.id.btnPacklist1: {
-                fragment = new Fragment_packlist(); break;}
-            case R.id.btnTravelbook1: {
-                fragment = new Fragment_travelbook(); break;}
-        }
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragmentPlace, fragment);
         ft.commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

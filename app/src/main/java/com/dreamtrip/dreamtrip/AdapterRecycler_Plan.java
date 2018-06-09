@@ -2,6 +2,7 @@ package com.dreamtrip.dreamtrip;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +10,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import Trip_Items.Trips_Plan.Plan;
+import Trip_Items.Trips_Plan.PlanPoint;
+import Trip_Items.Trips_trip;
+
 /**
  * Created by MENEDGERP36 on 04.02.2018.
  */
 
 public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_Plan.ViewHolder> {
+
+    private ArrayList<PlanPoint> planPoints;
+
     private String[] titles = {"Chapter One",
             "Chapter Two",
             "Chapter Three",
@@ -73,6 +83,29 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
             R.drawable.note_green_mdpi,
             R.drawable.note_pink_mdpi };
 
+    public AdapterRecycler_Plan() {
+       super();
+
+        Trips_trip tripCtx = Trips_trip.getCurrentTrip();
+        planPoints = null;
+        if (tripCtx == null) {
+            Log.e("Adapter plan, on bind", "There is no current trip");
+        } else {
+            Plan plan = tripCtx.getPlan();
+            if (plan != null) {
+                planPoints = new ArrayList<PlanPoint>(plan);
+            } else {
+                Log.e("Adapter plan, on bind", "There is no plan available");
+            }
+        }
+
+    }
+
+//    public AdapterRecycler_Plan() {
+//        super();
+//    }
+
+
     class ViewHolder extends RecyclerView.ViewHolder{
 
         public int currentItem;
@@ -122,27 +155,41 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        viewHolder.itemTitle.setText(titles[i]);
-        viewHolder.itemTime.setText(time[i]);
-        viewHolder.itemDetail.setText(details[i]);
-        viewHolder.itemImage.setImageResource(images[i]);
-        viewHolder.layoutNote.setBackgroundResource(backgrounds[i]);
+        PlanPoint planPoint = planPoints.get(i);
+
+        if (planPoint == null)  {
+            Log.e("onBindView", "Invalid index");
+            return;
+        }
+
+        viewHolder.itemTime.setText(planPoint.getTime());
+        viewHolder.itemDetail.setText(planPoint.get_otherDetails());
+        viewHolder.itemImage.setImageResource(images[0]); // TODO: after making images
+        viewHolder.layoutNote.setBackgroundResource(backgrounds[0]); // TODO: after images
+
         if (i == 0){
             viewHolder.textPlan.setVisibility(View.VISIBLE);
-            viewHolder.itemDayWeek.setText(weekdays[i]);
-            viewHolder.itemDate.setText(dates[i]);
+            viewHolder.itemDayWeek.setText(weekdays[i]); // TODO: after making date & time
+            viewHolder.itemDate.setText(dates[i]); // TODO: after making date & time
         } else {
-            if (!weekdays[i].equals(weekdays[i-1])){
-                viewHolder.itemDayWeek.setText(weekdays[i]);
-                viewHolder.itemDate.setText(dates[i]);
+            if (!weekdays[i].equals(weekdays[i-1])){ // check previous weekday
+                viewHolder.itemDayWeek.setText(weekdays[i]); // TODO: after making date & time
+                viewHolder.itemDate.setText(dates[i]); // TODO: after making date & time
+            } else  {
+                viewHolder.layoutDate.setVisibility(View.GONE);
             }
-            else viewHolder.layoutDate.setVisibility(View.GONE);
         }
 
     }
 
     @Override
     public int getItemCount() {
-        return titles.length;
+        if (planPoints == null) {
+            Log.e("onBindView", "getItemCount, planPoinst == null? wtf??");
+            return 0;
+        } else {
+            return planPoints.size();
+        }
+
     }
 }

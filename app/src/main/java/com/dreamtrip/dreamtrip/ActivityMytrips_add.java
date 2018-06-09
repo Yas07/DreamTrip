@@ -1,11 +1,13 @@
 package com.dreamtrip.dreamtrip;
 
+// android includes
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -20,14 +22,18 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+// java includes
+import yuku.ambilwarna.AmbilWarnaDialog;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+// internal includes
+import Trip_DBs.Trips_BD;
+import Trip_Items.*;
 
-import yuku.ambilwarna.AmbilWarnaDialog;
 
 enum enum_RequestCodePhoto {
     NONE,
@@ -43,6 +49,7 @@ enum enum_EditDateID {
 public class ActivityMytrips_add extends AppCompatActivity {
     Button btnSave;
     ImageView imgPhoto, btnTripHeader, btnTripPhoto;
+    ImageView btnColorPicker;
     EditText editDate, editStartDate, editEndDate, editTripTitle;
 
     Calendar calendar;
@@ -70,19 +77,38 @@ public class ActivityMytrips_add extends AppCompatActivity {
             public void onClick(View v){
                 if(editTripTitle.getText().toString().equals("")){
                     Toast.makeText(ActivityMytrips_add.this, "ERROR - Enter title!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                else {
-                    if(new Date(editStartDate.getText().toString()).after(new Date(editEndDate.getText().toString()))){
-                        Toast.makeText(ActivityMytrips_add.this, "ERROR - End date should be bigger!", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        Bundle bundle = new Bundle();
-                        bundle.putString("value", "Successfully added");
-                        startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip").putExtras(bundle));
-                    }
+                if(new Date(editStartDate.getText().toString()).after(new Date(editEndDate.getText().toString()))) {
+                    Toast.makeText(ActivityMytrips_add.this, "ERROR - End date should be bigger!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                String eDate = editEndDate.getText().toString();
+                String sDate = editStartDate.getText().toString();
+
+                // getColor
+                int color = Color.WHITE;
+                Drawable background = btnColorPicker.getBackground();
+                if (background instanceof ColorDrawable) {
+                    color = ((ColorDrawable) background).getColor();
+                }
+
+                Trips_trip trip  = new Trips_trip(editTripTitle.getText().toString(),
+                        new Date(sDate),
+                        new Date(eDate),
+                        color
+                        );
+
+                Trips_BD.getInstance().add(trip);
+
+                startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip").putExtras(trip.getBundle()));
+
             }
         });
+
+
+        btnColorPicker = (ImageView) findViewById(R.id.btnPickColor);
 
         // Image Views - buttons to open gallery and save images
         btnTripPhoto = (ImageView) findViewById(R.id.imgTripPhoto);
@@ -102,11 +128,13 @@ public class ActivityMytrips_add extends AppCompatActivity {
         month_end = calendar.get(Calendar.MONTH);
         day_end = calendar.get(Calendar.DAY_OF_MONTH);
 
+
         String currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime());
         editStartDate.setText(currentDate);
         editEndDate.setText(currentDate);
 
         // Spinner
+        // TODO: after packlists are implemented
         spinnerArray.add("Default packing list");
         spinnerArray.add("Create new packing list");
         spinnerArray.add("Children stuff");

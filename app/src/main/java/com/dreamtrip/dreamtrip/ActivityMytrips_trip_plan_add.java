@@ -10,16 +10,27 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.format.Time;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TimePicker;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import Trip_DBs.Trips_BD;
+import Trip_Items.Places.Place;
+import Trip_Items.Trips_Plan.Plan;
+import Trip_Items.Trips_Plan.PlanPoint;
+import Trip_Items.Trips_trip;
 import layout.FragmentPlan_eating;
 import layout.FragmentPlan_extreme;
 import layout.FragmentPlan_hotel;
@@ -34,17 +45,51 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
     EditText editTime;
     int hours, minutes;
     Calendar calendar;
-    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+    Trips_trip tripCtx;
+    SimpleDateFormat timeFormat;
+    ImageButton saveTimePointBtn;
+
+    // NOTE: pp -- plan point
+    EditText ppTitle;
+    EditText ppOpenAt;
+    EditText ppCloseAt;
+    EditText ppDateTime;
+    EditText ppAddress;
+    EditText ppOtherDetails;
+
     //EditText editTimeOpen, editTimeClose, editDateTimeVisit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mytrips_trip_plan_add);
-
+        timeFormat = new SimpleDateFormat("HH:mm");
+        saveTimePointBtn = (ImageButton) findViewById(R.id.imageButton6);
+        ppTitle = (EditText) findViewById(R.id.editText8);
+        ppOpenAt = (EditText) findViewById(R.id.editTimeOpen);
+        ppCloseAt = (EditText) findViewById(R.id.editTimeClose);
+        ppDateTime = (EditText) findViewById(R.id.editDateTimeVisit);
+        ppAddress = (EditText) findViewById(R.id.editText16);
+        ppOtherDetails = (EditText) findViewById(R.id.editText15);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        saveTimePointBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveTimePoint(view);
+            }
+        });
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Bundle bundle = getIntent().getExtras();
+        tripCtx = Trips_BD.getInstance().findByBundle(bundle);
+
+        if (tripCtx == null) {
+            Log.e("Activity_trip", "Cannot resolve trip");
+            return;
+        }
 
         Fragment fragment;
         fragment = new FragmentPlan_hotel();
@@ -281,5 +326,35 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity {
             temp.setBackgroundColor(Color.TRANSPARENT);
 
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
+    }
+
+    private Calendar getCalendarFromEdit(EditText editText) {
+        Calendar cal = new GregorianCalendar();
+        Date tmpDate = null;
+        try {
+            tmpDate = timeFormat.parse(editText.getText().toString());
+        } catch (ParseException e) {
+            Log.e("getCalendarFromEdit","Failed to parse editText");
+            return cal;
+        }
+        cal.setTime(tmpDate);
+        return cal;
+    }
+
+    private Place getPlace() {
+
+        return new Place( getCalendarFromEdit(ppOpenAt),
+                                getCalendarFromEdit(ppCloseAt),
+                                ppAddress.getText().toString()
+                );
+    }
+
+    public void saveTimePoint(View view) {
+        PlanPoint planPoint = new PlanPoint(ppTitle.getText().toString(),
+                                            getPlace(),
+                                            getCalendarFromEdit(ppDateTime),
+                                            ppOtherDetails.getText().toString()
+        );
+        tripCtx.getPlan().add(planPoint);
     }
 }

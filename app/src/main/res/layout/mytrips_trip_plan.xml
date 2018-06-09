@@ -57,7 +57,6 @@
         android:layout_height="60dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:onClick="addPlanPoint"
         app:backgroundTint="@android:color/holo_blue_light"
         app:elevation="10dp"
         app:srcCompat="@mipmap/ic_place_white_24dp" />
