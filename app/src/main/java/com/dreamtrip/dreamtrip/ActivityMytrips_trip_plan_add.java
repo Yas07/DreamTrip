@@ -4,7 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -20,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.TimePicker;
 
 import java.text.DateFormat;
+import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -64,11 +67,15 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
     EditText ppAddress;
     EditText ppOtherDetails;
 
+    int currentFragment;
+    int currentIcon;
+
     //EditText editTimeOpen, editTimeClose, editDateTimeVisit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        currentFragment = R.id.btnTransport;
         setContentView(R.layout.mytrips_trip_plan_add);
         timeFormat = new SimpleDateFormat("HH:mm");
         saveTimePointBtn = (ImageButton) findViewById(R.id.imageButton6);
@@ -208,6 +215,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
 
         Fragment fragment;
         fragment = null;
+        currentFragment =  view.getId();
         switch (view.getId()){
             case R.id.btnTransport: {
                 fragment = new FragmentPlan_transport(); break;}
@@ -234,6 +242,16 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
         ft.commit();
     }
 
+    // TODO: remove all changeIcon functions and make one small
+
+    // TODO: this functions needs farther development if used more then one icon
+    public void changeIconHotel(View view) {
+        String iconName = (String)  view.getTag();
+        int resId = getIconIDbyName(iconName);
+        setCurrentIcon(resId);
+        view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
+    }
+
     public void changeIconTransport(View view) {
         View[] buttons = {
                 findViewById(R.id.btnTransAirplane),
@@ -247,6 +265,10 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
                 findViewById(R.id.btnTransTram)};
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
+
+        String iconName = (String)  view.getTag();
+        int resId = getIconIDbyName(iconName);
+        setCurrentIcon(resId);
 
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
@@ -267,6 +289,12 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
+        String iconName = (String)  view.getTag();
+        int resId = getIconIDbyName(iconName);
+        setCurrentIcon(resId);
+
+
+
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
 
@@ -281,6 +309,10 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
                 findViewById(R.id.btnOutFlower)};
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
+
+        String iconName = (String)  view.getTag();
+        int resId = getIconIDbyName(iconName);
+        setCurrentIcon(resId);
 
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
@@ -302,6 +334,10 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
+        String iconName = (String)  view.getTag();
+        int resId = getIconIDbyName(iconName);
+        setCurrentIcon(resId);
+
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
 
@@ -319,6 +355,10 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
                 findViewById(R.id.btnExtremeBike)};
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
+
+        String iconName = (String)  view.getTag();
+        int resId = getIconIDbyName(iconName);
+        setCurrentIcon(resId);
 
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
@@ -341,6 +381,10 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
+        String iconName = (String)  view.getTag();
+        int resId = getIconIDbyName(iconName);
+        setCurrentIcon(resId);
+
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
 
@@ -359,6 +403,10 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
                 findViewById(R.id.btnWinterTree)};
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
+
+        String iconName = (String)  view.getTag();
+        int resId = getIconIDbyName(iconName);
+        setCurrentIcon(resId);
 
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
     }
@@ -381,11 +429,103 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
+        String iconName = (String)  view.getTag();
+        int resId = getIconIDbyName(iconName);
+        setCurrentIcon(resId);
+
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
+    }
+
+    public int getIconIDbyName(String name) {
+        int res = 0;
+        try {
+            res =  getResources().getIdentifier(name, "drawable",
+                    getPackageName() );
+
+            if (res == 0 )  {
+                res = getResources().getIdentifier(name, "mipmap",
+                    getPackageName() );
+            }
+
+        } catch(Exception e) {
+            Log.e("getIconIdByName", "Failed to find icon=" + name);
+        }
+        return res;
+    }
+
+
+    public void setCurrentIcon(int currentIcon) {
+        this.currentIcon = currentIcon;
+    }
+
+    private int fragmentToColor(int fragment) {
+
+        switch (fragment){
+            case R.id.btnPhoto:
+            case R.id.btnExtreme:
+                return R.drawable.note_green_mdpi;
+
+            case R.id.btnTransport:
+            case R.id.btnHotel:
+                return R.drawable.note_violet_mdpi;
+
+            case R.id.btnSummer:
+            case R.id.btnEating:
+                return R.drawable.note_yellow_mdpi;
+
+            case R.id.btnMuseum:
+                return R.drawable.note_pink_mdpi;
+
+            case R.id.btnWalk:
+            case R.id.btnWinter:
+                return R.drawable.note_blue_mdpi;
+        }
+        return -1;
+    }
+
+    private int getCurrentIcon () {
+        return currentIcon;
+    }
+
+
+    private Date combineDates(Date date, Date time) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(time);
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int min = cal.get(Calendar.MINUTE);
+        cal.setTime(date);
+        cal.set(Calendar.HOUR_OF_DAY, hour);
+        cal.set(Calendar.MINUTE, min);
+        return cal.getTime();
+    }
+
+    private Calendar getTimeDateCalFromEdit(EditText editText) {
+        Calendar cal = new GregorianCalendar();
+        cal.set(yearFinal, monthFinal, dayFinal, hourFinal, minuteFinal);
+        return cal;
+//        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
+//
+//        String [] dateAndTime =  editText.getText().toString().split(" ");
+//        if (dateAndTime.length != 2) {
+//            Log.e("getCalendarFromEdit","no date and time?");
+//            return cal;
+//        }
+//
+//        try {
+//            Date tmpDate = dateFormat.parse(dateAndTime[0]); // 0 is Date
+//            Date tmpTime = timeFormat.parse(dateAndTime[1]); // 1 is Time
+//            cal.setTime(combineDates(tmpDate, tmpTime));
+//        } catch (ParseException e) {
+//            Log.e("getCalendarFromEdit","Failed to parse editText");
+//            return cal;
+//        }
+
+
     }
 
     private Calendar getCalendarFromEdit(EditText editText) {
         Calendar cal = new GregorianCalendar();
+
         Date tmpDate = null;
         try {
             tmpDate = timeFormat.parse(editText.getText().toString());
@@ -407,8 +547,10 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
 
     public void saveTimePoint(View view) {
         PlanPoint planPoint = new PlanPoint(ppTitle.getText().toString(),
+                                            fragmentToColor(currentFragment),
+                                            getCurrentIcon(),
                                             getPlace(),
-                                            getCalendarFromEdit(ppDateTime),
+                                            getTimeDateCalFromEdit(ppDateTime),
                                             ppOtherDetails.getText().toString()
         );
         tripCtx.getPlan().add(planPoint);

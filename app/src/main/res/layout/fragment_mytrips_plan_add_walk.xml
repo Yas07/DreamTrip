@@ -20,8 +20,9 @@
                 android:id="@+id/btnWalkCapitol"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:background="@color/transparentWhite"
+                android:background="@android:color/transparent"
                 android:onClick="changeIconWalk"
+                android:tag="icontour_capitol_black"
                 app:srcCompat="@drawable/icontour_capitol_black" />
 
             <ImageButton
@@ -30,6 +31,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWalk"
+                android:tag="icontour_castle_black_shape"
                 app:srcCompat="@drawable/icontour_castle_black_shape" />
 
             <ImageButton
@@ -38,6 +40,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWalk"
+                android:tag="icontour_castle"
                 app:srcCompat="@drawable/icontour_castle" />
 
             <ImageButton
@@ -47,6 +50,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWalk"
+                android:tag="icontour_mosque"
                 app:srcCompat="@drawable/icontour_mosque" />
 
             <ImageButton
@@ -55,6 +59,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWalk"
+                android:tag="icontour_church"
                 app:srcCompat="@drawable/icontour_church" />
 
             <ImageButton
@@ -63,6 +68,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWalk"
+                android:tag="icontour_usa"
                 app:srcCompat="@drawable/icontour_usa" />
 
             <ImageButton
@@ -71,6 +77,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWalk"
+                android:tag="icontour_france"
                 app:srcCompat="@drawable/icontour_france" />
 
             <ImageButton
@@ -79,6 +86,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWalk"
+                android:tag="icontour_kiev"
                 app:srcCompat="@drawable/icontour_kiev" />
 
             <ImageButton
@@ -87,6 +95,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWalk"
+                android:tag="icontour_pyramids"
                 app:srcCompat="@drawable/icontour_pyramids" />
 
             <ImageButton
@@ -95,6 +104,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWalk"
+                android:tag="icontour_nefertiti"
                 app:srcCompat="@drawable/icontour_nefertiti" />
 
             <ImageButton
@@ -104,6 +114,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWalk"
+                android:tag="icontour_fountain"
                 app:srcCompat="@drawable/icontour_fountain" />
 
             <ImageButton
@@ -112,6 +123,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWalk"
+                android:tag="icontour_temple"
                 app:srcCompat="@drawable/icontour_temple" />
 
             <ImageButton
@@ -120,6 +132,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWalk"
+                android:tag="ic_location_on_black_24px"
                 app:srcCompat="@drawable/ic_location_on_black_24px" />
 
         </LinearLayout>

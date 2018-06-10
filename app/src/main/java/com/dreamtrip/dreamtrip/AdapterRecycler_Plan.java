@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import Trip_Items.Trips_Plan.Plan;
 import Trip_Items.Trips_Plan.PlanPoint;
@@ -81,7 +82,8 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
             R.drawable.note_yellow_mdpi,
             R.drawable.note_yellow_mdpi,
             R.drawable.note_green_mdpi,
-            R.drawable.note_pink_mdpi };
+            R.drawable.note_pink_mdpi
+    };
 
     public AdapterRecycler_Plan() {
        super();
@@ -167,17 +169,22 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
         String itemDetails = planPoint.getPlace().getPlaceData() + "\n" +  planPoint.getOtherDetails();
         viewHolder.itemDetail.setText(itemDetails);
 
-        viewHolder.itemImage.setImageResource(images[0]); // TODO: after making images
-        viewHolder.layoutNote.setBackgroundResource(backgrounds[0]); // TODO: after images
+        if (planPoint.getIconIndex() != 0 && planPoint.getColorIndex() != 0) {
+            viewHolder.itemImage.setImageResource(planPoint.getIconIndex());
+            viewHolder.layoutNote.setBackgroundResource(planPoint.getColorIndex());
+        } else {
+            Log.e("onBindVeiw", "invlalid indexes");
+        }
 
         if (i == 0){
             viewHolder.textPlan.setVisibility(View.VISIBLE);
-            viewHolder.itemDayWeek.setText(weekdays[i]); // TODO: after making date & time
-            viewHolder.itemDate.setText(dates[i]); // TODO: after making date & time
+            viewHolder.itemDayWeek.setText(planPoint.getDayOfWeek());
+            viewHolder.itemDate.setText(planPoint.getDate());
         } else {
-            if (!weekdays[i].equals(weekdays[i-1])){ // check previous weekday
-                viewHolder.itemDayWeek.setText(weekdays[i]); // TODO: after making date & time
-                viewHolder.itemDate.setText(dates[i]); // TODO: after making date & time
+            if (!planPoint.getDate().equals(
+                    planPoints.get(i-1).getDate())){ // check previous weekday
+                viewHolder.itemDayWeek.setText(planPoint.getDayOfWeek());
+                viewHolder.itemDate.setText(planPoint.getDate());
             } else  {
                 viewHolder.layoutDate.setVisibility(View.GONE);
             }

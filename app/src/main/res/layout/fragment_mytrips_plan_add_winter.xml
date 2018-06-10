@@ -22,8 +22,9 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="1"
-                android:background="@color/transparentWhite"
+                android:background="@android:color/transparent"
                 android:onClick="changeIconWinter"
+                android:tag="iconwinter_snow"
                 app:srcCompat="@drawable/iconwinter_snow" />
 
             <ImageButton
@@ -32,6 +33,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWinter"
+                android:tag="iconwinter_santa_claus"
                 app:srcCompat="@drawable/iconwinter_santa_claus" />
 
             <ImageButton
@@ -40,6 +42,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWinter"
+                android:tag="iconwinter_pine"
                 app:srcCompat="@drawable/iconwinter_pine" />
 
             <ImageButton
@@ -48,6 +51,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWinter"
+                android:tag="iconwinter_snowman"
                 app:srcCompat="@drawable/iconwinter_snowman" />
 
             <ImageButton
@@ -56,6 +60,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWinter"
+                android:tag="iconwinter_man_skiing"
                 app:srcCompat="@drawable/iconwinter_man_skiing" />
 
             <ImageButton
@@ -64,6 +69,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWinter"
+                android:tag="iconwinter_skiing_man"
                 app:srcCompat="@drawable/iconwinter_skiing_man" />
 
             <ImageButton
@@ -72,6 +78,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWinter"
+                android:tag="iconwinter_cross_country_skiing"
                 app:srcCompat="@drawable/iconwinter_cross_country_skiing" />
 
             <ImageButton
@@ -81,6 +88,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWinter"
+                android:tag="iconwinter_snowboarding"
                 app:srcCompat="@drawable/iconwinter_snowboarding" />
 
             <ImageButton
@@ -90,6 +98,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWinter"
+                android:tag="iconwinter_ice_skating"
                 app:srcCompat="@drawable/iconwinter_ice_skating" />
 
             <ImageButton
@@ -98,6 +107,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWinter"
+                android:tag="iconwinter_sledding"
                 app:srcCompat="@drawable/iconwinter_sledding" />
 
             <ImageButton
@@ -106,6 +116,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconWinter"
+                android:tag="ic_location_on_black_24px"
                 app:srcCompat="@drawable/ic_location_on_black_24px" />
 
         </LinearLayout>

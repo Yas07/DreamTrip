@@ -60,13 +60,6 @@ public class Fragment_plan extends Fragment  implements View.OnClickListener{
                 }
                 startActivity(intent);
 
-//                // change icon
-//                isEditOpen = !isEditOpen; // change state
-//
-//                layoutManager = new LinearLayoutManager(getActivity());
-//                recyclerView.setLayoutManager(layoutManager);
-//                adapter = new AdapterRecycler_Packlist(isEditOpen);
-//                recyclerView.setAdapter(adapter);
                 break;
             }
 

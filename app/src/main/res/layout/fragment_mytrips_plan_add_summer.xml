@@ -21,8 +21,9 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="1"
-                android:background="@color/transparentWhite"
+                android:background="@android:color/transparent"
                 android:onClick="changeIconSummer"
+                android:tag="iconsummer_sunny_black_24px"
                 android:src="@drawable/iconsummer_sunny_black_24px" />
 
             <ImageButton
@@ -32,6 +33,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconSummer"
+                android:tag="iconsummer_beach_black_24px"
                 android:src="@drawable/iconsummer_beach_black_24px" />
 
             <ImageButton
@@ -41,6 +43,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconSummer"
+                android:tag="iconsummer_cocktail"
                 android:src="@drawable/iconsummer_cocktail" />
 
             <ImageButton
@@ -50,6 +53,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconSummer"
+                android:tag="iconsummer_fish"
                 android:src="@drawable/iconsummer_fish" />
 
             <ImageButton
@@ -58,6 +62,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconSummer"
+                android:tag="iconsummer_marina"
                 android:src="@drawable/iconsummer_marina" />
 
             <ImageButton
@@ -66,6 +71,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconSummer"
+                android:tag="iconsummer_snorkel"
                 android:src="@drawable/iconsummer_snorkel" />
 
             <ImageButton
@@ -75,6 +81,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconSummer"
+                android:tag="iconsummer_swimming"
                 android:src="@drawable/iconsummer_swimming" />
 
             <ImageButton
@@ -84,6 +91,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconSummer"
+                android:tag="iconsummer_waterskiing"
                 android:src="@drawable/iconsummer_waterskiing" />
 
             <ImageButton
@@ -93,6 +101,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconSummer"
+                android:tag="iconwinter_snowboarding"
                 android:src="@drawable/iconwinter_snowboarding" />
 
             <ImageButton
@@ -102,6 +111,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconSummer"
+                android:tag="iconsummer_boating"
                 android:src="@drawable/iconsummer_boating" />
 
             <ImageButton
@@ -111,6 +121,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconSummer"
+                android:tag="icontransport_boat_black_24px"
                 android:src="@drawable/icontransport_boat_black_24px" />
 
             <ImageButton
@@ -120,6 +131,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconSummer"
+                android:tag="iconsummer_sailing"
                 android:src="@drawable/iconsummer_sailing" />
 
             <ImageButton
@@ -128,6 +140,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconSummer"
+                android:tag="ic_location_on_black_24px"
                 android:src="@drawable/ic_location_on_black_24px" />
 
         </LinearLayout>

@@ -21,8 +21,9 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="1"
-                android:background="@color/transparentWhite"
+                android:background="@android:color/transparent"
                 android:onClick="changeIconOutside"
+                android:tag="iconoutside_flower_black_24px"
                 app:srcCompat="@drawable/iconoutside_flower_black_24px" />
 
             <ImageButton
@@ -32,6 +33,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconOutside"
+                android:tag="iconsummer_sunny_black_24px"
                 app:srcCompat="@drawable/iconsummer_sunny_black_24px" />
 
             <ImageButton
@@ -41,6 +43,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconOutside"
+                android:tag="iconoutside_cloud_black_24px"
                 app:srcCompat="@drawable/iconoutside_cloud_black_24px" />
 
             <ImageButton
@@ -49,6 +52,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconOutside"
+                android:tag="iconoutside_pets_black_24px"
                 app:srcCompat="@drawable/iconoutside_pets_black_24px" />
 
             <ImageButton
@@ -57,6 +61,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconOutside"
+                android:tag="iconoutside_amusement_park"
                 app:srcCompat="@drawable/iconoutside_amusement_park" />
 
             <ImageButton
@@ -65,6 +70,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconOutside"
+                android:tag="iconoutside_fitness_black_24px"
                 app:srcCompat="@drawable/iconoutside_fitness_black_24px" />
 
             <ImageButton
@@ -73,6 +79,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconOutside"
+                android:tag="ic_location_on_black_24px"
                 app:srcCompat="@drawable/ic_location_on_black_24px" />
 
         </LinearLayout>

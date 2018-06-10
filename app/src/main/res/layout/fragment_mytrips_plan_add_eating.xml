@@ -23,8 +23,9 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="1"
-                android:background="@color/transparentWhite"
+                android:background="@android:color/transparent"
                 android:onClick="changeIconEating"
+                android:tag="iconeat_restaurant_black_24px"
                 app:srcCompat="@drawable/iconeat_restaurant_black_24px" />
 
             <ImageButton
@@ -33,6 +34,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconEating"
+                android:tag="iconeat_canteen_black_24px"
                 app:srcCompat="@drawable/iconeat_canteen_black_24px" />
 
             <ImageButton
@@ -41,6 +43,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconEating"
+                android:tag="iconeat_cafe_black_24px"
                 app:srcCompat="@drawable/iconeat_cafe_black_24px" />
 
             <ImageButton
@@ -50,6 +53,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconEating"
+                android:tag="iconeat_bar_black_24px"
                 app:srcCompat="@drawable/iconeat_bar_black_24px" />
 
             <ImageButton
@@ -59,6 +63,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconEating"
+                android:tag="iconeat_pizza_black_24px"
                 app:srcCompat="@drawable/iconeat_pizza_black_24px" />
 
             <ImageButton
@@ -68,6 +73,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconEating"
+                android:tag="iconeat_sushi_and_chopsticks"
                 app:srcCompat="@drawable/iconeat_sushi_and_chopsticks" />
 
             <ImageButton
@@ -77,6 +83,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconEating"
+                android:tag="iconeat_food"
                 app:srcCompat="@drawable/iconeat_food" />
 
 
@@ -87,6 +94,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconEating"
+                android:tag="iconeat_bakery"
                 app:srcCompat="@drawable/iconeat_bakery" />
 
             <ImageButton
@@ -95,6 +103,7 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconEating"
+                android:tag="iconeat_home_food_black_24px"
                 app:srcCompat="@drawable/iconeat_home_food_black_24px" />
 
             <ImageButton
@@ -104,6 +113,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconEating"
+                android:tag="iconeat_room_service_black_24px"
                 app:srcCompat="@drawable/iconeat_room_service_black_24px" />
 
             <ImageButton
@@ -113,6 +123,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:onClick="changeIconEating"
+                android:tag="ic_location_on_black_24px"
                 app:srcCompat="@drawable/ic_location_on_black_24px" />
 
         </LinearLayout>
