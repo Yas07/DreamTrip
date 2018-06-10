@@ -5,7 +5,7 @@ import Trip_DBs.IDB;
 public class Stuff implements IDB {
     private String      _name;
     private String      _groupName;
-    private Boolean     _isChecked;
+    private boolean     _isChecked;
 
     public Stuff(String _name, String _groupName) {
         this._name = _name;
@@ -22,8 +22,12 @@ public class Stuff implements IDB {
         return _groupName;
     }
 
-    public Boolean isChecked() {
+    public boolean isChecked() {
         return _isChecked;
+    }
+
+    public boolean isGroup() {
+        return _name.equals(_groupName);
     }
 
     // setters

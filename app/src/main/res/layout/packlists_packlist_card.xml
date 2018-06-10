@@ -49,7 +49,7 @@
                     android:ems="10"
                     android:enabled="true"
                     android:fontFamily="cursive"
-                    android:text="Main"
+                    android:text=""
                     android:textColor="@android:color/black"
                     android:textSize="30sp" />
 
@@ -87,7 +87,7 @@
                     android:elevation="1dp"
                     android:fontFamily="casual"
                     android:shadowColor="@android:color/black"
-                    android:text="Money"
+                    android:text=""
                     android:textColor="@android:color/black"
                     android:textColorHighlight="@android:color/black"
                     android:textColorHint="@android:color/black"

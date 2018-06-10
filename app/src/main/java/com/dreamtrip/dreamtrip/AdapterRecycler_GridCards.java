@@ -21,9 +21,12 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
+import Trip_Items.Packlist.Packlist;
 import Trip_Items.Trips_trip;
+import dalvik.system.PathClassLoader;
 
 enum enum_ACTIVITY_TYPE{
     TRIPS,
@@ -39,6 +42,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
     private int colorText;
     private enum_ACTIVITY_TYPE activityType;
     private List<Trips_trip> tripsList;
+    private ArrayList<Packlist> packlists;
 
 
     public AdapterRecycler_GridCards(String[] cardTitles, String[] cardDetails,
@@ -61,6 +65,16 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
         this.colorText = colorText;
         this.activityType = activityType;
         this.tripsList = tripsList;
+    }
+
+    public AdapterRecycler_GridCards(ArrayList<Packlist> packlists, int colorBg, int colorText, enum_ACTIVITY_TYPE activityType){
+        this.cardTitles = null;
+        this.cardDetails = null;
+        this.cardImages = null;
+        this.colorBg = colorBg;
+        this.colorText = colorText;
+        this.activityType = activityType;
+        this.packlists = packlists;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
@@ -94,10 +108,13 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
 
                         case PACKLISTS:
                         {
+                            int i = getAdapterPosition();
+                            Packlist packlist = packlists.get(i);
+                            Packlist.setCurrentPacklist(packlist);
+
                             // TODO: remove
-                            int position = getAdapterPosition();
                             Bundle bundle = new Bundle();
-                            bundle.putString("value", Integer.toString(position));
+                            bundle.putString("value", Integer.toString(i));
 
                             final Intent intent =  new Intent(context, ActivityPacklists_packlist.class).putExtras(bundle);
                             context.startActivity(intent);
@@ -136,33 +153,65 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
     @Override
     public void onBindViewHolder(AdapterRecycler_GridCards.ViewHolder holder, int i) {
         final AdapterRecycler_GridCards.ViewHolder viewHolder = holder;
-        if (activityType == enum_ACTIVITY_TYPE.TRIPS) {
-            Trips_trip trip = tripsList.get(i);
-            if (trip == null) {
-                Log.e(this.getClass().getEnclosingMethod().getName(), "null trip, what a pity");
-                return;
+        switch (activityType) {
+            case TRIPS:{
+                Trips_trip trip = tripsList.get(i);
+                if (trip == null) {
+                    Log.e(this.getClass().getEnclosingMethod().getName(), "null trip, what a pity");
+                    return;
+                }
+
+                viewHolder.cardTitle.setText(trip.getName());
+
+                viewHolder.cardDetail.setText(trip.startEndDateToStr());
+
+                // TODO: add images when they are ready
+                // viewHolder.cardImage.setImageResource(cardImages[i]);
+
+                viewHolder.cardTitle.setTextColor(colorText);
+                viewHolder.cardDetail.setTextColor(colorText);
+                viewHolder.layoutCard.setBackgroundColor(colorBg);
+
             }
+            break;
 
-            viewHolder.cardTitle.setText(trip.getName());
+            case PACKLISTS: {
+                Packlist packlist = packlists.get(i);
+                if (packlist == null) {
+                    Log.e(this.getClass().getEnclosingMethod().getName(), "null trip, what a pity");
+                    return;
+                }
 
-            viewHolder.cardDetail.setText(trip.startEndDateToStr());
+                viewHolder.cardTitle.setText(packlist.getName());
 
-            // TODO: add images when they are ready
-            // viewHolder.cardImage.setImageResource(cardImages[i]);
+                viewHolder.cardDetail.setText(packlist.getDetails());
 
-            viewHolder.cardTitle.setTextColor(colorText);
-            viewHolder.cardDetail.setTextColor(colorText);
-            viewHolder.layoutCard.setBackgroundColor(colorBg);
+                if (packlist.getBagIndex() != 0) {
+                    viewHolder.cardImage.setImageResource(packlist.getBagIndex());
+                }
 
-        } else {
-            viewHolder.cardTitle.setText(cardTitles[i]);
-            viewHolder.cardDetail.setText(cardDetails[i]);
-            viewHolder.cardImage.setImageResource(cardImages[i]);
+                viewHolder.cardTitle.setTextColor(colorText);
+                viewHolder.cardDetail.setTextColor(colorText);
+                viewHolder.layoutCard.setBackgroundColor(colorBg);
 
-            viewHolder.cardTitle.setTextColor(colorText);
-            viewHolder.cardDetail.setTextColor(colorText);
-            viewHolder.layoutCard.setBackgroundColor(colorBg);
+            }
+            break;
+
+            case TRAVELBOOKS: {
+                viewHolder.cardTitle.setText(cardTitles[i]);
+                viewHolder.cardDetail.setText(cardDetails[i]);
+                viewHolder.cardImage.setImageResource(cardImages[i]);
+
+                viewHolder.cardTitle.setTextColor(colorText);
+                viewHolder.cardDetail.setTextColor(colorText);
+                viewHolder.layoutCard.setBackgroundColor(colorBg);
+            }
+            break;
+
+            default:
+                Log.e(this.getClass().getEnclosingMethod().getName(), "Wrong enum value!");
         }
+
     }
 
     @Override
@@ -172,6 +221,8 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
             return tripsList.size();
 
             case PACKLISTS:
+            return packlists.size();
+
             case TRAVELBOOKS:
             return cardTitles.length;
 

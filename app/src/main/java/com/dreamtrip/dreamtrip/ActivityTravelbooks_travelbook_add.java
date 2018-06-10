@@ -42,15 +42,15 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
 
         imgBgCustom = (ImageView) findViewById(R.id.imgPostBgCustom);
         imgPhoto1 = (ImageView) findViewById(R.id.imgPhoto1);
-        imgPhoto2 = (ImageView) findViewById(R.id.imgPhoto2);
-        imgPhoto3 = (ImageView) findViewById(R.id.imgPhoto3);
-        imgPhoto4 = (ImageView) findViewById(R.id.imgPhoto4);
+//        imgPhoto2 = (ImageView) findViewById(R.id.imgPhoto2);
+//        imgPhoto3 = (ImageView) findViewById(R.id.imgPhoto3);
+//        imgPhoto4 = (ImageView) findViewById(R.id.imgPhoto4);
 
     }
 
     public void chooseBg(View view){
         View[] buttons = {
-                findViewById(R.id.layoutBgChoose),
+//                findViewById(R.id.layoutBgChoose),
                 findViewById(R.id.layoutBgUpload),
                 findViewById(R.id.layoutBgColor)};
         for (View temp: buttons)
@@ -73,18 +73,18 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
                 imgPhoto = imgPhoto1;
                 number = 1;
                 break;
-            case R.id.imgPhoto2:
-                imgPhoto = imgPhoto2;
-                number = 2;
-                break;
-            case R.id.imgPhoto3:
-                imgPhoto = imgPhoto3;
-                number = 3;
-                break;
-            case R.id.imgPhoto4:
-                imgPhoto = imgPhoto4;
-                number = 4;
-                break;
+//            case R.id.imgPhoto2:
+//                imgPhoto = imgPhoto2;
+//                number = 2;
+//                break;
+//            case R.id.imgPhoto3:
+//                imgPhoto = imgPhoto3;
+//                number = 3;
+//                break;
+//            case R.id.imgPhoto4:
+//                imgPhoto = imgPhoto4;
+//                number = 4;
+//                break;
         }
         Intent GalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(GalleryIntent, number);

@@ -21,6 +21,8 @@ public class Fragment_packlist extends Fragment implements View.OnClickListener{
     FloatingActionButton fab_packlist_add_stuff;
     boolean isEditOpen = false;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

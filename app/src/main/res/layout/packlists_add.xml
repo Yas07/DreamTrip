@@ -203,6 +203,7 @@
                             android:layout_weight="1"
                             android:background="@color/transparentWhite"
                             android:onClick="chooseBag"
+                            android:tag="bag_london_dpi"
                             app:srcCompat="@drawable/bag_london_dpi" />
 
                         <ImageView
@@ -213,6 +214,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_london2_dpi"
                             app:srcCompat="@drawable/bag_london2_dpi" />
 
                         <ImageView
@@ -223,6 +225,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_yellow_dpi"
                             app:srcCompat="@drawable/bag_yellow_dpi" />
 
                         <ImageView
@@ -234,6 +237,7 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:onClick="chooseBag"
+                            android:tag="bag_birds_dpi"
                             app:srcCompat="@drawable/bag_birds_dpi" />
 
                         <ImageView
@@ -244,6 +248,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_summer_dpi"
                             app:srcCompat="@drawable/bag_summer_dpi" />
 
                         <ImageView
@@ -254,6 +259,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_travel2_xhdpi"
                             app:srcCompat="@drawable/bag_travel2_xhdpi" />
 
                         <ImageView
@@ -264,6 +270,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_twopeople_dpi"
                             app:srcCompat="@drawable/bag_twopeople_dpi" />
 
                         <ImageView
@@ -274,6 +281,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_melons_dpi"
                             app:srcCompat="@drawable/bag_melons_dpi" />
 
                         <ImageView
@@ -284,6 +292,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_travel_dpi"
                             app:srcCompat="@drawable/bag_travel_dpi" />
 
                         <ImageView
@@ -294,6 +303,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_adventure_dpi"
                             app:srcCompat="@drawable/bag_adventure_dpi" />
 
                         <ImageView
@@ -304,6 +314,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_children_dpi"
                             app:srcCompat="@drawable/bag_children_dpi" />
 
                         <ImageView
@@ -314,6 +325,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_festival_dpi"
                             app:srcCompat="@drawable/bag_festival_dpi" />
 
                         <ImageView
@@ -324,6 +336,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_winter_dpi"
                             app:srcCompat="@drawable/bag_winter_dpi" />
 
                         <ImageView
@@ -334,6 +347,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_winter2_dpi"
                             app:srcCompat="@drawable/bag_winter2_dpi" />
 
                         <ImageView
@@ -344,6 +358,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_britain_dpi"
                             app:srcCompat="@drawable/bag_britain_dpi" />
 
                         <ImageView
@@ -354,6 +369,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_greece_dpi"
                             app:srcCompat="@drawable/bag_greece_dpi" />
 
                         <ImageView
@@ -364,6 +380,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseBag"
+                            android:tag="bag_paris_dpi"
                             app:srcCompat="@drawable/bag_paris_dpi" />
 
                     </LinearLayout>

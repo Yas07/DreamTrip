@@ -8,11 +8,15 @@ import android.graphics.drawable.Drawable;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import Trip_Items.Packlist.Packlist;
+import Trip_Items.Packlist.PacklistsDB;
 
 enum RequestCodeBag {
     NONE,
@@ -24,6 +28,8 @@ public class ActivityPacklists_add extends AppCompatActivity {
     Button btn_save;
     ImageView btnBagSquare, btnBagRectangle, imgPhoto;
     EditText packlistDetail, packlistTitle;
+
+    int currentBagId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +49,22 @@ public class ActivityPacklists_add extends AppCompatActivity {
     }
 
     public void addPacklist(View view){
-        if(packlistTitle.getText().toString().equals("")){
+        String packName = packlistTitle.getText().toString();
+        String packDetails = packlistDetail.getText().toString();
+
+        if(packName.equals("")){
             Toast.makeText(this, "ERROR - Enter title!", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             Bundle bundle = new Bundle();
             bundle.putString("value", "Successfully added");
+
+
+            Packlist packlist = new Packlist(packName, packDetails, currentBagId);
+
+            PacklistsDB.getInstance().put(packlist);
+
+            Packlist.setCurrentPacklist(packlist);
+
             startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityPacklists_packlist").putExtras(bundle));
         }
     }
@@ -129,7 +145,31 @@ public class ActivityPacklists_add extends AppCompatActivity {
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
+        String iconName = (String)  view.getTag();
+        currentBagId = getBagIDbyName(iconName);
+
+
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
 
     }
+
+
+    public int getBagIDbyName(String name) {
+        int res = 0;
+        try {
+            res =  getResources().getIdentifier(name, "drawable",
+                    getPackageName() );
+
+            if (res == 0 )  {
+                res = getResources().getIdentifier(name, "mipmap",
+                        getPackageName() );
+            }
+
+        } catch(Exception e) {
+            Log.e("getIconIdByName", "Failed to find icon=" + name);
+        }
+        return res;
+    }
+
+
 }

@@ -13,6 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import Trip_Items.Packlist.Packlist;
+import Trip_Items.Packlist.PacklistsDB;
+
 public class ActivityPacklists_ extends Fragment {
 
     RecyclerView recyclerView;
@@ -34,12 +39,12 @@ public class ActivityPacklists_ extends Fragment {
         colorBg = getResources().getColor(R.color.packlists_bg);
         colorText = getResources().getColor(R.color.packlists_labels);
 
+        ArrayList<Packlist> packlists = new ArrayList<Packlist> (PacklistsDB.getInstance().values());
 
         recyclerView = (RecyclerView) myLayout.findViewById(R.id.recycler_view_packlists);
         layoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new AdapterRecycler_GridCards(cardTitles,
-                cardDetails, cardImages, colorBg, colorText, enum_ACTIVITY_TYPE.PACKLISTS);
+        adapter = new AdapterRecycler_GridCards(packlists, colorBg, colorText, enum_ACTIVITY_TYPE.PACKLISTS);
         recyclerView.setAdapter(adapter);
         return myLayout;
     }

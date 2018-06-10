@@ -7,10 +7,15 @@ import Trip_DBs.IDB;
 public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
 
     private String         _name;
+    private String         _details;
+    private int            _bagIndex;
+    static private Packlist _currentPacklist;
 
-    public Packlist(String _name) {
+    public Packlist(String _name, String _details, int _bagIndex) {
         super();
         this._name = _name;
+        this._bagIndex = _bagIndex;
+        this._details = _details;
     }
 
     public String getName() {
@@ -26,11 +31,34 @@ public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
         return null;
     }
 
+    public static Packlist getCurrentPacklist() {
+        return _currentPacklist;
+    }
+
+    public static void setCurrentPacklist(Packlist _currentPacklist) {
+        Packlist._currentPacklist = _currentPacklist;
+    }
+
+    public String getDetails() {
+        return _details;
+    }
+
+    public int getBagIndex() {
+        return _bagIndex;
+    }
+
     @Override
     public boolean add(Stuff stuff) {
         stuff.addToDb();
         return super.add(stuff);
     }
+
+//    @Override
+    public void add(int index, Stuff stuff) {
+        stuff.addToDb();
+        super.add(index, stuff);
+    }
+
 
     @Override
     public boolean remove(Object o) {

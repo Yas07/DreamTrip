@@ -42,9 +42,9 @@ public class AdapterSwipe extends PagerAdapter {
         layoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View item_view = layoutInflater.inflate(R.layout.travelbooks_travelbook_swipe, container, false);
 
-        ImageView imageView = (ImageView) item_view.findViewById(R.id.image_view);
+        ImageView imageView = (ImageView) item_view.findViewById(R.id.photo1);
 
-        TextView textView = (TextView) item_view.findViewById(R.id.mytext);
+        TextView textView = (TextView) item_view.findViewById(R.id.text1);
         imageView.setImageResource(image_res[position]);
         textView.setText("Image: " + position);
         container.addView(item_view);
