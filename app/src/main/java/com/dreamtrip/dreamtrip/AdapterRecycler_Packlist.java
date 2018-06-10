@@ -1,13 +1,18 @@
 package com.dreamtrip.dreamtrip;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,11 +23,6 @@ import Trip_Items.Packlist.Packlist;
 import Trip_Items.Packlist.Stuff;
 
 public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycler_Packlist.ViewHolder>{
-
-    enum packItemType {
-        STUFF_ITEM,
-        GROUP_ITEM,
-    }
 
     Packlist currentPackList;
 
@@ -47,9 +47,11 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
     private String packlistTitle = "Title";
     private boolean isEditOpen = false;
     private Packlist currentPacklist;
+    private Context context;
 
-    public AdapterRecycler_Packlist(boolean isEditOpen){
-        this.isEditOpen = isEditOpen;
+    public AdapterRecycler_Packlist(Context context){
+        //this.isEditOpen = isEditOpen;
+        this.context = context;
         currentPackList = Packlist.getCurrentPacklist();
         if (currentPackList == null) {
            Log.e("adapter packlist", "no current packlist!!");
@@ -67,37 +69,70 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
 
         public int currentItem;
         public TextView textPacklist;
-        public TextView textGroup;
         public CheckBox itemCheckbox;
-        public LinearLayout layoutGroup;
-        public LinearLayout layoutGroupAdd;
-        public LinearLayout layoutItemAdd;
         public ImageButton checkboxDel;
-        public ImageButton groupBtnEdit;
-        public ImageButton groupBtnDel;
+        public ImageButton checkboxEdit;
+        public LinearLayout layoutItemAdd;
+
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             textPacklist = (TextView)itemView.findViewById(R.id.packlistTitleText);
-            textGroup = (TextView)itemView.findViewById(R.id.packlistEditGroupTitle);
             itemCheckbox = (CheckBox)itemView.findViewById(R.id.packlistCheckbox);
-            layoutGroup = (LinearLayout)itemView.findViewById(R.id.packlistLayoutGroup);
-            layoutGroupAdd = (LinearLayout) itemView.findViewById(R.id.packlistLayoutGroupAdd);
-            layoutItemAdd = (LinearLayout) itemView.findViewById(R.id.packlistLayoutItemAdd);
             checkboxDel = (ImageButton) itemView.findViewById(R.id.packlistCheckboxDel);
-            groupBtnEdit = (ImageButton) itemView.findViewById(R.id.packlistGroupBtnEdit);
-            groupBtnDel = (ImageButton) itemView.findViewById(R.id.packlistGroupBtnDel);
+            checkboxEdit = (ImageButton) itemView.findViewById(R.id.packlistCheckboxEdit);
+
+//            textGroup = (TextView)itemView.findViewById(R.id.packlistEditGroupTitle);
+//            layoutGroup = (LinearLayout)itemView.findViewById(R.id.packlistLayoutGroup);
+//            layoutGroupAdd = (LinearLayout) itemView.findViewById(R.id.packlistLayoutGroupAdd);
+//            layoutItemAdd = (LinearLayout) itemView.findViewById(R.id.packlistLayoutItemAdd);
+//            groupBtnEdit = (ImageButton) itemView.findViewById(R.id.packlistGroupBtnEdit);
+//            groupBtnDel = (ImageButton) itemView.findViewById(R.id.packlistGroupBtnDel);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    int position = getAdapterPosition();
+                @Override
+                public void onClick(View v) {
+                    switch (v.getId()) {
+                        case R.id.packlistCheckboxEdit: {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setTitle("Edit element");
 
-                    Snackbar.make(v, "Click detected on item " + position,
-                            Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                            // Set up the input
+                            final EditText input = new EditText(context);
 
+                            // Specify the type of input expected
+                            input.setInputType(InputType.TYPE_CLASS_TEXT);
+                            builder.setView(input);
+
+                            // Set up the buttons
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    String editStuffTitle = input.getText().toString();
+                                }
+                            });
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                            builder.show();
+                        }
+                        break;
+                        case R.id.packlistCheckboxDel: {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setTitle("Delete item");
+                            builder.setMessage("Do you want to delete this item?");
+                            builder.setPositiveButton("YES", null);
+                            builder.setNegativeButton("Cancel", null);
+                            builder.show();
+                        }
+                        break;
+                    }
                 }
             });
         }
@@ -121,19 +156,20 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
             return;
         }
 
-//        if (currentPackList.size() == 0) {
-//            viewHolder.checkboxDel.setVisibility(View.GONE);
-//            viewHolder.groupBtnDel.setVisibility(View.GONE);
-//            viewHolder.groupBtnEdit.setVisibility(View.GONE);
-//            viewHolder.textPacklist.setVisibility(View.GONE);
-//            viewHolder.layoutGroup.setVisibility(View.GONE);
-//        }
-//
-//
-//        if (i == 0){           // if this is first card
-//            viewHolder.textPacklist.setText(packlistTitle);      // set packlist title
-//            viewHolder.textPacklist.setVisibility(View.VISIBLE); // display packlist title
-//        } else {              //if this is not first card
+        if (currentPackList.size() == 0) {
+            viewHolder.textPacklist.setVisibility(View.GONE);
+            viewHolder.checkboxDel.setVisibility(View.GONE);
+            viewHolder.checkboxEdit.setVisibility(View.GONE);
+            //viewHolder.groupBtnDel.setVisibility(View.GONE);
+            //viewHolder.groupBtnEdit.setVisibility(View.GONE);
+            //viewHolder.layoutGroup.setVisibility(View.GONE);
+        }
+
+
+        if (i == 0){           // if this is first card
+            viewHolder.textPacklist.setText(packlistTitle);      // set packlist title
+            viewHolder.textPacklist.setVisibility(View.VISIBLE); // display packlist title
+        } else {              //if this is not first card
 //            if (!groupsTitles[i].equals(groupsTitles[i-1])) {     // if we have unique (new) group
 ////                viewHolder.textGroup.setText(groupsTitles[i]);   // set group title
 //            } else {                                                 // if we have the same group
@@ -150,11 +186,9 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
 //                    }
 //                }
 //            }
-//        }
-//        if (isEditOpen) {
-//            setEditMode();
-//        }
-//        viewHolder.itemCheckbox.setText(itemTitles[i]); // anyway set checkbox (stuff) item
+        }
+
+        viewHolder.itemCheckbox.setText(itemTitles[i]); // anyway set checkbox (stuff) item
     }
 
 //            viewHolder.checkboxDel.setVisibility(View.GONE);
@@ -165,96 +199,98 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
 //            viewHolder.textGroup.setClickable(false);
 //            viewHolder.textGroup.setBackgroundColor(Color.TRANSPARENT);
 
-    private void addItem(AdapterRecycler_Packlist.ViewHolder viewHolder, int i) {
-
-        i -= 1; // true index is -1
-        if (i <= 0 ) {
-            Log.e("addItem", "invalid index");
-            return;
-        }
-
-        // last element
-        if (currentPackList.size() == i) {
-            if (isEditOpen) /* edit mode add item */ {
-                viewHolder.layoutGroupAdd.setVisibility(View.VISIBLE);
-                viewHolder.layoutGroupAdd.setFocusable(true);
-                viewHolder.layoutGroupAdd.setFocusableInTouchMode(true);
-                viewHolder.layoutGroupAdd.setClickable(true);
-            }
-        }
-
-        Stuff stuff =  currentPackList.get(i);
-
-        if (isEditOpen) /* edit mode add item */ {
-
-            if (stuff.isGroup()) {
-                viewHolder.textGroup.setVisibility(View.VISIBLE);
-                viewHolder.textGroup.setFocusable(true);
-                viewHolder.textGroup.setFocusableInTouchMode(true);
-                viewHolder.textGroup.setClickable(true);
-                viewHolder.layoutGroup.setVisibility(View.VISIBLE);
-                viewHolder.checkboxDel.setVisibility(View.GONE);
-                viewHolder.groupBtnEdit.setVisibility(View.GONE);
-                viewHolder.groupBtnDel.setVisibility(View.GONE);
-            } else /* simple stuff */ {
-
-            }
-
-        } else /* read mode add item */ {
-
-            if (stuff.isGroup()) {
-
-            } else /* simple stuff */ {
-
-            }
-
-        }
-
-    }
+//    private void addItem(AdapterRecycler_Packlist.ViewHolder viewHolder, int i) {
+//
+//        i -= 1; // true index is -1
+//        if (i <= 0 ) {
+//            Log.e("addItem", "invalid index");
+//            return;
+//        }
+//
+//        // last element
+//        if (currentPackList.size() == i) {
+//            if (isEditOpen) /* edit mode add item */ {
+//                viewHolder.layoutGroupAdd.setVisibility(View.VISIBLE);
+//                viewHolder.layoutGroupAdd.setFocusable(true);
+//                viewHolder.layoutGroupAdd.setFocusableInTouchMode(true);
+//                viewHolder.layoutGroupAdd.setClickable(true);
+//            }
+//        }
+//
+//        Stuff stuff =  currentPackList.get(i);
+//
+//        if (isEditOpen) /* edit mode add item */ {
+//
+//            if (stuff.isGroup()) {
+//                viewHolder.textGroup.setVisibility(View.VISIBLE);
+//                viewHolder.textGroup.setFocusable(true);
+//                viewHolder.textGroup.setFocusableInTouchMode(true);
+//                viewHolder.textGroup.setClickable(true);
+//                viewHolder.layoutGroup.setVisibility(View.VISIBLE);
+//                viewHolder.checkboxDel.setVisibility(View.GONE);
+//                viewHolder.groupBtnEdit.setVisibility(View.GONE);
+//                viewHolder.groupBtnDel.setVisibility(View.GONE);
+//            } else /* simple stuff */ {
+//
+//            }
+//
+//        } else /* read mode add item */ {
+//
+//            if (stuff.isGroup()) {
+//
+//            } else /* simple stuff */ {
+//
+//            }
+//
+//        }
+//
+//    }
 
 //    private packItemType chooseItem(int index) {
 //        Stuff stuff = currentPackList.get(index);
 //
 //    }
 
-    private void setEditMode(AdapterRecycler_Packlist.ViewHolder viewHolder, int i) {
-        viewHolder.checkboxDel.setVisibility(View.VISIBLE);
-        viewHolder.groupBtnDel.setVisibility(View.VISIBLE);
-        viewHolder.groupBtnEdit.setVisibility(View.VISIBLE);
-        viewHolder.layoutItemAdd.setVisibility(View.VISIBLE);
-        viewHolder.textGroup.setFocusable(true);
-        viewHolder.textGroup.setFocusableInTouchMode(true);
-        viewHolder.textGroup.setClickable(true);
-        int itemIndex = i - 1;
-        if (itemIndex < 0) {
-            return;
-        }
-    }
+//    private void setEditMode(AdapterRecycler_Packlist.ViewHolder viewHolder, int i) {
+//        viewHolder.checkboxDel.setVisibility(View.VISIBLE);
+//        viewHolder.groupBtnDel.setVisibility(View.VISIBLE);
+//        viewHolder.groupBtnEdit.setVisibility(View.VISIBLE);
+//        viewHolder.layoutItemAdd.setVisibility(View.VISIBLE);
+//        viewHolder.textGroup.setFocusable(true);
+//        viewHolder.textGroup.setFocusableInTouchMode(true);
+//        viewHolder.textGroup.setClickable(true);
+//        int itemIndex = i - 1;
+//        if (itemIndex < 0) {
+//            return;
+//        }
+//    }
 
     private void resetAllItems(AdapterRecycler_Packlist.ViewHolder viewHolder) {
         viewHolder.textPacklist.setVisibility(View.GONE);
-        viewHolder.textGroup.setVisibility(View.GONE);
-        viewHolder.textGroup.setFocusable(false);
-        viewHolder.textGroup.setFocusableInTouchMode(false);
-        viewHolder.textGroup.setClickable(false);
+//
         viewHolder.itemCheckbox.setVisibility(View.GONE);
         viewHolder.itemCheckbox.setClickable(false);
-        viewHolder.layoutGroup.setVisibility(View.GONE);
-        viewHolder.layoutGroupAdd.setVisibility(View.GONE);
         viewHolder.layoutItemAdd.setVisibility(View.GONE);
         viewHolder.checkboxDel.setVisibility(View.GONE);
-        viewHolder.groupBtnEdit.setVisibility(View.GONE);
-        viewHolder.groupBtnDel.setVisibility(View.GONE);
+
+//        viewHolder.layoutGroup.setVisibility(View.GONE);
+//        viewHolder.layoutGroupAdd.setVisibility(View.GONE);
+//        viewHolder.groupBtnEdit.setVisibility(View.GONE);
+//        viewHolder.groupBtnDel.setVisibility(View.GONE);
+//        viewHolder.textGroup.setVisibility(View.GONE);
+//        viewHolder.textGroup.setFocusable(false);
+//        viewHolder.textGroup.setFocusableInTouchMode(false);
+//        viewHolder.textGroup.setClickable(false);
     }
 
     private void setTitle(AdapterRecycler_Packlist.ViewHolder viewHolder)  {
         viewHolder.textPacklist.setText(packlistTitle);      // set packlist title
         viewHolder.textPacklist.setVisibility(View.VISIBLE); // display packlist title
-
         viewHolder.checkboxDel.setVisibility(View.GONE);
-        viewHolder.groupBtnDel.setVisibility(View.GONE);
-        viewHolder.groupBtnEdit.setVisibility(View.GONE);
         viewHolder.layoutItemAdd.setVisibility(View.GONE);
+
+//        viewHolder.groupBtnDel.setVisibility(View.GONE);
+//        viewHolder.groupBtnEdit.setVisibility(View.GONE);
     }
 
     @Override
