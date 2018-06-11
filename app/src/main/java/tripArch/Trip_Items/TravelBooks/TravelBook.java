@@ -1,29 +1,29 @@
-package Trip_Items.Packlist;
+package Trip_Items.TravelBooks;
 
 import java.util.LinkedList;
 
 import Trip_DBs.IDB;
 
-public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
+public class TravelBook extends LinkedList<Post> implements Comparable, IDB {
 
     private String         _name;
     private String         _details;
     private int            _bagIndex;
-    static private Packlist _currentPacklist;
+    static private TravelBook _currentTravelBook;
 
-    public Packlist(String _name, String _details, int _bagIndex) {
+    public TravelBook(String _name, String _details, int _bagIndex) {
         super();
         this._name = _name;
         this._bagIndex = _bagIndex;
         this._details = _details;
     }
 
-    public Packlist(Packlist pack) {
+    public TravelBook(TravelBook pack) {
         this._name = pack._name;
         this._bagIndex = pack._bagIndex;
         this._details = pack._details;
-        for (Stuff stuff : pack) {
-            add(new Stuff(stuff));
+        for (Post stuff : pack) {
+            add(new Post(stuff));
         }
     }
 
@@ -31,8 +31,8 @@ public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
         return _name;
     }
 
-    public Stuff find(String stuffName) {
-        for (Stuff s: this) {
+    public Post find(String stuffName) {
+        for (Post s: this) {
             if (s.getName().equals(stuffName)) {
                return s;
             }
@@ -40,12 +40,12 @@ public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
         return null;
     }
 
-    public static Packlist getCurrentPacklist() {
-        return _currentPacklist;
+    public static TravelBook getCurrentTravelBook() {
+        return _currentTravelBook;
     }
 
-    public static void setCurrentPacklist(Packlist _currentPacklist) {
-        Packlist._currentPacklist = _currentPacklist;
+    public static void setCurrentTravelBook(TravelBook _currentTravelBook) {
+        TravelBook._currentTravelBook = _currentTravelBook;
     }
 
     public String getDetails() {
@@ -57,13 +57,13 @@ public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
     }
 
     @Override
-    public boolean add(Stuff stuff) {
+    public boolean add(Post stuff) {
         stuff.addToDb();
         return super.add(stuff);
     }
 
 //    @Override
-    public void add(int index, Stuff stuff) {
+    public void add(int index, Post stuff) {
         stuff.addToDb();
         super.add(index, stuff);
     }
@@ -71,12 +71,12 @@ public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
 
     @Override
     public boolean remove(Object o) {
-        ((Stuff)o).removeFromDb();
+        ((Post)o).removeFromDb();
         return super.remove(o);
     }
 
     public boolean remove(String stuffName) {
-        Stuff stuff = find(stuffName);
+        Post stuff = find(stuffName);
         if (stuff == null) {
             return false;
         }
@@ -85,18 +85,18 @@ public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
 
     @Override
     public int compareTo(Object o) {
-        Packlist p = (Packlist)o;
+        TravelBook p = (TravelBook)o;
         return _name.compareTo(p._name);
     }
 
     @Override
     public void addToDb() {
-        // sql magic, should add only Packlist data
+        // sql magic, should add only TravelBook data
     }
 
     @Override
     public void removeFromDb() {
-        // sql magic, should remove only Packlist data
+        // sql magic, should remove only TravelBook data
     }
 
 }

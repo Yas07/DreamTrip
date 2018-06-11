@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -59,10 +60,6 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
         }
         packlistTitle = currentPackList.getName();
 
-        // add an empty stuff to be able to fill packlist with new elements
-//        if (currentPackList.size() == 0)  {
-//            currentPackList.add(new Stuff("",""));
-//        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
@@ -82,8 +79,6 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
             textPacklist = (TextView)itemView.findViewById(R.id.packlistTitleText);
             itemCheckbox = (CheckBox)itemView.findViewById(R.id.packlistCheckbox);
             checkboxDel = (ImageButton) itemView.findViewById(R.id.packlistCheckboxDel);
-            checkboxDel.setTag(this);
-
             checkboxEdit = (ImageButton) itemView.findViewById(R.id.packlistCheckboxEdit);
             checkboxEdit.setTag(this);
 
@@ -91,7 +86,7 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
             checkboxEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                            onCheckBoxEdit(v, getAdapterPosition() -1);
+                            onCheckBoxEdit(v, getAdapterPosition());
 
                         }
             });
@@ -99,7 +94,18 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
             checkboxDel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                            onCheckBoxDel(v, getAdapterPosition() -1);
+                            onCheckBoxDel(v, getAdapterPosition());
+                }
+            });
+
+            itemCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    int i = getAdapterPosition();
+                    if (i == 0 || i > currentPackList.size()) {
+                        Log.e("Invalid", "index");
+                        return;
+                    }
+                    currentPackList.get(i - 1).setCheck(isChecked);
                 }
             });
         }
@@ -145,7 +151,7 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
                 String editStuffTitle = input.getText().toString();
                 ViewHolder holder = (ViewHolder) (v.getTag());
                 holder.itemCheckbox.setText(editStuffTitle);
-                Stuff stuff = currentPackList.get(index);
+                Stuff stuff = currentPackList.get(index - 1);
                 if (stuff == null) {
                     Log.e("onCheckBoxEdit", "Invalid index");
                     return;
@@ -170,16 +176,22 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
         builder.setPositiveButton("YES",new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Stuff stuff = currentPackList.get(index);
+                Stuff stuff = currentPackList.get(index - 1);
                 if (stuff == null) {
                     Log.e("onCheckBoxEdit", "Invalid index");
                     return;
                 }
                 currentPackList.remove(stuff);
-                notifyItemInserted(currentPackList.size());
+                notifyItemRemoved(index);
+                notifyItemRangeChanged(index, currentPackList.size() + 2);
             }
         });
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
         builder.show();
     }
 
@@ -198,13 +210,14 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
     public void onBindViewHolder(AdapterRecycler_Packlist.ViewHolder viewHolder, int i) {
 
 //        resetAllItems(viewHolder);
-//
-        if (i == 0){
+
+        if (i == 0) {
             setTitle(viewHolder);
             return;
         }
 
         addItem(viewHolder, i);
+
 
 
 //        if (i == 0){           // if this is first card
@@ -243,14 +256,20 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
     private void addItem(AdapterRecycler_Packlist.ViewHolder viewHolder, int i) {
 
         i -= 1; // true index is -1
-        if (i <= 0 ) {
+        if (i < 0 ) {
             Log.e("addItem", "invalid index");
             return;
         }
 
         Stuff stuff =  currentPackList.get(i);
 
+        if (stuff == null) {
+            Log.e("addItem", "invalid stuff");
+            return;
+        }
+
         viewHolder.itemCheckbox.setText(stuff.getName());
+        viewHolder.itemCheckbox.setChecked(stuff.isChecked());
     }
 
 //    private packItemType chooseItem(int index) {

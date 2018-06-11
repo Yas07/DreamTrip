@@ -70,7 +70,7 @@ public class Fragment_packlist extends Fragment implements View.OnClickListener{
                         newStuffTitle = input.getText().toString();
                         Packlist pack =  Packlist.getCurrentPacklist();
                         pack.add(new Stuff(newStuffTitle));
-                        adapter.notifyItemInserted(pack.size());
+                        adapter.notifyItemInserted(pack.size() + 1);
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

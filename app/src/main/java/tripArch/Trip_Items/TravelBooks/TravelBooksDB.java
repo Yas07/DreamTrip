@@ -1,13 +1,13 @@
-package Trip_Items.Packlist;
+package Trip_Items.TravelBooks;
 
 import java.util.Comparator;
 import java.util.TreeMap;
 
-public class PacklistsDB extends TreeMap<String, Packlist>{
+public class TravelBooksDB extends TreeMap<String, TravelBook>{
 
-    private static PacklistsDB _instance;
+    private static TravelBooksDB _instance;
 
-    public PacklistsDB() {
+    public TravelBooksDB() {
         super();
     }
 
@@ -15,11 +15,11 @@ public class PacklistsDB extends TreeMap<String, Packlist>{
     private static void init()
     {
         assert (_instance == null);
-        _instance = new PacklistsDB();
+        _instance = new TravelBooksDB();
     }
 
 
-    public static PacklistsDB getInstance()
+    public static TravelBooksDB getInstance()
     {
         if (_instance == null) {
             init();
@@ -33,12 +33,12 @@ public class PacklistsDB extends TreeMap<String, Packlist>{
     }
 
 
-    public Packlist put(Packlist p) {
+    public TravelBook put(TravelBook p) {
         p.addToDb();
         return super.put(p.getName(), p);
     }
 
-    public Packlist remove(String packName) {
+    public TravelBook remove(String packName) {
         get(packName).removeFromDb();
         return super.remove(packName);
     }

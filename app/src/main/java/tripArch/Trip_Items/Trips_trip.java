@@ -61,8 +61,6 @@ public class Trips_trip extends DB_Item implements Comparable {
 
     public static void setCurrentTrip(Trips_trip currentTrip) {
         Trips_trip.currentTrip = currentTrip;
-
-        Packlist.setCurrentPacklist(currentTrip.getPacklist());
     }
 
     public Packlist getPacklist() {
@@ -70,6 +68,7 @@ public class Trips_trip extends DB_Item implements Comparable {
     }
 
     public void setPacklist(Packlist pack) {
+        Packlist.setCurrentPacklist(pack);
         packList = pack;
     }
 

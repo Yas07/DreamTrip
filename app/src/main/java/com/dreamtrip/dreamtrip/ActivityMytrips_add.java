@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,9 +24,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 // java includes
+import Trip_Items.Packlist.Packlist;
+import Trip_Items.Packlist.PacklistsDB;
 import yuku.ambilwarna.AmbilWarnaDialog;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -63,7 +67,7 @@ public class ActivityMytrips_add extends AppCompatActivity {
 
     Spinner spinner;
     String packlist;
-    List<String> spinnerArray =  new ArrayList<String>();
+    List<String> spinnerArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +104,13 @@ public class ActivityMytrips_add extends AppCompatActivity {
                         color
                         );
 
+                Packlist pack = PacklistsDB.getInstance().get(packlist);
+                if (pack != null) {
+                    trip.setPacklist(new Packlist(pack));
+                } else {
+                    Log.e("Create trip", "Null pack, what a pity");
+                }
+
                 Trips_BD.getInstance().add(trip);
 
                 startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip").putExtras(trip.getBundle()));
@@ -135,14 +146,8 @@ public class ActivityMytrips_add extends AppCompatActivity {
 
         // Spinner
         // TODO: after packlists are implemented
-        spinnerArray.add("Default packing list");
-        spinnerArray.add("Create new packing list");
-        spinnerArray.add("Children stuff");
-        spinnerArray.add("Summer stuff");
-        spinnerArray.add("Winter stuff");
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-            this, R.layout.spin_item, spinnerArray);
+            this, R.layout.spin_item, PacklistsDB.getInstance().getStrKeys());
 
         adapter.setDropDownViewResource(R.layout.spin_item);
         spinner = (Spinner) findViewById(R.id.tripSpinnerPacklists);

@@ -1,1 +1,1 @@
-include ':app', ':tripArch'
+include ':app'
