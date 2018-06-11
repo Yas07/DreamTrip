@@ -119,6 +119,10 @@ public class ActivityMytrips_trip extends AppCompatActivity {
             case R.id.btnPlan1: {
                 fragment = new Fragment_plan(); break;}
             case R.id.btnPacklist1: {
+                if (tripCtx.getPacklist() == null) {
+                    Log.e("Changetab","There is no packlist available");
+                    return;
+                }
                 fragment = new Fragment_packlist(); break;}
             case R.id.btnTravelbook1: {
                 fragment = new Fragment_travelbook(); break;}

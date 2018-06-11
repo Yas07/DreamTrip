@@ -16,6 +16,9 @@ import android.widget.EditText;
 import com.dreamtrip.dreamtrip.AdapterRecycler_Packlist;
 import com.dreamtrip.dreamtrip.R;
 
+import Trip_Items.Packlist.Packlist;
+import Trip_Items.Packlist.Stuff;
+
 
 public class Fragment_packlist extends Fragment implements View.OnClickListener{
     RecyclerView recyclerView;
@@ -36,7 +39,7 @@ public class Fragment_packlist extends Fragment implements View.OnClickListener{
         recyclerView = (RecyclerView) myLayout.findViewById(R.id.recycler_view_packlist);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new AdapterRecycler_Packlist(getActivity().getBaseContext()); //edit is not opened yet
+        adapter = new AdapterRecycler_Packlist(getActivity()); //edit is not opened yet
         recyclerView.setAdapter(adapter);
 
         fab_packlist_add_stuff = (FloatingActionButton) myLayout.findViewById(R.id.fab_packlist_add_stuff);
@@ -50,11 +53,11 @@ public class Fragment_packlist extends Fragment implements View.OnClickListener{
         switch (view.getId()){
             case R.id.fab_packlist_add_stuff:{
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity().getBaseContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Add new element");
 
                 // Set up the input
-                final EditText input = new EditText(getActivity().getBaseContext());
+                final EditText input = new EditText(getActivity());
 
                 // Specify the type of input expected
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -65,6 +68,9 @@ public class Fragment_packlist extends Fragment implements View.OnClickListener{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         newStuffTitle = input.getText().toString();
+                        Packlist pack =  Packlist.getCurrentPacklist();
+                        pack.add(new Stuff(newStuffTitle));
+                        adapter.notifyItemInserted(pack.size());
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -76,19 +82,6 @@ public class Fragment_packlist extends Fragment implements View.OnClickListener{
 
                 builder.show();
 
-                // change icon
-
-//                if (isEditOpen) {
-//                    fab_packlist_add_stuff.setImageDrawable(getResources().getDrawable(R.drawable.ic_create_white_24px));
-//                } else {
-//                    fab_packlist_add_stuff.setImageDrawable(getResources().getDrawable(R.drawable.ic_done_white_24px));
-//                }
-//                isEditOpen = !isEditOpen; // change state
-//                layoutManager = new LinearLayoutManager(getActivity());
-//                recyclerView.setLayoutManager(layoutManager);
-//                adapter = new AdapterRecycler_Packlist(isEditOpen);
-//                recyclerView.setAdapter(adapter);
-//                break;
             }
 
 

@@ -7,7 +7,7 @@ public class Stuff implements IDB {
     private String      _groupName;
     private boolean     _isChecked;
 
-    public Stuff(String _name, String _groupName) {
+    public Stuff(String _name) {
         this._name = _name;
         this._groupName = _groupName;
         _isChecked = false;

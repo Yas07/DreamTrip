@@ -76,67 +76,115 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
 
 
 
+
         public ViewHolder(View itemView) {
             super(itemView);
             textPacklist = (TextView)itemView.findViewById(R.id.packlistTitleText);
             itemCheckbox = (CheckBox)itemView.findViewById(R.id.packlistCheckbox);
             checkboxDel = (ImageButton) itemView.findViewById(R.id.packlistCheckboxDel);
+            checkboxDel.setTag(this);
+
             checkboxEdit = (ImageButton) itemView.findViewById(R.id.packlistCheckboxEdit);
-
-//            textGroup = (TextView)itemView.findViewById(R.id.packlistEditGroupTitle);
-//            layoutGroup = (LinearLayout)itemView.findViewById(R.id.packlistLayoutGroup);
-//            layoutGroupAdd = (LinearLayout) itemView.findViewById(R.id.packlistLayoutGroupAdd);
-//            layoutItemAdd = (LinearLayout) itemView.findViewById(R.id.packlistLayoutItemAdd);
-//            groupBtnEdit = (ImageButton) itemView.findViewById(R.id.packlistGroupBtnEdit);
-//            groupBtnDel = (ImageButton) itemView.findViewById(R.id.packlistGroupBtnDel);
+            checkboxEdit.setTag(this);
 
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            checkboxEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    switch (v.getId()) {
-                        case R.id.packlistCheckboxEdit: {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                            builder.setTitle("Edit element");
+                            onCheckBoxEdit(v, getAdapterPosition() -1);
 
-                            // Set up the input
-                            final EditText input = new EditText(context);
-
-                            // Specify the type of input expected
-                            input.setInputType(InputType.TYPE_CLASS_TEXT);
-                            builder.setView(input);
-
-                            // Set up the buttons
-                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    String editStuffTitle = input.getText().toString();
-                                }
-                            });
-                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-
-                            builder.show();
                         }
-                        break;
-                        case R.id.packlistCheckboxDel: {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                            builder.setTitle("Delete item");
-                            builder.setMessage("Do you want to delete this item?");
-                            builder.setPositiveButton("YES", null);
-                            builder.setNegativeButton("Cancel", null);
-                            builder.show();
-                        }
-                        break;
-                    }
+            });
+
+            checkboxDel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                            onCheckBoxDel(v, getAdapterPosition() -1);
                 }
             });
         }
     }
+
+
+//            checkboxDel.setOnClickListener(new View.OnClickListener() {
+//@Override
+//public void onClick(View v) {
+//        switch (v.getId()) {
+//        case R.id.packlistCheckboxEdit: {
+//        onCheckBoxEdit(v);
+//        }
+//        break;
+//        case R.id.packlistCheckboxDel: {
+//        onCheckBoxDel(v);
+//        }
+//        break;
+//        }
+//        }
+//        });
+
+    private void onItemCheckBox(final View v, final int index) {
+
+    }
+
+    public void onCheckBoxEdit (final View v, final int index) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Edit element");
+
+        // Set up the input
+        final EditText input = new EditText(context);
+
+        // Specify the type of input expected
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String editStuffTitle = input.getText().toString();
+                ViewHolder holder = (ViewHolder) (v.getTag());
+                holder.itemCheckbox.setText(editStuffTitle);
+                Stuff stuff = currentPackList.get(index);
+                if (stuff == null) {
+                    Log.e("onCheckBoxEdit", "Invalid index");
+                    return;
+                }
+                stuff.setName(editStuffTitle);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+    public void onCheckBoxDel (final View v, final int index) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Delete item");
+        builder.setMessage("Do you want to delete this item?");
+        builder.setPositiveButton("YES",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Stuff stuff = currentPackList.get(index);
+                if (stuff == null) {
+                    Log.e("onCheckBoxEdit", "Invalid index");
+                    return;
+                }
+                currentPackList.remove(stuff);
+                notifyItemInserted(currentPackList.size());
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
+    }
+
+
+
 
     @Override
     public AdapterRecycler_Packlist.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -149,27 +197,20 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
     @Override
     public void onBindViewHolder(AdapterRecycler_Packlist.ViewHolder viewHolder, int i) {
 
-        resetAllItems(viewHolder);
-
+//        resetAllItems(viewHolder);
+//
         if (i == 0){
             setTitle(viewHolder);
             return;
         }
 
-        if (currentPackList.size() == 0) {
-            viewHolder.textPacklist.setVisibility(View.GONE);
-            viewHolder.checkboxDel.setVisibility(View.GONE);
-            viewHolder.checkboxEdit.setVisibility(View.GONE);
-            //viewHolder.groupBtnDel.setVisibility(View.GONE);
-            //viewHolder.groupBtnEdit.setVisibility(View.GONE);
-            //viewHolder.layoutGroup.setVisibility(View.GONE);
-        }
+        addItem(viewHolder, i);
 
 
-        if (i == 0){           // if this is first card
-            viewHolder.textPacklist.setText(packlistTitle);      // set packlist title
-            viewHolder.textPacklist.setVisibility(View.VISIBLE); // display packlist title
-        } else {              //if this is not first card
+//        if (i == 0){           // if this is first card
+//            viewHolder.textPacklist.setText(packlistTitle);      // set packlist title
+//            viewHolder.textPacklist.setVisibility(View.VISIBLE); // display packlist title
+//        } else {              //if this is not first card
 //            if (!groupsTitles[i].equals(groupsTitles[i-1])) {     // if we have unique (new) group
 ////                viewHolder.textGroup.setText(groupsTitles[i]);   // set group title
 //            } else {                                                 // if we have the same group
@@ -186,9 +227,9 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
 //                    }
 //                }
 //            }
-        }
+//        }
 
-        viewHolder.itemCheckbox.setText(itemTitles[i]); // anyway set checkbox (stuff) item
+//        viewHolder.itemCheckbox.setText(itemTitles[i]); // anyway set checkbox (stuff) item
     }
 
 //            viewHolder.checkboxDel.setVisibility(View.GONE);
@@ -199,52 +240,18 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
 //            viewHolder.textGroup.setClickable(false);
 //            viewHolder.textGroup.setBackgroundColor(Color.TRANSPARENT);
 
-//    private void addItem(AdapterRecycler_Packlist.ViewHolder viewHolder, int i) {
-//
-//        i -= 1; // true index is -1
-//        if (i <= 0 ) {
-//            Log.e("addItem", "invalid index");
-//            return;
-//        }
-//
-//        // last element
-//        if (currentPackList.size() == i) {
-//            if (isEditOpen) /* edit mode add item */ {
-//                viewHolder.layoutGroupAdd.setVisibility(View.VISIBLE);
-//                viewHolder.layoutGroupAdd.setFocusable(true);
-//                viewHolder.layoutGroupAdd.setFocusableInTouchMode(true);
-//                viewHolder.layoutGroupAdd.setClickable(true);
-//            }
-//        }
-//
-//        Stuff stuff =  currentPackList.get(i);
-//
-//        if (isEditOpen) /* edit mode add item */ {
-//
-//            if (stuff.isGroup()) {
-//                viewHolder.textGroup.setVisibility(View.VISIBLE);
-//                viewHolder.textGroup.setFocusable(true);
-//                viewHolder.textGroup.setFocusableInTouchMode(true);
-//                viewHolder.textGroup.setClickable(true);
-//                viewHolder.layoutGroup.setVisibility(View.VISIBLE);
-//                viewHolder.checkboxDel.setVisibility(View.GONE);
-//                viewHolder.groupBtnEdit.setVisibility(View.GONE);
-//                viewHolder.groupBtnDel.setVisibility(View.GONE);
-//            } else /* simple stuff */ {
-//
-//            }
-//
-//        } else /* read mode add item */ {
-//
-//            if (stuff.isGroup()) {
-//
-//            } else /* simple stuff */ {
-//
-//            }
-//
-//        }
-//
-//    }
+    private void addItem(AdapterRecycler_Packlist.ViewHolder viewHolder, int i) {
+
+        i -= 1; // true index is -1
+        if (i <= 0 ) {
+            Log.e("addItem", "invalid index");
+            return;
+        }
+
+        Stuff stuff =  currentPackList.get(i);
+
+        viewHolder.itemCheckbox.setText(stuff.getName());
+    }
 
 //    private packItemType chooseItem(int index) {
 //        Stuff stuff = currentPackList.get(index);
@@ -271,23 +278,20 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
         viewHolder.itemCheckbox.setVisibility(View.GONE);
         viewHolder.itemCheckbox.setClickable(false);
         viewHolder.layoutItemAdd.setVisibility(View.GONE);
+        viewHolder.itemCheckbox.setVisibility(View.GONE);
+        viewHolder.itemCheckbox.setClickable(false);
         viewHolder.checkboxDel.setVisibility(View.GONE);
+        viewHolder.checkboxEdit.setVisibility(View.GONE);
 
-//        viewHolder.layoutGroup.setVisibility(View.GONE);
-//        viewHolder.layoutGroupAdd.setVisibility(View.GONE);
-//        viewHolder.groupBtnEdit.setVisibility(View.GONE);
-//        viewHolder.groupBtnDel.setVisibility(View.GONE);
-//        viewHolder.textGroup.setVisibility(View.GONE);
-//        viewHolder.textGroup.setFocusable(false);
-//        viewHolder.textGroup.setFocusableInTouchMode(false);
-//        viewHolder.textGroup.setClickable(false);
     }
 
     private void setTitle(AdapterRecycler_Packlist.ViewHolder viewHolder)  {
+        viewHolder.itemCheckbox.setVisibility(View.GONE);
+        viewHolder.itemCheckbox.setClickable(false);
+        viewHolder.checkboxDel.setVisibility(View.GONE);
+        viewHolder.checkboxEdit.setVisibility(View.GONE);
         viewHolder.textPacklist.setText(packlistTitle);      // set packlist title
         viewHolder.textPacklist.setVisibility(View.VISIBLE); // display packlist title
-        viewHolder.checkboxDel.setVisibility(View.GONE);
-        viewHolder.layoutItemAdd.setVisibility(View.GONE);
 
 //        viewHolder.groupBtnDel.setVisibility(View.GONE);
 //        viewHolder.groupBtnEdit.setVisibility(View.GONE);

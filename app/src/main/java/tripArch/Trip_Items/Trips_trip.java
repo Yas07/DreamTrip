@@ -11,7 +11,10 @@ import android.widget.ImageView;
 
 import Trip_DBs.DB_Item;
 import Trip_DBs.Trips_BD;
+import Trip_Items.Packlist.Packlist;
+import Trip_Items.Packlist.PacklistsDB;
 import Trip_Items.Trips_Plan.Plan;
+import Trip_Items.Packlist.Packlist;
 
 public class Trips_trip extends DB_Item implements Comparable {
 
@@ -28,7 +31,7 @@ public class Trips_trip extends DB_Item implements Comparable {
     private Plan            plan;
 //    private Places_DB       places;
 //    private TravelBook      travelbook;
-//    private PackList        packList;
+    private Packlist        packList;
 
     // TODO: this constuctor is needed only for testing, remove in production.
     // Do not use in non-testing use cases!!
@@ -48,7 +51,6 @@ public class Trips_trip extends DB_Item implements Comparable {
          this.headerImage    = headerImage;
         this.mainImage      = mainImage;
         this.textColor      = textColor;
-//        this.packlist       = packlist;
 //        this.travelbook     = new Travelbook(name);
         this.plan = new Plan();
     }
@@ -59,6 +61,16 @@ public class Trips_trip extends DB_Item implements Comparable {
 
     public static void setCurrentTrip(Trips_trip currentTrip) {
         Trips_trip.currentTrip = currentTrip;
+
+        Packlist.setCurrentPacklist(currentTrip.getPacklist());
+    }
+
+    public Packlist getPacklist() {
+        return packList;
+    }
+
+    public void setPacklist(Packlist pack) {
+        packList = pack;
     }
 
     public Date getStartDate() {

@@ -41,7 +41,7 @@
                 android:elevation="1dp"
                 android:fontFamily="casual"
                 android:shadowColor="@android:color/black"
-                android:text="phone"
+                android:text=""
                 android:textColor="@android:color/black"
                 android:textColorHighlight="@android:color/black"
                 android:textColorHint="@android:color/black"
