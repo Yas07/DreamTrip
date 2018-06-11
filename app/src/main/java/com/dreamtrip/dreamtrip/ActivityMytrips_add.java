@@ -53,6 +53,7 @@ enum enum_EditDateID {
 public class ActivityMytrips_add extends AppCompatActivity {
     Button btnSave;
     ImageView imgPhoto, btnTripHeader, btnTripPhoto;
+    boolean isTripHeaderSet = false, isTripMainSet = false;
     ImageView btnColorPicker;
     EditText editDate, editStartDate, editEndDate, editTripTitle;
 
@@ -66,7 +67,7 @@ public class ActivityMytrips_add extends AppCompatActivity {
     int defaultColor;
 
     Spinner spinner;
-    String packlist;
+    String packlist = "";
     List<String> spinnerArray;
 
     @Override
@@ -109,6 +110,14 @@ public class ActivityMytrips_add extends AppCompatActivity {
                     trip.setPacklist(new Packlist(pack));
                 } else {
                     Log.e("Create trip", "Null pack, what a pity");
+                }
+
+                if (isTripHeaderSet) {
+                    trip.setHeaderImage(Trips_trip.getBitMapFromView(btnTripHeader));
+                }
+
+                if (isTripMainSet) {
+                    trip.setMainImage(Trips_trip.getBitMapFromView(btnTripPhoto));
                 }
 
                 Trips_BD.getInstance().add(trip);
@@ -275,6 +284,7 @@ public class ActivityMytrips_add extends AppCompatActivity {
                     btnTripHeader.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     btnTripHeader.requestLayout();
                     selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 800, 600);
+                    isTripHeaderSet = true;
                     break;
                 }
                 case MAIN: {
@@ -285,6 +295,7 @@ public class ActivityMytrips_add extends AppCompatActivity {
                     btnTripPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     btnTripPhoto.requestLayout();
                     selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 300, 200);
+                    isTripMainSet = true;
                     break;
                 }
             }

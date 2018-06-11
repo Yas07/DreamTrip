@@ -1,5 +1,6 @@
 package Trip_Items;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
 
 import java.text.DateFormat;
@@ -7,12 +8,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import Trip_DBs.DB_Item;
 import Trip_DBs.Trips_BD;
 import Trip_Items.Packlist.Packlist;
 import Trip_Items.Packlist.PacklistsDB;
+import Trip_Items.TravelBooks.TravelBook;
+import Trip_Items.TravelBooks.TravelBooksDB;
 import Trip_Items.Trips_Plan.Plan;
 import Trip_Items.Packlist.Packlist;
 
@@ -24,13 +28,13 @@ public class Trips_trip extends DB_Item implements Comparable {
     private Date            startDate;
     private Date            endDate;
     // TODO: use something another instead of ImageView
-    private ImageView       headerImage;
-    private ImageView       mainImage;
+    private Bitmap          headerImage;
+    private Bitmap          mainImage;
     //                /\/\/\
     private int             textColor;
     private Plan            plan;
 //    private Places_DB       places;
-//    private TravelBook      travelbook;
+    private TravelBook travelbook;
     private Packlist        packList;
 
     // TODO: this constuctor is needed only for testing, remove in production.
@@ -40,20 +44,22 @@ public class Trips_trip extends DB_Item implements Comparable {
         this.startDate = startDate;
         this.endDate = endDate;
         this.textColor = textColor;
+        this.travelbook     = new TravelBook(name, startEndDateToStr());
+        TravelBooksDB.getInstance().put(travelbook);
     }
 
-    public Trips_trip(String name, Date startDate, Date endDate,
-                      ImageView headerImage, ImageView mainImage,
-                      int textColor) {
-        this.name           = name;
-        this.startDate      = startDate;
-        this.endDate        = endDate;
-         this.headerImage    = headerImage;
-        this.mainImage      = mainImage;
-        this.textColor      = textColor;
-//        this.travelbook     = new Travelbook(name);
-        this.plan = new Plan();
-    }
+//    public Trips_trip(String name, Date startDate, Date endDate,
+//                      ImageView headerImage, ImageView mainImage,
+//                      int textColor) {
+//        this.name           = name;
+//        this.startDate      = startDate;
+//        this.endDate        = endDate;
+//         this.headerImage    = headerImage;
+//        this.mainImage      = mainImage;
+//        this.textColor      = textColor;
+//        this.travelbook     = new TravelBook(name, startEndDateToStr());
+//        TravelBooksDB.getInstance().put(travelbook);
+//    }
 
     public static Trips_trip getCurrentTrip() {
         return currentTrip;
@@ -67,9 +73,41 @@ public class Trips_trip extends DB_Item implements Comparable {
         return packList;
     }
 
+    public TravelBook getTravelbook() {
+        return travelbook;
+    }
+
     public void setPacklist(Packlist pack) {
         Packlist.setCurrentPacklist(pack);
         packList = pack;
+    }
+
+    public void setHeaderImage(Bitmap headerImage) {
+        this.headerImage = compressImage(headerImage);
+    }
+
+    public void setMainImage(Bitmap mainImage) {
+        this.mainImage = compressImage(mainImage);
+        travelbook.setPhotoImage(mainImage);
+    }
+
+    public static Bitmap compressImage(Bitmap bitmapImage){
+        int nh = (int) ( bitmapImage.getHeight() * (512.0 / bitmapImage.getWidth()) );
+        return Bitmap.createScaledBitmap(bitmapImage, 512, nh, true);
+//        return bitmapImage;
+    }
+
+    public static Bitmap getBitMapFromView(View v) {
+        v.buildDrawingCache();
+        return v.getDrawingCache();
+    }
+
+    public Bitmap getHeaderImage() {
+        return headerImage;
+    }
+
+    public Bitmap getMainImage() {
+        return mainImage;
     }
 
     public Date getStartDate() {

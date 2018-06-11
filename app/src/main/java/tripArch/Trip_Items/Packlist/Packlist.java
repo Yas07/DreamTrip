@@ -1,8 +1,11 @@
 package Trip_Items.Packlist;
 
+import android.graphics.Bitmap;
+
 import java.util.LinkedList;
 
 import Trip_DBs.IDB;
+import Trip_Items.Trips_trip;
 
 public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
 
@@ -10,6 +13,7 @@ public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
     private String         _details;
     private int            _bagIndex;
     static private Packlist _currentPacklist;
+    private Bitmap          _bagPhoto;
 
     public Packlist(String _name, String _details, int _bagIndex) {
         super();
@@ -54,6 +58,15 @@ public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
 
     public int getBagIndex() {
         return _bagIndex;
+    }
+
+    public Bitmap getBagPhoto() {
+        return _bagPhoto;
+    }
+
+
+    public void setBagPhoto(Bitmap _bagPhoto) {
+        this._bagPhoto = Trips_trip.compressImage(_bagPhoto);
     }
 
     @Override

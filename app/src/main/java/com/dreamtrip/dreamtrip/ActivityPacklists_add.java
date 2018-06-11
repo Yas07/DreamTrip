@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import Trip_Items.Packlist.Packlist;
 import Trip_Items.Packlist.PacklistsDB;
+import Trip_Items.Trips_trip;
 
 enum RequestCodeBag {
     NONE,
@@ -28,6 +29,7 @@ public class ActivityPacklists_add extends AppCompatActivity {
     Button btn_save;
     ImageView btnBagSquare, btnBagRectangle, imgPhoto;
     EditText packlistDetail, packlistTitle;
+    boolean isPhotoSet = false;
 
     int currentBagId;
 
@@ -60,6 +62,10 @@ public class ActivityPacklists_add extends AppCompatActivity {
 
 
             Packlist packlist = new Packlist(packName, packDetails, currentBagId);
+
+            if (isPhotoSet) {
+                packlist.setBagPhoto(Trips_trip.getBitMapFromView(imgPhoto));
+            }
 
             PacklistsDB.getInstance().put(packlist);
 
@@ -102,6 +108,7 @@ public class ActivityPacklists_add extends AppCompatActivity {
                     imgPhoto.requestLayout();
                     selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 300, 200);
                     chooseBag(findViewById(R.id.layoutBagRectangle));
+                    currentBagId = R.drawable.bag_rectangle_dpi;
                     break;
                 }
                 case SQUARE:{                                    //bag square
@@ -113,11 +120,14 @@ public class ActivityPacklists_add extends AppCompatActivity {
                     imgPhoto.requestLayout();
                     selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 300, 200);
                     chooseBag(findViewById(R.id.layoutBagSquare));
+                    currentBagId = R.drawable.bag_square_dpi;
                     break;
                 }
             }
             Drawable d = new BitmapDrawable(getResources(), selectedImage);
             imgPhoto.setImageDrawable(d);
+
+            isPhotoSet = true;
         }
     }
 
@@ -146,7 +156,9 @@ public class ActivityPacklists_add extends AppCompatActivity {
             temp.setBackgroundColor(Color.TRANSPARENT);
 
         String iconName = (String)  view.getTag();
+
         currentBagId = getBagIDbyName(iconName);
+        isPhotoSet = false;
 
 
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));

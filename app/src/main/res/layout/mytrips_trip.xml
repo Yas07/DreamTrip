@@ -30,6 +30,7 @@
 
 
         <LinearLayout
+            android:id="@+id/header_trip"
             android:layout_width="match_parent"
             android:layout_height="112dp"
             android:background="@drawable/header_trip"

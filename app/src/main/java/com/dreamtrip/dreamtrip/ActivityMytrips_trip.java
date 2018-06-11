@@ -3,6 +3,9 @@ package com.dreamtrip.dreamtrip;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -14,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,20 +58,19 @@ public class ActivityMytrips_trip extends AppCompatActivity {
 
         TextView tripTitle = (TextView) findViewById(R.id.trip_name);
         TextView tripDate = (TextView) findViewById(R.id.trip_date);
+        LinearLayout head = (LinearLayout) findViewById(R.id.header_trip);
+
+        Bitmap bit = tripCtx.getHeaderImage();
+        if (bit != null) {
+            head.setBackground(new BitmapDrawable(getResources(), bit));
+        }
+
 
         tripTitle.setText(tripCtx.getName());
         tripDate.setText(tripCtx.startEndDateToStr());
 
         tripTitle.setTextColor(tripCtx.getTextColor());
         tripDate.setTextColor(tripCtx.getTextColor());
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_mytrips_plan);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                addPlanPoint(view);
-//            }
-//        });
 
     }
 
@@ -125,6 +128,10 @@ public class ActivityMytrips_trip extends AppCompatActivity {
                 }
                 fragment = new Fragment_packlist(); break;}
             case R.id.btnTravelbook1: {
+                if (tripCtx.getTravelbook() == null) {
+                    Log.e("Changetab","There is no travelBook available");
+                    return;
+                }
                 fragment = new Fragment_travelbook(); break;}
             default:
                 Log.e("changeTab", "No such fragment");

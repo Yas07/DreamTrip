@@ -200,8 +200,8 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
-                            android:background="@color/transparentWhite"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_light_summer_dpi"
                             app:srcCompat="@drawable/travelbook_cover_light_summer_dpi" />
 
                         <ImageView
@@ -212,6 +212,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_world_travel_dpi"
                             app:srcCompat="@drawable/travelbook_cover_world_travel_dpi" />
 
                         <ImageView
@@ -222,6 +223,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_spring_blue_dpi"
                             app:srcCompat="@drawable/travelbook_cover_spring_blue_dpi" />
 
                         <ImageView
@@ -232,6 +234,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_red_dpi"
                             app:srcCompat="@drawable/travelbook_cover_red_dpi" />
 
                         <ImageView
@@ -243,6 +246,7 @@
                             android:layout_weight="1"
                             android:background="@color/transparentDarkGreen"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_blue_dpi"
                             app:srcCompat="@drawable/travelbook_cover_blue_dpi" />
 
                         <ImageView
@@ -253,6 +257,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_travel_blue_dpi"
                             app:srcCompat="@drawable/travelbook_cover_travel_blue_dpi" />
 
                         <ImageView
@@ -263,6 +268,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_christmas_green_dpi"
                             app:srcCompat="@drawable/travelbook_cover_christmas_green_dpi" />
 
                         <ImageView
@@ -273,6 +279,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_modern_black_dpi"
                             app:srcCompat="@drawable/travelbook_cover_modern_black_dpi" />
 
                         <ImageView
@@ -283,6 +290,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_cup_dpi"
                             app:srcCompat="@drawable/travelbook_cover_cup_dpi" />
 
                         <ImageView
@@ -293,6 +301,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_christmas_white_green_dpi"
                             app:srcCompat="@drawable/travelbook_cover_christmas_white_green_dpi" />
 
                         <ImageView
@@ -303,6 +312,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_christmas_black_dpi"
                             app:srcCompat="@drawable/travelbook_cover_christmas_black_dpi" />
 
                         <ImageView
@@ -313,6 +323,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_chtistmas_white_black_dpi"
                             app:srcCompat="@drawable/travelbook_cover_chtistmas_white_black_dpi" />
 
                         <ImageView
@@ -323,6 +334,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_chtistmas_white_red_dpi"
                             app:srcCompat="@drawable/travelbook_cover_chtistmas_white_red_dpi" />
 
                         <ImageView
@@ -333,6 +345,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_light_blue_dpi"
                             app:srcCompat="@drawable/travelbook_cover_light_blue_dpi" />
 
                         <ImageView
@@ -343,6 +356,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_orange_dpi"
                             app:srcCompat="@drawable/travelbook_cover_orange_dpi" />
 
                         <ImageView
@@ -353,6 +367,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_travel_dpi"
                             app:srcCompat="@drawable/travelbook_cover_travel_dpi" />
 
                         <ImageView
@@ -363,6 +378,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:onClick="chooseCover"
+                            android:tag="travelbook_cover_travel_orange_dpi"
                             app:srcCompat="@drawable/travelbook_cover_travel_orange_dpi" />
 
                     </LinearLayout>

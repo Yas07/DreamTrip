@@ -12,6 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
+import Trip_Items.TravelBooks.TravelBook;
+import Trip_Items.TravelBooks.TravelBooksDB;
+
 public class ActivityTravelbooks_ extends Fragment{
 
     RecyclerView recyclerView;
@@ -37,8 +42,10 @@ public class ActivityTravelbooks_ extends Fragment{
         recyclerView = (RecyclerView) myLayout.findViewById(R.id.recycler_view_travelbooks);
         layoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new AdapterRecycler_GridCards(cardTitles,
-                cardDetails, cardImages, colorBg, colorText, enum_ACTIVITY_TYPE.TRAVELBOOKS);
+
+        ArrayList<TravelBook> travelBooks = new ArrayList<TravelBook>(TravelBooksDB.getInstance().values());
+
+        adapter = new AdapterRecycler_GridCards(colorBg, colorText, travelBooks,enum_ACTIVITY_TYPE.TRAVELBOOKS);
         recyclerView.setAdapter(adapter);
 
         return myLayout;

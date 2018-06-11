@@ -1,34 +1,54 @@
 package Trip_Items.TravelBooks;
 
+import android.graphics.Bitmap;
+
 import java.util.LinkedList;
 
 import Trip_DBs.IDB;
+import Trip_Items.Trips_trip;
 
 public class TravelBook extends LinkedList<Post> implements Comparable, IDB {
 
     private String         _name;
     private String         _details;
-    private int            _bagIndex;
+    private int            _photoIndex;
+    private Bitmap         _photoImage;
     static private TravelBook _currentTravelBook;
 
-    public TravelBook(String _name, String _details, int _bagIndex) {
+    public TravelBook(String _name, String _details, int _photoIndex) {
         super();
         this._name = _name;
-        this._bagIndex = _bagIndex;
+        this._photoIndex = _photoIndex;
         this._details = _details;
+        setCurrentTravelBook(this);
     }
 
-    public TravelBook(TravelBook pack) {
-        this._name = pack._name;
-        this._bagIndex = pack._bagIndex;
-        this._details = pack._details;
-        for (Post stuff : pack) {
-            add(new Post(stuff));
+    public TravelBook(String _name, String _details) {
+        super();
+        this._name = _name;
+        this._details = _details;
+        setCurrentTravelBook(this);
+    }
+
+    public TravelBook(TravelBook travelBook) {
+        this._name = travelBook._name;
+        this._photoIndex = travelBook._photoIndex;
+        this._details = travelBook._details;
+        for (Post post : travelBook) {
+            add(new Post(post));
         }
     }
 
     public String getName() {
         return _name;
+    }
+
+    public Bitmap getPhotoImage() {
+        return _photoImage;
+    }
+
+    public void setPhotoImage(Bitmap _photoImage) {
+        this._photoImage = Trips_trip.compressImage(_photoImage);
     }
 
     public Post find(String stuffName) {
@@ -52,8 +72,8 @@ public class TravelBook extends LinkedList<Post> implements Comparable, IDB {
         return _details;
     }
 
-    public int getBagIndex() {
-        return _bagIndex;
+    public int getPhotoIndex() {
+        return _photoIndex;
     }
 
     @Override

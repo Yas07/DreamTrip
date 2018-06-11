@@ -2,10 +2,13 @@ package com.dreamtrip.dreamtrip;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -24,7 +27,11 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Trip_DBs.Trips_BD;
 import Trip_Items.Packlist.Packlist;
+import Trip_Items.Packlist.PacklistsDB;
+import Trip_Items.TravelBooks.TravelBook;
+import Trip_Items.TravelBooks.TravelBooksDB;
 import Trip_Items.Trips_trip;
 import dalvik.system.PathClassLoader;
 
@@ -35,32 +42,14 @@ enum enum_ACTIVITY_TYPE{
 }
 
 public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecycler_GridCards.ViewHolder> {
-    private String[] cardTitles;
-    private String[] cardDetails;
-    private int[] cardImages;
     private int colorBg;
     private int colorText;
     private enum_ACTIVITY_TYPE activityType;
     private List<Trips_trip> tripsList;
     private ArrayList<Packlist> packlists;
-
-
-    public AdapterRecycler_GridCards(String[] cardTitles, String[] cardDetails,
-                        int[] cardImages, int colorBg, int colorText, enum_ACTIVITY_TYPE activityType){
-        this.cardTitles = cardTitles;
-        this.cardDetails = cardDetails;
-        this.cardImages = cardImages;
-        this.colorBg = colorBg;
-        this.colorText = colorText;
-        this.activityType = activityType;
-        this.tripsList = null;
-    }
+    private ArrayList<TravelBook> travelBooks;
 
     public AdapterRecycler_GridCards(List<Trips_trip> tripsList, int colorBg, int colorText, enum_ACTIVITY_TYPE activityType){
-        assert (activityType == enum_ACTIVITY_TYPE.TRIPS);
-        this.cardTitles = null;
-        this.cardDetails = null;
-        this.cardImages = null;
         this.colorBg = colorBg;
         this.colorText = colorText;
         this.activityType = activityType;
@@ -68,17 +57,53 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
     }
 
     public AdapterRecycler_GridCards(ArrayList<Packlist> packlists, int colorBg, int colorText, enum_ACTIVITY_TYPE activityType){
-        this.cardTitles = null;
-        this.cardDetails = null;
-        this.cardImages = null;
         this.colorBg = colorBg;
         this.colorText = colorText;
         this.activityType = activityType;
         this.packlists = packlists;
     }
 
+    public AdapterRecycler_GridCards(int colorBg, int colorText, ArrayList<TravelBook> travelBooks, enum_ACTIVITY_TYPE activityType){
+        this.colorBg = colorBg;
+        this.colorText = colorText;
+        this.activityType = activityType;
+        this.travelBooks = travelBooks;
+    }
+
+    private void initLists() {
+        if (tripsList == null){
+
+        }
+
+        if (packlists == null) {
+            packlists = new ArrayList<Packlist>();
+        }
+
+
+        if (travelBooks == null) {
+            travelBooks = new ArrayList<TravelBook>();
+        }
+
+    }
+
+    private void updateItemsList() {
+        initLists();
+//        if (tripsList.size() != Trips_BD.getInstance().size()){
+
+//        }
+
+        if (packlists != null && PacklistsDB.getInstance().size() != packlists.size()) {
+            packlists = new ArrayList<Packlist>(PacklistsDB.getInstance().values());
+        }
+
+
+        if (travelBooks != null && TravelBooksDB.getInstance().size() != travelBooks.size()) {
+            travelBooks = new ArrayList<TravelBook>(TravelBooksDB.getInstance().values());
+        }
+
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder{
-        public int currentItem;
         public LinearLayout layoutCard;
         public TextView cardTitle;
         public TextView cardDetail;
@@ -123,10 +148,13 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
 
                         case TRAVELBOOKS:
                         {
+                            int i = getAdapterPosition();
+                            TravelBook travelBook = travelBooks.get(i);
+                            TravelBook.setCurrentTravelBook(travelBook);
+
                             // TODO: remove
-                            int position = getAdapterPosition();
                             Bundle bundle = new Bundle();
-                            bundle.putString("value", Integer.toString(position));
+                            bundle.putString("value", Integer.toString(i));
 
                             final Intent intent =  new Intent(context, ActivityTravelbooks_travelbook.class).putExtras(bundle);
                             context.startActivity(intent);
@@ -165,8 +193,10 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
 
                 viewHolder.cardDetail.setText(trip.startEndDateToStr());
 
-                // TODO: add images when they are ready
-                // viewHolder.cardImage.setImageResource(cardImages[i]);
+                Bitmap bit = trip.getMainImage();
+                if (bit != null) {
+                    viewHolder.cardImage.setImageBitmap(bit);
+                }
 
                 viewHolder.cardTitle.setTextColor(colorText);
                 viewHolder.cardDetail.setTextColor(colorText);
@@ -186,7 +216,14 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
 
                 viewHolder.cardDetail.setText(packlist.getDetails());
 
-                if (packlist.getBagIndex() != 0) {
+
+                Bitmap bit = packlist.getBagPhoto();
+                if (bit != null && packlist.getBagIndex() != 0) {
+                    viewHolder.cardImage.setImageResource(packlist.getBagIndex());
+                    Drawable draw =  viewHolder.cardImage.getDrawable();
+                    viewHolder.cardImage.setImageBitmap(bit);
+                    viewHolder.cardImage.setBackground(draw);
+                } else if (packlist.getBagIndex() != 0) {
                     viewHolder.cardImage.setImageResource(packlist.getBagIndex());
                 }
 
@@ -198,9 +235,25 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
             break;
 
             case TRAVELBOOKS: {
-                viewHolder.cardTitle.setText(cardTitles[i]);
-                viewHolder.cardDetail.setText(cardDetails[i]);
-                viewHolder.cardImage.setImageResource(cardImages[i]);
+                TravelBook travelBook = travelBooks.get(i);
+                if (travelBook == null) {
+                    Log.e(this.getClass().getEnclosingMethod().getName(), "null trip, what a pity");
+                    return;
+                }
+
+                viewHolder.cardTitle.setText(travelBook.getName());
+
+                viewHolder.cardDetail.setText(travelBook.getDetails());
+
+                Bitmap bit = travelBook.getPhotoImage();
+                if ( bit != null &&  (travelBook.getPhotoIndex() != 0)) {
+                    viewHolder.cardImage.setImageResource(travelBook.getPhotoIndex());
+                    Drawable draw =  viewHolder.cardImage.getDrawable();
+                    viewHolder.cardImage.setImageBitmap(bit);
+                    viewHolder.cardImage.setBackground(draw);
+                } else if (travelBook.getPhotoIndex() != 0) {
+                    viewHolder.cardImage.setImageResource(travelBook.getPhotoIndex());
+                }
 
                 viewHolder.cardTitle.setTextColor(colorText);
                 viewHolder.cardDetail.setTextColor(colorText);
@@ -216,6 +269,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
 
     @Override
     public int getItemCount() {
+        updateItemsList();
         switch (activityType) {
             case TRIPS:
             return tripsList.size();
@@ -224,7 +278,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
             return packlists.size();
 
             case TRAVELBOOKS:
-            return cardTitles.length;
+            return travelBooks.size();
 
             default:
                 Log.e(this.getClass().getEnclosingMethod().getName(), "Wrong enum value!");

@@ -24,11 +24,6 @@ public class ActivityPacklists_ extends Fragment {
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
 
-    private String[] cardTitles = {"Checklist", "My common stuff", "Camping stuff",
-                                    "Sport stuff", "Travel by car", "For children"};
-    private String[] cardDetails = {"blablabla", "blablabla2", "blablabla3", "blablabla4", "blablabla5", "blablabla6"};
-    private int[] cardImages = {R.drawable.bag_paris_dpi, R.drawable.bag_london2_dpi, R.drawable.bag_adventure_dpi,
-                                R.drawable.bag_sport_dpi, R.drawable.bag_travel2_xhdpi, R.drawable.bag_children_dpi};
     private int colorBg = Color.WHITE;
     private int colorText = Color.BLACK;
 

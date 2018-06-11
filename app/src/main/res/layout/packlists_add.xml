@@ -130,6 +130,7 @@
                             <ImageView
                                 android:layout_width="108dp"
                                 android:layout_height="100dp"
+                                android:tag="bag_square_dpi"
                                 android:background="@drawable/bag_square_dpi"
                                 android:layout_gravity="center"
                                 android:orientation="horizontal"/>
@@ -158,6 +159,7 @@
                             <ImageView
                                 android:layout_width="127dp"
                                 android:layout_height="100dp"
+                                android:tag="bag_rectangle_dpi"
                                 android:background="@drawable/bag_rectangle_dpi"
                                 android:layout_gravity="center"
                                 android:orientation="horizontal"/>
@@ -201,7 +203,6 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
-                            android:background="@color/transparentWhite"
                             android:onClick="chooseBag"
                             android:tag="bag_london_dpi"
                             app:srcCompat="@drawable/bag_london_dpi" />

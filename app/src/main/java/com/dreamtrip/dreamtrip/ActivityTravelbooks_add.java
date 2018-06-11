@@ -8,11 +8,16 @@ import android.graphics.drawable.Drawable;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import Trip_Items.TravelBooks.TravelBook;
+import Trip_Items.TravelBooks.TravelBooksDB;
+import Trip_Items.Trips_trip;
 
 enum RequestCodeFrame {
     NONE,
@@ -23,7 +28,11 @@ enum RequestCodeFrame {
 public class ActivityTravelbooks_add extends AppCompatActivity {
     Button btn_save;
     ImageView imgPhoto, btnPhotoFrameLight, btnPhotoFrameDark;
+    boolean isPhotoSet = false;
     EditText editTravelbookTitle;
+    EditText editTravelBookDetails;
+
+    int currentPhotoId;
 
 
     @Override
@@ -32,24 +41,40 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         setContentView(R.layout.travelbooks_add);
 
         editTravelbookTitle = (EditText) findViewById(R.id.editTravelbookTitle);
+        editTravelBookDetails = (EditText) findViewById(R.id.editText5);
 
         btn_save = (Button) findViewById(R.id.btn_travelbook_save);
         btn_save.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(editTravelbookTitle.getText().toString().equals("")){
-                    Toast.makeText(ActivityTravelbooks_add.this, "ERROR - Enter title!", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("value", "Successfully added");
-                    startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityTravelbooks_travelbook").putExtras(bundle));
-                }
+                addTravelBook(v);
             }
         });
 
         btnPhotoFrameDark = (ImageView) findViewById(R.id.btnPhotoFrameDark);
         btnPhotoFrameLight = (ImageView) findViewById(R.id.btnPhotoFrameLight);
+    }
+
+
+    private void addTravelBook(View v) {
+        String title = editTravelbookTitle.getText().toString();
+        if(title.equals("")){
+            Toast.makeText(ActivityTravelbooks_add.this, "ERROR - Enter title!", Toast.LENGTH_SHORT).show();
+        } else {
+            Bundle bundle = new Bundle();
+            bundle.putString("value", "Successfully added");
+
+            String details = editTravelBookDetails.getText().toString();
+            TravelBook travelBook = new TravelBook(title, details, currentPhotoId);
+
+            if (isPhotoSet) {
+                travelBook.setPhotoImage(Trips_trip.getBitMapFromView(imgPhoto));
+            }
+
+            TravelBooksDB.getInstance().put(travelBook);
+
+            startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityTravelbooks_travelbook").putExtras(bundle));
+        }
     }
 
     //--------------------------------------------------------Open from Gallery
@@ -88,15 +113,18 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
             switch (RequestCodeFrame.values()[requestCode]) {
                 case DARK:{
                     chooseCover(findViewById(R.id.layoutFrameDark));
+                    currentPhotoId = R.drawable.travelbook_frame_black;
                     break;
                 }
                 case LIGHT : {
                     chooseCover(findViewById(R.id.layoutFrameLight));
+                    currentPhotoId = R.drawable.travelbook_frame_light;
                     break;
                 }
             }
             Drawable d = new BitmapDrawable(getResources(), selectedImage);
             imgPhoto.setImageDrawable(d);
+            isPhotoSet = true;
         }
     }
 
@@ -125,7 +153,31 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
+
+        String photo = (String)  view.getTag();
+        currentPhotoId = getPhotoIDbyName(photo);
+        isPhotoSet = false;
+
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
 
     }
+
+    public int getPhotoIDbyName(String name) {
+        int res = 0;
+        try {
+            res =  getResources().getIdentifier(name, "drawable",
+                    getPackageName() );
+
+            if (res == 0 )  {
+                res = getResources().getIdentifier(name, "mipmap",
+                        getPackageName() );
+            }
+
+        } catch(Exception e) {
+            Log.e("getIconIdByName", "Failed to find icon=" + name);
+        }
+        return res;
+    }
+
+
 }

@@ -5,29 +5,44 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import Trip_Items.TravelBooks.Post;
+import Trip_Items.TravelBooks.TravelBook;
+import Trip_Items.TravelBooks.TravelBooksDB;
+import Trip_Items.Trips_trip;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
-    int defaultColor = Color.WHITE;
+    int defaultColor;
+    int defaultColorText = Color.WHITE;
+    int defaultColorTextBg = Color.TRANSPARENT;
     ImageView imageButton = null;
     ImageView btnColorBg, btnColorText, btnColorTextBg;
     ImageView imgPhoto = null;
-    ImageView imgBgCustom, imgPhoto1, imgPhoto2, imgPhoto3, imgPhoto4;
+    ImageView imgBgCustom, imgPhoto1;
     TextView labelTextColor, labelTextBgColor;
+    ImageView saveBtn;
+    TravelBook travelBookCtx;
+    EditText mainTitle;
+    EditText textPhoto1;
+
+    int choosenBackGround;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.travelbooks_travelbook_add);
+        travelBookCtx = TravelBook.getCurrentTravelBook();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -39,6 +54,20 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
         btnColorTextBg = (ImageView) findViewById(R.id.btnColorTextBg);
         labelTextBgColor = (TextView) findViewById(R.id.labelTextBgColor);
         labelTextColor = (TextView) findViewById(R.id.labelTextColor);
+        saveBtn = (ImageView) findViewById(R.id.saveBtn);
+        mainTitle = (EditText) findViewById(R.id.mainTitle);
+        textPhoto1 = (EditText) findViewById(R.id.textPhoto1);
+
+        saveBtn.setOnClickListener( new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                travelBookCtx.add(assamblePost());
+                Bundle bundle = new Bundle();
+                bundle.putString("value", "Successfully added");
+                startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityTravelbooks_travelbook").putExtras(bundle));
+            }
+        });
+
 
         imgBgCustom = (ImageView) findViewById(R.id.imgPostBgCustom);
         imgPhoto1 = (ImageView) findViewById(R.id.imgPhoto1);
@@ -48,16 +77,40 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
 
     }
 
+    private Post assamblePost() {
+        Post post = new Post(
+                        mainTitle.getText().toString(),
+                        textPhoto1.getText().toString(),
+                        defaultColorText,
+                        defaultColorTextBg);
+        post.setMainImg(Trips_trip.getBitMapFromView(imgPhoto1));
+        setBgForPost(post);
+        return post;
+    }
+
     public void chooseBg(View view){
         View[] buttons = {
-//                findViewById(R.id.layoutBgChoose),
                 findViewById(R.id.layoutBgUpload),
                 findViewById(R.id.layoutBgColor)};
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
         view.setBackgroundColor(getResources().getColor(R.color.black_overlay));
+        choosenBackGround = view.getId();
     }
+
+   private void setBgForPost(Post post) {
+        switch(choosenBackGround) {
+            case R.id.layoutBgColor:
+                post.setColorImg(defaultColor);
+                break;
+
+            case R.id.layoutBgUpload:
+                post.setBackGroundImg(Trips_trip.getBitMapFromView(imgBgCustom));
+                break;
+        }
+
+   }
 
 //--------------------------------------------------------Open from Gallery
 //-----------------------------------------------------------------------------------------------
@@ -130,19 +183,21 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
 
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
-                defaultColor = Color.argb(150, Color.red(color), Color.green(color), Color.blue(color));
 
                 if (imageButton == btnColorBg) {
+                    defaultColor = Color.argb(150, Color.red(color), Color.green(color), Color.blue(color));
                     imageButton.setBackgroundColor(defaultColor);
                     chooseBg(findViewById(R.id.layoutBgColor));
                 }
                 if (imageButton == btnColorText) {
-                    labelTextColor.setTextColor(defaultColor);
-                    labelTextBgColor.setTextColor(defaultColor);
+                    defaultColorText = Color.argb(150, Color.red(color), Color.green(color), Color.blue(color));
+                    labelTextColor.setTextColor(defaultColorText);
+                    labelTextBgColor.setTextColor(defaultColorText);
                 }
                 if (imageButton == btnColorTextBg) {
-                    labelTextColor.setBackgroundColor(defaultColor);
-                    labelTextBgColor.setBackgroundColor(defaultColor);
+                    defaultColorTextBg = Color.argb(150, Color.red(color), Color.green(color), Color.blue(color));
+                    labelTextColor.setBackgroundColor(defaultColorTextBg);
+                    labelTextBgColor.setBackgroundColor(defaultColorTextBg);
                 }
             }
         });

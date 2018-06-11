@@ -219,15 +219,15 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/editText6"
+                        android:id="@+id/mainTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:fontFamily="casual"
                         android:hint="@string/main_title"
                         android:inputType="text"
-                        android:nextFocusLeft="@id/editText6"
-                        android:nextFocusUp="@id/editText6"
+                        android:nextFocusLeft="@id/mainTitle"
+                        android:nextFocusUp="@id/mainTitle"
                         android:shadowColor="@color/transparentWhite"
                         android:textColor="@color/transparentWhite"
                         android:textColorHighlight="@color/transparentWhite"
@@ -256,7 +256,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/editText7"
+                        android:id="@+id/textPhoto1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -356,7 +356,7 @@
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:id="@+id/imageButton15"
+                        android:id="@+id/saveBtn"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@color/transparentLightDark"

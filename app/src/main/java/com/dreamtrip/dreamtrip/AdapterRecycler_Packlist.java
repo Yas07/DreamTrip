@@ -46,8 +46,6 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
             "Selfi stick"};
 
     private String packlistTitle = "Title";
-    private boolean isEditOpen = false;
-    private Packlist currentPacklist;
     private Context context;
 
     public AdapterRecycler_Packlist(Context context){
@@ -64,7 +62,6 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
-        public int currentItem;
         public TextView textPacklist;
         public CheckBox itemCheckbox;
         public ImageButton checkboxDel;
@@ -208,50 +205,14 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
 
     @Override
     public void onBindViewHolder(AdapterRecycler_Packlist.ViewHolder viewHolder, int i) {
-
-//        resetAllItems(viewHolder);
-
         if (i == 0) {
             setTitle(viewHolder);
             return;
         }
 
         addItem(viewHolder, i);
-
-
-
-//        if (i == 0){           // if this is first card
-//            viewHolder.textPacklist.setText(packlistTitle);      // set packlist title
-//            viewHolder.textPacklist.setVisibility(View.VISIBLE); // display packlist title
-//        } else {              //if this is not first card
-//            if (!groupsTitles[i].equals(groupsTitles[i-1])) {     // if we have unique (new) group
-////                viewHolder.textGroup.setText(groupsTitles[i]);   // set group title
-//            } else {                                                 // if we have the same group
-//                viewHolder.layoutGroup.setVisibility(View.GONE); // hide group layout
-//            }
-//
-//            if (isEditOpen) {
-//                if (i == currentPackList.size() - 1) {                          // if this is the last element
-//                    viewHolder.layoutItemAdd.setVisibility(View.VISIBLE);  // show layout to add item
-//                    viewHolder.layoutGroupAdd.setVisibility(View.VISIBLE); // show layout to add group
-//                } else {
-//                    if (!groupsTitles[i].equals(groupsTitles[i + 1])) {         // if this is the last element in this group
-//                        viewHolder.layoutItemAdd.setVisibility(View.VISIBLE); // show layout to add item
-//                    }
-//                }
-//            }
-//        }
-
-//        viewHolder.itemCheckbox.setText(itemTitles[i]); // anyway set checkbox (stuff) item
     }
 
-//            viewHolder.checkboxDel.setVisibility(View.GONE);
-//            viewHolder.groupBtnDel.setVisibility(View.GONE);
-//            viewHolder.groupBtnEdit.setVisibility(View.GONE);
-//            viewHolder.textGroup.setFocusable(false);
-//            viewHolder.textGroup.setFocusableInTouchMode(false);
-//            viewHolder.textGroup.setClickable(false);
-//            viewHolder.textGroup.setBackgroundColor(Color.TRANSPARENT);
 
     private void addItem(AdapterRecycler_Packlist.ViewHolder viewHolder, int i) {
 
@@ -272,37 +233,6 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
         viewHolder.itemCheckbox.setChecked(stuff.isChecked());
     }
 
-//    private packItemType chooseItem(int index) {
-//        Stuff stuff = currentPackList.get(index);
-//
-//    }
-
-//    private void setEditMode(AdapterRecycler_Packlist.ViewHolder viewHolder, int i) {
-//        viewHolder.checkboxDel.setVisibility(View.VISIBLE);
-//        viewHolder.groupBtnDel.setVisibility(View.VISIBLE);
-//        viewHolder.groupBtnEdit.setVisibility(View.VISIBLE);
-//        viewHolder.layoutItemAdd.setVisibility(View.VISIBLE);
-//        viewHolder.textGroup.setFocusable(true);
-//        viewHolder.textGroup.setFocusableInTouchMode(true);
-//        viewHolder.textGroup.setClickable(true);
-//        int itemIndex = i - 1;
-//        if (itemIndex < 0) {
-//            return;
-//        }
-//    }
-
-    private void resetAllItems(AdapterRecycler_Packlist.ViewHolder viewHolder) {
-        viewHolder.textPacklist.setVisibility(View.GONE);
-//
-        viewHolder.itemCheckbox.setVisibility(View.GONE);
-        viewHolder.itemCheckbox.setClickable(false);
-        viewHolder.layoutItemAdd.setVisibility(View.GONE);
-        viewHolder.itemCheckbox.setVisibility(View.GONE);
-        viewHolder.itemCheckbox.setClickable(false);
-        viewHolder.checkboxDel.setVisibility(View.GONE);
-        viewHolder.checkboxEdit.setVisibility(View.GONE);
-
-    }
 
     private void setTitle(AdapterRecycler_Packlist.ViewHolder viewHolder)  {
         viewHolder.itemCheckbox.setVisibility(View.GONE);
@@ -311,9 +241,6 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
         viewHolder.checkboxEdit.setVisibility(View.GONE);
         viewHolder.textPacklist.setText(packlistTitle);      // set packlist title
         viewHolder.textPacklist.setVisibility(View.VISIBLE); // display packlist title
-
-//        viewHolder.groupBtnDel.setVisibility(View.GONE);
-//        viewHolder.groupBtnEdit.setVisibility(View.GONE);
     }
 
     @Override
