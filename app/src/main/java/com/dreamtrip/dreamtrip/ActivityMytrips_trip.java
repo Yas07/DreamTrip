@@ -24,13 +24,14 @@ import android.widget.Toast;
 import java.util.Date;
 
 import Trip_DBs.Trips_BD;
+import Trip_Items.IDelEdit;
 import Trip_Items.Trips_trip;
 import layout.Fragment_packlist;
 import layout.Fragment_plan;
 import layout.Fragment_travelbook;
 import Trip_DBs.DB_Item;
 
-public class ActivityMytrips_trip extends AppCompatActivity {
+public class ActivityMytrips_trip extends AppCompatActivity{
 
     private Trips_trip tripCtx;
 
@@ -154,8 +155,4 @@ public class ActivityMytrips_trip extends AppCompatActivity {
         ft.commit();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }

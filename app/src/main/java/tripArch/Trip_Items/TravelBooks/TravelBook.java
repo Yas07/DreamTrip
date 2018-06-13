@@ -51,6 +51,14 @@ public class TravelBook extends LinkedList<Post> implements Comparable, IDB {
         this._photoImage = Trips_trip.compressImage(_photoImage);
     }
 
+    public void setName(String _name) {
+        this._name = _name;
+    }
+
+    public void setDetails(String _details) {
+        this._details = _details;
+    }
+
     public Post find(String stuffName) {
         for (Post s: this) {
             if (s.getName().equals(stuffName)) {

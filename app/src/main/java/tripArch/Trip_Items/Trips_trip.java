@@ -27,6 +27,8 @@ public class Trips_trip extends DB_Item implements Comparable {
 
     private Date            startDate;
     private Date            endDate;
+    private String            startDateStr;
+    private String            endDateStr;
     // TODO: use something another instead of ImageView
     private Bitmap          headerImage;
     private Bitmap          mainImage;
@@ -37,29 +39,16 @@ public class Trips_trip extends DB_Item implements Comparable {
     private TravelBook travelbook;
     private Packlist        packList;
 
-    // TODO: this constuctor is needed only for testing, remove in production.
-    // Do not use in non-testing use cases!!
-    public Trips_trip(String name, Date startDate, Date endDate, int textColor) {
+//    public Trips_trip(String name, Date startDate, Date endDate, int textColor) {
+//    }
+
+    public Trips_trip() {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
         this.textColor = textColor;
-        this.travelbook     = new TravelBook(name, startEndDateToStr());
-        TravelBooksDB.getInstance().put(travelbook);
+        this.travelbook =  null;
     }
-
-//    public Trips_trip(String name, Date startDate, Date endDate,
-//                      ImageView headerImage, ImageView mainImage,
-//                      int textColor) {
-//        this.name           = name;
-//        this.startDate      = startDate;
-//        this.endDate        = endDate;
-//         this.headerImage    = headerImage;
-//        this.mainImage      = mainImage;
-//        this.textColor      = textColor;
-//        this.travelbook     = new TravelBook(name, startEndDateToStr());
-//        TravelBooksDB.getInstance().put(travelbook);
-//    }
 
     public static Trips_trip getCurrentTrip() {
         return currentTrip;
@@ -77,6 +66,17 @@ public class Trips_trip extends DB_Item implements Comparable {
         return travelbook;
     }
 
+    public void setOrUpdateTravelBook(String name, String startDateStr, Bitmap image) {
+        if (travelbook == null) {
+            travelbook = new TravelBook(name, startDateStr);
+        } else {
+            travelbook.setName(name);
+            travelbook.setDetails(startDateStr);
+        }
+        travelbook.setPhotoImage(image);
+        TravelBooksDB.getInstance().put(travelbook);
+    }
+
     public void setPacklist(Packlist pack) {
         Packlist.setCurrentPacklist(pack);
         packList = pack;
@@ -91,6 +91,14 @@ public class Trips_trip extends DB_Item implements Comparable {
         travelbook.setPhotoImage(mainImage);
     }
 
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
     public static Bitmap compressImage(Bitmap bitmapImage){
         int nh = (int) ( bitmapImage.getHeight() * (512.0 / bitmapImage.getWidth()) );
         return Bitmap.createScaledBitmap(bitmapImage, 512, nh, true);
@@ -100,6 +108,26 @@ public class Trips_trip extends DB_Item implements Comparable {
     public static Bitmap getBitMapFromView(View v) {
         v.buildDrawingCache();
         return v.getDrawingCache();
+    }
+
+    public void setTextColor(int textColor) {
+        this.textColor = textColor;
+    }
+
+    public Packlist getPackList() {
+        return packList;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
+    public void setTravelbook(TravelBook travelbook) {
+        this.travelbook = travelbook;
+    }
+
+    public void setPackList(Packlist packList) {
+        this.packList = packList;
     }
 
     public Bitmap getHeaderImage() {
@@ -127,7 +155,11 @@ public class Trips_trip extends DB_Item implements Comparable {
     }
 
     public String getName() {
-        return name;
+        return getItemName();
+    }
+
+    public void setName(String name) {
+        setItemName(name);
     }
 
     public int getTextColor() {
@@ -161,6 +193,25 @@ public class Trips_trip extends DB_Item implements Comparable {
     @Override
     public int compareTo(Object o) {
         return name.compareTo(((Trips_trip)o).getName());
+    }
+
+
+    public void setStartDateStr(String startDateStr) {
+        startDate = new Date(startDateStr);
+        this.startDateStr = startDateStr;
+    }
+
+    public void setEndDateStr(String endDateStr) {
+        endDate = new Date(endDateStr);
+        this.endDateStr = endDateStr;
+    }
+
+    public String getStartDateStr() {
+        return startDateStr;
+    }
+
+    public String getEndDateStr() {
+        return endDateStr;
     }
 
     @Override

@@ -50,7 +50,7 @@ enum enum_EditDateID {
     START_DATE,
     END_DATE,
 }
-public class ActivityMytrips_add extends AppCompatActivity {
+public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
     Button btnSave;
     ImageView imgPhoto, btnTripHeader, btnTripPhoto;
     boolean isTripHeaderSet = false, isTripMainSet = false;
@@ -65,6 +65,7 @@ public class ActivityMytrips_add extends AppCompatActivity {
     int year_start, month_start, day_start;
     int year_end, month_end, day_end;
     int defaultColor;
+    boolean isEditMode = false;
 
     Spinner spinner;
     String packlist = "";
@@ -97,38 +98,16 @@ public class ActivityMytrips_add extends AppCompatActivity {
                     return;
                 }
 
-                String eDate = editEndDate.getText().toString();
-                String sDate = editStartDate.getText().toString();
+                Trips_trip trip  = isEditMode ? Trips_trip.getCurrentTrip() : new Trips_trip();
 
-                // getColor
-                int color = Color.WHITE;
-                Drawable background = btnColorPicker.getBackground();
-                if (background instanceof ColorDrawable) {
-                    color = ((ColorDrawable) background).getColor();
+                Trips_trip.setCurrentTrip(trip);
+
+                setFieldItem();
+
+                if (!isEditMode) {
+                    Trips_BD.getInstance().add(trip);
                 }
 
-                Trips_trip trip  = new Trips_trip(editTripTitle.getText().toString(),
-                        new Date(sDate),
-                        new Date(eDate),
-                        color
-                        );
-
-                Packlist pack = PacklistsDB.getInstance().get(packlist);
-                if (pack != null) {
-                    trip.setPacklist(new Packlist(pack));
-                } else {
-                    Log.e("Create trip", "Null pack, what a pity");
-                }
-
-                if (isTripHeaderSet) {
-                    trip.setHeaderImage(Trips_trip.getBitMapFromView(btnTripHeader));
-                }
-
-                if (isTripMainSet) {
-                    trip.setMainImage(Trips_trip.getBitMapFromView(btnTripPhoto));
-                }
-
-                Trips_BD.getInstance().add(trip);
                 Toast.makeText(ActivityMytrips_add.this, "New trip was added successfully", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip").putExtras(trip.getBundle()));
 
@@ -163,8 +142,9 @@ public class ActivityMytrips_add extends AppCompatActivity {
 
         // Spinner
         // TODO: after packlists are implemented
+        String[] strKeys = PacklistsDB.getInstance().getStrKeys();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-            this, R.layout.spin_item, PacklistsDB.getInstance().getStrKeys());
+            this, R.layout.spin_item, strKeys);
 
         adapter.setDropDownViewResource(R.layout.spin_item);
         spinner = (Spinner) findViewById(R.id.tripSpinnerPacklists);
@@ -181,6 +161,24 @@ public class ActivityMytrips_add extends AppCompatActivity {
 
             }
         });
+
+        if (isEditMode) {
+            // set selection for spinner
+            Trips_trip trip = Trips_trip.getCurrentTrip();
+            if (trip != null) {
+                int index = -1;
+                for (int i = 0 ; i < strKeys.length ; i++ ) {
+                    if (strKeys[i].equals(trip.getName())) {
+                        index = i;
+                    }
+                }
+
+                if (index >= 0) {
+                    spinner.setSelection(index);
+                }
+            }
+            getFieldItem();
+        }
 
 
     }
@@ -328,6 +326,98 @@ public class ActivityMytrips_add extends AppCompatActivity {
             }
         });
         colorPicker.show();
+    }
+
+    @Override
+    public void editItem() {
+
+    }
+
+    @Override
+    public void deleteItem() {
+
+    }
+
+    @Override
+    public void setFieldItem() {
+
+        Trips_trip trip = Trips_trip.getCurrentTrip();
+
+        if (trip == null) {
+            Log.e("setFieldItem", "null trip");
+            return;
+        }
+
+        String sDate = editStartDate.getText().toString();
+        String eDate = editEndDate.getText().toString();
+
+        trip.setStartDate(new Date(sDate));
+        trip.setEndDate(new Date(eDate));
+
+        trip.setName(editTripTitle.getText().toString());
+
+        // getColor
+        int color = Color.WHITE;
+        Drawable background = btnColorPicker.getBackground();
+        if (background instanceof ColorDrawable) {
+            color = ((ColorDrawable) background).getColor();
+        }
+
+        trip.setTextColor(color);
+
+        Packlist pack = PacklistsDB.getInstance().get(packlist);
+        if (pack != null) {
+            trip.setPacklist(new Packlist(pack));
+        } else {
+            Log.e("Create trip", "Null pack, what a pity");
+        }
+
+        if (isTripHeaderSet) {
+            trip.setHeaderImage(Trips_trip.getBitMapFromView(btnTripHeader));
+        }
+
+        if (isTripMainSet) {
+            trip.setMainImage(Trips_trip.getBitMapFromView(btnTripPhoto));
+        }
+
+        trip.setOrUpdateTravelBook(trip.getName(), trip.getStartDateStr(), trip.getMainImage());
+    }
+
+    @Override
+    public void getFieldItem() {
+        Trips_trip trip = Trips_trip.getCurrentTrip();
+
+        if (trip == null) {
+            Log.e("getFieldItem", "null trip");
+            return;
+        }
+
+        editStartDate.setText(trip.getStartDateStr());
+        editEndDate.setText(trip.getEndDateStr());
+
+
+        editTripTitle.setText(trip.getName());
+
+        btnColorPicker.setBackgroundColor(trip.getTextColor());
+
+        if (trip.getHeaderImage() != null) {
+            btnTripHeader.setImageBitmap(trip.getHeaderImage());
+        }
+
+        if (trip.getMainImage() != null) {
+            btnTripPhoto.setImageBitmap(trip.getMainImage());
+        }
+
+    }
+
+    @Override
+    public void startItem() {
+
+    }
+
+    @Override
+    public void saveItem() {
+
     }
 
 }
