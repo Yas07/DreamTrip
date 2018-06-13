@@ -39,7 +39,7 @@ public class Fragment_packlist extends Fragment implements View.OnClickListener{
         recyclerView = (RecyclerView) myLayout.findViewById(R.id.recycler_view_packlist);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new AdapterRecycler_Packlist(getActivity()); //edit is not opened yet
+        adapter = new AdapterRecycler_Packlist(getActivity());
         recyclerView.setAdapter(adapter);
 
         fab_packlist_add_stuff = (FloatingActionButton) myLayout.findViewById(R.id.fab_packlist_add_stuff);

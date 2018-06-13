@@ -96,6 +96,7 @@ public class ActivityMytrips_trip extends AppCompatActivity {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 Toast.makeText(ActivityMytrips_trip.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
+                                //TODO: delete trip and show message
                                 //Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_");
                                 //startActivity(intent);
                                 //startActivity(new Intent(getBaseContext(),ActivityMytrips_.class).putExtra("value", "Successfully deleted"));
@@ -124,6 +125,7 @@ public class ActivityMytrips_trip extends AppCompatActivity {
             case R.id.btnPacklist1: {
                 if (tripCtx.getPacklist() == null) {
                     Log.e("Changetab","There is no packlist available");
+
                     return;
                 }
                 fragment = new Fragment_packlist(); break;}

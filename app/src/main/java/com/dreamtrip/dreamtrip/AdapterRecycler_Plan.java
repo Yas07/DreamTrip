@@ -1,5 +1,8 @@
 package com.dreamtrip.dreamtrip;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -24,70 +27,11 @@ import Trip_Items.Trips_trip;
 public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_Plan.ViewHolder> {
 
     private ArrayList<PlanPoint> planPoints;
+    private Context context;
 
-    private String[] titles = {"Chapter One",
-            "Chapter Two",
-            "Chapter Three",
-            "Chapter Four",
-            "Chapter Five",
-            "Chapter Six",
-            "Chapter Seven",
-            "Chapter Eight"};
-
-    private String[] weekdays = {"Monday",
-            "Monday",
-            "Monday",
-            "Monday",
-            "Tuesday",
-            "Tuesday",
-            "Tuesday",
-            "Wednesday"};
-
-    private String[] dates = {"01.01.2018",
-            "01.01.2018",
-            "01.01.2018",
-            "01.01.2018",
-            "02.01.2018",
-            "02.01.2018",
-            "02.01.2018",
-            "03.01.2018"};
-
-    private String[] time = {"12:00",
-            "13:00",
-            "14:00",
-            "15:00",
-            "16:00",
-            "17:00",
-            "18:00",
-            "19:00"};
-    private String[] details = {"Item one details",
-            "Item two details", "Item three details",
-            "Item four details", "Item file details",
-            "Item six details", "Item seven details",
-            "Item eight details"};
-
-    private int[] images = { R.drawable.icontransport_tram_black_24px,
-            R.drawable.iconeat_bakery,
-            R.drawable.iconextreme_archery,
-            R.drawable.iconwinter_man_skiing,
-            R.drawable.iconeat_pizza_black_24px,
-            R.drawable.iconsummer_beach_black_24px,
-            R.drawable.iconoutside_amusement_park,
-            R.drawable.icontour_nefertiti };
-
-    private int[] backgrounds = { R.drawable.note_violet_mdpi,
-            R.drawable.note_yellow_mdpi,
-            R.drawable.note_green_mdpi,
-            R.drawable.note_blue_mdpi,
-            R.drawable.note_yellow_mdpi,
-            R.drawable.note_yellow_mdpi,
-            R.drawable.note_green_mdpi,
-            R.drawable.note_pink_mdpi
-    };
-
-    public AdapterRecycler_Plan() {
+    public AdapterRecycler_Plan(Context context) {
        super();
-
+        this.context = context;
         Trips_trip tripCtx = Trips_trip.getCurrentTrip();
         planPoints = null;
         if (tripCtx == null) {
@@ -136,12 +80,7 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
-                    int position = getAdapterPosition();
-
-                    Snackbar.make(v, "Click detected on item " + position,
-                            Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-
+                            onPlanPoint(v, getAdapterPosition());
                 }
             });
         }
@@ -166,14 +105,14 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
         viewHolder.itemTitle.setText(planPoint.getTitle());
         viewHolder.itemTime.setText(planPoint.getTime());
 
-        String itemDetails = planPoint.getPlace().getPlaceData() + "\n" +  planPoint.getOtherDetails();
+        String itemDetails = planPoint.getPlace().getPlaceData() +  planPoint.getOtherDetails();
         viewHolder.itemDetail.setText(itemDetails);
 
         if (planPoint.getIconIndex() != 0 && planPoint.getColorIndex() != 0) {
             viewHolder.itemImage.setImageResource(planPoint.getIconIndex());
             viewHolder.layoutNote.setBackgroundResource(planPoint.getColorIndex());
         } else {
-            Log.e("onBindVeiw", "invlalid indexes");
+            Log.e("onBindView", "invalid indexes");
         }
 
         if (i == 0){
@@ -201,5 +140,34 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
             return planPoints.size();
         }
 
+    }
+
+    public void onPlanPoint (final View v, final int index) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Delete plan point");
+        builder.setMessage("Do you want to delete this plan point?");
+        builder.setPositiveButton("YES",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                //TODO: delete plan point
+
+//                Stuff stuff = currentPackList.get(index - 1);
+//                if (stuff == null) {
+//                    Log.e("onCheckBoxEdit", "Invalid index");
+//                    return;
+//                }
+//                currentPackList.remove(stuff);
+//                notifyItemRemoved(index);
+//                notifyItemRangeChanged(index, currentPackList.size() + 2);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 }

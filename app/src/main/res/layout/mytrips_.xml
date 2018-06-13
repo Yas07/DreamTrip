@@ -76,6 +76,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="@android:color/holo_blue_light"
-        app:elevation="10dp"
+        app:elevation="13dp"
         app:srcCompat="@mipmap/ic_flight_white_24dp" />
 </android.support.design.widget.CoordinatorLayout>

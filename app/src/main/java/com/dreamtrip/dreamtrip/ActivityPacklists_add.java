@@ -56,10 +56,12 @@ public class ActivityPacklists_add extends AppCompatActivity {
 
         if(packName.equals("")){
             Toast.makeText(this, "ERROR - Enter title!", Toast.LENGTH_SHORT).show();
+//          TODO: check if photo was picked
+//        } else if (!isPhotoSet) {
+//            Toast.makeText(this, "ERROR - Choose cover image!", Toast.LENGTH_SHORT).show();
         } else {
             Bundle bundle = new Bundle();
             bundle.putString("value", "Successfully added");
-
 
             Packlist packlist = new Packlist(packName, packDetails, currentBagId);
 

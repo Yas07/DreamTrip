@@ -71,22 +71,24 @@
 
 
         </LinearLayout>
+
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="41dp"
             android:layout_gravity="bottom"
+            android:background="@color/black_overlay"
             android:foregroundGravity="bottom">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_gravity="bottom|center_horizontal"
                 android:background="@color/transparentWhite"
                 android:gravity="bottom">
 
                 <Button
                     android:id="@+id/btnPacklist1"
-                    android:layout_width="126dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/black_overlay"
                     android:gravity="center"
@@ -94,11 +96,12 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="@string/packing_list"
-                    android:textColor="@android:color/background_light" />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/btnPlan1"
-                    android:layout_width="106dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/transparentGrey"
                     android:gravity="center"
@@ -107,11 +110,12 @@
                     android:paddingRight="10dp"
                     android:text="@string/plan"
                     android:textColor="@android:color/background_light"
-                    android:textColorLink="@android:color/black" />
+                    android:textColorLink="@android:color/black"
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/btnTravelbook1"
-                    android:layout_width="128dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/black_overlay"
                     android:gravity="center"
@@ -119,7 +123,8 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="@string/travel_book"
-                    android:textColor="@android:color/background_light" />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="18sp" />
             </LinearLayout>
         </HorizontalScrollView>
         <fragment

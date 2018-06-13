@@ -27,29 +27,10 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
 
     Packlist currentPackList;
 
-    private String[] groupsTitles = {"Main",
-            "Main",
-            "Main",
-            "Clothes",
-            "Clothes",
-            "Clothes",
-            "Other",
-            "Other"};
-
-    private String[] itemTitles = {"Phone",
-            "Passport",
-            "Tickets",
-            "Dress",
-            "Skirts",
-            "Shirts",
-            "Phone charger",
-            "Selfi stick"};
-
     private String packlistTitle = "Title";
     private Context context;
 
     public AdapterRecycler_Packlist(Context context){
-        //this.isEditOpen = isEditOpen;
         this.context = context;
         currentPackList = Packlist.getCurrentPacklist();
         if (currentPackList == null) {
@@ -67,8 +48,6 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
         public ImageButton checkboxDel;
         public ImageButton checkboxEdit;
         public LinearLayout layoutItemAdd;
-
-
 
 
         public ViewHolder(View itemView) {

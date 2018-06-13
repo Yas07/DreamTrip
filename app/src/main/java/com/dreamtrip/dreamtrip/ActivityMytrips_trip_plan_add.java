@@ -20,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
@@ -91,7 +92,6 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
                 saveTimePoint(view);
-                startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip").putExtras(tripCtx.getBundle()));
             }
         });
 
@@ -244,7 +244,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
 
     // TODO: remove all changeIcon functions and make one small
 
-    // TODO: this functions needs farther development if used more then one icon
+    // TODO: this functions need farther development if used more than one icon
     public void changeIconHotel(View view) {
         String iconName = (String)  view.getTag();
         int resId = getIconIDbyName(iconName);
@@ -539,21 +539,33 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
 
     private Place getPlace() {
 
-        return new Place( getCalendarFromEdit(ppOpenAt),
+        return new Place(getCalendarFromEdit(ppOpenAt),
                                 getCalendarFromEdit(ppCloseAt),
                                 ppAddress.getText().toString()
-                );
+        );
     }
 
     public void saveTimePoint(View view) {
-        PlanPoint planPoint = new PlanPoint(ppTitle.getText().toString(),
+        if (ppTitle.getText().toString().equals("")){
+            Toast.makeText(this, "Enter a title!", Toast.LENGTH_LONG).show();
+        } else if (getCurrentIcon() == 0){
+            Toast.makeText(this, "Choose icon on second line!", Toast.LENGTH_LONG).show();
+        } else if (getTimeDateCalFromEdit(ppDateTime) == null){
+            //TODO: check if date and time was picked
+            Toast.makeText(this, "Choose date and time of visiting!", Toast.LENGTH_LONG).show();
+        }
+        else {
+            PlanPoint planPoint = new PlanPoint(ppTitle.getText().toString(),
                                             fragmentToColor(currentFragment),
                                             getCurrentIcon(),
                                             getPlace(),
                                             getTimeDateCalFromEdit(ppDateTime),
                                             ppOtherDetails.getText().toString()
-        );
-        tripCtx.getPlan().add(planPoint);
+            );
+            tripCtx.getPlan().add(planPoint);
+            Toast.makeText(this, "Plan point was added successfully!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip").putExtras(tripCtx.getBundle()));
+        }
     }
 
 

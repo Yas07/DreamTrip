@@ -53,6 +53,7 @@ public class AdapterSwipe extends PagerAdapter {
         layoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View item_view = layoutInflater.inflate(R.layout.travelbooks_travelbook_swipe, container, false);
         ImageView imageView = (ImageView) item_view.findViewById(R.id.photo1);
+        ImageView imageBG = (ImageView) item_view.findViewById(R.id.bg);
         TextView textView = (TextView) item_view.findViewById(R.id.text1);
         TextView caption = (TextView) item_view.findViewById(R.id.caption);
 
@@ -66,9 +67,9 @@ public class AdapterSwipe extends PagerAdapter {
 
         Bitmap bit = post.getBackGroundImg();
         if (bit != null) {
-            imageView.setBackground(new BitmapDrawable(container.getResources(), bit));
+            imageBG.setBackground(new BitmapDrawable(container.getResources(), bit));
         } else if  (post.getColorImg() != 0){
-            imageView.setBackgroundColor(post.getColorImg());
+            imageBG.setBackgroundColor(post.getColorImg());
         }
 
         bit = post.getMainImg();

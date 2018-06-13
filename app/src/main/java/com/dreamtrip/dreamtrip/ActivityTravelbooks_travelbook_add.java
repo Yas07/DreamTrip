@@ -123,6 +123,7 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
                 number = 0;
                 break;
             case R.id.imgPhoto1:
+                imgPhoto1.setBackground(null);
                 imgPhoto = imgPhoto1;
                 number = 1;
                 break;

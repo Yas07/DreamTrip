@@ -60,7 +60,12 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         String title = editTravelbookTitle.getText().toString();
         if(title.equals("")){
             Toast.makeText(ActivityTravelbooks_add.this, "ERROR - Enter title!", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+//        TODO: check if photo was picked
+//        else if (!isPhotoSet) {
+//            Toast.makeText(ActivityTravelbooks_add.this, "ERROR - Choose cover picture!", Toast.LENGTH_SHORT).show();
+//        }
+        else {
             Bundle bundle = new Bundle();
             bundle.putString("value", "Successfully added");
 

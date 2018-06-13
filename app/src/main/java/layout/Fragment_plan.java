@@ -36,7 +36,7 @@ public class Fragment_plan extends Fragment  implements View.OnClickListener{
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new AdapterRecycler_Plan();
+        adapter = new AdapterRecycler_Plan(getActivity());
         recyclerView.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) myLayout.findViewById(R.id.fab_mytrips_plan);

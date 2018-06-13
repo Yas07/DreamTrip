@@ -88,6 +88,14 @@ public class ActivityMytrips_add extends AppCompatActivity {
                     Toast.makeText(ActivityMytrips_add.this, "ERROR - End date should be bigger!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (!isTripMainSet) {
+                    Toast.makeText(ActivityMytrips_add.this, "ERROR - No main image was set!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!isTripHeaderSet) {
+                    Toast.makeText(ActivityMytrips_add.this, "ERROR - No header image was set!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 String eDate = editEndDate.getText().toString();
                 String sDate = editStartDate.getText().toString();
@@ -121,7 +129,7 @@ public class ActivityMytrips_add extends AppCompatActivity {
                 }
 
                 Trips_BD.getInstance().add(trip);
-
+                Toast.makeText(ActivityMytrips_add.this, "New trip was added successfully", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip").putExtras(trip.getBundle()));
 
             }
