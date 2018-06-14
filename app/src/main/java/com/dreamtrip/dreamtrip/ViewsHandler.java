@@ -28,8 +28,7 @@ public class ViewsHandler {
         String filePath = cursor.getString(columnIndex);
         cursor.close();
 
-        Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
-        return selectedImage;
+        return BitmapFactory.decodeFile(filePath);
     }
 
     public Bitmap resizeImage(Bitmap image, int minWidth, int minHeight){
@@ -40,8 +39,7 @@ public class ViewsHandler {
         int percOfResize = (percHeight < percWidth)? percHeight : percWidth;
         int newWidth = (oldWidth * percOfResize) / 100;
         int newHeight = (oldHeight * percOfResize) / 100;
-        Bitmap bitmapScaled = Bitmap.createScaledBitmap(image, newWidth, newHeight, true);
-        return bitmapScaled;
+        return Bitmap.createScaledBitmap(image, newWidth, newHeight, true);
     }
 
 

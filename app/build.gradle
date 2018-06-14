@@ -30,6 +30,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+//    implementation 'com.squareup.picasso:picasso:2.71828'
     compile files('libs/svg-android-2.0.5.jar')
     compile files('libs/fold.jar')
     compile 'com.android.support:appcompat-v7:25.3.1'

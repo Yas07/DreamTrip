@@ -14,6 +14,7 @@ public class Trips_BD extends DB<Date, Trips_trip> {
     // fields
     private static Trips_BD _instance;
     public static final String bundleValue = "titleAndDates";
+    public static final String editBundleValue = "isEditMode";
 
     protected Trips_BD(Comparator comparator ){
         super(comparator);

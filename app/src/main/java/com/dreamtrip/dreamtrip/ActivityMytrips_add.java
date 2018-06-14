@@ -76,6 +76,9 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mytrips_add);
 
+        Bundle bundle = getIntent().getExtras();
+        isEditMode = bundle != null && bundle.getBoolean(Trips_BD.editBundleValue);
+
         editTripTitle = (EditText) findViewById(R.id.editTripTitle);
         btnSave = (Button) findViewById(R.id.btn_save);
         btnSave.setOnClickListener(new View.OnClickListener(){
@@ -83,6 +86,10 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
             public void onClick(View v){
                 if(editTripTitle.getText().toString().equals("")){
                     Toast.makeText(ActivityMytrips_add.this, "ERROR - Enter title!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(editStartDate.getText().toString().isEmpty() || editEndDate.getText().toString().isEmpty()) {
+                    Toast.makeText(ActivityMytrips_add.this, "ERROR - You should input the dates!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(new Date(editStartDate.getText().toString()).after(new Date(editEndDate.getText().toString()))) {
@@ -305,8 +312,10 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
                     break;
                 }
             }
-            Drawable d = new BitmapDrawable(getResources(), selectedImage);
-            imgPhoto.setImageDrawable(d);
+            if (isTripMainSet || isTripHeaderSet) {
+                Drawable d = new BitmapDrawable(getResources(), selectedImage);
+                imgPhoto.setImageDrawable(d);
+            }
         }
     }
 
@@ -351,8 +360,8 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
         String sDate = editStartDate.getText().toString();
         String eDate = editEndDate.getText().toString();
 
-        trip.setStartDate(new Date(sDate));
-        trip.setEndDate(new Date(eDate));
+        trip.setStartDateStr(sDate);
+        trip.setEndDateStr(eDate);
 
         trip.setName(editTripTitle.getText().toString());
 

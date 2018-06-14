@@ -88,7 +88,6 @@ public class Trips_trip extends DB_Item implements Comparable {
 
     public void setMainImage(Bitmap mainImage) {
         this.mainImage = compressImage(mainImage);
-        travelbook.setPhotoImage(mainImage);
     }
 
     public void setStartDate(Date startDate) {
@@ -176,6 +175,12 @@ public class Trips_trip extends DB_Item implements Comparable {
     public Bundle getBundle() {
         Bundle bundle = new Bundle();
         bundle.putStringArray(Trips_BD.bundleValue, new String[] {getName(), getStartDate().toString()});
+        return bundle;
+    }
+
+    static public Bundle getEditBundle() {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(Trips_BD.editBundleValue, true);
         return bundle;
     }
 
