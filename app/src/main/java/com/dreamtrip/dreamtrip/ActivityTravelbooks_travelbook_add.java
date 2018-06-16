@@ -1,11 +1,8 @@
 package com.dreamtrip.dreamtrip;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,11 +13,17 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import Trip_Items.TravelBooks.Post;
 import Trip_Items.TravelBooks.TravelBook;
-import Trip_Items.TravelBooks.TravelBooksDB;
-import Trip_Items.Trips_trip;
 import yuku.ambilwarna.AmbilWarnaDialog;
+
+enum requestCodePhoto {
+    NONE,
+    MAIN,
+    BACKGROUND,
+}
 
 public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
     int defaultColor;
@@ -28,8 +31,9 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
     int defaultColorTextBg = Color.TRANSPARENT;
     ImageView imageButton = null;
     ImageView btnColorBg, btnColorText, btnColorTextBg;
-    ImageView imgPhoto = null;
     ImageView imgBgCustom, imgPhoto1;
+    Uri imgBgCustomUri, imgPhoto1Uri;
+
     TextView labelTextColor, labelTextBgColor;
     ImageView saveBtn;
     TravelBook travelBookCtx;
@@ -37,6 +41,7 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
     EditText textPhoto1;
 
     int choosenBackGround;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +76,6 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
 
         imgBgCustom = (ImageView) findViewById(R.id.imgPostBgCustom);
         imgPhoto1 = (ImageView) findViewById(R.id.imgPhoto1);
-//        imgPhoto2 = (ImageView) findViewById(R.id.imgPhoto2);
-//        imgPhoto3 = (ImageView) findViewById(R.id.imgPhoto3);
-//        imgPhoto4 = (ImageView) findViewById(R.id.imgPhoto4);
 
     }
 
@@ -83,12 +85,12 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
                         textPhoto1.getText().toString(),
                         defaultColorText,
                         defaultColorTextBg);
-        post.setMainImg(Trips_trip.getBitMapFromView(imgPhoto1));
+        post.setMainImgUri(imgPhoto1Uri);
         setBgForPost(post);
         return post;
     }
 
-    public void chooseBg(View view){
+    public void chooseBgAndHighlight(View view){
         View[] buttons = {
                 findViewById(R.id.layoutBgUpload),
                 findViewById(R.id.layoutBgColor)};
@@ -106,7 +108,7 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
                 break;
 
             case R.id.layoutBgUpload:
-                post.setBackGroundImg(Trips_trip.getBitMapFromView(imgBgCustom));
+                post.setBackGroundImgUri(imgBgCustomUri);
                 break;
         }
 
@@ -116,48 +118,37 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
 //-----------------------------------------------------------------------------------------------
 
     public void openGallery(View view){
-        int number = 5;
+        requestCodePhoto codePhoto =  requestCodePhoto.NONE;
         switch (view.getId()){
             case R.id.imgPostBgCustom:
-                imgPhoto = imgBgCustom;
-                number = 0;
+                codePhoto = requestCodePhoto.BACKGROUND;
                 break;
             case R.id.imgPhoto1:
+                codePhoto = requestCodePhoto.MAIN;
                 imgPhoto1.setBackground(null);
-                imgPhoto = imgPhoto1;
-                number = 1;
                 break;
-//            case R.id.imgPhoto2:
-//                imgPhoto = imgPhoto2;
-//                number = 2;
-//                break;
-//            case R.id.imgPhoto3:
-//                imgPhoto = imgPhoto3;
-//                number = 3;
-//                break;
-//            case R.id.imgPhoto4:
-//                imgPhoto = imgPhoto4;
-//                number = 4;
-//                break;
+
         }
         Intent GalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(GalleryIntent, number);
+        startActivityForResult(GalleryIntent, codePhoto.ordinal());
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            Bitmap selectedImage = ViewsHandler.getInstance().setImageFromGallery(data, ActivityTravelbooks_travelbook_add.this);
-//            selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 800, 600);
-            selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, imgPhoto.getMaxWidth(), imgPhoto.getMaxHeight());
-            Drawable d = new BitmapDrawable(getResources(), selectedImage);
-            imgPhoto.setImageDrawable(d);
-            switch(requestCode){
-                case 0:
-                    chooseBg(findViewById(R.id.layoutBgUpload));
+            switch(requestCodePhoto.values()[requestCode]){
+                case MAIN:
+                    imgPhoto1Uri = data.getData();
+                    ViewsHandler.getInstance().loadImageIntoView(imgPhoto1Uri, imgPhoto1);
+                    break;
+                case BACKGROUND:
+                    imgBgCustomUri = data.getData();
+                    ViewsHandler.getInstance().loadImageIntoView(imgBgCustomUri, imgBgCustom);
+                    chooseBgAndHighlight(findViewById(R.id.layoutBgUpload));
                     break;
             }
+
         }
     }
 
@@ -189,7 +180,7 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
                 if (imageButton == btnColorBg) {
                     defaultColor = Color.argb(150, Color.red(color), Color.green(color), Color.blue(color));
                     imageButton.setBackgroundColor(defaultColor);
-                    chooseBg(findViewById(R.id.layoutBgColor));
+                    chooseBgAndHighlight(findViewById(R.id.layoutBgColor));
                 }
                 if (imageButton == btnColorText) {
                     defaultColorText = Color.argb(150, Color.red(color), Color.green(color), Color.blue(color));

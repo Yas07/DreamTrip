@@ -96,12 +96,12 @@ public class ActivityMytrips_trip extends AppCompatActivity{
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                //TODO: delete trip and show message
                                 Trips_trip trip = Trips_trip.getCurrentTrip();
                                 if (trip != null) {
                                     Trips_BD.getInstance().remove(trip);
                                     Toast.makeText(ActivityMytrips_trip.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getBaseContext(),ActivityMytrips_.class).putExtra("value", "Successfully deleted"));
+                                    final Intent intent = new Intent(getBaseContext(),MainActivity.class).putExtra("value", "Successfully deleted");
+                                    startActivity(intent);
                                 }
                             }
                         })

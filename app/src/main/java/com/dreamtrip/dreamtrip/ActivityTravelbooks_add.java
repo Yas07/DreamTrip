@@ -106,7 +106,7 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             //any frame
-            Bitmap selectedImage = ViewsHandler.getInstance().setImageFromGallery(data, ActivityTravelbooks_add.this);
+            Bitmap selectedImage = ViewsHandler.getInstance().getImageFromGallery(data, ActivityTravelbooks_add.this);
             imgPhoto.getLayoutParams().height =
                     (int) ViewsHandler.getInstance().convertDpToPx(84, ActivityTravelbooks_add.this);
             imgPhoto.getLayoutParams().width =

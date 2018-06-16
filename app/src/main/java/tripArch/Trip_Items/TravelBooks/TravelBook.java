@@ -1,6 +1,7 @@
 package Trip_Items.TravelBooks;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 
 import java.util.LinkedList;
 
@@ -48,7 +49,7 @@ public class TravelBook extends LinkedList<Post> implements Comparable, IDB {
     }
 
     public void setPhotoImage(Bitmap _photoImage) {
-        this._photoImage = Trips_trip.compressImage(_photoImage);
+        this._photoImage = _photoImage;
     }
 
     public void setName(String _name) {

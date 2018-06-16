@@ -99,7 +99,7 @@ public class ActivityPacklists_add extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            Bitmap selectedImage = ViewsHandler.getInstance().setImageFromGallery(data, ActivityPacklists_add.this);
+            Bitmap selectedImage = ViewsHandler.getInstance().getImageFromGallery(data, ActivityPacklists_add.this);
             switch (RequestCodeBag.values()[requestCode]) {
                 case RECTANGLE:{                                    //bag rectangle
                     imgPhoto.getLayoutParams().height =

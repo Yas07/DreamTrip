@@ -28,8 +28,6 @@ import Trip_Items.Packlist.Packlist;
 import Trip_Items.Packlist.PacklistsDB;
 import yuku.ambilwarna.AmbilWarnaDialog;
 import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -289,7 +287,7 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            Bitmap selectedImage = ViewsHandler.getInstance().setImageFromGallery(data, ActivityMytrips_add.this);
+            Bitmap selectedImage = ViewsHandler.getInstance().getImageFromGallery(data, ActivityMytrips_add.this);
             switch (enum_RequestCodePhoto.values()[requestCode]) {
                 case HEADER:{
                     btnTripHeader.getLayoutParams().height =

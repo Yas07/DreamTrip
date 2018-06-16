@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-feauture android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"
@@ -15,8 +14,6 @@
         android:roundIcon="@drawable/ic_airplane3"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        //--------------------------------------------------Main Activity
-        //----------------------------------------------------------------------------------
         <activity
             android:name=".ActivityStart"
             android:label=""
@@ -37,8 +34,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        //---------------------------------------------------My trips
-        //----------------------------------------------------------------------------------
         <activity
             android:name=".ActivityMytrips_add"
             android:theme="@style/AppTheme.NoActionBar">
@@ -70,8 +65,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        //----------------------------------------------------Travel book
-        //----------------------------------------------------------------------------------
         <activity
             android:name=".ActivityTravelbooks_add"
             android:theme="@style/AppTheme.NoActionBar">
@@ -103,8 +96,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        //------------------------------------------------------Pack list
-        //----------------------------------------------------------------------------------
         <activity
             android:name=".ActivityPacklists_add"
             android:theme="@style/AppTheme.NoActionBar">
@@ -125,8 +116,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        //---------------------------------------------------Settings and Help
-        //----------------------------------------------------------------------------------
         <activity
             android:name=".ActivitySettings"
             android:label="Settings"

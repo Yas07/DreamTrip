@@ -75,7 +75,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginTop="5dp"
-                            android:onClick="chooseBg"
+                            android:onClick="chooseBgAndHighlight"
                             android:orientation="vertical"
                             android:weightSum="1">
 
@@ -97,7 +97,7 @@
                             <TextView
                                 android:id="@+id/textView0"
                                 android:layout_width="98dp"
-                                android:layout_height="28dp"
+                                android:layout_height="0dp"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_weight="1.40"
                                 android:elevation="2dp"
@@ -118,7 +118,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_marginTop="5dp"
                             android:gravity="bottom"
-                            android:onClick="chooseBg"
+                            android:onClick="chooseBgAndHighlight"
                             android:orientation="vertical"
                             android:weightSum="1">
 

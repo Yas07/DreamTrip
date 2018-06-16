@@ -6,7 +6,11 @@ import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,9 +20,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import Trip_Items.Packlist.Packlist;
 import Trip_Items.Trips_Plan.Plan;
 import Trip_Items.Trips_Plan.PlanPoint;
 import Trip_Items.Trips_trip;
+import layout.Fragment_plan;
 
 /**
  * Created by MENEDGERP36 on 04.02.2018.
@@ -27,6 +33,7 @@ import Trip_Items.Trips_trip;
 public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_Plan.ViewHolder> {
 
     private ArrayList<PlanPoint> planPoints;
+    private int choosenPlanPoint;
     private Context context;
 
     public AdapterRecycler_Plan(Context context) {
@@ -51,22 +58,27 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
 //        super();
 //    }
 
+    enum HolderType {
+        DATE,
+        PLAN_POINT,
+        PLAN_TEXT
+    }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder { // implements View.OnCreateContextMenuListener {
 
-        public int currentItem;
-        public TextView textPlan;
-        public LinearLayout layoutDate;
-        public TextView itemDayWeek;
-        public TextView itemDate;
-        public LinearLayout layoutNote;
-        public ImageView itemImage;
-        public TextView itemTime;
-        public TextView itemTitle;
-        public TextView itemDetail;
+        private int index;
+        private TextView textPlan;
+        private LinearLayout layoutDate;
+        private TextView itemDayWeek;
+        private TextView itemDate;
+        private LinearLayout layoutNote;
+        private ImageView itemImage;
+        private TextView itemTime;
+        private TextView itemTitle;
+        private TextView itemDetail;
 
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             itemImage = (ImageView)itemView.findViewById(R.id.imgIcon);
             itemTime = (TextView)itemView.findViewById(R.id.textTime);
@@ -78,20 +90,130 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
             itemDate = (TextView)itemView.findViewById(R.id.planDate);
             textPlan = (TextView)itemView.findViewById(R.id.planTextPlan);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                            onPlanPoint(v, getAdapterPosition());
-                }
-            });
+//            itemView.setOnCreateContextMenuListener(this);
+
+//            MenuItem editOption = (MenuItem) context.getApplicationContext().fin
+//            MenuItem deleteOption = (MenuItem)itemView.findViewById(R.id.option_delete);
+//            editOption.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//                @Override
+//                public boolean onMenuItemClick(MenuItem menuItem) {
+//                    Log.e("Edit", "planpoint=" + choosenPlanPoint);
+//                    return true;
+//                }
+//            });
+//
+//            deleteOption.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//                @Override
+//                public boolean onMenuItemClick(MenuItem menuItem) {
+//                    Log.e("Delete", "planpoint=" + choosenPlanPoint);
+//                    return true;
+//                }
+//            });
+//            editOption.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Log.e("Edit", "planpoint=" + choosenPlanPoint);
+//                }
+//            });
+//
+//            deleteOption.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                }
+//            });
+//            itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener(){
+//                @Override
+//                public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+//                    MenuInflater menu = new MenuInflater(itemView.getContext());
+//                    menu.inflate(R.menu.edit_delete, contextMenu);
+//                }
+//            });
         }
+
+//        @Override
+//        public void onCreateContextMenu(ContextMenu contextMenu, final View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+//            MenuInflater menu = new MenuInflater(context);
+//            menu.inflate(R.menu.edit_delete, contextMenu);
+//            contextMenu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//                @Override
+//                public boolean onMenuItemClick(MenuItem menuItem) {
+//                    Log.e("Edit", "planpoint=" + index);
+//                    return true;
+//                }
+//            });
+//
+//            contextMenu.getItem(1).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//                @Override
+//                public boolean onMenuItemClick(MenuItem menuItem) {
+//                    Log.e("Delete", "planpoint=" + index);
+//                    return true;
+//                }
+//            });
+//
+//        }
+
+//        @Override
+//        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+//
+//        }
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(final ViewGroup viewGroup, final int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.mytrips_trip_plan_card, viewGroup, false);
-        ViewHolder viewHolder = new ViewHolder(v);
+
+        final AdapterRecycler_Plan.ViewHolder viewHolder = new ViewHolder(v);
+        v.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener(){
+            @Override
+            public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+                    MenuInflater menu = new MenuInflater(viewGroup.getContext());
+                    menu.inflate(R.menu.edit_delete, contextMenu);
+                    contextMenu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            Log.e("Edit", "planpoint=" + viewHolder.index);
+                            return true;
+                        }
+                    });
+
+                    contextMenu.getItem(1).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            PlanPoint planPoint = planPoints.get(viewHolder.index);
+                            if (planPoint == null) {
+                                Log.e("Delete planpoint", "Null planpoint");
+                                return true;
+                            }
+                            planPoints.remove(planPoint);
+                            Trips_trip.getCurrentTrip().getPlan().remove(planPoint);
+                            notifyItemRemoved(viewHolder.index);
+                            notifyItemRangeChanged(viewHolder.index, planPoints.size());
+                            return true;
+                        }
+                    });
+
+            }
+
+        });
+
+
         return viewHolder;
+    }
+
+    private HolderType checkPlanPointType(int index) {
+        PlanPoint planPoint = planPoints.get(index);
+
+        if (index == 0){
+            return HolderType.PLAN_TEXT;
+        } else {
+            if (!planPoint.getDate().equals(
+                    planPoints.get(index-1).getDate())){ // check previous weekday
+                return HolderType.DATE;
+            } else  {
+                return HolderType.PLAN_POINT;
+            }
+        }
     }
 
     @Override
@@ -102,6 +224,8 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
             Log.e("onBindView", "Invalid index");
             return;
         }
+
+        viewHolder.index = i;
         viewHolder.itemTitle.setText(planPoint.getTitle());
         viewHolder.itemTime.setText(planPoint.getTime());
 
@@ -115,18 +239,21 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
             Log.e("onBindView", "invalid indexes");
         }
 
-        if (i == 0){
-            viewHolder.textPlan.setVisibility(View.VISIBLE);
-            viewHolder.itemDayWeek.setText(planPoint.getDayOfWeek());
-            viewHolder.itemDate.setText(planPoint.getDate());
-        } else {
-            if (!planPoint.getDate().equals(
-                    planPoints.get(i-1).getDate())){ // check previous weekday
+        switch (checkPlanPointType(i)) {
+            case PLAN_TEXT:
+                viewHolder.textPlan.setVisibility(View.VISIBLE);
                 viewHolder.itemDayWeek.setText(planPoint.getDayOfWeek());
                 viewHolder.itemDate.setText(planPoint.getDate());
-            } else  {
+                break;
+
+            case DATE:
+                viewHolder.itemDayWeek.setText(planPoint.getDayOfWeek());
+                viewHolder.itemDate.setText(planPoint.getDate());
+                break;
+
+            case PLAN_POINT:
                 viewHolder.layoutDate.setVisibility(View.GONE);
-            }
+                break;
         }
 
     }

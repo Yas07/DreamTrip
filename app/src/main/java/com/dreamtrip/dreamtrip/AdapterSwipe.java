@@ -8,10 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import Trip_Items.TravelBooks.Post;
 import Trip_Items.TravelBooks.TravelBook;
@@ -53,32 +56,29 @@ public class AdapterSwipe extends PagerAdapter {
         layoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View item_view = layoutInflater.inflate(R.layout.travelbooks_travelbook_swipe, container, false);
         ImageView imageView = (ImageView) item_view.findViewById(R.id.photo1);
-        ImageView imageBG = (ImageView) item_view.findViewById(R.id.bg);
+        final ImageView imageBG = (ImageView) item_view.findViewById(R.id.bg);
         TextView textView = (TextView) item_view.findViewById(R.id.text1);
         TextView caption = (TextView) item_view.findViewById(R.id.caption);
 
 
-        Post post = travelBookCtx.get(position);
+        final Post post = travelBookCtx.get(position);
         if (post == null) {
             Log.e("instantiateItem", "Post = null!");
             return item_view;
         }
 
 
-        Bitmap bit = post.getBackGroundImg();
-        if (bit != null) {
-            imageBG.setBackground(new BitmapDrawable(container.getResources(), bit));
-        } else if  (post.getColorImg() != 0){
-            imageBG.setBackgroundColor(post.getColorImg());
-        }
-
-        bit = post.getMainImg();
-        if (bit != null) {
-            imageView.setImageBitmap(bit);
-        }
-
         textView.setText(post.getTitlePhoto1());
         caption.setText(post.getName());
+
+        if (post.getColorImg() != 0) {
+            imageBG.setBackgroundColor(post.getColorImg());
+        } else {
+            ViewsHandler.getInstance().loadImageIntoViewBg(post.getBackGroundImgUri(), imageBG);
+        }
+
+        ViewsHandler.getInstance().loadImageIntoView(post.getMainImgUri(), imageView);
+
 
         if (post.getColorText() != 0) {
             textView.setTextColor(post.getColorText());
@@ -91,6 +91,7 @@ public class AdapterSwipe extends PagerAdapter {
         }
 
         container.addView(item_view);
+
         return item_view;
     }
 

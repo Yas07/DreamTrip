@@ -246,11 +246,15 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
                 viewHolder.cardDetail.setText(travelBook.getDetails());
 
                 Bitmap bit = travelBook.getPhotoImage();
-                if ( bit != null &&  (travelBook.getPhotoIndex() != 0)) {
-                    viewHolder.cardImage.setImageResource(travelBook.getPhotoIndex());
-                    Drawable draw =  viewHolder.cardImage.getDrawable();
+                // TODO: if there will be wishes to implement frames
+//                if ( bit != null &&  (travelBook.getPhotoIndex() != 0)) {
+//                    viewHolder.cardImage.setImageResource(travelBook.getPhotoIndex());
+//                    Drawable draw =  viewHolder.cardImage.getDrawable();
+//                    viewHolder.cardImage.setImageBitmap(bit);
+//                    viewHolder.cardImage.setBackground(draw);
+//                } else
+                if ( bit != null ) {
                     viewHolder.cardImage.setImageBitmap(bit);
-                    viewHolder.cardImage.setBackground(draw);
                 } else if (travelBook.getPhotoIndex() != 0) {
                     viewHolder.cardImage.setImageResource(travelBook.getPhotoIndex());
                 }

@@ -1,6 +1,9 @@
 package Trip_Items.TravelBooks;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
+
+import com.dreamtrip.dreamtrip.ViewsHandler;
 
 import Trip_DBs.IDB;
 import Trip_Items.Trips_trip;
@@ -11,8 +14,8 @@ public class Post implements IDB {
     private int         _colorText;
     private int         _colorTextBg;
     private String      _titlePhoto1;
-    private Bitmap       _backGroundImg;
-    private Bitmap      _mainImg;
+    private Uri _backGroundImg;
+    private Uri      _mainImg;
 
     public Post(String _name,
                 String _titlePhoto1,
@@ -49,23 +52,23 @@ public class Post implements IDB {
         return _titlePhoto1;
     }
 
-    public Bitmap getBackGroundImg() {
+    public Uri getBackGroundImgUri() {
         return _backGroundImg;
     }
 
-    public Bitmap getMainImg() {
+    public Uri getMainImgUri() {
         return _mainImg;
     }
 
     // setters
 
 
-    public void setBackGroundImg(Bitmap _backGroundImg) {
-        this._backGroundImg = Trips_trip.compressImage(_backGroundImg);
+    public void setBackGroundImgUri(Uri _backGroundImg) {
+        this._backGroundImg = _backGroundImg;
     }
 
-    public void setMainImg(Bitmap _mainImg) {
-        this._mainImg = Trips_trip.compressImage( _mainImg);
+    public void setMainImgUri(Uri _mainImg) {
+        this._mainImg =  _mainImg;
     }
 
     public void setName(String _name) {
