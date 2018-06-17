@@ -2,6 +2,7 @@ package com.dreamtrip.dreamtrip;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -15,14 +16,20 @@ import android.util.Log;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
+import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Set;
 import java.util.TreeSet;
+
+import okhttp3.internal.io.FileSystem;
 
 public class ViewsHandler {
 
@@ -35,6 +42,38 @@ public class ViewsHandler {
     public static ViewsHandler getInstance(){return viewsHandler;}
 //--------------------------------------------------------Open from Gallery
 //-----------------------------------------------------------------------------------------------
+
+
+    public Uri saveTempImg(Uri imgToSave, Context context) {
+        try {
+            File outputDir = context.getExternalCacheDir(); // context being the Activity pointer
+            String name = imgToSave.getLastPathSegment();
+            name = name.substring(name.lastIndexOf("/") +1);
+            File outputFile = File.createTempFile(name, null, outputDir);
+            outputFile.deleteOnExit();
+            OutputStream fOut = new FileOutputStream(outputFile);
+            Bitmap image  = getImageFromGalleryByUri(imgToSave, context);
+            if (image == null) {
+                throw new Exception("null image prt");
+            }
+            image.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
+            return Uri.fromFile(outputFile);
+        } catch (Exception e) {
+            Log.e("saveTempImg", "failed to save img, error" + e.getMessage());
+            return null;
+        }
+    }
+
+    private Bitmap getImageFromGalleryByUri(Uri uri, Context context)  {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = context.getContentResolver().query(uri, projection, null,null,null);
+        cursor.moveToFirst();
+        int columnIndex = cursor.getColumnIndex(projection[0]);
+        String filePath = cursor.getString(columnIndex);
+        cursor.close();
+
+        return BitmapFactory.decodeFile(filePath);
+    }
 
     public Bitmap getImageFromGallery(Intent data, Context context){
         Uri uri = data.getData();

@@ -23,12 +23,6 @@ public class ActivityTravelbooks_ extends Fragment{
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
 
-    private String[] cardTitles = {"Lviv album", "Chernivtsi album", "Paris album", "Egypt album",
-                                    "Disneyland album", "Favourite trip album"};
-    private String[] cardDetails = {"06-08.01.18", "13-14.01.18", "02.05.18", "07.09.16", "22.06.19", "15.12.12"};
-    private int[] cardImages = {R.drawable.travelbook_cover_christmas_black_dpi, R.drawable.travelbook_cover_cup_dpi,
-            R.drawable.travelbook_cover_travel_blue_dpi, R.drawable.travelbook_cover_light_summer_dpi,
-            R.drawable.travelbook_cover_modern_black_dpi, R.drawable.travelbook_cover_world_travel_dpi};
     private int colorBg = Color.parseColor("#B0F3DCE7");
     private int colorText = Color.BLACK;
 

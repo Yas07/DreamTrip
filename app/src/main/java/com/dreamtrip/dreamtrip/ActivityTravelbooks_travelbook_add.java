@@ -69,7 +69,8 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
                 travelBookCtx.add(assamblePost());
                 Bundle bundle = new Bundle();
                 bundle.putString("value", "Successfully added");
-                startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityTravelbooks_travelbook").putExtras(bundle));
+                startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityTravelbooks_travelbook").
+                        putExtras(bundle).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION));
             }
         });
 
@@ -129,7 +130,8 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
                 break;
 
         }
-        Intent GalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent GalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivityForResult(GalleryIntent, codePhoto.ordinal());
     }
 
@@ -140,10 +142,13 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
             switch(requestCodePhoto.values()[requestCode]){
                 case MAIN:
                     imgPhoto1Uri = data.getData();
+                    imgPhoto1Uri = ViewsHandler.getInstance().saveTempImg(imgPhoto1Uri, this);
                     ViewsHandler.getInstance().loadImageIntoView(imgPhoto1Uri, imgPhoto1);
                     break;
                 case BACKGROUND:
                     imgBgCustomUri = data.getData();
+                    imgBgCustomUri = ViewsHandler.getInstance().saveTempImg(imgBgCustomUri, this);
+
                     ViewsHandler.getInstance().loadImageIntoView(imgBgCustomUri, imgBgCustom);
                     chooseBgAndHighlight(findViewById(R.id.layoutBgUpload));
                     break;

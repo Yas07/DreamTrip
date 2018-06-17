@@ -2,6 +2,8 @@ package com.dreamtrip.dreamtrip;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -127,6 +129,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
                             Trips_trip.setCurrentTrip(trip);
 
                             final Intent intent =  new Intent(context, ActivityMytrips_trip.class).putExtras(trip.getBundle());
+                            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                             context.startActivity(intent);
                         }
                         break;
@@ -142,6 +145,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
                             bundle.putString("value", Integer.toString(i));
 
                             final Intent intent =  new Intent(context, ActivityPacklists_packlist.class).putExtras(bundle);
+                            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                             context.startActivity(intent);
                         }
                         break;
@@ -157,6 +161,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
                             bundle.putString("value", Integer.toString(i));
 
                             final Intent intent =  new Intent(context, ActivityTravelbooks_travelbook.class).putExtras(bundle);
+                            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                             context.startActivity(intent);
                         }
                         break;

@@ -123,21 +123,22 @@ public class ActivityMytrips_trip extends AppCompatActivity{
     public void changeTab(View view){
         Fragment fragment;
         switch (view.getId()){
-            case R.id.btnPlan1: {
-                fragment = new Fragment_plan(); break;}
-            case R.id.btnPacklist1: {
+            case R.id.btnPlan1:
+                fragment = new Fragment_plan(); break;
+            case R.id.btnPacklist1:
                 if (tripCtx.getPacklist() == null) {
                     Log.e("Changetab","There is no packlist available");
 
                     return;
                 }
-                fragment = new Fragment_packlist(); break;}
-            case R.id.btnTravelbook1: {
+                fragment = new Fragment_packlist(); break;
+            case R.id.btnTravelbook1:
                 if (tripCtx.getTravelbook() == null) {
                     Log.e("Changetab","There is no travelBook available");
                     return;
                 }
-                fragment = new Fragment_travelbook(); break;}
+                fragment = new Fragment_travelbook();
+                break;
             default:
                 Log.e("changeTab", "No such fragment");
                 return;
