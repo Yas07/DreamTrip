@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import Trip_Items.TravelBooks.TravelBook;
+import Trip_Items.TravelBooks.TravelBooksDB;
 
 public class ActivityTravelbooks_travelbook extends AppCompatActivity {
 
@@ -55,11 +57,16 @@ public class ActivityTravelbooks_travelbook extends AppCompatActivity {
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
+//                                Trips_BD.getInstance().remove(trip);
+                                if (travelBookCtx == null) {
+                                    Log.e("delete travelbook" , "travelBookCtx==null");
+                                    return;
+                                }
+                                TravelBooksDB.getInstance().remove(travelBookCtx.getName());
                                 Toast.makeText(ActivityTravelbooks_travelbook.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
-                                //TODO: delete travelbook and show message
-                                //Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivityTravelbooks_");
-                                //startActivity(intent);
-                                //startActivity(new Intent(getBaseContext(),ActivityTravelbooks_.class).putExtra("value", "Successfully deleted"));
+                                startActivity(new Intent(getBaseContext(),MainActivity.class).
+                                                putExtras(ActivityType.
+                                                        activityTypeToBundle(ActivityType.TRAVELBOOKS)));
                             }
                         })
                         .setNegativeButton(android.R.string.no, null).show();

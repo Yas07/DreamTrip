@@ -408,10 +408,12 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
         btnColorPicker.setBackgroundColor(trip.getTextColor());
 
         if (trip.getHeaderImage() != null) {
+            isTripHeaderSet = true;
             btnTripHeader.setImageBitmap(trip.getHeaderImage());
         }
 
         if (trip.getMainImage() != null) {
+            isTripMainSet = true;
             btnTripPhoto.setImageBitmap(trip.getMainImage());
         }
 

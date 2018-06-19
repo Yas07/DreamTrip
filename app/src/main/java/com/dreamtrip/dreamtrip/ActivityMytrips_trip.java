@@ -119,6 +119,22 @@ public class ActivityMytrips_trip extends AppCompatActivity{
 //        }
 //    }
 
+//    public void changeTab(FragmentType fragmentType) {
+//        View view;
+//        switch (fragmentType) {
+//            case TRIP:
+//                view = findViewById(R.id.btnPlan1);
+//                changeTab();
+//                break;
+//            case TRAVEL_BOOK:
+//                break;
+//            case PACKLIST:
+//                break;
+//            default:
+//                Log.i("changeTab", "No tab to change by frag type");
+//        }
+//    }
+
 
     public void changeTab(View view){
         Fragment fragment;

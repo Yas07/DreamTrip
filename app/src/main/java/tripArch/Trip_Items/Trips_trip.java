@@ -69,12 +69,12 @@ public class Trips_trip extends DB_Item implements Comparable {
     public void setOrUpdateTravelBook(String name, String startDateStr, Bitmap image) {
         if (travelbook == null) {
             travelbook = new TravelBook(name, startDateStr);
+            TravelBooksDB.getInstance().put(travelbook);
         } else {
-            travelbook.setName(name);
-            travelbook.setDetails(startDateStr);
+            travelbook.setName(name + "\n" + startDateStr);
+//            travelbook.setDetails(startDateStr);
         }
         travelbook.setPhotoImage(image);
-        TravelBooksDB.getInstance().put(travelbook);
     }
 
     public void setPacklist(Packlist pack) {

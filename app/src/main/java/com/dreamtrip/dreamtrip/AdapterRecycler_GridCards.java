@@ -2,32 +2,19 @@ package com.dreamtrip.dreamtrip;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.List;
 
 import Trip_DBs.Trips_BD;
 import Trip_Items.Packlist.Packlist;
@@ -35,74 +22,60 @@ import Trip_Items.Packlist.PacklistsDB;
 import Trip_Items.TravelBooks.TravelBook;
 import Trip_Items.TravelBooks.TravelBooksDB;
 import Trip_Items.Trips_trip;
-import dalvik.system.PathClassLoader;
 
-enum enum_ACTIVITY_TYPE{
+enum ActivityType {
     TRIPS,
     PACKLISTS,
-    TRAVELBOOKS
+    TRAVELBOOKS;
+
+    public ArrayList getItems() {
+        switch (this) {
+            case TRIPS:
+                return new ArrayList<>(Trips_BD.getInstance().getValuesSortByDate());
+            case PACKLISTS:
+                return new ArrayList<>(PacklistsDB.getInstance().values());
+            case TRAVELBOOKS:
+                return new ArrayList<>(TravelBooksDB.getInstance().values());
+        }
+        Log.e("enum activity", "wrong type");
+        return null;
+    }
+
+    static private String bundleValue = "activityTypeNav";
+
+    static public Bundle activityTypeToBundle(ActivityType activityType) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(bundleValue, activityType.ordinal());
+        return bundle;
+    }
+
+    static public ActivityType bundleToActivityType(Bundle bundle) {
+        if (bundle == null) {
+            Log.e("bundleToFragType", "wrong bundle=null");
+            return TRIPS;
+        }
+
+        return values()[bundle.getInt(bundleValue)];
+    }
+
 }
 
 public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecycler_GridCards.ViewHolder> {
     private int colorBg;
     private int colorText;
-    private enum_ACTIVITY_TYPE activityType;
-    private List<Trips_trip> tripsList;
-    private ArrayList<Packlist> packlists;
-    private ArrayList<TravelBook> travelBooks;
+    private ActivityType activityType;
+    private ArrayList items;
 
-    public AdapterRecycler_GridCards(List<Trips_trip> tripsList, int colorBg, int colorText, enum_ACTIVITY_TYPE activityType){
+
+    public AdapterRecycler_GridCards(int colorBg, int colorText, ActivityType activityType){
         this.colorBg = colorBg;
         this.colorText = colorText;
         this.activityType = activityType;
-        this.tripsList = tripsList;
-    }
-
-    public AdapterRecycler_GridCards(ArrayList<Packlist> packlists, int colorBg, int colorText, enum_ACTIVITY_TYPE activityType){
-        this.colorBg = colorBg;
-        this.colorText = colorText;
-        this.activityType = activityType;
-        this.packlists = packlists;
-    }
-
-    public AdapterRecycler_GridCards(int colorBg, int colorText, ArrayList<TravelBook> travelBooks, enum_ACTIVITY_TYPE activityType){
-        this.colorBg = colorBg;
-        this.colorText = colorText;
-        this.activityType = activityType;
-        this.travelBooks = travelBooks;
-    }
-
-    private void initLists() {
-        if (tripsList == null){
-
-        }
-
-        if (packlists == null) {
-            packlists = new ArrayList<Packlist>();
-        }
-
-
-        if (travelBooks == null) {
-            travelBooks = new ArrayList<TravelBook>();
-        }
-
+        this.items = activityType.getItems();
     }
 
     private void updateItemsList() {
-        initLists();
-//        if (tripsList.size() != Trips_BD.getInstance().size()){
-
-//        }
-
-        if (packlists != null && PacklistsDB.getInstance().size() != packlists.size()) {
-            packlists = new ArrayList<Packlist>(PacklistsDB.getInstance().values());
-        }
-
-
-        if (travelBooks != null && TravelBooksDB.getInstance().size() != travelBooks.size()) {
-            travelBooks = new ArrayList<TravelBook>(TravelBooksDB.getInstance().values());
-        }
-
+        items = activityType.getItems();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
@@ -125,7 +98,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
                         case TRIPS:
                         {
                             int i = getAdapterPosition();
-                            Trips_trip trip = tripsList.get(i);
+                            Trips_trip trip = (Trips_trip)items.get(i);
                             Trips_trip.setCurrentTrip(trip);
 
                             final Intent intent =  new Intent(context, ActivityMytrips_trip.class).putExtras(trip.getBundle());
@@ -137,7 +110,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
                         case PACKLISTS:
                         {
                             int i = getAdapterPosition();
-                            Packlist packlist = packlists.get(i);
+                            Packlist packlist = (Packlist) items.get(i);
                             Packlist.setCurrentPacklist(packlist);
 
                             // TODO: remove
@@ -153,7 +126,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
                         case TRAVELBOOKS:
                         {
                             int i = getAdapterPosition();
-                            TravelBook travelBook = travelBooks.get(i);
+                            TravelBook travelBook = (TravelBook) items.get(i);
                             TravelBook.setCurrentTravelBook(travelBook);
 
                             // TODO: remove
@@ -188,7 +161,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
         final AdapterRecycler_GridCards.ViewHolder viewHolder = holder;
         switch (activityType) {
             case TRIPS:{
-                Trips_trip trip = tripsList.get(i);
+                Trips_trip trip = (Trips_trip) items.get(i);
                 if (trip == null) {
                     Log.e(this.getClass().getEnclosingMethod().getName(), "null trip, what a pity");
                     return;
@@ -211,7 +184,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
             break;
 
             case PACKLISTS: {
-                Packlist packlist = packlists.get(i);
+                Packlist packlist = (Packlist) items.get(i);
                 if (packlist == null) {
                     Log.e(this.getClass().getEnclosingMethod().getName(), "null trip, what a pity");
                     return;
@@ -240,7 +213,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
             break;
 
             case TRAVELBOOKS: {
-                TravelBook travelBook = travelBooks.get(i);
+                TravelBook travelBook = (TravelBook) items.get(i);
                 if (travelBook == null) {
                     Log.e(this.getClass().getEnclosingMethod().getName(), "null trip, what a pity");
                     return;
@@ -279,20 +252,7 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
     @Override
     public int getItemCount() {
         updateItemsList();
-        switch (activityType) {
-            case TRIPS:
-            return tripsList.size();
-
-            case PACKLISTS:
-            return packlists.size();
-
-            case TRAVELBOOKS:
-            return travelBooks.size();
-
-            default:
-                Log.e(this.getClass().getEnclosingMethod().getName(), "Wrong enum value!");
-                return 0;
-        }
+        return items.size();
     }
 
 }

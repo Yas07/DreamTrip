@@ -39,7 +39,7 @@ public class ActivityTravelbooks_ extends Fragment{
 
         ArrayList<TravelBook> travelBooks = new ArrayList<TravelBook>(TravelBooksDB.getInstance().values());
 
-        adapter = new AdapterRecycler_GridCards(colorBg, colorText, travelBooks,enum_ACTIVITY_TYPE.TRAVELBOOKS);
+        adapter = new AdapterRecycler_GridCards(colorBg, colorText, ActivityType.TRAVELBOOKS);
         recyclerView.setAdapter(adapter);
 
         return myLayout;

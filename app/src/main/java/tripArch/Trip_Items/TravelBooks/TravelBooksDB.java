@@ -1,7 +1,11 @@
 package Trip_Items.TravelBooks;
 
+import android.util.Log;
+
 import java.util.Comparator;
 import java.util.TreeMap;
+
+import Trip_DBs.Trips_BD;
 
 public class TravelBooksDB extends TreeMap<String, TravelBook>{
 
@@ -39,7 +43,14 @@ public class TravelBooksDB extends TreeMap<String, TravelBook>{
     }
 
     public TravelBook remove(String packName) {
-        get(packName).removeFromDb();
+        TravelBook travelBook =  get(packName);
+        if (travelBook == null) {
+            Log.e("TravelBooksBD", "can't remove null travelbook");
+            return null;
+        }
+        Trips_BD.getInstance().findAll(travelBook.getName());
+        travelBook.clear();
+        travelBook.removeFromDb();
         return super.remove(packName);
     }
 }

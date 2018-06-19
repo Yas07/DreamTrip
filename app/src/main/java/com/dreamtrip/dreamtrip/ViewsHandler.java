@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -30,6 +31,30 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import okhttp3.internal.io.FileSystem;
+
+//enum FragmentType {
+//    NONE,
+//    TRIP,
+//    TRAVEL_BOOK,
+//    PACKLIST;
+//
+//    static private String bundleValue = "fragType";
+//
+//    static public Bundle fragTypeToBundle(FragmentType fragmentType) {
+//        Bundle bundle = new Bundle();
+//        bundle.putInt(bundleValue, fragmentType.ordinal());
+//        return bundle;
+//    }
+//
+//    static public FragmentType bundleToFragType(Bundle bundle) {
+//        if (bundle == null) {
+//            Log.e("bundleToFragType", "wrong bundle=null");
+//            return NONE;
+//        }
+//        return values()[bundle.getInt(bundleValue)];
+//    }
+//
+//}
 
 public class ViewsHandler {
 
@@ -159,6 +184,15 @@ public class ViewsHandler {
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float dp = px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return dp;
+    }
+
+    static public void deleteByUri(Uri uri) {
+        try {
+            File file = new File(uri.getPath());
+            if (!file.delete()) throw new Exception("Can't delete by uri");
+        } catch (Exception e) {
+            Log.e("deleteByUri", e.getMessage());
+        }
     }
 
 }

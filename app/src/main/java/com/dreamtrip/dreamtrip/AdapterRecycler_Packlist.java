@@ -112,9 +112,13 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Edit element");
+        Stuff stuff = currentPackList.get(index - 1);
 
         // Set up the input
         final EditText input = new EditText(context);
+        if (stuff != null) {
+            input.setText(stuff.getName());
+        }
 
         // Specify the type of input expected
         input.setInputType(InputType.TYPE_CLASS_TEXT);

@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
 
+import Trip_Items.TravelBooks.TravelBooksDB;
 import Trip_Items.Trips_trip;
 
 public class Trips_BD extends DB<Date, Trips_trip> {
@@ -61,7 +62,7 @@ public class Trips_BD extends DB<Date, Trips_trip> {
         Trips_trip trip = null;
 
         try {
-            trip = Trips_BD.getInstance().find(new Date(startDate), title);
+            trip = Trips_BD.getInstance().find(new Date(startDate));
         } catch (IllegalArgumentException e) {
             Log.e("Activity_trip", "Cannot parse date");
         }
@@ -71,6 +72,11 @@ public class Trips_BD extends DB<Date, Trips_trip> {
 
     public void add(Trips_trip trip)
     {
+        Trips_trip tripInBd = find(trip.getStartDate());
+        if (tripInBd != null) {
+            // remove travelbook from bd in case of overriding
+            TravelBooksDB.getInstance().remove(tripInBd.getTravelbook());
+        }
         add(trip.getStartDate(), trip);
         Trips_trip.setCurrentTrip(trip);
     }

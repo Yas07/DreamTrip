@@ -2,8 +2,11 @@ package Trip_Items.TravelBooks;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Log;
 
 import com.dreamtrip.dreamtrip.ViewsHandler;
+
+import java.io.File;
 
 import Trip_DBs.IDB;
 import Trip_Items.Trips_trip;
@@ -78,6 +81,12 @@ public class Post implements IDB {
     public void setColorImg(int _colorImg) {
         this._colorImg = _colorImg;
     }
+
+    public void clear() {
+        ViewsHandler.deleteByUri(_mainImg);
+        ViewsHandler.deleteByUri(_backGroundImg);
+    }
+
 
     //    public void setBackGroungImg(... _backGroundImg) {
 //        this._backGroundImg = _backGroundImg;

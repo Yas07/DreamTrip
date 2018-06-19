@@ -11,15 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.google.common.collect.Lists;
-
-import java.util.Date;
-import java.util.List;
-
-import Trip_DBs.Trips_BD;
-import Trip_Items.Trips_trip;
 
 public class ActivityMytrips_ extends Fragment {
 
@@ -46,9 +37,6 @@ public class ActivityMytrips_ extends Fragment {
 //        int[] cardImages = {R.drawable.city_lviv_dpi, R.drawable.city_chernivtsi_dpi, R.drawable.city_paris_dpi,
 //                R.drawable.city_egypt_dpi, R.drawable.city_lviv_dpi, R.drawable.city_chernivtsi_dpi};
 
-        // DATA FOR CARDS
-        List<Trips_trip> tripsList = Lists.newArrayList(Trips_BD.getInstance().getValuesSortByDate());
-
         int colorBg =  Color.WHITE;
         int colorText = Color.WHITE;
 
@@ -61,7 +49,7 @@ public class ActivityMytrips_ extends Fragment {
         recyclerView = (RecyclerView) myLayout.findViewById(R.id.recycler_view_mytrips);
         layoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new AdapterRecycler_GridCards(tripsList, colorBg, colorText, enum_ACTIVITY_TYPE.TRIPS);
+        adapter = new AdapterRecycler_GridCards(colorBg, colorText, ActivityType.TRIPS);
         recyclerView.setAdapter(adapter);
 
 

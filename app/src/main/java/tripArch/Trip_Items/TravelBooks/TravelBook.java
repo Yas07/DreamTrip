@@ -113,6 +113,14 @@ public class TravelBook extends LinkedList<Post> implements Comparable, IDB {
     }
 
     @Override
+    public void clear() {
+        for (Post post: this ) {
+            post.clear();
+        }
+        super.clear();
+    }
+
+    @Override
     public int compareTo(Object o) {
         TravelBook p = (TravelBook)o;
         return _name.compareTo(p._name);
