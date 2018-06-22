@@ -33,6 +33,7 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
     EditText editTravelBookDetails;
 
     int currentPhotoId;
+    boolean isEditMode = false;
 
 
     @Override
@@ -50,9 +51,6 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
                 addTravelBook(v);
             }
         });
-
-        btnPhotoFrameDark = (ImageView) findViewById(R.id.btnPhotoFrameDark);
-        btnPhotoFrameLight = (ImageView) findViewById(R.id.btnPhotoFrameLight);
     }
 
 

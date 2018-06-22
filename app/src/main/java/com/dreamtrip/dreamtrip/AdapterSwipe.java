@@ -3,8 +3,10 @@ package com.dreamtrip.dreamtrip;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -26,6 +28,7 @@ import java.util.TreeSet;
 
 import Trip_Items.TravelBooks.Post;
 import Trip_Items.TravelBooks.TravelBook;
+import Trip_Items.Trips_trip;
 
 /**
  * Created by MENEDGERP36 on 28.01.2018.
@@ -38,7 +41,8 @@ public class AdapterSwipe extends PagerAdapter {
     private TravelBook travelBookCtx;
 //    private TreeSet<Integer> idsForDelete;
 
-    private int DELETE_ITEM = -1;
+    static private int DELETE_ITEM = -1;
+    static public int exitFromEditIndex= -1;
 
     public AdapterSwipe(Context ctx){
         this.ctx = ctx;
@@ -124,6 +128,12 @@ public class AdapterSwipe extends PagerAdapter {
                 contextMenu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
+                        exitFromEditIndex = index;
+                        Bundle bundle = Trips_trip.getEditBundle();
+                        bundle.putInt(Post.postIndexValue, index);
+                        Intent intent = new Intent(ctx, ActivityTravelbooks_travelbook_add.class).
+                                putExtras(bundle);
+                        ctx.startActivity(intent);
                         Log.e("Edit", "post=" + index);
                         return true;
                     }

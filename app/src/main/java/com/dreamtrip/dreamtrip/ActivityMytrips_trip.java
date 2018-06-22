@@ -85,7 +85,8 @@ public class ActivityMytrips_trip extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.toolbarEdit: {
-                Intent intent = new Intent(this, ActivityMytrips_add.class).putExtras(Trips_trip.getEditBundle());
+                Intent intent = new Intent(this, ActivityMytrips_add.class).
+                        putExtras(Trips_trip.getEditBundle());
                 startActivity(intent);
                 break;
             }

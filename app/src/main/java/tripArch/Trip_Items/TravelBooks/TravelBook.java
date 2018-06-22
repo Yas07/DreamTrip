@@ -31,14 +31,14 @@ public class TravelBook extends LinkedList<Post> implements Comparable, IDB {
         setCurrentTravelBook(this);
     }
 
-    public TravelBook(TravelBook travelBook) {
-        this._name = travelBook._name;
-        this._photoIndex = travelBook._photoIndex;
-        this._details = travelBook._details;
-        for (Post post : travelBook) {
-            add(new Post(post));
-        }
-    }
+//    public TravelBook(TravelBook travelBook) {
+//        this._name = travelBook._name;
+//        this._photoIndex = travelBook._photoIndex;
+//        this._details = travelBook._details;
+//        for (Post post : travelBook) {
+//            add(new Post(post));
+//        }
+//    }
 
     public String getName() {
         return _name;

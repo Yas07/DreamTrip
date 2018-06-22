@@ -11,8 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import Trip_DBs.Trips_BD;
 import Trip_Items.TravelBooks.TravelBook;
 import Trip_Items.TravelBooks.TravelBooksDB;
+import Trip_Items.Trips_trip;
 
 public class ActivityTravelbooks_travelbook extends AppCompatActivity {
 
@@ -46,7 +48,8 @@ public class ActivityTravelbooks_travelbook extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.toolbarEdit: {
-                Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivityTravelbooks_add");
+                Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivityTravelbooks_add").
+                        putExtras(Trips_trip.getEditBundle());
                 startActivity(intent);
                 break;
             }

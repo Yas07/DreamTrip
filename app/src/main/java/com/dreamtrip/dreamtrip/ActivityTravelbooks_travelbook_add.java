@@ -13,10 +13,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
+import Trip_DBs.Trips_BD;
 import Trip_Items.TravelBooks.Post;
 import Trip_Items.TravelBooks.TravelBook;
+import Trip_Items.Trips_trip;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 enum requestCodePhoto {
@@ -25,7 +25,7 @@ enum requestCodePhoto {
     BACKGROUND,
 }
 
-public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
+public class ActivityTravelbooks_travelbook_add extends AppCompatActivity{
     int defaultColor;
     int defaultColorText = Color.WHITE;
     int defaultColorTextBg = Color.TRANSPARENT;
@@ -41,6 +41,8 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
     EditText textPhoto1;
 
     int choosenBackGround;
+    boolean isEditMode = false;
+    int postEditIndex = -1;
 
 
     @Override
@@ -62,25 +64,35 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
         saveBtn = (ImageView) findViewById(R.id.saveBtn);
         mainTitle = (EditText) findViewById(R.id.mainTitle);
         textPhoto1 = (EditText) findViewById(R.id.textPhoto1);
+        imgBgCustom = (ImageView) findViewById(R.id.imgPostBgCustom);
+        imgPhoto1 = (ImageView) findViewById(R.id.imgPhoto1);
+        Bundle bundle = getIntent().getExtras();
+        isEditMode = bundle != null && bundle.getBoolean(Trips_BD.editBundleValue);
+        postEditIndex = AdapterSwipe.exitFromEditIndex;
 
         saveBtn.setOnClickListener( new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                travelBookCtx.add(assamblePost());
                 Bundle bundle = new Bundle();
-                bundle.putString("value", "Successfully added");
+                if (isEditMode) {
+                    travelBookCtx.set(postEditIndex, assemblePost());
+                    bundle.putString("value", "Successfully edited");
+                } else {
+                    travelBookCtx.add(assemblePost());
+                    bundle.putString("value", "Successfully added");
+                }
                 startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityTravelbooks_travelbook").
                         putExtras(bundle).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION));
             }
         });
 
-
-        imgBgCustom = (ImageView) findViewById(R.id.imgPostBgCustom);
-        imgPhoto1 = (ImageView) findViewById(R.id.imgPhoto1);
+        if (isEditMode) {
+            disassemblePost(travelBookCtx.get(postEditIndex));
+        }
 
     }
 
-    private Post assamblePost() {
+    private Post assemblePost() {
         Post post = new Post(
                         mainTitle.getText().toString(),
                         textPhoto1.getText().toString(),
@@ -89,6 +101,23 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
         post.setMainImgUri(imgPhoto1Uri);
         setBgForPost(post);
         return post;
+    }
+
+    private void disassemblePost(Post post) {
+        if (post == null) {
+            return;
+        }
+        mainTitle.setText(post.getName());
+        textPhoto1.setText(post.getTitlePhoto1());
+        btnColorTextBg.setBackgroundColor(post.getColorTextBg());
+
+        getBgFromPost(post);
+
+        ViewsHandler.getInstance().loadImageIntoView(post.getMainImgUri(), imgPhoto1);
+        imgPhoto1Uri = post.getMainImgUri();
+
+        btnColorText.setColorFilter(post.getColorText());
+        btnColorTextBg.setColorFilter(post.getColorTextBg());
     }
 
     public void chooseBgAndHighlight(View view){
@@ -114,6 +143,27 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
         }
 
    }
+
+    private void getBgFromPost(Post post) {
+        if (post.getBackGroundImgUri() != null) {
+            chooseBgAndHighlight(imgBgCustom);
+        } else if(post.getColorImg() != 0) {
+            chooseBgAndHighlight(btnColorBg);
+        }
+
+        switch(choosenBackGround) {
+            case R.id.btnColorBg:
+                btnColorBg.setBackgroundColor(post.getColorImg());
+                break;
+
+            case R.id.imgPostBgCustom:
+                imgBgCustomUri = post.getBackGroundImgUri();
+                ViewsHandler.getInstance().
+                        loadImageIntoView(post.getBackGroundImgUri(), imgBgCustom);
+                break;
+        }
+
+    }
 
 //--------------------------------------------------------Open from Gallery
 //-----------------------------------------------------------------------------------------------
@@ -200,5 +250,12 @@ public class ActivityTravelbooks_travelbook_add extends AppCompatActivity {
             }
         });
         colorPicker.show();
+    }
+
+//    protected void setFieldItem(Post post) {
+//    }
+
+    protected void getFieldItem(Post post) {
+
     }
 }

@@ -12,6 +12,9 @@ import Trip_DBs.IDB;
 import Trip_Items.Trips_trip;
 
 public class Post implements IDB {
+    public static String postIndexValue = "postIndex";
+
+
     private String      _name;
     private int         _colorImg;
     private int         _colorText;
@@ -30,9 +33,9 @@ public class Post implements IDB {
         this._colorTextBg = _colorTextBg;
     }
 
-    public Post(Post post) {
-        _name = post._name;
-    }
+//    public Post(Post post) {
+//        _name = post._name;
+//    }
 
     // getters
     public String getName() {
@@ -67,10 +70,16 @@ public class Post implements IDB {
 
 
     public void setBackGroundImgUri(Uri _backGroundImg) {
+        if ((this._backGroundImg != null) && (!this._backGroundImg.equals(_backGroundImg))) {
+            ViewsHandler.deleteByUri(this._backGroundImg);
+        }
         this._backGroundImg = _backGroundImg;
     }
 
     public void setMainImgUri(Uri _mainImg) {
+        if ((this._mainImg != null) && (!this._mainImg.equals(_mainImg))) {
+                ViewsHandler.deleteByUri(this._mainImg);
+        }
         this._mainImg =  _mainImg;
     }
 
@@ -80,6 +89,10 @@ public class Post implements IDB {
 
     public void setColorImg(int _colorImg) {
         this._colorImg = _colorImg;
+    }
+
+    public void setTitlePhoto1(String _titlePhoto1) {
+        this._titlePhoto1 = _titlePhoto1;
     }
 
     public void clear() {

@@ -35,6 +35,11 @@ public class Fragment_travelbook extends Fragment implements View.OnClickListene
         adapter = new AdapterSwipe(getActivity());
         viewPager.setAdapter(adapter);
 
+        if (AdapterSwipe.exitFromEditIndex >= 0) {
+            viewPager.setCurrentItem(AdapterSwipe.exitFromEditIndex);
+            AdapterSwipe.exitFromEditIndex = -1;
+        }
+
         return myLayout;
     }
 
