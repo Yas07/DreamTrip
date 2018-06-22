@@ -1,5 +1,7 @@
 package Trip_Items;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
@@ -221,7 +223,7 @@ public class Trips_trip extends DB_Item implements Comparable {
 
     @Override
     public void addToDb() {
-        // save fields into SQL db..
+
     }
 
     @Override

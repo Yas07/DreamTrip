@@ -6,6 +6,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import Trip_Items.Packlist.Packlist;
+import Trip_Items.Packlist.Stuff;
+import Trip_Items.TravelBooks.Post;
+import Trip_Items.TravelBooks.TravelBook;
+import Trip_Items.Trips_Plan.PlanPoint;
+import Trip_Items.Trips_trip;
+
 import static junit.framework.Assert.assertTrue;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -30,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return databaseHelper;
     }
     //--------------------------------------------------------------------------------TABLES--------
-    private String DATABASE_NAME = "Dream_Trip_Database.db";
+    private String DATABASE_NAME = "DreamTrip_DB.db";
 
     private String TRIPS_TABLE = "Trips_table";
     private String PLAN_POINTS_TABLE = "Plan_points_table";
@@ -44,217 +51,169 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String PACKLISTS_TABLE = "Packlists_table";
     private String ELEMENTS_TABLE = "Elements_table";
 
-    private String BACKGROUNDS_TABLE = "Backgrounds_table";
-    private String ACTIVITIES_STYLES_TABLE = "Activities_styles_table";
-
     //-------------------------------------------------------------------CREATING TABLES AND COLUMNS
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        // CREATING BACKGROUNDS_TABLE
-//        db.execSQL("CREATE TABLE " + BACKGROUNDS_TABLE
-//                + "(BG_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-//                + "Main_image BLOB NOT NULL, "
-//                + "Type INTEGER);");
-//
-//        // CREATING ACTIVITIES_STYLES_TABLE
-//        db.execSQL("CREATE TABLE " + ACTIVITIES_STYLES_TABLE
-//                + "(Activity_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-//                + "ImageBG BLOB, "
-//                + "ColorBG INTEGER, "
-//                + "Color_textBG INTEGER, "
-//                + "Color_text INTEGER), "
-//                + "FOREIGN KEY(ImageBG) REFERENCES " + BACKGROUNDS_TABLE + " (BG_ID));");
 
         // CREATING TRAVELBOOKS_TABLE
         db.execSQL("CREATE TABLE " + TRAVELBOOKS_TABLE
-                + "(TravelbookID INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "Name TEXT NOT NULL, "
-                + "Main_image BLOB NOT NULL, "
+                + " (TravelbookID INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "Name TEXT, "
+                + "Main_image BLOB, "
                 + "Details TEXT);");
 
-//        // CREATING POSTS_TABLE
-//        db.execSQL("CREATE TABLE " + POSTS_TABLE
-//                + "(PostID INTEGER PRIMARY KEY AUTOINCREMENT, "
-//                + "Title TEXT, "
-//                + "ColorBG INTEGER, "
-//                + "Color_textBG INTEGER, "
-//                + "Color_text INTEGER), "
-//                + "TravelbookID INTEGER, "
-//                + "ImageBG BLOB, "
-//                + "FOREIGN KEY(TravelbookID) REFERENCES " + TRAVELBOOKS_TABLE + " (TravelbookID), "
-//                + "FOREIGN KEY(ImageBG) REFERENCES " + BACKGROUNDS_TABLE + " (BG_ID));");
-//
-//        // CREATING PHOTOS_TABLE
-//        db.execSQL("CREATE TABLE " + PHOTOS_TABLE
-//                + "(PhotoID INTEGER PRIMARY KEY AUTOINCREMENT, "
-//                + "Image BLOB NOT NULL, "
-//                + "Title TEXT, "
-//                + "PostID INTEGER, "
-//                + "FOREIGN KEY(PostID) REFERENCES " + POSTS_TABLE + " (PostID));");
+        // CREATING POSTS_TABLE
+        db.execSQL("CREATE TABLE " + POSTS_TABLE
+                + " (PostID INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "ColorBG INTEGER, "
+                + "Color_textBG INTEGER, "
+                + "Color_text INTEGER, "
+                + "TravelbookID INTEGER, "
+                + "ImageBG BLOB, "
+                + "TextCaption TEXT, "
+                + "Text TEXT, "
+                + "PhotoUser BLOB, "
+                + "FOREIGN KEY(TravelbookID) REFERENCES " + TRAVELBOOKS_TABLE + " (TravelbookID));");
 
         // CREATING PACKLISTS_TABLE
         db.execSQL("CREATE TABLE " + PACKLISTS_TABLE
-                + "(PacklistID INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "Name TEXT NOT NULL, "
-                + "Main_image BLOB NOT NULL, "
+                + " (PacklistID INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "Name TEXT, "
+                + "Main_image BLOB, "
                 + "Details TEXT);");
 
-//        // CREATING ELEMENTS_TABLE
-//        db.execSQL("CREATE TABLE " + ELEMENTS_TABLE
-//                + "(ElementID INTEGER PRIMARY KEY AUTOINCREMENT, "
-//                + "Title TEXT NOT NULL, "
-//                + "isChecked INTEGER NOT NULL, "
-//                + "GROUP TEXT, "
-//                + "PacklistID INTEGER NOT NULL, "
-//                + "FOREIGN KEY(PacklistID) REFERENCES " + PACKLISTS_TABLE + " (PacklistID));");
+        // CREATING ELEMENTS_TABLE
+        db.execSQL("CREATE TABLE " + ELEMENTS_TABLE
+                + " (ElementID INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "Title TEXT, "
+                + "isChecked INTEGER, "
+                + "PacklistID INTEGER, "
+                + "FOREIGN KEY(PacklistID) REFERENCES " + PACKLISTS_TABLE + " (PacklistID));");
 
         // CREATING TRIPS_TABLE
         db.execSQL("CREATE TABLE " + TRIPS_TABLE
                 + " (TripID INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "Name TEXT NOT NULL, "
+                + "Name TEXT, "
                 + "PacklistID INTEGER, "
                 + "TravelbookID INTEGER, "
-                + "Start_date TEXT NOT NULL, "
-                + "End_date TEXT NOT NULL, "
+                + "Start_date TEXT, "
+                + "End_date TEXT, "
                 + "Main_image BLOB, "
                 + "Header_Image BLOB, "
                 + "Text_color TEXT, "
                 + "FOREIGN KEY(PacklistID) REFERENCES " + PACKLISTS_TABLE + " (PacklistID), "
                 + "FOREIGN KEY(TravelbookID) REFERENCES " + TRAVELBOOKS_TABLE + " (TravelbookID));");
 
-//        // CREATING PLACES_TABLE
-//        db.execSQL("CREATE TABLE " + PLACES_TABLE
-//                + "(PlaceID INTEGER PRIMARY KEY AUTOINCREMENT, "
-//                + "Name TEXT NOT NULL, "
-//                + "TripID INTEGER, "
-//                + "Address TEXT), "
-//                + "FOREIGN KEY(TripID) REFERENCES " + TRIPS_TABLE + " (TripID));");
-//
-//        // CREATING ICONS_TABLE
-//        db.execSQL("CREATE TABLE " + ICONS_TABLE
-//                + "(IconID INTEGER PRIMARY KEY AUTOINCREMENT, "
-//                + "Name TEXT NOT NULL, "
-//                + "Icon_image BLOB NOT NULL, "
-//                + "Activity_type INTEGER);");
-//
-//        // CREATING PLAN_POINTS_TABLE
-//        db.execSQL("CREATE TABLE " + PLAN_POINTS_TABLE
-//                + "(Point_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
-//                + "TripID INTEGER, "
-//                + "PlaceID INTEGER, "
-//                + "Details TEXT, "
-//                + "Activity_type INTEGER NOT NULL, "
-//                + "IconID INTEGER NOT NULL, "
-//                + "FOREIGN KEY(TripID) REFERENCES " + TRIPS_TABLE + " (TripID), "
-//                + "FOREIGN KEY(PlaceID) REFERENCES "+ PLACES_TABLE+ " (PlaceID), "
-//                + "FOREIGN KEY(IconID) REFERENCES " + ICONS_TABLE + " (IconID));");
-
+        // CREATING PLAN_POINTS_TABLE
+        db.execSQL("CREATE TABLE " + PLAN_POINTS_TABLE
+                + " (Point_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "TripID INTEGER, "
+                + "Title TEXT, "
+                + "Opens TEXT, "
+                + "Closes TEXT, "
+                + "Address TEXT, "
+                + "Color_index INTEGER, "
+                + "Details TEXT, "
+                + "IconID INTEGER, "
+                + "FOREIGN KEY(TripID) REFERENCES " + TRIPS_TABLE + " (TripID));");
     }
     //-------------------------------------------------------------------------------INSERTING DATA
 
-    public void insertTrip(Trip_ trip){
+    public void insertTrip(Trips_trip trip){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Name", trip.getTitle());
+
+        contentValues.put("Name", trip.getName());
         contentValues.put("Start_date", trip.getStartDate().toString());
         contentValues.put("End_date", trip.getEndDate().toString());
         contentValues.put("Text_color", trip.getTextColor());
-        contentValues.put("TravelbookID", 1); //new travelbook
-        contentValues.put("PacklistID", 1);   //old packlist
+        //contentValues.put("TravelbookID", 1);
+        //contentValues.put("PacklistID", 1);
         //contentValues.put("Main_image", trip.getMainImage());
         //contentValues.put("Header_image", trip.getHeaderImage());
+
         db.insert(TRIPS_TABLE, null, contentValues);
     }
 
-    public void insertTravelbook(String name, String image, String details){
+    public void insertTravelbook(TravelBook travelBook){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Name", name);
-        contentValues.put("Main_image", image);
-        contentValues.put("Details", details);
+
+        contentValues.put("Name", travelBook.getName());
+        contentValues.put("Main_image", travelBook.getPhotoIndex());
+        contentValues.put("Details", travelBook.getDetails());
+
         db.insert(TRAVELBOOKS_TABLE, null, contentValues);
     }
 
-    public void insertPacklist(String name, String image, String details){
+    public void insertPacklist(Packlist packlist){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Name", name);
-        contentValues.put("Main_image", image);
-        contentValues.put("Details", details);
+
+        contentValues.put("Name", packlist.getName());
+        contentValues.put("Main_image", packlist.getBagIndex());
+        contentValues.put("Details", packlist.getDetails());
+
         db.insert(PACKLISTS_TABLE, null, contentValues);
     }
 
-/*    public void insertPost(Travelbook_Post post){
+    public void insertPost(Post post){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Title", post.getTitle());
-        contentValues.put("ColorBG", post.getColorBG());
-        contentValues.put("Color_textBG", post.getColor_textBG());
-        contentValues.put("Color_text", post.getColor_text());
-        contentValues.put("TravelbookID", post.getTravelbookID());
-        contentValues.put("ImageBG", post.getImageBG());
+
+        contentValues.put("ColorBG", post.getColorImg());
+        contentValues.put("Color_textBG", post.getColorTextBg());
+        contentValues.put("Color_text", post.getColorText());
+        contentValues.put("Caption", post.getName());
+        contentValues.put("Text", post.getTitlePhoto1());
+        //contentValues.put("PhotoUser", post.getMainImg());
+        //contentValues.put("TravelbookID", );
+        //contentValues.put("ImageBG", post.getMainImg());
+
         db.insert(POSTS_TABLE, null, contentValues);
 
-        int postID = db.execSQL("SELECT PostID FROM Posts_table ... ");
-        ContentValues valuesPhotos = null;
-        String array[4][2] = post.getPhotosArray();
-        for (int i = 0; i < array.length(); i++){
-            valuesPhotos = new ContentValues();
-            contentValues.put("PostID", postID);
-            contentValues.put("Image", array[i][0]);
-            contentValues.put("Title", array[i][1]);
-            db.insert(PHOTOS_TABLE, null, valuesPhotos);
-        }
     }
 
-    public void insertElement(Packlist_element element){
+    public void insertElement(Stuff element){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Title", element.getTitle());
-        contentValues.put("isChecked", element.getIsChecked());
-        contentValues.put("Group", element.getGroup());
 
-        int packlistId = execSQL("SELECT PacklistID FROM Packlists_table ... ");
-        contentValues.put("PacklistID", packlistID);
+        contentValues.put("Title", element.getName());
+        contentValues.put("isChecked", element.isChecked());
+
+        //int packlistId = execSQL("SELECT PacklistID FROM Packlists_table ... ");
+        //contentValues.put("PacklistID", packlistID);
         db.insert(ELEMENTS_TABLE, null, contentValues);
     }
 
-    public void insertPlace(Trip_place place){
+    public void insertPlanPoint(PlanPoint planPoint){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("Name", place.getName());
-        contentValues.put("Address", place.getAddress());
-        contentValues.put("TripID", place.getTripID());
-        db.insert(PLACES_TABLE, null, contentValues);
-    }
 
-    public void insertPlanPoint(Trip_PlanPoint planPoint){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("TripID", planPoint.getTripID());
-        contentValues.put("PlaceID", planPoint.getPlaceID());
-        contentValues.put("Details", place.getDetails());
-        contentValues.put("Activity_type", place.getActivityType());
-        contentValues.put("IconID", place.getIconID());
+        //contentValues.put("TripID", planPoint.getTripID());
+        contentValues.put("Details", planPoint.getOtherDetails());
+        contentValues.put("Title", planPoint.getTitle());
+        contentValues.put("Color_index", planPoint.getColorIndex());
+        contentValues.put("Opens", planPoint.getPlace().get_opensAt().toString());
+        contentValues.put("Closes", planPoint.getPlace().get_closesAt().toString());
+        contentValues.put("Address", planPoint.getPlace().get_address());
+        contentValues.put("IconID", planPoint.getIconIndex());
+
         db.insert(PLAN_POINTS_TABLE, null, contentValues);
     }
-*/
+
     //------------------------------------------------------------------------------UPGRADING TABLES
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TRIPS_TABLE + " ;");
         db.execSQL("DROP TABLE IF EXISTS " + TRAVELBOOKS_TABLE + " ;");
         db.execSQL("DROP TABLE IF EXISTS " + PACKLISTS_TABLE + " ;");
- /*
+
         db.execSQL("DROP TABLE IF EXISTS " + ELEMENTS_TABLE + " ;");
         db.execSQL("DROP TABLE IF EXISTS " + POSTS_TABLE + " ;");
         db.execSQL("DROP TABLE IF EXISTS " + PHOTOS_TABLE + " ;");
-        db.execSQL("DROP TABLE IF EXISTS " + PLACES_TABLE + " ;");
         db.execSQL("DROP TABLE IF EXISTS " + PLAN_POINTS_TABLE + " ;");
-        db.execSQL("DROP TABLE IF EXISTS " + ICONS_TABLE + " ;");
-        db.execSQL("DROP TABLE IF EXISTS " + BACKGROUNDS_TABLE + " ;");
-        db.execSQL("DROP TABLE IF EXISTS " + ACTIVITIES_STYLES_TABLE + " ;");
-*/
+
         onCreate(db);
     }
 

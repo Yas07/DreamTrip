@@ -29,4 +29,19 @@ public class Place {
                 " - " + _timeFormat.format(_closesAt.getTime())+ " ";
     }
 
+    public Calendar get_opensAt() {
+        return _opensAt;
+    }
+
+    public Calendar get_closesAt() {
+        return _closesAt;
+    }
+
+    public String get_address() {
+        return _address;
+    }
+
+    public DateFormat get_timeFormat() {
+        return _timeFormat;
+    }
 }
