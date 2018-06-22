@@ -103,13 +103,13 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="horizontal">
 
                         <FrameLayout
-                            android:id="@+id/layoutBagSquare"
+                            android:id="@+id/layoutBagRectangle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.37"
@@ -118,38 +118,9 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:id="@+id/btnBagSquare"
-                                android:layout_width="100dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="9dp"
-                                android:onClick="openGallery"
-                                android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/ic_menu_camera" />
-
-                            <ImageView
-                                android:layout_width="108dp"
-                                android:layout_height="100dp"
-                                android:tag="bag_square_dpi"
-                                android:background="@drawable/bag_square_dpi"
-                                android:layout_gravity="center"
-                                android:orientation="horizontal"/>
-
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:id="@+id/layoutBagRectangle"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_weight="0.37"
-                            android:gravity="center"
-                            android:onClick="chooseBag"
-                            android:orientation="vertical">
-
-                            <ImageView
                                 android:id="@+id/btnBagRectangle"
-                                android:layout_width="110dp"
-                                android:layout_height="25dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="9dp"
                                 android:onClick="openGallery"
@@ -157,12 +128,11 @@
                                 app:srcCompat="@drawable/ic_menu_camera" />
 
                             <ImageView
-                                android:layout_width="127dp"
-                                android:layout_height="100dp"
-                                android:tag="bag_rectangle_dpi"
-                                android:background="@drawable/bag_rectangle_dpi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:orientation="horizontal"/>
+                                android:orientation="horizontal"
+                                android:tag="bag_rectangle_dpi" />
 
                         </FrameLayout>
 

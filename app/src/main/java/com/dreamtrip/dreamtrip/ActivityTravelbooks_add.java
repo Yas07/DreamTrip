@@ -21,13 +21,12 @@ import Trip_Items.Trips_trip;
 
 enum RequestCodeFrame {
     NONE,
-    DARK,
-    LIGHT,
+    LIGHT
 }
 
 public class ActivityTravelbooks_add extends AppCompatActivity {
     Button btn_save;
-    ImageView imgPhoto, btnPhotoFrameLight, btnPhotoFrameDark;
+    ImageView imgPhoto, btnPhotoFrameLight;
     boolean isPhotoSet = false;
     EditText editTravelbookTitle;
     EditText editTravelBookDetails;
@@ -51,6 +50,8 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
                 addTravelBook(v);
             }
         });
+
+        btnPhotoFrameLight = (ImageView) findViewById(R.id.btnPhotoFrameLight);
     }
 
 
@@ -75,21 +76,17 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
             }
 
             TravelBooksDB.getInstance().put(travelBook);
-
+            Toast.makeText(this, "Successfully added", Toast.LENGTH_SHORT).show();
             startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityTravelbooks_travelbook").putExtras(bundle));
         }
     }
 
-    //--------------------------------------------------------Open from Gallery
+//----------------------------------------------------------Open from Gallery
 //-----------------------------------------------------------------------------------------------
 
     public void openGallery(View view){
         RequestCodeFrame requestCode = RequestCodeFrame.NONE;
         switch (view.getId()){
-            case R.id.btnPhotoFrameDark:
-                imgPhoto = btnPhotoFrameDark;
-                requestCode = RequestCodeFrame.DARK;
-                break;
             case R.id.btnPhotoFrameLight:
                 imgPhoto = btnPhotoFrameLight;
                 requestCode = RequestCodeFrame.LIGHT;
@@ -103,23 +100,16 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            //any frame
             Bitmap selectedImage = ViewsHandler.getInstance().getImageFromGallery(data, ActivityTravelbooks_add.this);
-            imgPhoto.getLayoutParams().height =
-                    (int) ViewsHandler.getInstance().convertDpToPx(84, ActivityTravelbooks_add.this);
-            imgPhoto.getLayoutParams().width =
-                    (int) ViewsHandler.getInstance().convertDpToPx(84, ActivityTravelbooks_add.this);
-            imgPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imgPhoto.requestLayout();
-            selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 300, 200);
-
             switch (RequestCodeFrame.values()[requestCode]) {
-                case DARK:{
-                    chooseCover(findViewById(R.id.layoutFrameDark));
-                    currentPhotoId = R.drawable.travelbook_frame_black;
-                    break;
-                }
                 case LIGHT : {
+                    imgPhoto.getLayoutParams().height =
+                            (int) ViewsHandler.getInstance().convertDpToPx(90, ActivityTravelbooks_add.this);
+                    imgPhoto.getLayoutParams().width =
+                            (int) ViewsHandler.getInstance().convertDpToPx(150, ActivityTravelbooks_add.this);
+                    imgPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    imgPhoto.requestLayout();
+                    selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 300, 200);
                     chooseCover(findViewById(R.id.layoutFrameLight));
                     currentPhotoId = R.drawable.travelbook_frame_light;
                     break;
@@ -127,6 +117,7 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
             }
             Drawable d = new BitmapDrawable(getResources(), selectedImage);
             imgPhoto.setImageDrawable(d);
+            //ViewsHandler.getInstance().loadImageIntoView(data.getData(), imgPhoto);
             isPhotoSet = true;
         }
     }
@@ -134,7 +125,6 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
 
     public void chooseCover(View view){
         View[] buttons = {
-                findViewById(R.id.layoutFrameDark),
                 findViewById(R.id.layoutFrameLight),
                 findViewById(R.id.travelbooks_add_btnChristmasBlack),
                 findViewById(R.id.travelbooks_add_btnChristmasGreen),
@@ -156,9 +146,9 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 
-
         String photo = (String)  view.getTag();
-        currentPhotoId = getPhotoIDbyName(photo);
+        currentPhotoId = view.getId() == R.id.layoutFrameLight ? 0 : getPhotoIDbyName(photo);
+
         isPhotoSet = false;
 
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
@@ -175,11 +165,12 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
                 res = getResources().getIdentifier(name, "mipmap",
                         getPackageName() );
             }
-
+            return res;
         } catch(Exception e) {
             Log.e("getIconIdByName", "Failed to find icon=" + name);
+            return res;
         }
-        return res;
+
     }
 
 

@@ -99,7 +99,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -112,53 +112,17 @@
                             android:onClick="chooseCover"
                             android:orientation="vertical">
 
-                            <LinearLayout
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
+                            <ImageView
+                                android:id="@+id/btnPhotoFrameLight"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="8dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/travelbook_frame_light"
-                                android:gravity="center"
-                                android:orientation="horizontal">
+                                android:onClick="openGallery"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/ic_menu_camera" />
 
-                                <ImageView
-                                    android:id="@+id/btnPhotoFrameLight"
-                                    android:layout_width="80dp"
-                                    android:layout_height="35dp"
-                                    android:layout_gravity="center"
-                                    android:layout_margin="8dp"
-                                    android:onClick="openGallery"
-                                    android:scaleType="fitCenter"
-                                    app:srcCompat="@drawable/ic_menu_camera" />
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/layoutFrameDark"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_weight="0.37"
-                            android:gravity="center"
-                            android:onClick="chooseCover"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:layout_weight="0.37"
-                                android:background="@drawable/travelbook_frame_black"
-                                android:gravity="center"
-                                android:orientation="horizontal">
-
-                                <ImageView
-                                    android:id="@+id/btnPhotoFrameDark"
-                                    android:layout_width="80dp"
-                                    android:layout_height="35dp"
-                                    android:layout_gravity="center"
-                                    android:layout_margin="8dp"
-                                    android:onClick="openGallery"
-                                    android:scaleType="fitCenter"
-                                    app:srcCompat="@drawable/ic_menu_camera" />
-                            </LinearLayout>
                         </LinearLayout>
 
                     </LinearLayout>

@@ -21,13 +21,12 @@ import Trip_Items.Trips_trip;
 
 enum RequestCodeBag {
     NONE,
-    RECTANGLE,
-    SQUARE,
+    RECTANGLE
 }
 
 public class ActivityPacklists_add extends AppCompatActivity {
     Button btn_save;
-    ImageView btnBagSquare, btnBagRectangle, imgPhoto;
+    ImageView btnBagRectangle, imgPhoto;
     EditText packlistDetail, packlistTitle;
     boolean isPhotoSet = false;
 
@@ -46,7 +45,6 @@ public class ActivityPacklists_add extends AppCompatActivity {
         });
         packlistTitle = (EditText) findViewById(R.id.editPacklistTitle);
         packlistDetail = (EditText) findViewById(R.id.editPacklistDetail);
-        btnBagSquare = (ImageView) findViewById(R.id.btnBagSquare);
         btnBagRectangle = (ImageView) findViewById(R.id.btnBagRectangle);
     }
 
@@ -66,13 +64,13 @@ public class ActivityPacklists_add extends AppCompatActivity {
             Packlist packlist = new Packlist(packName, packDetails, currentBagId);
 
             if (isPhotoSet) {
-                packlist.setBagPhoto(Trips_trip.getBitMapFromView(imgPhoto));
+                packlist.setBagPhoto(Trips_trip.getBitMapFromView(btnBagRectangle));
             }
 
             PacklistsDB.getInstance().put(packlist);
 
             Packlist.setCurrentPacklist(packlist);
-
+            Toast.makeText(this, "Successfully added", Toast.LENGTH_SHORT).show();
             startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityPacklists_packlist").putExtras(bundle));
         }
     }
@@ -83,10 +81,6 @@ public class ActivityPacklists_add extends AppCompatActivity {
             case R.id.btnBagRectangle:
                 imgPhoto = btnBagRectangle;
                 requestCode = RequestCodeBag.RECTANGLE;
-                break;
-            case R.id.btnBagSquare:
-                imgPhoto = btnBagSquare;
-                requestCode = RequestCodeBag.SQUARE;
                 break;
         }
         Intent GalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -103,26 +97,14 @@ public class ActivityPacklists_add extends AppCompatActivity {
             switch (RequestCodeBag.values()[requestCode]) {
                 case RECTANGLE:{                                    //bag rectangle
                     imgPhoto.getLayoutParams().height =
-                            (int) ViewsHandler.getInstance().convertDpToPx(75, ActivityPacklists_add.this);
+                            (int) ViewsHandler.getInstance().convertDpToPx(90, ActivityPacklists_add.this);
                     imgPhoto.getLayoutParams().width =
-                            (int) ViewsHandler.getInstance().convertDpToPx(110, ActivityPacklists_add.this);
+                            (int) ViewsHandler.getInstance().convertDpToPx(150, ActivityPacklists_add.this);
                     imgPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     imgPhoto.requestLayout();
                     selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 300, 200);
                     chooseBag(findViewById(R.id.layoutBagRectangle));
                     currentBagId = R.drawable.bag_rectangle_dpi;
-                    break;
-                }
-                case SQUARE:{                                    //bag square
-                    imgPhoto.getLayoutParams().height =
-                            (int) ViewsHandler.getInstance().convertDpToPx(75, ActivityPacklists_add.this);
-                    imgPhoto.getLayoutParams().width =
-                            (int) ViewsHandler.getInstance().convertDpToPx(90, ActivityPacklists_add.this);
-                    imgPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    imgPhoto.requestLayout();
-                    selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 300, 200);
-                    chooseBag(findViewById(R.id.layoutBagSquare));
-                    currentBagId = R.drawable.bag_square_dpi;
                     break;
                 }
             }
@@ -136,7 +118,6 @@ public class ActivityPacklists_add extends AppCompatActivity {
     public void chooseBag(View view){
         View[] buttons = {
                 findViewById(R.id.layoutBagRectangle),
-                findViewById(R.id.layoutBagSquare),
                 findViewById(R.id.packlists_add_btnAdventure),
                 findViewById(R.id.packlists_add_btnBirds),
                 findViewById(R.id.packlists_add_btnChildren),
@@ -158,10 +139,9 @@ public class ActivityPacklists_add extends AppCompatActivity {
             temp.setBackgroundColor(Color.TRANSPARENT);
 
         String iconName = (String)  view.getTag();
-
         currentBagId = getBagIDbyName(iconName);
-        isPhotoSet = false;
 
+        isPhotoSet = view.getId() == R.id.layoutBagRectangle;
 
         view.setBackgroundColor(getResources().getColor(R.color.transparentWhite));
 
