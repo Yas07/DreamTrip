@@ -90,72 +90,7 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
             itemDate = (TextView)itemView.findViewById(R.id.planDate);
             textPlan = (TextView)itemView.findViewById(R.id.planTextPlan);
 
-//            itemView.setOnCreateContextMenuListener(this);
-
-//            MenuItem editOption = (MenuItem) context.getApplicationContext().fin
-//            MenuItem deleteOption = (MenuItem)itemView.findViewById(R.id.option_delete);
-//            editOption.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-//                @Override
-//                public boolean onMenuItemClick(MenuItem menuItem) {
-//                    Log.e("Edit", "planpoint=" + choosenPlanPoint);
-//                    return true;
-//                }
-//            });
-//
-//            deleteOption.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-//                @Override
-//                public boolean onMenuItemClick(MenuItem menuItem) {
-//                    Log.e("Delete", "planpoint=" + choosenPlanPoint);
-//                    return true;
-//                }
-//            });
-//            editOption.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Log.e("Edit", "planpoint=" + choosenPlanPoint);
-//                }
-//            });
-//
-//            deleteOption.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                }
-//            });
-//            itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener(){
-//                @Override
-//                public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-//                    MenuInflater menu = new MenuInflater(itemView.getContext());
-//                    menu.inflate(R.menu.edit_delete, contextMenu);
-//                }
-//            });
         }
-
-//        @Override
-//        public void onCreateContextMenu(ContextMenu contextMenu, final View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-//            MenuInflater menu = new MenuInflater(context);
-//            menu.inflate(R.menu.edit_delete, contextMenu);
-//            contextMenu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-//                @Override
-//                public boolean onMenuItemClick(MenuItem menuItem) {
-//                    Log.e("Edit", "planpoint=" + index);
-//                    return true;
-//                }
-//            });
-//
-//            contextMenu.getItem(1).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-//                @Override
-//                public boolean onMenuItemClick(MenuItem menuItem) {
-//                    Log.e("Delete", "planpoint=" + index);
-//                    return true;
-//                }
-//            });
-//
-//        }
-
-//        @Override
-//        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-//
-//        }
     }
 
     @Override

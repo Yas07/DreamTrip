@@ -100,7 +100,9 @@ public class TravelBook extends LinkedList<Post> implements Comparable, IDB {
 
     @Override
     public boolean remove(Object o) {
-        ((Post)o).removeFromDb();
+        Post post = ((Post)o);
+        post.removeFromDb();
+        post.clear();
         return super.remove(o);
     }
 
