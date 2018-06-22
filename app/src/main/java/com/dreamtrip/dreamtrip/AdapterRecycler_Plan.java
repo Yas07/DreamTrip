@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -115,15 +116,32 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
                     contextMenu.getItem(1).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {
-                            PlanPoint planPoint = planPoints.get(viewHolder.index);
-                            if (planPoint == null) {
-                                Log.e("Delete planpoint", "Null planpoint");
-                                return true;
-                            }
-                            planPoints.remove(planPoint);
-                            Trips_trip.getCurrentTrip().getPlan().remove(planPoint);
-                            notifyItemRemoved(viewHolder.index);
-                            notifyItemRangeChanged(viewHolder.index, planPoints.size());
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setTitle("Delete plan point");
+                            builder.setMessage("Do you want to delete this point in plan?");
+                            builder.setPositiveButton("YES",new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    PlanPoint planPoint = planPoints.get(viewHolder.index);
+                                    if (planPoint == null) {
+                                        Log.e("Delete planpoint", "Null planpoint");
+                                        //return true;
+                                    }
+                                    planPoints.remove(planPoint);
+                                    Trips_trip.getCurrentTrip().getPlan().remove(planPoint);
+                                    notifyItemRemoved(viewHolder.index);
+                                    notifyItemRangeChanged(viewHolder.index, planPoints.size());
+                                    Toast.makeText(context, "Point was deleted", Toast.LENGTH_SHORT).show();
+                                    //return true;
+                                }
+                            });
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                            builder.show();
                             return true;
                         }
                     });

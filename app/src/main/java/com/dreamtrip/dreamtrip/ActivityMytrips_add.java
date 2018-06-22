@@ -158,7 +158,7 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 packlist = spinner.getSelectedItem().toString();
-                Toast.makeText(ActivityMytrips_add.this, packlist, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ActivityMytrips_add.this, packlist, Toast.LENGTH_SHORT).show();
             }
 
             @Override

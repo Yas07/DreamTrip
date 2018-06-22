@@ -31,7 +31,7 @@ public class ActivityTravelbooks_travelbook extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             if(bundle.getString("value")!= null){
-                Toast.makeText(this, bundle.getString("value"), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, bundle.getString("value"), Toast.LENGTH_SHORT).show();
             }
         }
     }

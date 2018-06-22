@@ -72,9 +72,13 @@ public class ViewsHandler {
     public Uri saveTempImg(Uri imgToSave, Context context) {
         try {
             File outputDir = context.getExternalCacheDir(); // context being the Activity pointer
-            String name = imgToSave.getLastPathSegment();
-            name = name.substring(name.lastIndexOf("/") +1);
-            File outputFile = File.createTempFile(name, null, outputDir);
+            StringBuilder name = new StringBuilder(imgToSave.getLastPathSegment());
+            name = new StringBuilder(name.substring(name.lastIndexOf("/") + 1));
+            if (name.length() == 0) {
+                name = new StringBuilder(imgToSave.getLastPathSegment());
+            }
+            while (name.length() < 3) name.append("name");
+            File outputFile = File.createTempFile(name.toString(), null, outputDir);
             outputFile.deleteOnExit();
             OutputStream fOut = new FileOutputStream(outputFile);
             Bitmap image  = getImageFromGalleryByUri(imgToSave, context);

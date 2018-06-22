@@ -1,6 +1,8 @@
 package com.dreamtrip.dreamtrip;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.view.PagerAdapter;
@@ -15,9 +17,10 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
+//import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Target;
 
 import java.util.TreeSet;
 
@@ -129,21 +132,37 @@ public class AdapterSwipe extends PagerAdapter {
                 contextMenu.getItem(1).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        try {
-                            Post post = travelBookCtx.get(index);
-                            travelBookCtx.remove(post);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+                        builder.setTitle("Delete post");
+                        builder.setMessage("Do you want to delete this post?");
+                        builder.setPositiveButton("YES",new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                try {
+                                    Post post = travelBookCtx.get(index);
+                                    travelBookCtx.remove(post);
 //                            idsForDelete.add(index);
-                            view.setTag(DELETE_ITEM);
-                            notifyDataSetChanged();
-                        } catch (Exception e ) {
-                            String msg = e.getMessage();
-                            Log.e("Post adapter", msg == null ? "even msg null" : msg);
-                            return true;
-                        }
+                                    view.setTag(DELETE_ITEM);
+                                    notifyDataSetChanged();
+                                    Toast.makeText(ctx, "Post was deleted", Toast.LENGTH_SHORT).show();
+                                } catch (Exception e ) {
+                                    String msg = e.getMessage();
+                                    Log.e("Post adapter", msg == null ? "even msg null" : msg);
+                                    //return true;
+                                }
+                                //return true;
+                            }
+                        });
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        builder.show();
                         return true;
                     }
                 });
-
             }
 
         });
