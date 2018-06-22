@@ -15,11 +15,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-
-import java.security.spec.ECField;
-
-import Trip_DBs.Trips_BD;
 import Trip_Items.TravelBooks.TravelBook;
 import Trip_Items.TravelBooks.TravelBooksDB;
 import Trip_Items.Trips_trip;
@@ -31,7 +26,7 @@ enum RequestCodeFrame {
 
 public class ActivityTravelbooks_add extends AppCompatActivity {
     Button btn_save;
-    ImageView btnPhotoFrameLight;
+    ImageView imgPhoto, btnPhotoFrameLight;
     boolean isPhotoSet = false;
     EditText editTravelbookTitle;
     EditText editTravelBookDetails;
@@ -45,12 +40,8 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.travelbooks_add);
 
-        Bundle bundle = getIntent().getExtras();
-        isEditMode = bundle != null && bundle.getBoolean(Trips_BD.editBundleValue);
-
         editTravelbookTitle = (EditText) findViewById(R.id.editTravelbookTitle);
         editTravelBookDetails = (EditText) findViewById(R.id.editText5);
-        btnPhotoFrameLight = (ImageView) findViewById(R.id.btnPhotoFrameLight);
 
         btn_save = (Button) findViewById(R.id.btn_travelbook_save);
         btn_save.setOnClickListener(new View.OnClickListener(){
@@ -60,10 +51,7 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
             }
         });
 
-
-        if (isEditMode) {
-            disassembleTravelBook(TravelBook.getCurrentTravelBook());
-        }
+        btnPhotoFrameLight = (ImageView) findViewById(R.id.btnPhotoFrameLight);
     }
 
 
@@ -80,12 +68,12 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putString("value", "Successfully added");
 
-            TravelBook travelBook = TravelBook.getCurrentTravelBook();
-            if ((isEditMode == false) || (travelBook == null)) {
-                travelBook = new TravelBook();
-            }
+            String details = editTravelBookDetails.getText().toString();
+            TravelBook travelBook = new TravelBook(title, details, currentPhotoId);
 
-            assembleTravelBook(travelBook);
+            if (isPhotoSet) {
+                travelBook.setPhotoImage(Trips_trip.getBitMapFromView(imgPhoto));
+            }
 
             TravelBooksDB.getInstance().put(travelBook);
             Toast.makeText(this, "Successfully added", Toast.LENGTH_SHORT).show();
@@ -93,44 +81,6 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         }
     }
 
-    private void assembleTravelBook(TravelBook travelBook) {
-
-        if (travelBook == null) {
-            Log.e("assembleTravelBook", "null travelbook");
-            return;
-        }
-
-        String details = editTravelBookDetails.getText().toString();
-        String title = editTravelbookTitle.getText().toString();
-        travelBook.setDetails(details);
-        travelBook.setName(title);
-        travelBook.setPhotoIndex(currentPhotoId);
-
-        if (isPhotoSet) {
-            btnPhotoFrameLight.buildDrawingCache();
-            travelBook.setPhotoImage(btnPhotoFrameLight.getDrawingCache());
-        }
-
-    }
-
-    private void disassembleTravelBook(TravelBook travelBook) {
-        if (travelBook == null) {
-            Log.e("assembleTravelBook", "null travelbook");
-            return;
-        }
-
-        editTravelBookDetails.setText(travelBook.getDetails());
-        editTravelbookTitle.setText(travelBook.getName());
-        currentPhotoId = travelBook.getPhotoIndex();
-
-        if (travelBook.getPhotoImage() != null) {
-            btnPhotoFrameLight.setImageBitmap(travelBook.getPhotoImage());
-            isPhotoSet = true;
-            chooseCover(btnPhotoFrameLight);
-        } else if (currentPhotoId != 0) {
-            chooseCover(findViewById(currentPhotoId));
-        }
-    }
 //----------------------------------------------------------Open from Gallery
 //-----------------------------------------------------------------------------------------------
 
@@ -138,6 +88,7 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         RequestCodeFrame requestCode = RequestCodeFrame.NONE;
         switch (view.getId()){
             case R.id.btnPhotoFrameLight:
+                imgPhoto = btnPhotoFrameLight;
                 requestCode = RequestCodeFrame.LIGHT;
                 break;
         }
@@ -149,14 +100,25 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            chooseCover(btnPhotoFrameLight);
-            try {
-                Picasso.get().load(data.getData()).resize(300, 200).centerInside().into(btnPhotoFrameLight);
-            } catch (Exception e) {
-                Log.e("galery", "error = " + e.getMessage());
+            Bitmap selectedImage = ViewsHandler.getInstance().getImageFromGallery(data, ActivityTravelbooks_add.this);
+            switch (RequestCodeFrame.values()[requestCode]) {
+                case LIGHT : {
+                    imgPhoto.getLayoutParams().height =
+                            (int) ViewsHandler.getInstance().convertDpToPx(90, ActivityTravelbooks_add.this);
+                    imgPhoto.getLayoutParams().width =
+                            (int) ViewsHandler.getInstance().convertDpToPx(150, ActivityTravelbooks_add.this);
+                    imgPhoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    imgPhoto.requestLayout();
+                    selectedImage = ViewsHandler.getInstance().resizeImage(selectedImage, 300, 200);
+                    chooseCover(findViewById(R.id.layoutFrameLight));
+                    currentPhotoId = R.drawable.travelbook_frame_light;
+                    break;
+                }
             }
+            Drawable d = new BitmapDrawable(getResources(), selectedImage);
+            imgPhoto.setImageDrawable(d);
+            //ViewsHandler.getInstance().loadImageIntoView(data.getData(), imgPhoto);
             isPhotoSet = true;
-            currentPhotoId = 0;
         }
     }
 

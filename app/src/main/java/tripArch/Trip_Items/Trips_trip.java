@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -108,10 +107,6 @@ public class Trips_trip extends DB_Item implements Comparable {
     }
 
     public static Bitmap getBitMapFromView(View v) {
-        if (v == null) {
-            Log.e("getBitMapFromView", "null view");
-            return null;
-        }
         v.buildDrawingCache();
         return v.getDrawingCache();
     }
