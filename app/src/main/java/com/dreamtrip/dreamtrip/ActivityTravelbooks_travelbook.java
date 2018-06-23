@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import Trip_DBs.Trips_BD;
@@ -29,6 +30,12 @@ public class ActivityTravelbooks_travelbook extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -42,6 +49,13 @@ public class ActivityTravelbooks_travelbook extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getBaseContext(),MainActivity.class).
+                putExtras(ActivityType.
+                        activityTypeToBundle(ActivityType.TRAVELBOOKS)));
     }
 
     @Override
@@ -67,9 +81,7 @@ public class ActivityTravelbooks_travelbook extends AppCompatActivity {
                                 }
                                 TravelBooksDB.getInstance().remove(travelBookCtx.getName());
                                 Toast.makeText(ActivityTravelbooks_travelbook.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getBaseContext(),MainActivity.class).
-                                                putExtras(ActivityType.
-                                                        activityTypeToBundle(ActivityType.TRAVELBOOKS)));
+                                onBackPressed();
                             }
                         })
                         .setNegativeButton(android.R.string.no, null).show();

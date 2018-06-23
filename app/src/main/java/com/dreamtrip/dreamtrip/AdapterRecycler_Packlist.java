@@ -38,8 +38,9 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
            return;
         }
         packlistTitle = currentPackList.getName();
-
     }
+
+
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -226,6 +227,9 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
         viewHolder.itemCheckbox.setClickable(false);
         viewHolder.checkboxDel.setVisibility(View.GONE);
         viewHolder.checkboxEdit.setVisibility(View.GONE);
+        if (packlistTitle.equals(Packlist.defaultPackName)) {
+            packlistTitle = Packlist.defaultPackNameTitle;
+        }
         viewHolder.textPacklist.setText(packlistTitle);      // set packlist title
         viewHolder.textPacklist.setVisibility(View.VISIBLE); // display packlist title
     }

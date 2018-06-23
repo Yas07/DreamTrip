@@ -1,6 +1,9 @@
 package Trip_Items.Packlist;
 
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class PacklistsDB extends TreeMap<String, Packlist>{
@@ -27,11 +30,15 @@ public class PacklistsDB extends TreeMap<String, Packlist>{
         return _instance;
     }
 
-    public String[] getStrKeys() {
-        Object[] objArray = keySet().toArray();
-        return keySet().toArray(new String[objArray.length]);
-    }
+//    public String[] getStrKeys() {
+//        Object[] objArray = keySet().toArray();
+//        return keySet().toArray(new String[objArray.length]);
+//    }
 
+//    public List<String> getStrKeys() {
+//        Set<String> set = keySet();
+//        return Arrays.asList(set.toArray(new String[size()]));
+//    }
 
     public Packlist put(Packlist p) {
         p.addToDb();

@@ -9,6 +9,9 @@ import Trip_Items.Trips_trip;
 
 public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
 
+    static public String defaultPackName = "Default";
+    static public String defaultPackNameTitle = "Check list";
+
     private String         _name;
     private String         _details;
     private int            _bagIndex;
@@ -38,6 +41,10 @@ public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
 
     public String getName() {
         return _name;
+    }
+
+    public static Packlist makeDefaultPack() {
+        return new Packlist(defaultPackName, "", 0);
     }
 
     public Stuff find(String stuffName) {

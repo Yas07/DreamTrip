@@ -48,7 +48,6 @@ public class TravelBooksDB extends TreeMap<String, TravelBook>{
             Log.e("TravelBooksBD", "can't remove null travelbook");
             return null;
         }
-        Trips_BD.getInstance().findAll(travelBook.getName());
         travelBook.clear();
         travelBook.removeFromDb();
         return super.remove(packName);

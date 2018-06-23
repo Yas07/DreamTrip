@@ -132,10 +132,6 @@ public class Trips_trip extends DB_Item implements Comparable {
         this.travelbook = travelbook;
     }
 
-    public void setPackList(Packlist packList) {
-        this.packList = packList;
-    }
-
     public Bitmap getHeaderImage() {
         return headerImage;
     }

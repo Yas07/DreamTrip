@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import Trip_DBs.Trips_BD;
@@ -27,7 +28,12 @@ public class ActivityPacklists_packlist extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             if(bundle.getString("value")!= null){
@@ -36,6 +42,12 @@ public class ActivityPacklists_packlist extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getBaseContext(),MainActivity.class)
+                    .putExtras(ActivityType.
+                            activityTypeToBundle(ActivityType.PACKLISTS)));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,9 +75,7 @@ public class ActivityPacklists_packlist extends AppCompatActivity {
                                 if (packlist != null) {
                                     PacklistsDB.getInstance().remove(packlist);
                                     Toast.makeText(ActivityPacklists_packlist.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getBaseContext(),ActivityPacklists_.class)
-                                            .putExtras(ActivityType.
-                                                    activityTypeToBundle(ActivityType.PACKLISTS)));
+                                    onBackPressed(); // switch to packlists
                                 }
                             }
                         })

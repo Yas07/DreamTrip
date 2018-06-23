@@ -28,9 +28,13 @@ import Trip_Items.Packlist.Packlist;
 import Trip_Items.Packlist.PacklistsDB;
 import yuku.ambilwarna.AmbilWarnaDialog;
 import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.NavigableSet;
+import java.util.Set;
 
 // internal includes
 import Trip_DBs.Trips_BD;
@@ -82,24 +86,8 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
         btnSave.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(editTripTitle.getText().toString().equals("")){
-                    Toast.makeText(ActivityMytrips_add.this, "ERROR - Enter title!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(editStartDate.getText().toString().isEmpty() || editEndDate.getText().toString().isEmpty()) {
-                    Toast.makeText(ActivityMytrips_add.this, "ERROR - You should input the dates!!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(new Date(editStartDate.getText().toString()).after(new Date(editEndDate.getText().toString()))) {
-                    Toast.makeText(ActivityMytrips_add.this, "ERROR - End date should be bigger!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (!isTripMainSet) {
-                    Toast.makeText(ActivityMytrips_add.this, "ERROR - No main image was set!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (!isTripHeaderSet) {
-                    Toast.makeText(ActivityMytrips_add.this, "ERROR - No header image was set!", Toast.LENGTH_SHORT).show();
+
+                if (!isValidInput()) {
                     return;
                 }
 
@@ -140,14 +128,17 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
         month_end = calendar.get(Calendar.MONTH);
         day_end = calendar.get(Calendar.DAY_OF_MONTH);
 
-
         String currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime());
         editStartDate.setText(currentDate);
         editEndDate.setText(currentDate);
 
         // Spinner
-        // TODO: after packlists are implemented
-        String[] strKeys = PacklistsDB.getInstance().getStrKeys();
+        // TODO: probably, should be written more flexible
+        Set<String> keysSet = PacklistsDB.getInstance().keySet();
+        keysSet.remove(Packlist.defaultPackName);
+        List<String> strKeys = new ArrayList<>(Arrays.asList(Packlist.defaultPackName));
+        strKeys.addAll(keysSet);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
             this, R.layout.spin_item, strKeys);
 
@@ -172,8 +163,8 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
             Trips_trip trip = Trips_trip.getCurrentTrip();
             if (trip != null) {
                 int index = -1;
-                for (int i = 0 ; i < strKeys.length ; i++ ) {
-                    if (strKeys[i].equals(trip.getName())) {
+                for (int i = 0 ; i < strKeys.size() ; i++ ) {
+                    if (strKeys.get(i).equals(trip.getName())) {
                         index = i;
                     }
                 }
@@ -184,8 +175,23 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
             }
             getFieldItem();
         }
+    }
 
 
+    private boolean isValidInput() {
+        try {
+            if(editTripTitle.getText().toString().equals("")) throw new Exception("Enter title!");
+            if(editStartDate.getText().toString().isEmpty() ||
+                    editEndDate.getText().toString().isEmpty()) throw new Exception("You should input the dates!!");
+            if(new Date(editStartDate.getText().toString()).after(
+                    new Date(editEndDate.getText().toString()))) throw new Exception("End date should be bigger!");
+            if (!isTripMainSet) throw new Exception("No main image was set!");
+            if (!isTripHeaderSet) throw new Exception("No header image was set!");
+            return true;
+        } catch (Exception e) {
+            Toast.makeText(ActivityMytrips_add.this, "ERROR - " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
 //--------------------------------------------------------Pick Date Dialog
@@ -372,9 +378,11 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
 
         trip.setTextColor(color);
 
-        Packlist pack = PacklistsDB.getInstance().get(packlist);
+        Packlist pack =  PacklistsDB.getInstance().get(packlist);
         if (pack != null) {
             trip.setPacklist(new Packlist(pack));
+        } else if (packlist.equals(Packlist.defaultPackName) ) {
+            trip.setPacklist(Packlist.makeDefaultPack());
         } else {
             Log.e("Create trip", "Null pack, what a pity");
         }

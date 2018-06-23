@@ -65,7 +65,7 @@ public class ActivityPacklists_add extends AppCompatActivity {
 
         try {
             if(packName.equals("")) throw new Exception("ERROR - set packlist title!");
-            if(PacklistsDB.getInstance().containsKey(packName))
+            if(!isEditMode && PacklistsDB.getInstance().containsKey(packName))
                 throw new Exception("ERROR - packlist \""+packName+"\" already exist!");
 //          TODO: check if photo was picked
             return true;

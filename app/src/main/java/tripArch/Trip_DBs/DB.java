@@ -1,4 +1,6 @@
 package Trip_DBs;
+import android.util.Log;
+
 import com.google.common.collect.TreeMultimap;
 
 import java.util.Collection;
@@ -76,5 +78,14 @@ abstract class DB<KEY, VALUE extends DB_Item>{
     protected Collection<VALUE> getValuesSortByKey() {
         return _keyValueDB.values();
     }
+
+    public int size() {
+        if (_keyValueDB.size() != _stringValueDB.size()) {
+            Log.e("DB", "different size!!!");
+        }
+        return _keyValueDB.size();
+    }
+
+
 }
 
