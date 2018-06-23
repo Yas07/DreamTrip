@@ -36,6 +36,7 @@
         </activity>
         <activity
             android:name=".ActivityMytrips_add"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.dreamtrip.dreamtrip.ActivityMytrips_add" />
@@ -47,6 +48,7 @@
             android:name=".ActivityMytrips_trip"
             android:label="Trip details"
             android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.dreamtrip.dreamtrip.ActivityMytrips_trip" />
@@ -58,6 +60,7 @@
             android:name=".ActivityMytrips_trip_plan_add"
             android:label="Add new point to the plan"
             android:parentActivityName=".ActivityMytrips_trip"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.dreamtrip.dreamtrip.ActivityMytrips_trip_plan_add" />
@@ -67,6 +70,7 @@
         </activity>
         <activity
             android:name=".ActivityTravelbooks_add"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.dreamtrip.dreamtrip.ActivityTravelbooks_add" />
@@ -78,6 +82,7 @@
             android:name=".ActivityTravelbooks_travelbook_add"
             android:label="Add post to the travelbook"
             android:parentActivityName=".ActivityTravelbooks_travelbook"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.dreamtrip.dreamtrip.ActivityTravelbooks_travelbook_add" />
@@ -98,6 +103,7 @@
         </activity>
         <activity
             android:name=".ActivityPacklists_add"
+            android:windowSoftInputMode="stateVisible|adjustPan"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.dreamtrip.dreamtrip.ActivityPacklists_add" />
@@ -107,6 +113,7 @@
         </activity>
         <activity
             android:name=".ActivityPacklists_packlist"
+            android:windowSoftInputMode="adjustPan"
             android:label="Packing list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
