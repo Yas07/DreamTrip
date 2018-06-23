@@ -24,6 +24,10 @@ public class TravelBook extends LinkedList<Post> implements Comparable, IDB {
         setCurrentTravelBook(this);
     }
 
+    public TravelBook() {
+        setCurrentTravelBook(this);
+    }
+
     public TravelBook(String _name, String _details) {
         super();
         this._name = _name;
@@ -50,6 +54,10 @@ public class TravelBook extends LinkedList<Post> implements Comparable, IDB {
 
     public void setPhotoImage(Bitmap _photoImage) {
         this._photoImage = _photoImage;
+    }
+
+    public void setPhotoIndex(int _photoIndex) {
+        this._photoIndex = _photoIndex;
     }
 
     public void setName(String _name) {
