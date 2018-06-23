@@ -1,5 +1,6 @@
 package com.dreamtrip.dreamtrip;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,19 +36,14 @@ public class ActivityMytrips_trip extends AppCompatActivity{
 
     private Trips_trip tripCtx;
 
-    private int currentFragId = 0;
 
-    private String savePackListStr = "Save packlist";
-
+    private  MenuItem savePackListItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.mytrips_trip);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (currentFragId == R.id.btnPacklist1) {
-            toolbar.getMenu().add(savePackListStr);
-        }
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -85,6 +81,7 @@ public class ActivityMytrips_trip extends AppCompatActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+        savePackListItem =  menu.findItem(R.id.toolbarSave);
         return true;
     }
 
@@ -116,8 +113,13 @@ public class ActivityMytrips_trip extends AppCompatActivity{
                         .setNegativeButton(android.R.string.no, null).show();
                 break;
             }
+            case R.id.toolbarSave: {
+                Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivityPacklists_add");
+                intent.putExtras(Trips_trip.getSaveBundle());
+                startActivity(intent);
+            }
             default:
-                if(item.getTitle() != null && item.getTitle().equals(savePackListStr)) {
+                if(item.getItemId() == savePackListItem.getItemId()) {
                     Log.e("save packlist", "cool");
                 }
         }
@@ -171,7 +173,6 @@ public class ActivityMytrips_trip extends AppCompatActivity{
 
     public void changeTab(View view){
         Fragment fragment;
-        currentFragId = view.getId();
         switch (view.getId()){
             case R.id.btnPlan1:
                 fragment = new Fragment_plan(); break;
@@ -192,6 +193,17 @@ public class ActivityMytrips_trip extends AppCompatActivity{
             default:
                 Log.e("changeTab", "No such fragment");
                 return;
+        }
+
+        // show/hide save packlist item in toolbar menu
+        if (savePackListItem != null) {
+            if (view.getId() == R.id.btnPacklist1) {
+                savePackListItem.setVisible(true);
+            } else {
+                savePackListItem.setVisible(false);
+            }
+        } else {
+            Log.e("savePackListItem", "It's null!");
         }
 
         View[] buttons = {

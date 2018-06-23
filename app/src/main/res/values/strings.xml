@@ -5,6 +5,7 @@
     <string name="navigation_drawer_close">close drawer</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="save_pack_list">Save packlist</string>
     <string name="help">Help</string>
     <string name="settings">Settings</string>
 

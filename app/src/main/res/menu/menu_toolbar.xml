@@ -12,4 +12,10 @@
         android:orderInCategory="100"
         android:title="@string/delete"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/toolbarSave"
+        android:orderInCategory="100"
+        android:title="@string/save_pack_list"
+        android:visible="false"
+        app:showAsAction="never" />
 </menu>

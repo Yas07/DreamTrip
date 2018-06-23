@@ -191,6 +191,11 @@ public class Trips_trip extends DB_Item implements Comparable {
         return bundle;
     }
 
+    static public Bundle getSaveBundle() {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(Trips_BD.saveBundleValue, true);
+        return bundle;
+    }
 
     @Override
     public String toString() {

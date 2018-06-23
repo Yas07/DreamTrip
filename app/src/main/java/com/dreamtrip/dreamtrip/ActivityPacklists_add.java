@@ -31,7 +31,7 @@ public class ActivityPacklists_add extends AppCompatActivity {
     EditText packlistDetail, packlistTitle;
     boolean isPhotoSet = false;
     boolean isEditMode = false;
-
+    boolean isSaveMode = false;
     int currentBagId;
 
     @Override
@@ -51,40 +51,53 @@ public class ActivityPacklists_add extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         isEditMode = bundle != null && bundle.getBoolean(Trips_BD.editBundleValue);
+        isSaveMode  = bundle != null && bundle.getBoolean(Trips_BD.saveBundleValue);
 
-        if (isEditMode) {
+
+        if (isEditMode || isSaveMode) {
             disassemblePacklist(Packlist.getCurrentPacklist());
         }
     }
 
-    public void addPacklist(View view){
+    private boolean isInputValid(){
         String packName = packlistTitle.getText().toString();
         String packDetails = packlistDetail.getText().toString();
 
-        if(packName.equals("")){
-            Toast.makeText(this, "ERROR - Enter title!", Toast.LENGTH_SHORT).show();
+        try {
+            if(packName.equals("")) throw new Exception("ERROR - set packlist title!");
+            if(PacklistsDB.getInstance().containsKey(packName))
+                throw new Exception("ERROR - packlist \""+packName+"\" already exist!");
 //          TODO: check if photo was picked
-//        } else if (!isPhotoSet) {
-//            Toast.makeText(this, "ERROR - Choose cover image!", Toast.LENGTH_SHORT).show();
-        } else {
-            Bundle bundle = new Bundle();
-            bundle.putString("value", "Successfully added");
-
-            Packlist packlist = Packlist.getCurrentPacklist();
-            if (!isEditMode) {
-                packlist = new Packlist();
-            }
-
-            assemblePacklist(packlist);
-
-            if (!isEditMode) {
-                PacklistsDB.getInstance().put(packlist);
-            }
-
-            Packlist.setCurrentPacklist(packlist);
-            Toast.makeText(this, "Successfully added", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityPacklists_packlist").putExtras(bundle));
+            return true;
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            return false;
         }
+    }
+
+    public void addPacklist(View view){
+
+        if (!isInputValid()) {
+            return;
+        }
+
+        Bundle bundle = new Bundle();
+        bundle.putString("value", "Successfully added");
+
+        Packlist packlist = Packlist.getCurrentPacklist();
+        if (!isEditMode) {
+            packlist = isSaveMode ? new Packlist(packlist) : new Packlist();
+        }
+
+        assemblePacklist(packlist);
+
+        if (!isEditMode) {
+            PacklistsDB.getInstance().put(packlist);
+        }
+
+        Packlist.setCurrentPacklist(packlist);
+        Toast.makeText(this, "Successfully added", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityPacklists_packlist").putExtras(bundle));
     }
 
 
