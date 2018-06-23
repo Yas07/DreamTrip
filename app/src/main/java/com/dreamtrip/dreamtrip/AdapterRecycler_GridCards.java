@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -224,23 +225,14 @@ public class AdapterRecycler_GridCards extends RecyclerView.Adapter<AdapterRecyc
 
                 viewHolder.cardDetail.setText(travelBook.getDetails());
 
-//                Bitmap bit = travelBook.getPhotoImage();
-//                if (bit != null) {
-//                    viewHolder.cardImage.setImageBitmap(bit);
-//                }
-
                 Bitmap bit = travelBook.getPhotoImage();
-
-//                if ( bit != null &&  (travelBook.getPhotoIndex() != 0)) {
-//                    viewHolder.cardImage.setImageResource(travelBook.getPhotoIndex());
-//                    Drawable draw =  viewHolder.cardImage.getDrawable();
-//                    viewHolder.cardImage.setImageBitmap(bit);
-//                    viewHolder.cardImage.setBackground(draw);
-//                } else
-                if ( bit != null ) {
-                    viewHolder.cardImage.setImageBitmap(bit);
+                Uri photoUri = travelBook.getPhotoImageUri();
+                if (photoUri != null) {
+                    ViewsHandler.getInstance().loadImageIntoView(photoUri, viewHolder.cardImage);
                 } else if (travelBook.getPhotoIndex() != 0) {
                     viewHolder.cardImage.setImageResource(travelBook.getPhotoIndex());
+                } else if ( bit != null ) {
+                    viewHolder.cardImage.setImageBitmap(bit);
                 }
 
                 viewHolder.cardTitle.setTextColor(colorText);

@@ -128,12 +128,14 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         currentPhotoId = travelBook.getPhotoIndex();
         photoImageUri = travelBook.getPhotoImageUri();
 
-        if (travelBook.getPhotoImage() != null) {
+        if (photoImageUri != null) {
             ViewsHandler.getInstance().loadImageIntoView(photoImageUri ,btnPhotoFrameLight);
             isPhotoSet = true;
             chooseCover(btnPhotoFrameLight);
         } else if (currentPhotoId != 0) {
             chooseCover(findViewById(currentPhotoId));
+        } else if (travelBook.getPhotoImage() != null) {
+            Log.e("dissadembleTravelBook", "you shouldn't use bitmap");
         }
     }
 //----------------------------------------------------------Open from Gallery
@@ -156,7 +158,7 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             chooseCover(btnPhotoFrameLight);
             photoImageUri = ViewsHandler.getInstance().saveTempImg(data.getData(), this);
-            ViewsHandler.getInstance().loadImageIntoView(photoImageUri ,btnPhotoFrameLight);
+            ViewsHandler.getInstance().loadImageIntoView(photoImageUri ,btnPhotoFrameLight, 300, 200);
 
             isPhotoSet = true;
             currentPhotoId = 0;

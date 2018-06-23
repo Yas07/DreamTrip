@@ -73,10 +73,13 @@ public class ActivityPacklists_add extends AppCompatActivity {
             Packlist packlist = Packlist.getCurrentPacklist();
             if (!isEditMode) {
                 packlist = new Packlist();
-                PacklistsDB.getInstance().put(packlist);
             }
 
             assemblePacklist(packlist);
+
+            if (!isEditMode) {
+                PacklistsDB.getInstance().put(packlist);
+            }
 
             Packlist.setCurrentPacklist(packlist);
             Toast.makeText(this, "Successfully added", Toast.LENGTH_SHORT).show();
@@ -111,10 +114,13 @@ public class ActivityPacklists_add extends AppCompatActivity {
         packlistTitle.setText(packlist.getName());
         packlistDetail.setText(packlist.getDetails());
         currentBagId = packlist.getBagIndex();
-
-        if (packlist.getBagPhoto() != null) {
+        Bitmap packPhoto =  packlist.getBagPhoto();
+        if (packPhoto != null) {
             isPhotoSet = true;
-            btnBagRectangle.setImageBitmap(packlist.getBagPhoto());
+            btnBagRectangle.setImageBitmap(packPhoto);
+            chooseBag(btnBagRectangle);
+        } else if (currentBagId != 0) {
+            chooseBag(findViewById(currentBagId));
         }
     }
 
@@ -159,6 +165,10 @@ public class ActivityPacklists_add extends AppCompatActivity {
     }
 
     public void chooseBag(View view){
+        if (view == null) {
+            Log.e("chooseBag", "null view");
+            return;
+        }
         View[] buttons = {
                 findViewById(R.id.layoutBagRectangle),
                 findViewById(R.id.packlists_add_btnAdventure),

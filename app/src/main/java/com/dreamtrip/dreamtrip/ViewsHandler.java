@@ -124,6 +124,15 @@ public class ViewsHandler {
         }
     }
 
+    public void loadImageIntoView(Uri uri, ImageView imageView, int width, int height) {
+        if (uri != null && imageView != null) {
+            Picasso.get().load(uri).resize(width, height).centerInside().into(imageView);
+        } else {
+            Log.e("loadImageInroView", "uri or imageView are empty!");
+        }
+    }
+
+
     public void loadImageIntoViewBg(final Uri uri, final ImageView imageView) {
         if (uri == null || imageView == null) {
             Log.e("loadImageIntoViewBg", "Null pointer");

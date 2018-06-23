@@ -72,11 +72,11 @@ public class Trips_BD extends DB<Date, Trips_trip> {
 
     public void add(Trips_trip trip)
     {
-        Trips_trip tripInBd = find(trip.getStartDate());
-        if (tripInBd != null) {
-            // remove travelbook from bd in case of overriding
-            TravelBooksDB.getInstance().remove(tripInBd.getTravelbook());
-        }
+//        Trips_trip tripInBd = find(trip.getStartDate());
+//        if (tripInBd != null) {
+//            // remove travelbook from bd in case of overriding
+//            TravelBooksDB.getInstance().remove(tripInBd.getTravelbook());
+//        }
         add(trip.getStartDate(), trip);
         Trips_trip.setCurrentTrip(trip);
     }

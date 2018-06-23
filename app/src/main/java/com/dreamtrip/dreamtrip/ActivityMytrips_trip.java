@@ -35,12 +35,19 @@ public class ActivityMytrips_trip extends AppCompatActivity{
 
     private Trips_trip tripCtx;
 
+    private int currentFragId = 0;
+
+    private String savePackListStr = "Save packlist";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.mytrips_trip);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (currentFragId == R.id.btnPacklist1) {
+            toolbar.getMenu().add(savePackListStr);
+        }
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -109,8 +116,33 @@ public class ActivityMytrips_trip extends AppCompatActivity{
                         .setNegativeButton(android.R.string.no, null).show();
                 break;
             }
+            default:
+                if(item.getTitle() != null && item.getTitle().equals(savePackListStr)) {
+                    Log.e("save packlist", "cool");
+                }
         }
         return false;
+    }
+
+
+    private void savePacklistDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Save trip")
+                .setMessage("Do you want to delete your trip?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Trips_trip trip = Trips_trip.getCurrentTrip();
+                        if (trip != null) {
+                            Trips_BD.getInstance().remove(trip);
+                            Toast.makeText(ActivityMytrips_trip.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
+                            final Intent intent = new Intent(getBaseContext(),MainActivity.class).putExtra("value", "Successfully deleted");
+                            startActivity(intent);
+                        }
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null).show();
+
     }
 
 //    private void addPlanPoint(View view){
@@ -139,6 +171,7 @@ public class ActivityMytrips_trip extends AppCompatActivity{
 
     public void changeTab(View view){
         Fragment fragment;
+        currentFragId = view.getId();
         switch (view.getId()){
             case R.id.btnPlan1:
                 fragment = new Fragment_plan(); break;

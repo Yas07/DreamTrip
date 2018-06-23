@@ -112,16 +112,25 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Edit element");
-        Stuff stuff = currentPackList.get(index - 1);
-
-        // Set up the input
+        final Stuff stuff = currentPackList.get(index - 1);
         final EditText input = new EditText(context);
+
         if (stuff != null) {
-            input.setText(stuff.getName());
+            input.append(stuff.getName());
+        } else {
+            Log.e("onCheckBoxEdit", "Null stuff");
+            return;
         }
+
 
         // Specify the type of input expected
         input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.post(new Runnable() {
+            @Override
+            public void run() {
+                input.setSelection(input.length());
+            }
+        });
         builder.setView(input);
 
         // Set up the buttons
@@ -131,11 +140,6 @@ public class AdapterRecycler_Packlist extends RecyclerView.Adapter<AdapterRecycl
                 String editStuffTitle = input.getText().toString();
                 ViewHolder holder = (ViewHolder) (v.getTag());
                 holder.itemCheckbox.setText(editStuffTitle);
-                Stuff stuff = currentPackList.get(index - 1);
-                if (stuff == null) {
-                    Log.e("onCheckBoxEdit", "Invalid index");
-                    return;
-                }
                 stuff.setName(editStuffTitle);
             }
         });
