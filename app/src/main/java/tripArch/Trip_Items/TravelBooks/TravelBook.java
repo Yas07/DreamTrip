@@ -14,6 +14,7 @@ public class TravelBook extends LinkedList<Post> implements Comparable, IDB {
     private String         _details;
     private int            _photoIndex;
     private Bitmap         _photoImage;
+    Uri                    _photoImageUri;
     static private TravelBook _currentTravelBook;
 
     public TravelBook(String _name, String _details, int _photoIndex) {
@@ -120,6 +121,14 @@ public class TravelBook extends LinkedList<Post> implements Comparable, IDB {
             return false;
         }
         return remove(stuff);
+    }
+
+    public Uri getPhotoImageUri() {
+        return _photoImageUri;
+    }
+
+    public void setPhotoImageUri(Uri _photoImageUri) {
+        this._photoImageUri = _photoImageUri;
     }
 
     @Override

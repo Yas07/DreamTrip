@@ -15,6 +15,10 @@ public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
     static private Packlist _currentPacklist;
     private Bitmap          _bagPhoto;
 
+    public Packlist() {
+        super();
+    }
+
     public Packlist(String _name, String _details, int _bagIndex) {
         super();
         this._name = _name;
@@ -23,6 +27,7 @@ public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
     }
 
     public Packlist(Packlist pack) {
+        super();
         this._name = pack._name;
         this._bagIndex = pack._bagIndex;
         this._details = pack._details;
@@ -67,6 +72,18 @@ public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
 
     public void setBagPhoto(Bitmap _bagPhoto) {
         this._bagPhoto = Trips_trip.compressImage(_bagPhoto);
+    }
+
+    public void setName(String _name) {
+        this._name = _name;
+    }
+
+    public void setDetails(String _details) {
+        this._details = _details;
+    }
+
+    public void setBagIndex(int _bagIndex) {
+        this._bagIndex = _bagIndex;
     }
 
     @Override

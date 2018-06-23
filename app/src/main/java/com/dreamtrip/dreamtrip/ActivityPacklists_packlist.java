@@ -11,6 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import Trip_DBs.Trips_BD;
+import Trip_Items.Packlist.Packlist;
+import Trip_Items.Packlist.PacklistsDB;
+import Trip_Items.Trips_trip;
 
 
 public class ActivityPacklists_packlist extends AppCompatActivity {
@@ -44,6 +48,7 @@ public class ActivityPacklists_packlist extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.toolbarEdit: {
                 Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivityPacklists_add");
+                intent.putExtras(Trips_trip.getEditBundle());
                 startActivity(intent);
                 break;
             }
@@ -54,11 +59,14 @@ public class ActivityPacklists_packlist extends AppCompatActivity {
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                Toast.makeText(ActivityPacklists_packlist.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
-                                //TODO: delete packlist and show message
-                                //Intent intent = new Intent("com.dreamtrip.dreamtrip.ActivityPacklists_");
-                                //startActivity(intent);
-                                //startActivity(new Intent(getBaseContext(),ActivityPacklists_.class).putExtra("value", "Successfully deleted"));
+                                Packlist packlist = Packlist.getCurrentPacklist();
+                                if (packlist != null) {
+                                    PacklistsDB.getInstance().remove(packlist);
+                                    Toast.makeText(ActivityPacklists_packlist.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getBaseContext(),ActivityPacklists_.class)
+                                            .putExtras(ActivityType.
+                                                    activityTypeToBundle(ActivityType.PACKLISTS)));
+                                }
                             }
                         })
                         .setNegativeButton(android.R.string.no, null).show();

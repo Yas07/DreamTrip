@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
     boolean isPhotoSet = false;
     EditText editTravelbookTitle;
     EditText editTravelBookDetails;
+
+    Uri photoImageUri;
 
     int currentPhotoId;
     boolean isEditMode = false;
@@ -105,10 +108,11 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         travelBook.setDetails(details);
         travelBook.setName(title);
         travelBook.setPhotoIndex(currentPhotoId);
+        travelBook.setPhotoImageUri(photoImageUri);
 
         if (isPhotoSet) {
-            btnPhotoFrameLight.buildDrawingCache();
-            travelBook.setPhotoImage(btnPhotoFrameLight.getDrawingCache());
+//            btnPhotoFrameLight.buildDrawingCache();
+//            travelBook.setPhotoImage(btnPhotoFrameLight.getDrawingCache());
         }
 
     }
@@ -122,9 +126,10 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         editTravelBookDetails.setText(travelBook.getDetails());
         editTravelbookTitle.setText(travelBook.getName());
         currentPhotoId = travelBook.getPhotoIndex();
+        photoImageUri = travelBook.getPhotoImageUri();
 
         if (travelBook.getPhotoImage() != null) {
-            btnPhotoFrameLight.setImageBitmap(travelBook.getPhotoImage());
+            ViewsHandler.getInstance().loadImageIntoView(photoImageUri ,btnPhotoFrameLight);
             isPhotoSet = true;
             chooseCover(btnPhotoFrameLight);
         } else if (currentPhotoId != 0) {
@@ -150,11 +155,9 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             chooseCover(btnPhotoFrameLight);
-            try {
-                Picasso.get().load(data.getData()).resize(300, 200).centerInside().into(btnPhotoFrameLight);
-            } catch (Exception e) {
-                Log.e("galery", "error = " + e.getMessage());
-            }
+            photoImageUri = ViewsHandler.getInstance().saveTempImg(data.getData(), this);
+            ViewsHandler.getInstance().loadImageIntoView(photoImageUri ,btnPhotoFrameLight);
+
             isPhotoSet = true;
             currentPhotoId = 0;
         }

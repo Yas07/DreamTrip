@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import Trip_DBs.Trips_BD;
 import Trip_Items.Packlist.Packlist;
 import Trip_Items.Packlist.PacklistsDB;
 import Trip_Items.Trips_trip;
@@ -29,6 +30,7 @@ public class ActivityPacklists_add extends AppCompatActivity {
     ImageView btnBagRectangle, imgPhoto;
     EditText packlistDetail, packlistTitle;
     boolean isPhotoSet = false;
+    boolean isEditMode = false;
 
     int currentBagId;
 
@@ -46,6 +48,13 @@ public class ActivityPacklists_add extends AppCompatActivity {
         packlistTitle = (EditText) findViewById(R.id.editPacklistTitle);
         packlistDetail = (EditText) findViewById(R.id.editPacklistDetail);
         btnBagRectangle = (ImageView) findViewById(R.id.btnBagRectangle);
+
+        Bundle bundle = getIntent().getExtras();
+        isEditMode = bundle != null && bundle.getBoolean(Trips_BD.editBundleValue);
+
+        if (isEditMode) {
+            disassemblePacklist(Packlist.getCurrentPacklist());
+        }
     }
 
     public void addPacklist(View view){
@@ -61,17 +70,51 @@ public class ActivityPacklists_add extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putString("value", "Successfully added");
 
-            Packlist packlist = new Packlist(packName, packDetails, currentBagId);
-
-            if (isPhotoSet) {
-                packlist.setBagPhoto(Trips_trip.getBitMapFromView(btnBagRectangle));
+            Packlist packlist = Packlist.getCurrentPacklist();
+            if (!isEditMode) {
+                packlist = new Packlist();
+                PacklistsDB.getInstance().put(packlist);
             }
 
-            PacklistsDB.getInstance().put(packlist);
+            assemblePacklist(packlist);
 
             Packlist.setCurrentPacklist(packlist);
             Toast.makeText(this, "Successfully added", Toast.LENGTH_SHORT).show();
             startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityPacklists_packlist").putExtras(bundle));
+        }
+    }
+
+
+    private void assemblePacklist(Packlist packlist) {
+        if (packlist == null) {
+            Log.e("assemblePacklist", "paclist = null");
+            return;
+        }
+        String packName = packlistTitle.getText().toString();
+        String packDetails = packlistDetail.getText().toString();
+        packlist.setName(packName);
+        packlist.setDetails(packDetails);
+        packlist.setBagIndex(currentBagId);
+
+        if (isPhotoSet) {
+            packlist.setBagPhoto(Trips_trip.getBitMapFromView(btnBagRectangle));
+        }
+
+    }
+
+    private void disassemblePacklist(Packlist packlist) {
+        if (packlist == null) {
+            Log.e("assemblePacklist", "paclist = null");
+            return;
+        }
+
+        packlistTitle.setText(packlist.getName());
+        packlistDetail.setText(packlist.getDetails());
+        currentBagId = packlist.getBagIndex();
+
+        if (packlist.getBagPhoto() != null) {
+            isPhotoSet = true;
+            btnBagRectangle.setImageBitmap(packlist.getBagPhoto());
         }
     }
 
