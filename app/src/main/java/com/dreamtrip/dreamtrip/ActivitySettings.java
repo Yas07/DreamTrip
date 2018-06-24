@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import Trip_DBs.Trips_BD;
+import Trip_Items.Packlist.PacklistsDB;
+import Trip_Items.TravelBooks.TravelBook;
+import Trip_Items.TravelBooks.TravelBooksDB;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class ActivitySettings extends AppCompatActivity {
@@ -41,7 +45,13 @@ public class ActivitySettings extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        //TODO: delete all data in app
+                        Trips_BD.getInstance().clear(); // TODO: clear should delete sql
+                        TravelBooksDB.getInstance().clear(); // TODO: clear all the images also
+                        PacklistsDB.getInstance().clear();
+                        Toast.makeText(getBaseContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getBaseContext(),MainActivity.class).
+                                putExtras(ActivityType.
+                                        activityTypeToBundle(ActivityType.TRIPS)));
                     }
                 })
                 .setNegativeButton(android.R.string.no, null).show();

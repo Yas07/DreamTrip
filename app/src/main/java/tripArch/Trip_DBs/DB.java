@@ -92,6 +92,10 @@ abstract class DB<KEY, VALUE extends DB_Item>{
         return _stringValueDB.asMap().tailMap(str);
     }
 
+    public void clear() {
+        _stringValueDB.clear();
+        _keyValueDB.clear();
+    }
 
 }
 
