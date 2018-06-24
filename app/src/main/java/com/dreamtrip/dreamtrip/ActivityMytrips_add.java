@@ -96,13 +96,13 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
 
                 if (isEditMode) {
                     Trips_BD.getInstance().remove(trip);
+                    Toast.makeText(ActivityMytrips_add.this, "New trip was added successfully", Toast.LENGTH_SHORT).show();
                 }
 
                 setFieldItem();
 
                 Trips_BD.getInstance().add(trip);
 
-                Toast.makeText(ActivityMytrips_add.this, "New trip was added successfully", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip").putExtras(trip.getBundle()));
 
             }
@@ -120,11 +120,16 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
         editStartDate = (EditText) findViewById(R.id.editStartDate);
         editEndDate = (EditText) findViewById(R.id.editEndDate);
 
-        Date time = Calendar.getInstance().getTime();
-        setEndDate(time);
-        setStartDate(time);
+        Calendar calendar = Calendar.getInstance();
+        setStartDate(calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+        setEndDate(calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+ ;
 
-        String currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(getStartDate());
+        String currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime());
         editStartDate.setText(currentDate);
         editEndDate.setText(currentDate);
 
