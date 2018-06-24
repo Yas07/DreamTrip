@@ -401,7 +401,8 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
 
         editStartDate.setText(trip.getStartDateStr());
         editEndDate.setText(trip.getEndDateStr());
-
+        setStartDate(trip.getStartDate());
+        setEndDate(trip.getEndDate());
 
         editTripTitle.setText(trip.getName());
 
@@ -444,5 +445,14 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
     private void setEndDate(int year_end, int month_end, int day_end) {
         endDate.set(year_end, month_end, day_end);
     }
+
+    private void setStartDate(Date date) {
+        startDate.setTime(date);
+    }
+
+    private void setEndDate(Date date) {
+        endDate.setTime(date);
+    }
+
 
 }
