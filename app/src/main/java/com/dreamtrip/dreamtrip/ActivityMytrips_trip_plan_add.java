@@ -529,12 +529,12 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
         Date tmpDate = null;
         try {
             tmpDate = timeFormat.parse(editText.getText().toString());
+            cal.setTime(tmpDate);
+            return cal;
         } catch (ParseException e) {
             Log.e("getCalendarFromEdit","Failed to parse editText");
-            return cal;
+            return null;
         }
-        cal.setTime(tmpDate);
-        return cal;
     }
 
     private Place getPlace() {

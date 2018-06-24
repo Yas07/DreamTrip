@@ -210,12 +210,10 @@ public class Trips_trip extends DB_Item implements Comparable {
 
 
     public void setStartDateStr(String startDateStr) {
-        startDate = new Date(startDateStr);
         this.startDateStr = startDateStr;
     }
 
     public void setEndDateStr(String endDateStr) {
-        endDate = new Date(endDateStr);
         this.endDateStr = endDateStr;
     }
 

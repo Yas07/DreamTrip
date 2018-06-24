@@ -24,9 +24,8 @@ public class Place {
 
     // TODO: _name +
     public String getPlaceData() {
-        return _address +
-                " " + _timeFormat.format(_opensAt.getTime()) +
-                " - " + _timeFormat.format(_closesAt.getTime())+ " ";
+        return _address + " " + (_opensAt!= null ? _timeFormat.format(_opensAt.getTime()) : "")  +
+                " - " + ( _closesAt != null ? _timeFormat.format(_closesAt.getTime()) : "")+ " ";
     }
 
     public Calendar get_opensAt() {

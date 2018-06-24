@@ -88,12 +88,14 @@ public class ActivityPacklists_add extends AppCompatActivity {
         if (!isEditMode) {
             packlist = isSaveMode ? new Packlist(packlist) : new Packlist();
         }
-
         assemblePacklist(packlist);
 
-        if (!isEditMode) {
-            PacklistsDB.getInstance().put(packlist);
+        if (isEditMode) {
+            PacklistsDB.getInstance().remove(packlist);
         }
+
+        PacklistsDB.getInstance().put(packlist);
+
 
         Packlist.setCurrentPacklist(packlist);
         Toast.makeText(this, "Successfully added", Toast.LENGTH_SHORT).show();

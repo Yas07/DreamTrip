@@ -90,6 +90,9 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
 
             assembleTravelBook(travelBook);
 
+            if (isEditMode) {
+                TravelBooksDB.getInstance().softRemove(travelBook.getName());
+            }
             TravelBooksDB.getInstance().put(travelBook);
             Toast.makeText(this, "Successfully added", Toast.LENGTH_SHORT).show();
             startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityTravelbooks_travelbook").putExtras(bundle));

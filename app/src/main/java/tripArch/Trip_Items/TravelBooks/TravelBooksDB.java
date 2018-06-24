@@ -56,6 +56,10 @@ public class TravelBooksDB extends TreeMap<String, TravelBook>{
         return super.put(p.getName(), p);
     }
 
+    public TravelBook softRemove(String packName) {
+        return remove(packName);
+    }
+
     public TravelBook remove(String packName) {
         TravelBook travelBook =  get(packName);
         if (travelBook == null) {

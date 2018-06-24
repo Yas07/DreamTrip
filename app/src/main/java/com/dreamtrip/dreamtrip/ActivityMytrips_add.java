@@ -59,7 +59,6 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
     ImageView btnColorPicker;
     EditText editDate, editStartDate, editEndDate, editTripTitle;
 
-    Calendar calendar;
     DatePickerDialog datePickerDialog = null;
     DatePickerDialog dateStartPickerDialog;
     DatePickerDialog dateEndPickerDialog;
@@ -95,11 +94,13 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
 
                 Trips_trip.setCurrentTrip(trip);
 
+                if (isEditMode) {
+                    Trips_BD.getInstance().remove(trip);
+                }
+
                 setFieldItem();
 
-                if (!isEditMode) {
-                    Trips_BD.getInstance().add(trip);
-                }
+                Trips_BD.getInstance().add(trip);
 
                 Toast.makeText(ActivityMytrips_add.this, "New trip was added successfully", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip").putExtras(trip.getBundle()));
@@ -119,16 +120,11 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
         editStartDate = (EditText) findViewById(R.id.editStartDate);
         editEndDate = (EditText) findViewById(R.id.editEndDate);
 
-        calendar = Calendar.getInstance();
-        year_start = calendar.get(Calendar.YEAR);
-        month_start = calendar.get(Calendar.MONTH);
-        day_start = calendar.get(Calendar.DAY_OF_MONTH);
+        Date time = Calendar.getInstance().getTime();
+        setEndDate(time);
+        setStartDate(time);
 
-        year_end = calendar.get(Calendar.YEAR);
-        month_end = calendar.get(Calendar.MONTH);
-        day_end = calendar.get(Calendar.DAY_OF_MONTH);
-
-        String currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime());
+        String currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(getStartDate());
         editStartDate.setText(currentDate);
         editEndDate.setText(currentDate);
 
@@ -177,14 +173,12 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
         }
     }
 
-
     private boolean isValidInput() {
         try {
             if(editTripTitle.getText().toString().equals("")) throw new Exception("Enter title!");
             if(editStartDate.getText().toString().isEmpty() ||
                     editEndDate.getText().toString().isEmpty()) throw new Exception("You should input the dates!!");
-            if(new Date(editStartDate.getText().toString()).after(
-                    new Date(editEndDate.getText().toString()))) throw new Exception("End date should be bigger!");
+            if(getStartDate().after(getEndDate())) throw new Exception("End date should be bigger!");
             if (!isTripMainSet) throw new Exception("No main image was set!");
             if (!isTripHeaderSet) throw new Exception("No header image was set!");
             return true;
@@ -231,16 +225,10 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
         @Override
         public void onDateSet(DatePicker view, int yearOfCalendar, int monthOfCalendar, int dayOfCalendar) {
 
-            calendar.set(Calendar.YEAR, yearOfCalendar);
-            calendar.set(Calendar.MONTH, monthOfCalendar);
-            calendar.set(Calendar.DAY_OF_MONTH, dayOfCalendar);
-
-            year_start = yearOfCalendar;
-            month_start = monthOfCalendar;
-            day_start = dayOfCalendar;
+            setStartDate(yearOfCalendar, monthOfCalendar, dayOfCalendar);
 
             String currentDate;
-            currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime());
+            currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(getStartDate());
             editStartDate.setText(currentDate);
 
 //            dateEndPickerListener.onDateSet(dateStartPickerDialog.getDatePicker(), yearOfCalendar, monthOfCalendar, dayOfCalendar);
@@ -253,16 +241,10 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
         @Override
         public void onDateSet(DatePicker view, int yearOfCalendar, int monthOfCalendar, int dayOfCalendar) {
 
-            calendar.set(Calendar.YEAR, yearOfCalendar);
-            calendar.set(Calendar.MONTH, monthOfCalendar);
-            calendar.set(Calendar.DAY_OF_MONTH, dayOfCalendar);
-
-            year_end = yearOfCalendar;
-            month_end = monthOfCalendar;
-            day_end = dayOfCalendar;
+            setEndDate(yearOfCalendar, monthOfCalendar, dayOfCalendar);
 
             String currentDate;
-            currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime());
+            currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(getEndDate());
             editEndDate.setText(currentDate);
 
 //            datePickerDialog.getDatePicker().setMinDate(0);
@@ -361,11 +343,10 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
             return;
         }
 
-        String sDate = editStartDate.getText().toString();
-        String eDate = editEndDate.getText().toString();
-
-        trip.setStartDateStr(sDate);
-        trip.setEndDateStr(eDate);
+        trip.setStartDateStr(editStartDate.getText().toString());
+        trip.setEndDateStr(editEndDate.getText().toString());
+        trip.setStartDate(getStartDate());
+        trip.setEndDate(getEndDate());
 
         trip.setName(editTripTitle.getText().toString());
 
@@ -378,6 +359,7 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
 
         trip.setTextColor(color);
 
+        // set packlist to current trip(default/or already set)
         Packlist pack =  PacklistsDB.getInstance().get(packlist);
         if (pack != null) {
             trip.setPacklist(new Packlist(pack));
@@ -436,5 +418,38 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
     public void saveItem() {
 
     }
+
+    private Date getStartDate() {
+        return new Date(year_start, month_start, day_start);
+    }
+
+    private Date getEndDate() {
+        return new Date(year_end, month_end, day_end);
+    }
+
+    private void setStartDate(int year_start, int month_start, int day_start) {
+        this.year_start = year_start;
+        this.month_start = month_start;
+        this.day_start = day_start;
+    }
+
+    private void setStartDate(Date date) {
+        this.year_start = date.getYear();
+        this.month_start = date.getMonth();
+        this.day_start = date.getDay();
+    }
+
+    private void setEndDate(int year_end, int month_end, int day_end) {
+        this.year_end = year_end;
+        this.month_end = month_end;
+        this.day_end = day_end;
+    }
+
+    private void setEndDate(Date date) {
+        this.year_end = date.getYear();
+        this.month_end = date.getMonth();
+        this.day_end = date.getDay();
+    }
+
 
 }
