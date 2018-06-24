@@ -59,6 +59,8 @@ public class Trips_trip extends DB_Item implements Comparable {
 
     public static void setCurrentTrip(Trips_trip currentTrip) {
         Trips_trip.currentTrip = currentTrip;
+        Packlist.setCurrentPacklist(currentTrip.packList);
+        TravelBook.setCurrentTravelBook(currentTrip.travelbook);
     }
 
     public Packlist getPacklist() {
