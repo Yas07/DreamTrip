@@ -48,6 +48,8 @@ import layout.FragmentPlan_winter;
 
 public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
         DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+    int DATE_NOT_SET = -1;
+
     EditText editTime;
     int hours, minutes;
     Calendar calendar;
@@ -56,9 +58,12 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
     ImageButton saveTimePointBtn;
 
     //DateTime in Plan
-    EditText editDateTimeVisit;
     int day, month, year, hour, minute;
-    int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
+    int dayFinal = DATE_NOT_SET,
+            monthFinal = DATE_NOT_SET,
+            yearFinal = DATE_NOT_SET,
+            hourFinal = DATE_NOT_SET,
+            minuteFinal = DATE_NOT_SET;
 
     // NOTE: pp -- plan point
     EditText ppTitle;
@@ -79,6 +84,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
         currentFragment = R.id.btnTransport;
         setContentView(R.layout.mytrips_trip_plan_add);
         timeFormat = new SimpleDateFormat("HH:mm");
+        calendar = new GregorianCalendar();
         saveTimePointBtn = (ImageButton) findViewById(R.id.imageButton6);
         ppTitle = (EditText) findViewById(R.id.editText8);
         ppOpenAt = (EditText) findViewById(R.id.editTimeOpen);
@@ -98,8 +104,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Bundle bundle = getIntent().getExtras();
-        tripCtx = Trips_BD.getInstance().findByBundle(bundle);
+        tripCtx = Trips_trip.getCurrentTrip();
 
         if (tripCtx == null) {
             Log.e("Activity_trip", "Cannot resolve trip");
@@ -113,20 +118,15 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
         ft.replace(R.id.fragmentPlace, fragment);
         ft.commit();
 
-        calendar = Calendar.getInstance();
-//        editTimeOpen = (EditText) findViewById(R.id.editTimeOpen);
-//        editTimeClose = (EditText) findViewById(R.id.editTimeClose);
-//        editDateTimeVisit = (EditText) findViewById(R.id.editDateTimeVisit);
-
         //DateTime in Plan
-        editDateTimeVisit = (EditText) findViewById(R.id.editDateTimeVisit);
-        editDateTimeVisit.setOnClickListener(new View.OnClickListener() {
+        ppDateTime = (EditText) findViewById(R.id.editDateTimeVisit);
+        ppDateTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar c = Calendar.getInstance();
                 year = c.get(Calendar.YEAR);
                 month = c.get(Calendar.MONTH);
-                day = c.get(Calendar.DAY_OF_MONTH);
+                day = c.get(Calendar.DATE);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(ActivityMytrips_trip_plan_add.this,
                         ActivityMytrips_trip_plan_add.this, year, month, day);
@@ -166,7 +166,7 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
         String strDateTime = DateFormat.getDateInstance(DateFormat.MEDIUM).format(c.getTime())
                 + " " + timeFormat.format(c.getTime());
         //String strDateTime = dayFinal + ". " + monthFinal + ". " + yearFinal + " " + hourFinal + ":" + minuteFinal;
-        editDateTimeVisit.setText(strDateTime);
+        ppDateTime.setText(strDateTime);
     }
 
 //--------------------------------------------------------Pick Date / Time Dialog
@@ -500,27 +500,17 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
     }
 
     private Calendar getTimeDateCalFromEdit(EditText editText) {
+        if (yearFinal == DATE_NOT_SET ||
+                monthFinal == DATE_NOT_SET ||
+                dayFinal == DATE_NOT_SET ||
+                hourFinal == DATE_NOT_SET ||
+                minuteFinal == DATE_NOT_SET) {
+            Log.e("getTimeDateClaFromEdit", "date time not set!");
+            return null;
+        }
         Calendar cal = new GregorianCalendar();
         cal.set(yearFinal, monthFinal, dayFinal, hourFinal, minuteFinal);
         return cal;
-//        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
-//
-//        String [] dateAndTime =  editText.getText().toString().split(" ");
-//        if (dateAndTime.length != 2) {
-//            Log.e("getCalendarFromEdit","no date and time?");
-//            return cal;
-//        }
-//
-//        try {
-//            Date tmpDate = dateFormat.parse(dateAndTime[0]); // 0 is Date
-//            Date tmpTime = timeFormat.parse(dateAndTime[1]); // 1 is Time
-//            cal.setTime(combineDates(tmpDate, tmpTime));
-//        } catch (ParseException e) {
-//            Log.e("getCalendarFromEdit","Failed to parse editText");
-//            return cal;
-//        }
-
-
     }
 
     private Calendar getCalendarFromEdit(EditText editText) {
@@ -546,28 +536,26 @@ public class ActivityMytrips_trip_plan_add extends AppCompatActivity implements
     }
 
     public void saveTimePoint(View view) {
-        if (ppTitle.getText().toString().equals("")){
-            Toast.makeText(this, "Enter a title!", Toast.LENGTH_LONG).show();
-        } else if (getCurrentIcon() == 0){
-            Toast.makeText(this, "Choose icon on second line!", Toast.LENGTH_LONG).show();
-        } else if (getTimeDateCalFromEdit(ppDateTime) == null){
-            //TODO: check if date and time was picked
-            Toast.makeText(this, "Choose date and time of visiting!", Toast.LENGTH_LONG).show();
+        try {
+
+            if (ppTitle.getText().toString().equals("")) throw new Exception("Enter a title!");
+            if (getCurrentIcon() == 0) throw new Exception("Choose icon on second line!");
+            if (getTimeDateCalFromEdit(ppDateTime) == null)
+                throw new Exception("Choose date and time of visiting!");
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            return;
         }
-        else {
-            PlanPoint planPoint = new PlanPoint(ppTitle.getText().toString(),
-                                            fragmentToColor(currentFragment),
-                                            getCurrentIcon(),
-                                            getPlace(),
-                                            getTimeDateCalFromEdit(ppDateTime),
-                                            ppOtherDetails.getText().toString()
-            );
-            tripCtx.getPlan().add(planPoint);
-            Toast.makeText(this, "Plan point was added successfully!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip").putExtras(tripCtx.getBundle()));
-        }
+
+        PlanPoint planPoint = new PlanPoint(ppTitle.getText().toString(),
+                fragmentToColor(currentFragment),
+                getCurrentIcon(),
+                getPlace(),
+                getTimeDateCalFromEdit(ppDateTime),
+                ppOtherDetails.getText().toString()
+        );
+        tripCtx.getPlan().add(planPoint);
+        Toast.makeText(this, "Plan point was added successfully!", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent("com.dreamtrip.dreamtrip.ActivityMytrips_trip").putExtras(tripCtx.getBundle()));
     }
-
-
-
 }

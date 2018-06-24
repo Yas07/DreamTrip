@@ -112,6 +112,7 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
                             return true;
                         }
                     });
+                    contextMenu.getItem(0).setVisible(false);
 
                     contextMenu.getItem(1).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                         @Override
@@ -182,7 +183,10 @@ public class AdapterRecycler_Plan extends RecyclerView.Adapter<AdapterRecycler_P
         viewHolder.itemTitle.setText(planPoint.getTitle());
         viewHolder.itemTime.setText(planPoint.getTime());
 
-        String itemDetails = planPoint.getPlace().getPlaceData() +  planPoint.getOtherDetails();
+        String itemDetails = planPoint.getPlace().getPlaceData();
+        itemDetails += itemDetails.isEmpty() ? "" : "\n";
+        itemDetails += planPoint.getOtherDetails();
+
         viewHolder.itemDetail.setText(itemDetails);
 
         if (planPoint.getIconIndex() != 0 && planPoint.getColorIndex() != 0) {
