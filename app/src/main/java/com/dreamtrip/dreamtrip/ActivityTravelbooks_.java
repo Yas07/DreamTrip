@@ -8,9 +8,12 @@ import android.app.Fragment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 
 import java.util.ArrayList;
 
@@ -21,7 +24,8 @@ public class ActivityTravelbooks_ extends Fragment{
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-    RecyclerView.Adapter adapter;
+    AdapterRecycler_GridCards adapter;
+    AutoCompleteTextView packSearch;
 
     private int colorBg = Color.parseColor("#B0F3DCE7");
     private int colorText = Color.BLACK;
@@ -36,14 +40,35 @@ public class ActivityTravelbooks_ extends Fragment{
         recyclerView = (RecyclerView) myLayout.findViewById(R.id.recycler_view_travelbooks);
         layoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
-
-        ArrayList<TravelBook> travelBooks = new ArrayList<TravelBook>(TravelBooksDB.getInstance().values());
+        packSearch = (AutoCompleteTextView) myLayout.findViewById(R.id.autoCompleteTextView);
+        packSearch.addTextChangedListener(createTextWatcher());
 
         adapter = new AdapterRecycler_GridCards(colorBg, colorText, ActivityType.TRAVELBOOKS);
         recyclerView.setAdapter(adapter);
 
         return myLayout;
     }
+    private TextWatcher createTextWatcher() {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getCurrentActivityType().
+                        setItems(TravelBooksDB.
+                                getInstance().findAllSimilar(s.toString()));
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        };
+    }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

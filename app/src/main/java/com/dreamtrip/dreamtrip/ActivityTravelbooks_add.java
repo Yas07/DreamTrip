@@ -133,7 +133,7 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
             isPhotoSet = true;
             chooseCover(btnPhotoFrameLight);
         } else if (currentPhotoId != 0) {
-            chooseCover(findViewById(currentPhotoId));
+            chooseCoverById(currentPhotoId);
         } else if (travelBook.getPhotoImage() != null) {
             Log.e("dissadembleTravelBook", "you shouldn't use bitmap");
         }
@@ -165,9 +165,21 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
         }
     }
 
+    public void chooseCoverById(int coverId) {
+        if (coverId == 0) {
+            Log.e("chooseBagByBagId", "coverId = 0, skip");
+            return;
+        }
+        View[] buttons = getCovers();
+        for (View temp: buttons) {
+            int color = getPhotoIDbyName((String) temp.getTag()) == coverId ?
+                    getResources().getColor(R.color.transparentWhite) : Color.TRANSPARENT ;
+            temp.setBackgroundColor(color);
+        }
+    }
 
-    public void chooseCover(View view){
-        View[] buttons = {
+    private View[] getCovers() {
+        return new View[]{
                 findViewById(R.id.layoutFrameLight),
                 findViewById(R.id.travelbooks_add_btnChristmasBlack),
                 findViewById(R.id.travelbooks_add_btnChristmasGreen),
@@ -186,6 +198,15 @@ public class ActivityTravelbooks_add extends AppCompatActivity {
                 findViewById(R.id.travelbooks_add_btnTravelBrightBlue),
                 findViewById(R.id.travelbooks_add_btnTravelOrange),
                 findViewById(R.id.travelbooks_add_btnOrangeAbstract)};
+    }
+
+
+    public void chooseCover(View view){
+        if (view == null) {
+            Log.e("chooseCover", "null cover");
+            return;
+        }
+        View[] buttons = getCovers();
         for (View temp: buttons)
             temp.setBackgroundColor(Color.TRANSPARENT);
 

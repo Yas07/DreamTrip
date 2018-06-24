@@ -46,6 +46,12 @@ public class ActivityMytrips_trip extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         Bundle bundle = getIntent().getExtras();
 
@@ -86,6 +92,13 @@ public class ActivityMytrips_trip extends AppCompatActivity{
     }
 
     @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getBaseContext(),MainActivity.class).
+                putExtras(ActivityType.
+                        activityTypeToBundle(ActivityType.TRIPS)));
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.toolbarEdit: {
@@ -105,8 +118,7 @@ public class ActivityMytrips_trip extends AppCompatActivity{
                                 if (trip != null) {
                                     Trips_BD.getInstance().remove(trip);
                                     Toast.makeText(ActivityMytrips_trip.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
-                                    final Intent intent = new Intent(getBaseContext(),MainActivity.class).putExtra("value", "Successfully deleted");
-                                    startActivity(intent);
+                                    onBackPressed();
                                 }
                             }
                         })
@@ -127,25 +139,25 @@ public class ActivityMytrips_trip extends AppCompatActivity{
     }
 
 
-    private void savePacklistDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle("Save trip")
-                .setMessage("Do you want to delete your trip?")
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        Trips_trip trip = Trips_trip.getCurrentTrip();
-                        if (trip != null) {
-                            Trips_BD.getInstance().remove(trip);
-                            Toast.makeText(ActivityMytrips_trip.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
-                            final Intent intent = new Intent(getBaseContext(),MainActivity.class).putExtra("value", "Successfully deleted");
-                            startActivity(intent);
-                        }
-                    }
-                })
-                .setNegativeButton(android.R.string.no, null).show();
-
-    }
+//    private void savePacklistDialog() {
+//        new AlertDialog.Builder(this)
+//                .setTitle("Save trip")
+//                .setMessage("Do you want to delete your trip?")
+//                .setIcon(android.R.drawable.ic_dialog_alert)
+//                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int whichButton) {
+//                        Trips_trip trip = Trips_trip.getCurrentTrip();
+//                        if (trip != null) {
+//                            Trips_BD.getInstance().remove(trip);
+//                            Toast.makeText(ActivityMytrips_trip.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
+//                            final Intent intent = new Intent(getBaseContext(),MainActivity.class).putExtra("value", "Successfully deleted");
+//                            startActivity(intent);
+//                        }
+//                    }
+//                })
+//                .setNegativeButton(android.R.string.no, null).show();
+//
+//    }
 
 //    private void addPlanPoint(View view){
 //        if (view.getId() == R.id.fab_mytrips_plan){

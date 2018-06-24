@@ -41,7 +41,6 @@ public class ActivityPacklists_ extends Fragment {
         packSearch = (AutoCompleteTextView) myLayout.findViewById(R.id.autoCompleteTextView);
         packSearch.addTextChangedListener(createTextWatcher());
 
-        ArrayList<Packlist> packlists = new ArrayList<Packlist> (PacklistsDB.getInstance().values());
         recyclerView = (RecyclerView) myLayout.findViewById(R.id.recycler_view_packlists);
         layoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
@@ -61,8 +60,8 @@ public class ActivityPacklists_ extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 adapter.getCurrentActivityType().
-                        setItems(new ArrayList<>(PacklistsDB.
-                                getInstance().tailMap(s.toString()).values()));
+                        setItems(PacklistsDB.
+                                getInstance().findAllSimilar(s.toString()));
                 adapter.notifyDataSetChanged();
             }
 

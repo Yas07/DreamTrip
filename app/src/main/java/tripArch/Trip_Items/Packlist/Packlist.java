@@ -136,4 +136,9 @@ public class Packlist extends LinkedList<Stuff> implements Comparable, IDB {
         // sql magic, should remove only Packlist data
     }
 
+    @Override
+    public String toString() {
+
+        return getName() + super.toString();
+    }
 }

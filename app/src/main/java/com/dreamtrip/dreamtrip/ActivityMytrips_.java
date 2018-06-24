@@ -8,16 +8,23 @@ import android.app.Fragment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+
+import Trip_DBs.Trips_BD;
 
 public class ActivityMytrips_ extends Fragment {
 
     // RECYCLE VIEW, MANAGER, ADAPTER FOR CARDS
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-    RecyclerView.Adapter adapter;
+    AdapterRecycler_GridCards adapter;
+
+    AutoCompleteTextView packSearch;
 
     @Nullable
     @Override
@@ -32,14 +39,11 @@ public class ActivityMytrips_ extends Fragment {
         //DatabaseHelper.getInstance().insertTrip(mytrip);
         //DatabaseHelper.getInstance().insertTravelbook(mytrip.getTitle(), "image1", "mydetails1");
         //DatabaseHelper.getInstance().insertPacklist("winter stuff", "image2", "mydetails2");
-//        String[] cardTitles = {"Lviv", "Chernivtsi", "Paris", "Egypt", "Disneyland", "Favourite trip"};
-//        String[] cardDetails = {"06-08.01.18", "13-14.01.18", "02.05.18", "07.09.16", "22.06.19", "15.12.12"};
-//        int[] cardImages = {R.drawable.city_lviv_dpi, R.drawable.city_chernivtsi_dpi, R.drawable.city_paris_dpi,
-//                R.drawable.city_egypt_dpi, R.drawable.city_lviv_dpi, R.drawable.city_chernivtsi_dpi};
 
         int colorBg =  Color.WHITE;
         int colorText = Color.WHITE;
-
+        packSearch = (AutoCompleteTextView) myLayout.findViewById(R.id.autoCompleteTextView);
+        packSearch.addTextChangedListener(createTextWatcher());
 
         // SETTING COLORS
         colorBg = getResources().getColor(R.color.mytrips_bg);
@@ -54,6 +58,28 @@ public class ActivityMytrips_ extends Fragment {
 
 
         return myLayout;
+    }
+
+
+    private TextWatcher createTextWatcher() {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.getCurrentActivityType().
+                        setItems(Trips_BD.
+                                getInstance().findAllSimilar(s.toString()));
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        };
     }
 
     @Override

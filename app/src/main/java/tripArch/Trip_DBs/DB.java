@@ -6,6 +6,8 @@ import com.google.common.collect.TreeMultimap;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.NavigableSet;
+import java.util.SortedMap;
+import java.util.SortedSet;
 import java.util.TreeMap;
 
 abstract class DB<KEY, VALUE extends DB_Item>{
@@ -84,6 +86,10 @@ abstract class DB<KEY, VALUE extends DB_Item>{
             Log.e("DB", "different size!!!");
         }
         return _keyValueDB.size();
+    }
+
+    public SortedMap<String, Collection<VALUE>> tailMap(String str){
+        return _stringValueDB.asMap().tailMap(str);
     }
 
 

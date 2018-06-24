@@ -2,7 +2,9 @@ package Trip_Items.TravelBooks;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Set;
 import java.util.TreeMap;
 
 import Trip_DBs.Trips_BD;
@@ -34,6 +36,18 @@ public class TravelBooksDB extends TreeMap<String, TravelBook>{
     public String[] getStrKeys() {
         Object[] objArray = keySet().toArray();
         return keySet().toArray(new String[objArray.length]);
+    }
+
+
+    public ArrayList<TravelBook> findAllSimilar(String seachVal) {
+        ArrayList<TravelBook> travelbooks = new ArrayList<TravelBook>();
+        Set<String> keys = tailMap(seachVal).keySet();
+        for (String key : keys) {
+            if (key.startsWith(seachVal)) {
+                travelbooks.add(get(key));
+            }
+        }
+        return travelbooks;
     }
 
 

@@ -29,17 +29,17 @@ public class ExampleUnitTest {
 
         String searchValue;
 
-        searchValue = "Od";
-        Log.e(searchValue, PacklistsDB.getInstance().tailMap(searchValue).toString());
+        searchValue = "od";
+        Log.e(searchValue, PacklistsDB.getInstance().findAllSimilar(searchValue).toString());
 
         searchValue = "Odi";
-        Log.e(searchValue, PacklistsDB.getInstance().tailMap(searchValue).toString());
+        Log.e(searchValue, PacklistsDB.getInstance().findAllSimilar(searchValue).toString());
 
         searchValue = "Ode";
-        Log.e(searchValue, PacklistsDB.getInstance().tailMap(searchValue).toString());
+        Log.e(searchValue, PacklistsDB.getInstance().findAllSimilar(searchValue).toString());
 
         searchValue = "Odes";
-        Log.e(searchValue, PacklistsDB.getInstance().tailMap(searchValue).toString());
+        Log.e(searchValue, PacklistsDB.getInstance().findAllSimilar(searchValue).toString());
     }
 }
 

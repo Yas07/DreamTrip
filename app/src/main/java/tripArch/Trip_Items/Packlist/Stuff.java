@@ -58,4 +58,9 @@ public class Stuff implements IDB {
     public void removeFromDb() {
         // sql specific code, should remove only stuff fields
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

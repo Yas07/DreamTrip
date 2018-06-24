@@ -3,9 +3,12 @@ package Trip_DBs;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Set;
+import java.util.SortedSet;
 
 import Trip_Items.TravelBooks.TravelBooksDB;
 import Trip_Items.Trips_trip;
@@ -90,6 +93,18 @@ public class Trips_BD extends DB<Date, Trips_trip> {
     public Collection<Trips_trip> getValuesSortByDate()
     {
         return getValuesSortByKey();
+    }
+
+    public ArrayList<Trips_trip> findAllSimilar(String seachVal) {
+        ArrayList<Trips_trip> trips = new ArrayList<Trips_trip>();
+        Collection<Trips_trip> rawTrips = getValuesSortByDate();
+
+        for (Trips_trip key : rawTrips) {
+            if (key.getName().startsWith(seachVal)) {
+                trips.add(key);
+            }
+        }
+        return trips;
     }
 
     public Collection<Trips_trip> getValuesSortByTripName()
