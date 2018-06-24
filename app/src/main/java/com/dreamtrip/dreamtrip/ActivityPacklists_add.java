@@ -133,7 +133,7 @@ public class ActivityPacklists_add extends AppCompatActivity {
             btnBagRectangle.setImageBitmap(packPhoto);
             chooseBag(btnBagRectangle);
         } else if (currentBagId != 0) {
-            chooseBag(findViewById(currentBagId));
+            chooseBagByBagId(packlist.getBagIndex());
         }
     }
 
@@ -177,12 +177,8 @@ public class ActivityPacklists_add extends AppCompatActivity {
         }
     }
 
-    public void chooseBag(View view){
-        if (view == null) {
-            Log.e("chooseBag", "null view");
-            return;
-        }
-        View[] buttons = {
+    public View[] getBags() {
+        return new View[]{
                 findViewById(R.id.layoutBagRectangle),
                 findViewById(R.id.packlists_add_btnAdventure),
                 findViewById(R.id.packlists_add_btnBirds),
@@ -201,8 +197,30 @@ public class ActivityPacklists_add extends AppCompatActivity {
                 findViewById(R.id.packlists_add_btnTwopeople),
                 findViewById(R.id.packlists_add_btnWinter1),
                 findViewById(R.id.packlists_add_btnWinter2)};
-        for (View temp: buttons)
+    }
+
+    public void chooseBagByBagId(int bagId) {
+        if (bagId == 0) {
+            Log.e("chooseBagByBagId", "bagId = 0, skip");
+            return;
+        }
+        View[] buttons = getBags();
+        for (View temp: buttons) {
+            int color = getBagIDbyName((String) temp.getTag()) == bagId ?
+                    getResources().getColor(R.color.transparentWhite) : Color.TRANSPARENT ;
+            temp.setBackgroundColor(color);
+        }
+    }
+
+    public void chooseBag(View view){
+        if (view == null) {
+            Log.e("chooseBag", "null view");
+            return;
+        }
+        View[] buttons = getBags();
+        for (View temp: buttons) {
             temp.setBackgroundColor(Color.TRANSPARENT);
+        }
 
         String iconName = (String)  view.getTag();
         currentBagId = getBagIDbyName(iconName);
