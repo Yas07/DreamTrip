@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.NavigableSet;
 import java.util.Set;
@@ -63,8 +64,8 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
     DatePickerDialog dateStartPickerDialog;
     DatePickerDialog dateEndPickerDialog;
 
-    int year_start, month_start, day_start;
-    int year_end, month_end, day_end;
+    Calendar startDate;
+    Calendar endDate;
     int defaultColor;
     boolean isEditMode = false;
 
@@ -80,6 +81,8 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
         Bundle bundle = getIntent().getExtras();
         isEditMode = bundle != null && bundle.getBoolean(Trips_BD.editBundleValue);
 
+        startDate = new GregorianCalendar();
+        endDate =  new GregorianCalendar();
         editTripTitle = (EditText) findViewById(R.id.editTripTitle);
         btnSave = (Button) findViewById(R.id.btn_save);
         btnSave.setOnClickListener(new View.OnClickListener(){
@@ -120,16 +123,16 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
         editStartDate = (EditText) findViewById(R.id.editStartDate);
         editEndDate = (EditText) findViewById(R.id.editEndDate);
 
-        Calendar calendar = Calendar.getInstance();
-        setStartDate(calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH));
-        setEndDate(calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH));
+        Calendar cal = Calendar.getInstance();
+        setStartDate(cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH));
+        setEndDate(cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH));
  ;
 
-        String currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime());
+        String currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(cal.getTime());
         editStartDate.setText(currentDate);
         editEndDate.setText(currentDate);
 
@@ -216,11 +219,13 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
         switch (enum_EditDateID.values()[id]){
             case START_DATE:
                 editDate = editStartDate;
-                dateStartPickerDialog = new DatePickerDialog(this, dateStartPickerListener, year_start, month_start, day_start);
+                dateStartPickerDialog = new DatePickerDialog(this, dateStartPickerListener,
+                        startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH), startDate.get(Calendar.DATE));
                 return dateStartPickerDialog;
             case END_DATE:
                 editDate = editEndDate;
-                dateEndPickerDialog = new DatePickerDialog(this, dateEndPickerListener, year_end, month_end, day_end);
+                dateEndPickerDialog = new DatePickerDialog(this, dateEndPickerListener,
+                        endDate.get(Calendar.YEAR), endDate.get(Calendar.MONTH), endDate.get(Calendar.DATE));
                 return dateEndPickerDialog;
         }
         return datePickerDialog;
@@ -425,36 +430,19 @@ public class ActivityMytrips_add extends AppCompatActivity  implements IDelEdit{
     }
 
     private Date getStartDate() {
-        return new Date(year_start, month_start, day_start);
+        return startDate.getTime();
     }
 
     private Date getEndDate() {
-        return new Date(year_end, month_end, day_end);
+        return endDate.getTime();
     }
 
     private void setStartDate(int year_start, int month_start, int day_start) {
-        this.year_start = year_start;
-        this.month_start = month_start;
-        this.day_start = day_start;
-    }
-
-    private void setStartDate(Date date) {
-        this.year_start = date.getYear();
-        this.month_start = date.getMonth();
-        this.day_start = date.getDay();
+        startDate.set(year_start, month_start, day_start);
     }
 
     private void setEndDate(int year_end, int month_end, int day_end) {
-        this.year_end = year_end;
-        this.month_end = month_end;
-        this.day_end = day_end;
+        endDate.set(year_end, month_end, day_end);
     }
-
-    private void setEndDate(Date date) {
-        this.year_end = date.getYear();
-        this.month_end = date.getMonth();
-        this.day_end = date.getDay();
-    }
-
 
 }
